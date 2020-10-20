@@ -1,18 +1,28 @@
+/** 
+*  The main program for our web app. 
+*
+* @author Denise Case <dcase@nwmissouri.edu>
+*/
+
+// import necessary dependencies
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
+//  import local code files
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 
+// create an Express app
 const app = express();
 
-// view engine setup
+// set key-value pairs to configure view engine
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+// set up other middleware
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
