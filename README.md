@@ -4,6 +4,7 @@
 
 ## Prerequisites
 
+- Node.js (comes with npm)
 - Git
 - TortoiseGit
 - VS Code
@@ -52,6 +53,9 @@ Add yourself and your email as the author (follow the examples).
 
 ## Start
 
+Choose one of the following to start the app:
+
 ```PowerShell
- $env:DEBUG='web-app-2020-fall:*'; npm start
+npm run start
+npm run dev
  ```

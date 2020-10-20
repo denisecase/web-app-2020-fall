@@ -27,6 +27,7 @@
     "eslint-config-prettier": "latest",
     "eslint-plugin-import": "latest",
     "eslint-plugin-prettier": "latest",
+    "nodemon": "latest",
     "prettier": "latest"
   }
 }

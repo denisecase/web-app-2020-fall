@@ -27,7 +27,6 @@ dotenv.config({ path: '.env' })
 console.info('Environment variables loaded.')
 
 // app variables
-const DEFAULT_PORT = 8089
 const isProduction = process.env.NODE_ENV === 'production'
 console.info('Environment isProduction = ', isProduction)
 
@@ -45,6 +44,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(helmet);
 
 // set up user authentication (logging in & admin)
 app.use(global.passport.initialize())
