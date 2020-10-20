@@ -7,6 +7,7 @@
 - Git
 - TortoiseGit
 - VS Code
+- VS Code Extension - [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 
 ## Background
 
@@ -15,6 +16,8 @@
 - Change package.json versions to "latest"
 - Added folders for MVC
 - Updated to use express app4 updates
+- [Set up ESLint and Prettier](https://sourcelevel.io/blog/how-to-setup-eslint-and-prettier-on-node)
+- Set up [Cypress](https://docs.cypress.io/) testing
 
 ## Adding Resources 
 
@@ -46,3 +49,9 @@ Add yourself and your email as the author (follow the examples).
 1. Git add & git commit locally. 
 1. Git push to the origin. 
 1. Submit your pull request to the main repo. 
+
+## Start
+
+```PowerShell
+ $env:DEBUG='web-app-2020-fall:*'; npm start
+ ```
