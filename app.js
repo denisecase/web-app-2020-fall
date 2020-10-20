@@ -29,10 +29,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// route most requests to the indexRouter
+// route requests that start with /users to the usersRouter
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
-// catch 404 and forward to error handler
+// catch 404 and forward to error handler for all requests
 app.use(function(req, res, next) {
   next(createError(404));
 });
