@@ -20,13 +20,13 @@
 - [Set up ESLint and Prettier](https://sourcelevel.io/blog/how-to-setup-eslint-and-prettier-on-node)
 - Set up [Cypress](https://docs.cypress.io/) testing
 
-## Adding Resources 
+## Adding Resources
 
 Follow conventions - use standard lowercase, no spaces, follow naming patterns
 
 We want to be able to perform all CRUD options (create, read, update, delete)
 
-- Make a model 
+- Make a model
 - Make a controller
 - Make a views subfolder with 5 views:
 
@@ -36,20 +36,30 @@ We want to be able to perform all CRUD options (create, read, update, delete)
 1. edit.ejs
 1. index.ejs
 
-On your initial commit, just add a comment block at the top of each file. 
+On your initial commit, just add a comment block at the top of each file.
 
 Add yourself and your email as the author (follow the examples).
 
 ## Contributing
 
 1. Pull fresh code. (Fork & clone if this is the first time.)
-1. Run npm install 
+1. Run npm install
 1. Run npm start dev
 1. Verify everything runs.
-1. Make your local edits. 
-1. Git add & git commit locally. 
-1. Git push to the origin. 
-1. Submit your pull request to the main repo. 
+1. Make your local edits.
+1. Git add & git commit locally.
+1. Git push to the origin.
+1. Submit your pull request to the main repo.
+
+As you test your code, format it with Prettier and 
+lint (clean it up) with ESLint. 
+See scripts in package.json.
+
+```PowerShell
+npm run prettier
+npm run lint
+npm run lint-fix
+```
 
 ## Start
 
@@ -58,4 +68,4 @@ Choose one of the following to start the app:
 ```PowerShell
 npm run start
 npm run dev
- ```
+```

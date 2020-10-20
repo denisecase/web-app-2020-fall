@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+
+    <% include ('header.ejs') %>
+
+
+    <h1><%= title %></h1>
+    <p>Welcome to <%= subTitle %></p>
+
+
+    <div class="container">
+        <div class="body">
+
+            <!-- This part will get replaced with each view. -->
+
+            <%- body %>
+
+        </div>
+    </div>
+
+    <% include ('footer.ejs') %>
+
+</body>
+
+</html>

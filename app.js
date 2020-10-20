@@ -1,8 +1,8 @@
-/** 
-*  The main program for our web app. 
-*
-* @author Denise Case <dcase@nwmissouri.edu>
-*/
+/**
+ *  The main program for our web app.
+ *
+ * @author Denise Case <dcase@nwmissouri.edu>
+ */
 
 // import default dependencies
 const createError = require('http-errors');
@@ -12,10 +12,11 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
 // import additional dependencies
-const dotenv = require('dotenv')
-const engines = require('consolidate')
-const helmet = require('helmet'); //safer http headers
-global.passport = require('passport')
+const dotenv = require('dotenv');
+const engines = require('consolidate');
+const expressLayouts = require('express-ejs-layouts');
+const helmet = require('helmet'); // safer http headers
+global.passport = require('passport');
 
 //  import local code files
 const indexRouter = require('./routes/index');
@@ -23,12 +24,12 @@ const usersRouter = require('./routes/users');
 
 // Load environment variables from .env file, where API keys and passwords are configured.
 // dotenv.config({ path: '.env.example' })
-dotenv.config({ path: '.env' })
-console.info('Environment variables loaded.')
+dotenv.config({ path: '.env' });
+console.info('Environment variables loaded.');
 
 // app variables
-const isProduction = process.env.NODE_ENV === 'production'
-console.info('Environment isProduction = ', isProduction)
+const isProduction = process.env.NODE_ENV === 'production';
+console.info('Environment isProduction = ', isProduction);
 
 // create an Express app
 const app = express();
@@ -36,7 +37,7 @@ const app = express();
 // set key-value pairs to configure view engine(s)
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-app.engine('ejs', engines.ejs)
+app.engine('ejs', engines.ejs);
 
 // set up other middleware
 app.use(logger('dev'));
@@ -44,25 +45,26 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(helmet);
+app.use(helmet());
+app.use(expressLayouts);
 
 // set up user authentication (logging in & admin)
-app.use(global.passport.initialize())
-app.use(global.passport.session())
+app.use(global.passport.initialize());
+app.use(global.passport.session());
 
 // route most requests to the indexRouter
 // route requests that start with /users to the usersRouter
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-console.info('Loaded routing.')
+console.info('Loaded routing.');
 
 // catch 404 and forward to error handler for all requests
-app.use(function(req, res, next) {
+app.use((req, res, next) => {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use((err, req, res) => {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
