@@ -42,28 +42,46 @@ Add yourself and your email as the author (follow the examples).
 
 ## Contributing
 
+### Step 1 - Get fresh code.
+
 1. Pull fresh code. (Fork & clone if this is the first time.)
 1. Run npm install
 1. Run npm start dev
 1. Verify everything runs.
-1. Make your local edits.
-1. Git add & git commit locally.
-1. Git push to the origin.
-1. Submit your pull request to the main repo.
+
+```PowerShell
+npm install
+npm run dev
+```
+
+### Step 2 - Make your contributions. 
 
 As you test your code, format it with Prettier and
 lint (clean it up) with ESLint.
 See scripts in package.json.
 
+1. Immediately, make your local edits.
+1. Verify the app still runs & standarize your code (see commands below)
+
 ```PowerShell
+npm install
+npm run dev
+
 npm run prettier
 npm run lint
 npm run lint-fix
 ```
 
-## Start
+### Step 3 - Save your work. 
 
-Choose one of the following to start the app:
+1. Git add & git commit locally.
+1. Git push to the origin. 
+1. In your updated GitHub repo look for "Pull Request". 
+1. Follow instructions (click the green buttons) to prepare a "pull request" into the main repo.
+
+## Start Options
+
+Choose one of the following to start the app. Run dev will use nodemon (and listens for changes). Run start will use node.
 
 ```PowerShell
 npm run start
