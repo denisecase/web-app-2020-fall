@@ -30,5 +30,6 @@ router.get('/index', (req, res) => {
 router.use('/rabbit', require('../controllers/rabbitController.js'));
 router.use('/animal', require('../controllers/animalController.js'));
 router.use('/game', require('../controllers/gameController.js'));
+router.use('/tea', require('../controllers/teaController.js'));
 
 module.exports = router;
