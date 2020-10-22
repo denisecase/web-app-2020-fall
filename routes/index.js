@@ -28,5 +28,6 @@ router.get('/index', (req, res) => {
 
 // Route requests that start with an expression to a controller
 router.use('/rabbit', require('../controllers/rabbitController.js'));
+router.use('/camelCase', require('../controllers/camelCaseController.js'));
 
 module.exports = router;
