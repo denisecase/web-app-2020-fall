@@ -3,14 +3,34 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "lint": "eslint .",
+    "lint-fix": "eslint --fix .",
+    "prettier": "prettier --write .",
+    "dev": "nodemon ./bin/www",
+    "start": "node ./bin/www",
+    "test": "$(npm bin)/cypress open"
   },
   "dependencies": {
+    "consolidate": "latest",
     "cookie-parser": "latest",
     "debug": "latest",
+    "dotenv": "latest",
     "ejs": "latest",
     "express": "latest",
+    "express-ejs-layouts": "latest",
+    "helmet": "latest",
     "http-errors": "latest",
-    "morgan": "latest"
+    "morgan": "latest",
+    "passport": "latest"
+  },
+  "devDependencies": {
+    "cypress": "latest",
+    "eslint": "latest",
+    "eslint-config-airbnb-base": "latest",
+    "eslint-config-prettier": "latest",
+    "eslint-plugin-import": "latest",
+    "eslint-plugin-prettier": "latest",
+    "nodemon": "latest",
+    "prettier": "latest"
   }
 }
