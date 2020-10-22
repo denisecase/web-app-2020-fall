@@ -4,7 +4,7 @@
  * router.get when assigning to a single request
  * router.use when deferring to a controller
  *
- * @author Denise Case <dcase@nwmissouri.edu>
+ * @author Sreenidhi Madala <s451226@nwmissouri.edu>
  * @requires express
  */
 

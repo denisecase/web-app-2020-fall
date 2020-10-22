@@ -2,5 +2,5 @@
  *  Rabbit model
  *  Describes the characteristics of each attribute in a rabbit resource.
  *
- * @author Denise Case <dcase@nwmissouri.edu>
+ * @author Sreenidhi Madala <s541226@nwmissouri.edu>
  */
