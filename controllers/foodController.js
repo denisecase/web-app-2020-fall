@@ -1,15 +1,15 @@
 /**
- *  Tea controller
- *  Handles requests related to tea (see routes)
+ *  Food controller
+ *  Handles requests related to food (see routes)
  *
- * @author Charles Hoot <hoot@nwmissouri.edu>
+ * @author Sri Vasavi Vipparla <S540791@nwmissouri.edu>
  */
 
 // import dependencies
 const express = require('express');
 
 // import local code files
-// const model = require('../models/tea.js');
+// const model = require('../models/food.js');
 
 // create a router
 const router = express.Router();
