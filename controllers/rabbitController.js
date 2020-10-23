@@ -1,6 +1,6 @@
 /**
  *  Rabbit controller
- *  Handles requests related to games (see routes)
+ *  Handles requests related to rabbits (see routes)
  *
  * @author Denise Case <dcase@nwmissouri.edu>
  */

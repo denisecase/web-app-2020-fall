@@ -26,11 +26,4 @@ router.get('/index', (req, res) => {
   res.render('index.ejs', { title: appTitle, subTitle: appSubTitle });
 });
 
-// Route requests that start with an expression to a controller
-router.use('/rabbit', require('../controllers/rabbitController.js'));
-router.use('/animal', require('../controllers/animalController.js'));
-router.use('/game', require('../controllers/gameController.js'));
-router.use('/tea', require('../controllers/teaController.js'));
-router.use('/series', require('../controllers/seriesController.js'));
-
 module.exports = router;
