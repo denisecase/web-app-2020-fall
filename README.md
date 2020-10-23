@@ -54,7 +54,7 @@ npm install
 npm run dev
 ```
 
-### Step 2 - Make your contributions. 
+### Step 2 - Make your contributions.
 
 As you test your code, format it with Prettier and
 lint (clean it up) with ESLint.
@@ -72,11 +72,11 @@ npm run lint
 npm run lint-fix
 ```
 
-### Step 3 - Save your work. 
+### Step 3 - Save your work.
 
 1. Git add & git commit locally.
-1. Git push to the origin. 
-1. In your updated GitHub repo look for "Pull Request". 
+1. Git push to the origin.
+1. In your updated GitHub repo look for "Pull Request".
 1. Follow instructions (click the green buttons) to prepare a "pull request" into the main repo.
 
 ## Start Options
