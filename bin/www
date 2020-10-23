@@ -1,30 +1,39 @@
 #!/usr/bin/env node
 
-/**
- * Module dependencies.
- */
+// Load environment variables from .env file,
+// where API keys and passwords can be configured.
+// dotenv.config({ path: '.env.example' })
+const dotenv = require('dotenv');
+const vars = dotenv.config({ path: '.env' });
+if (vars.error) {
+  throw vars.error;
+}
+console.info(process.env.PORT);
+console.info(vars.parsed);
+console.info('Environment variables loaded.');
 
-const app = require('../app');
 const debug = require('debug')('web-app-2020-fall:server');
 const http = require('http');
+const db = require('../models/index');
 
 /**
  * Get port from environment and store in Express.
  */
 
-const port = normalizePort(process.env.PORT || '3000');
+const port = normalizePort(process.env.PORT || '3020');
+
+const app = require('../app');
 app.set('port', port);
+console.log(`Server Launch at port: ${port}`);
 
 /**
  * Create HTTP server.
  */
-
 const server = http.createServer(app);
 
 /**
  * Listen on provided port, on all network interfaces.
  */
-
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
@@ -35,32 +44,26 @@ server.on('listening', onListening);
 
 function normalizePort(val) {
   const port = parseInt(val, 10);
-
   if (isNaN(port)) {
     // named pipe
     return val;
   }
-
   if (port >= 0) {
     // port number
     return port;
   }
-
   return false;
 }
 
 /**
  * Event listener for HTTP server "error" event.
  */
-
 function onError(error) {
   if (error.syscall !== 'listen') {
     throw error;
   }
 
-  const bind = typeof port === 'string'
-    ? 'Pipe ' + port
-    : 'Port ' + port;
+  const bind = typeof port === 'string' ? 'Pipe ' + port : 'Port ' + port;
 
   // handle specific listen errors with friendly messages
   switch (error.code) {
@@ -77,14 +80,79 @@ function onError(error) {
   }
 }
 
+// Database functions
+async function assertDatabaseConnectionOk() {
+  console.log(`Checking database connection...`);
+  try {
+    await db.authenticate();
+    console.log('Database connection OK!');
+  } catch (error) {
+    console.log('Unable to connect to the database:');
+    console.log(error.message);
+    process.exit(1);
+  }
+}
+
+async function dbInit() {
+  await assertDatabaseConnectionOk();
+}
+
+async function seedDatabase() {
+  console.log('Initialize the SQLite database with dummy data.');
+  await db.sync({ force: true });
+  console.dir(db.models);
+
+  // Dr. Case - rabbit
+  await db.models.Rabbit.bulkCreate([
+    { name: 'Bugs', age: 2, isCartoon: true },
+    { name: 'Huggy', age: 2, isCartoon: false },
+    { name: 'Doc', age: 2, isCartoon: true },
+  ]);
+  const numRabbits = await db.models.Rabbit.count();
+  console.info(`Seeded ${numRabbits} rabbits.`);
+
+  // Dr. Hoot - tea
+
+  // Blake - game
+
+  // Varsha - animal
+
+  // Felipe - ?
+
+  // Jack - chief
+
+  // Sreenidhi - student
+
+  // Sri Vasavi - food
+
+  // Joseph - software
+
+  // Stephen - whiskey
+
+  // Shivani - book
+
+  // Kunal - videoGame
+
+  // Chandler - company
+
+  // Praneeth - course
+
+  // Nithya - series
+
+  // Zach - fruit
+
+  // Prashansa - dance
+
+  console.log('Done seeding!');
+}
+
 /**
  * Event listener for HTTP server "listening" event.
  */
-
 function onListening() {
+  dbInit();
+  seedDatabase();
   const addr = server.address();
-  const bind = typeof addr === 'string'
-    ? 'pipe ' + addr
-    : 'port ' + addr.port;
+  const bind = typeof addr === 'string' ? 'pipe ' + addr : 'port ' + addr.port;
   debug('Listening on ' + bind);
 }
