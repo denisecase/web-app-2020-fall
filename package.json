@@ -8,7 +8,8 @@
     "prettier": "prettier --write .",
     "dev": "nodemon ./bin/www",
     "start": "node ./bin/www",
-    "test": "$(npm bin)/cypress open"
+    "test": "$(npm bin)/cypress open",
+    "sequelize": "./node_modules/.bin/sequelize"
   },
   "dependencies": {
     "consolidate": "latest",
@@ -18,13 +19,17 @@
     "ejs": "latest",
     "express": "latest",
     "express-ejs-layouts": "latest",
+    "express-validator": "latest",
+    "fs": "latest",
     "helmet": "latest",
     "http-errors": "latest",
+    "md5": "latest",
     "morgan": "latest",
-    "passport": "latest"
+    "passport": "latest",
+    "sequelize": "latest",
+    "sqlite3": "latest"
   },
   "devDependencies": {
-    "cypress": "latest",
     "eslint": "latest",
     "eslint-config-airbnb-base": "latest",
     "eslint-config-prettier": "latest",

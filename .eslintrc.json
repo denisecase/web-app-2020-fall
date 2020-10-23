@@ -14,6 +14,17 @@
   },
   "plugins": ["prettier"],
   "rules": {
-    "prettier/prettier": "error"
+    "comma-dangle": "warn",
+    "global-require": "warn",
+    "prettier/prettier": "error",
+    "operator-linebreak": ["error", "after"],
+    "max-len": [
+      "warn",
+      {
+        "code": 80,
+        "ignoreStrings": true
+      }
+    ],
+    "no-restricted-syntax": "warn"
   }
 }

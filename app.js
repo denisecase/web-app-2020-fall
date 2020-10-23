@@ -12,20 +12,10 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
 // import additional dependencies
-const dotenv = require('dotenv');
 const engines = require('consolidate');
 const expressLayouts = require('express-ejs-layouts');
 const helmet = require('helmet'); // safer http headers
 global.passport = require('passport');
-
-//  import local code files
-const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
-
-// Load environment variables from .env file, where API keys and passwords are configured.
-// dotenv.config({ path: '.env.example' })
-dotenv.config({ path: '.env' });
-console.info('Environment variables loaded.');
 
 // app variables
 const isProduction = process.env.NODE_ENV === 'production';
@@ -33,8 +23,9 @@ console.info('Environment isProduction = ', isProduction);
 
 // create an Express app
 const app = express();
+console.log('app created');
 
-// set key-value pairs to configure view engine(s)
+// view engine(s) setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.engine('ejs', engines.ejs);
@@ -52,18 +43,59 @@ app.use(expressLayouts);
 app.use(global.passport.initialize());
 app.use(global.passport.session());
 
+console.log('app initial middleware configured');
+
 // route most requests to the indexRouter
 // route requests that start with /users to the usersRouter
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-console.info('Loaded routing.');
+app.use('/', require('./routes/index'));
+app.use('/users', require('./routes/users'));
 
-// catch 404 and forward to error handler for all requests
+console.log('app default routes configured');
+
+// Dr. Case - rabbit
+app.use('/rabbit', require('./routes/rabbit.routes'));
+
+// Dr. Hoot - tea
+
+// Blake - game
+
+// Varsha - animal
+
+// Felipe - ?
+
+// Jack - chief
+
+// Sreenidhi - student
+
+// Sri Vasavi - food
+
+// Joseph - software
+
+// Stephen - whiskey
+
+// Shivani - book
+
+// Kunal - videoGame
+
+// Chandler - company
+
+// Praneeth - course
+
+// Nithya - series
+
+// Zach - fruit
+
+// Prashansa - dance
+
+console.log('app custom routes configured');
+
+// catch 404 and forward to error handler
 app.use((req, res, next) => {
   next(createError(404));
 });
 
-// error handler
+// error handler from
+// https://github.com/mdn/express-locallibrary-tutorial/blob/master/app.js
 app.use((err, req, res) => {
   // set locals, only providing error in development
   res.locals.message = err.message;

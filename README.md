@@ -9,6 +9,7 @@
 - TortoiseGit
 - VS Code
 - VS Code Extension - [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+- [DB Browser for SQLite](https://sqlitebrowser.org/dl/), e.g., standard for 64 Windows. Save the .msi file and double-click to run it.
 
 ## Background
 
@@ -18,7 +19,6 @@
 - Added folders for MVC
 - Updated to use express app4 updates
 - [Set up ESLint and Prettier](https://sourcelevel.io/blog/how-to-setup-eslint-and-prettier-on-node)
-- Set up [Cypress](https://docs.cypress.io/) testing
 
 ## Adding Resources
 
@@ -46,15 +46,15 @@ Add yourself and your email as the author (follow the examples).
 
 1. Pull fresh code. (Fork & clone if this is the first time.)
 1. Run npm install
-1. Run npm start dev
+1. Run npm run start
 1. Verify everything runs.
 
 ```PowerShell
 npm install
-npm run dev
+npm run start
 ```
 
-### Step 2 - Make your contributions. 
+### Step 2 - Make your contributions.
 
 As you test your code, format it with Prettier and
 lint (clean it up) with ESLint.
@@ -65,25 +65,30 @@ See scripts in package.json.
 
 ```PowerShell
 npm install
-npm run dev
+npm run start
 
 npm run prettier
 npm run lint
 npm run lint-fix
 ```
 
-### Step 3 - Save your work. 
+### Step 3 - Save your work.
 
 1. Git add & git commit locally.
-1. Git push to the origin. 
-1. In your updated GitHub repo look for "Pull Request". 
+1. Git push to the origin.
+1. In your updated GitHub repo look for "Pull Request".
 1. Follow instructions (click the green buttons) to prepare a "pull request" into the main repo.
 
 ## Start Options
 
-Choose one of the following to start the app. Run dev will use nodemon (and listens for changes). Run start will use node.
+Start the app by running npm run start.
+Until error handling is complete, a clean shutdown is better.
+Once error handling is complete, use npm run dev to start with nodemon.
 
 ```PowerShell
 npm run start
-npm run dev
 ```
+
+## Resources
+
+- [Getting Started with Node, Express and PostgreSQL using Sequelize](https://morioh.com/p/fe03e5149f97)
