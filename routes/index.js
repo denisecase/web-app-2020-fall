@@ -32,4 +32,6 @@ router.use('/animal', require('../controllers/animalController.js'));
 router.use('/game', require('../controllers/gameController.js'));
 router.use('/tea', require('../controllers/teaController.js'));
 router.use('/food', require('../controllers/foodController.js'));
+router.use('/plant', require('../controllers/plantController.js'));
+
 module.exports = router;
