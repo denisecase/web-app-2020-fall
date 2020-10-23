@@ -89,6 +89,8 @@ Once error handling is complete, use npm run dev to start with nodemon.
 npm run start
 ```
 
+View the application locally at <http://localhost:3020/>.
+
 ## Resources
 
 - [Getting Started with Node, Express and PostgreSQL using Sequelize](https://morioh.com/p/fe03e5149f97)
