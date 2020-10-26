@@ -4,8 +4,8 @@
  * @author Joseph Dobelmann <s536997@nwmissouri.edu>
  */
 
- // import dependencies
-const express = require("express");
+// import dependencies
+const express = require('express');
 
 const db = require('../models/index');
 
