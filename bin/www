@@ -143,6 +143,12 @@ async function seedDatabase() {
 
   // Prashansa - dance
 
+  // Sam - ship
+
+// Lindsey - pokemon
+
+
+
   console.log('Done seeding!');
 }
 

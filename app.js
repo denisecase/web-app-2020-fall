@@ -87,6 +87,10 @@ app.use('/rabbit', require('./routes/rabbit.routes'));
 
 // Prashansa - dance
 
+// Sam - ship
+
+// Lindsey - pokemon
+
 console.log('app custom routes configured');
 
 // catch 404 and forward to error handler

@@ -45,4 +45,8 @@ require('./rabbit')(db, Sequelize.DataTypes);
 
 // Prashansa - dance
 
+// Sam - ship
+
+// Lindsey - pokemon
+
 module.exports = db;
