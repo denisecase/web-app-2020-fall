@@ -140,6 +140,13 @@ async function seedDatabase() {
   // Sreenidhi - student
 
   // Sri Vasavi - food
+  await db.models.Food.bulkCreate([
+    { name: 'Lamb', pricePerLB: 8, isMeat: true },
+    { name: 'Fish', pricePerLB: 4, isMeat: true },
+    { name: 'Spinach', pricePerLB: 2, isMeat: false },
+  ]);
+  const numFood = await db.models.Food.count();
+  console.info(`Seeded ${numFood} food.`);
 
   // Joseph - software
 
