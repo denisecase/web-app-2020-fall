@@ -114,6 +114,15 @@ async function seedDatabase() {
   // Dr. Hoot - tea
 
   // Blake - game
+  await db.models.Game.bulkCreate([
+    {name: "Uno",  playerCount: 6, isCardGame: true},
+
+    {name: "Sorry",  playerCount: 4, isCardGame: false},
+
+    {name: "Monopoly",  playerCount: 4, isCardGame: false},
+  ]);
+  const numGames = await db.models.Game.count();
+  console.info(`Seeded ${numGames} games.`);
 
   // Varsha - animal
 

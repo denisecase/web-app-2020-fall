@@ -100,9 +100,7 @@ exports.showDelete = (req, res) => {
 
 // GET /details/:id
 exports.showDetails = (req, res) => {
-  res.send(
-    `NOT IMPLEMENTED: Will show chief/details.ejs for ${req.params.id}`
-  );
+  res.send(`NOT IMPLEMENTED: Will show chief/details.ejs for ${req.params.id}`);
 };
 
 // GET /edit/:id
