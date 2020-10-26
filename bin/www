@@ -125,6 +125,13 @@ async function seedDatabase() {
   console.info(`Seeded ${numGames} games.`);
 
   // Varsha - animal
+  await db.models.Animal.bulkCreate([
+    { name: 'Dog', lifeSpan: 22, isPet: true },
+    { name: 'Fox', lifeSpan: 14, isPet: false },
+    { name: 'Cat', lifeSpan: 25, isPet: true },
+  ]);
+  const numAnimals = await db.models.Animal.count();
+  console.info(`Seeded ${numAnimals} animals.`);
 
   // Felipe - ?
 
