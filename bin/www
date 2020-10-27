@@ -154,9 +154,9 @@ async function seedDatabase() {
 
   // Shivani - book
   await db.models.book.bulkCreate([
-  { book: "harrypotter ", publishedDate: 1997, isFantasy: True},
-  { book: "animalfarm ", publishedDate :1945, isFantasy :  False},
-  { book: "hobbit" , publishedDate : 1937, isFantasy : True  },
+  { book: "harrypotter ", publishedDate: 1997, isFantasy: true},
+  { book: "animalfarm ", publishedDate :1945, isFantasy :  false},
+  { book: "hobbit" , publishedDate : 1937, isFantasy : true  },
 ]);
 const numbook= await db.models.book.count();
   console.info(`Seeded ${numbook} book.`);
