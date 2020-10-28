@@ -73,6 +73,7 @@ app.use('/animal', require('./routes/animal.routes'));
 // Joseph - software
 
 // Stephen - whiskey
+app.use('/whiskey', require('./routes/whiskey.routes'));
 
 // Shivani - book
 app.use('/book', require('./routes/book.routes'));
