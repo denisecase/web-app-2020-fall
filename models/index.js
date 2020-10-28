@@ -16,7 +16,7 @@ require('./rabbit')(db, Sequelize.DataTypes);
 // Dr. Hoot - tea
 
 // Blake - game
-
+require('./game')(db, Sequelize.DataTypes);
 // Varsha - animal
 
 // Felipe - ?

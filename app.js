@@ -58,7 +58,7 @@ app.use('/rabbit', require('./routes/rabbit.routes'));
 // Dr. Hoot - tea
 
 // Blake - game
-
+app.use('/game', require('./routes/game.routes'));
 // Varsha - animal
 
 // Felipe - ?
