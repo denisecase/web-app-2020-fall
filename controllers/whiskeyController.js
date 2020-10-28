@@ -6,15 +6,15 @@
  */
 
 // import dependencies
-//const express = require('express');
+// const express = require('express');
 
 // import local code files
 // const model = require('../models/whiskey.js');
 
 // create a router
-//const router = express.Router();
+// const router = express.Router();
 
-//module.exports = router;
+// module.exports = router;
 
 const db = require('../models/index');
 
@@ -101,17 +101,23 @@ exports.showIndex = (req, res) => {
 
 // GET /create
 exports.showCreate = (req, res) => {
-  res.send(`NOT IMPLEMENTED: Will show whiskey/create.ejs for ${req.params.id}`);
+  res.send(
+    `NOT IMPLEMENTED: Will show whiskey/create.ejs for ${req.params.id}`
+  );
 };
 
 // GET /delete/:id
 exports.showDelete = (req, res) => {
-  res.send(`NOT IMPLEMENTED: Will show whiskey/delete.ejs for ${req.params.id}`);
+  res.send(
+    `NOT IMPLEMENTED: Will show whiskey/delete.ejs for ${req.params.id}`
+  );
 };
 
 // GET /details/:id
 exports.showDetails = (req, res) => {
-  res.send(`NOT IMPLEMENTED: Will show whiskey/details.ejs for ${req.params.id}`);
+  res.send(
+    `NOT IMPLEMENTED: Will show whiskey/details.ejs for ${req.params.id}`
+  );
 };
 
 // GET /edit/:id
