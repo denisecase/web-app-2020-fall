@@ -11,11 +11,10 @@
 // It automatically receives the Sequelize connection parameter.
 
 module.exports = (sequelize, DataTypes) => {
-    sequelize.define('Game', {
-      // sqlite creates a rowid attribute automatically
-      name: { type: DataTypes.STRING(30) },
-      age: { type: DataTypes.INTEGER },
-      isScotch: { type: DataTypes.BOOLEAN },
-    });
-  };
-  
+  sequelize.define('Game', {
+    // sqlite creates a rowid attribute automatically
+    name: { type: DataTypes.STRING(30) },
+    age: { type: DataTypes.INTEGER },
+    isScotch: { type: DataTypes.BOOLEAN },
+  });
+};
