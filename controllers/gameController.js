@@ -11,8 +11,7 @@ const db = require('../models/index');
 
 // GET all JSON
 exports.findAll = (req, res) => {
-  db.models.game
-    .findAll()
+  db.models.Game.findAll()
     .then((data) => {
       res.send(data);
     })
@@ -26,8 +25,7 @@ exports.findAll = (req, res) => {
 // GET one JSON by ID
 exports.findOne = (req, res) => {
   const { id } = req.params;
-  db.models.game
-    .findByPk(id)
+  db.models.Game.findByPk(id)
     .then((data) => {
       res.send(data);
     })
@@ -43,7 +41,7 @@ exports.findOne = (req, res) => {
 // POST /save
 exports.saveNew = async (req, res) => {
   try {
-    await db.models.game.create(req.body);
+    await db.models.Game.create(req.body);
     return res.redirect('/game');
   } catch (error) {
     return res.status(500).json({ error: error.message });
@@ -54,7 +52,7 @@ exports.saveNew = async (req, res) => {
 exports.saveEdit = async (req, res) => {
   try {
     const { reqId } = req.params.id;
-    const [updated] = await db.models.game.update(req.body, {
+    const [updated] = await db.models.Game.update(req.body, {
       where: { id: reqId },
     });
     if (updated) {
@@ -70,7 +68,7 @@ exports.saveEdit = async (req, res) => {
 exports.deleteItem = async (req, res) => {
   try {
     const { reqId } = req.params.gameId;
-    const deleted = await db.models.game.destroy({
+    const deleted = await db.models.Game.destroy({
       where: { id: reqId },
     });
     if (deleted) {
@@ -87,7 +85,7 @@ exports.deleteItem = async (req, res) => {
 // GET to this controller base URI (the default)
 exports.showIndex = (req, res) => {
   // res.send('NOT IMPLEMENTED: Will show game/index.ejs');
-  res.render('game/index.ejs', { title: 'games', req });
+  res.render('game/index.ejs', { title: 'Games', req });
 };
 
 // GET /create
