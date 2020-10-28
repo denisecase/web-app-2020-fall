@@ -60,6 +60,7 @@ app.use('/rabbit', require('./routes/rabbit.routes'));
 // Blake - game
 app.use('/game', require('./routes/game.routes'));
 // Varsha - animal
+app.use('/animal', require('./routes/animal.routes'));
 
 // Felipe - ?
 
