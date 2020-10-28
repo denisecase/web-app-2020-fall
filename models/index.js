@@ -18,7 +18,7 @@ require('./rabbit')(db, Sequelize.DataTypes);
 // Blake - game
 require('./game')(db, Sequelize.DataTypes);
 // Varsha - animal
-
+require('./animal')(db, Sequelize.DataTypes);
 // Felipe - ?
 
 // Jack - chief
