@@ -75,6 +75,7 @@ app.use('/animal', require('./routes/animal.routes'));
 // Stephen - whiskey
 
 // Shivani - book
+app.use('/book', require('./routes/book.routes'));
 
 // Kunal - videoGame
 
