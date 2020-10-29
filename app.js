@@ -88,6 +88,7 @@ app.use('/company', require('./routes/company.routes'));
 // Praneeth - course
 
 // Nithya - series
+app.use('/series', require('./routes/series.routes'));
 
 // Zach - fruit
 
