@@ -5,8 +5,8 @@
 ## Prerequisites
 
 - Node.js (comes with npm)
-- Git
-- TortoiseGit
+- Git.
+- TortoiseGit.
 - VS Code
 - VS Code Extension - [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 - [DB Browser for SQLite](https://sqlitebrowser.org/dl/), e.g., standard for 64 Windows. Save the .msi file and double-click to run it.
@@ -89,7 +89,7 @@ Once error handling is complete, use npm run dev to start with nodemon.
 npm run start
 ```
 
-View the application locally at <http://localhost:3020/>.
+View the application locally at <http://localhost:3020/>
 
 ## Resources
 

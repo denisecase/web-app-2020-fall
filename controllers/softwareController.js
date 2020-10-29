@@ -5,9 +5,9 @@
  */
 
 // import dependencies
-const express = require('express');
+// const express = require('express');
 
-const db = require('../models/index');
+// const db = require('../models/index');
 
 // GET all JSON
 exports.findAll = (req, res) => {
@@ -109,3 +109,4 @@ exports.showDetails = (req, res) => {
 exports.showEdit = (req, res) => {
   res.send(`NOT IMPLEMENTED: Will show software/edit.ejs for ${req.params.id}`);
 };
+

@@ -37,8 +37,8 @@ require('./food')(db, Sequelize.DataTypes);
 
 // Chandler - company
 
-// Praneeth - course
-
+// Praneeth - cricket
+require('./cricket')(db, Sequelize.DataTypes);
 // Nithya - series
 require('./series')(db, Sequelize.DataTypes);
 
