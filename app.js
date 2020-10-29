@@ -90,6 +90,7 @@ app.use('/book', require('./routes/book.routes'));
 // Zach - fruit
 
 // Prashansa - dance
+app.use('/dance', require('./routes/dance.routes'));
 
 // Sam - ship
 

@@ -179,6 +179,13 @@ const numbook= await db.models.book.count();
   // Zach - fruit
 
   // Prashansa - dance
+  await db.models.dance.bulkCreate([
+  { form : "Kuchipudi",    yearIntro: 1502 ,  isTraditional : True},
+{  form : "Bollywood ",   yearIntro :  1960, isTraditional : False},
+{ form: "Bhagra",  yearIntro :1940, isTraditional : True},
+]);
+const numdance= await db.models.dance.count();
+  console.info(`Seeded ${numdance} dance.`);
 
   // Sam - ship
 
