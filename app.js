@@ -53,12 +53,21 @@ app.use('/users', require('./routes/users'));
 console.log('app default routes configured');
 
 // Dr. Case - rabbit
-app.use('/rabbit', require('./routes/rabbit.routes'));
+try {
+  app.use('/rabbit', require('./routes/rabbit.routes'));
+} catch (err) {
+  console.error(`ERROR: ${err.message}`);
+}
 
 // Dr. Hoot - tea
 
 // Blake - game
-app.use('/game', require('./routes/game.routes'));
+try {
+  app.use('/game', require('./routes/game.routes'));
+} catch (err) {
+  console.error(`ERROR: ${err.message}`);
+}
+
 // Varsha - animal
 app.use('/animal', require('./routes/animal.routes'));
 
@@ -66,12 +75,13 @@ app.use('/animal', require('./routes/animal.routes'));
 
 // Jack - chief
 
-// Sreenidhi - student
+// Sreenidhi - plant
+app.use('/plant', require('./routes/plant.routes'));
 
 // Sri Vasavi - food
-
+app.use('/food', require('./routes/food.routes'));
 // Joseph - software
-
+app.use('/software', require('./routes/software.routes'));
 // Stephen - whiskey
 app.use('/whiskey', require('./routes/whiskey.routes'));
 
@@ -81,14 +91,21 @@ app.use('/book', require('./routes/book.routes'));
 // Kunal - videoGame
 
 // Chandler - company
+app.use('/company', require('./routes/company.routes'));
 
-// Praneeth - course
-
+// Praneeth - cricket
+app.use('/cricket', require('./routes/cricket.routes'));
 // Nithya - series
+app.use('/series', require('./routes/series.routes'));
 
 // Zach - fruit
 
 // Prashansa - dance
+try {
+  app.use('/dance', require('./routes/dance.routes'));
+} catch (err) {
+  console.error(`ERROR: ${err.message}`);
+}
 
 // Sam - ship
 

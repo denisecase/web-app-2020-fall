@@ -1,17 +1,18 @@
 /**
- *  cricket controller
- *  Handles requests related to plant (see routes)
+ *  company controller
+ *  Handles requests related to company (see routes)
  *
- * @author Praneeth Vallabhaneni <S541312@nwmissouri.edu>
+ * @author Chandler Wright <s534776@nwmissouri.edu>
  */
 
+// import dependencies
 const db = require('../models/index');
 
 // FUNCTIONS TO RESPOND WITH JSON DATA  ----------------------------------------
 
 // GET all JSON
 exports.findAll = (req, res) => {
-  db.models.Cricket.findAll()
+  db.models.Company.findAll()
     .then((data) => {
       res.send(data);
     })
@@ -25,7 +26,7 @@ exports.findAll = (req, res) => {
 // GET one JSON by ID
 exports.findOne = (req, res) => {
   const { id } = req.params;
-  db.models.Cricket.findByPk(id)
+  db.models.Company.findByPk(id)
     .then((data) => {
       res.send(data);
     })
@@ -41,8 +42,8 @@ exports.findOne = (req, res) => {
 // POST /save
 exports.saveNew = async (req, res) => {
   try {
-    await db.models.Cricket.create(req.body);
-    return res.redirect('/cricket');
+    await db.models.Company.create(req.body);
+    return res.redirect('/company');
   } catch (error) {
     return res.status(500).json({ error: error.message });
   }
@@ -52,11 +53,11 @@ exports.saveNew = async (req, res) => {
 exports.saveEdit = async (req, res) => {
   try {
     const { reqId } = req.params.id;
-    const [updated] = await db.models.Cricket.update(req.body, {
+    const [updated] = await db.models.Company.update(req.body, {
       where: { id: reqId },
     });
     if (updated) {
-      return res.redirect('/cricket');
+      return res.redirect('/company');
     }
     throw new Error(`${reqId} not found`);
   } catch (error) {
@@ -67,12 +68,12 @@ exports.saveEdit = async (req, res) => {
 // POST /delete/:id
 exports.deleteItem = async (req, res) => {
   try {
-    const { reqId } = req.params.cricketId;
-    const deleted = await db.models.Cricket.destroy({
+    const { reqId } = req.params.companyId;
+    const deleted = await db.models.Copmany.destroy({
       where: { id: reqId },
     });
     if (deleted) {
-      return res.redirect('/cricket');
+      return res.redirect('/company');
     }
     throw new Error(`${reqId} not found`);
   } catch (error) {
@@ -84,32 +85,32 @@ exports.deleteItem = async (req, res) => {
 
 // GET to this controller base URI (the default)
 exports.showIndex = (req, res) => {
-  // res.send('NOT IMPLEMENTED: Will show rabbit/index.ejs');
-  res.render('cricket/index.ejs', { title: 'Cricket Teams', req });
+  // res.send('NOT IMPLEMENTED: Will show company/index.ejs');
+  res.render('company/index.ejs', { title: 'company', req });
 };
 
 // GET /create
 exports.showCreate = (req, res) => {
   res.send(
-    `NOT IMPLEMENTED: Will show cricket/create.ejs for ${req.params.id}`
+    `NOT IMPLEMENTED: Will show company/create.ejs for ${req.params.id}`
   );
 };
 
 // GET /delete/:id
 exports.showDelete = (req, res) => {
   res.send(
-    `NOT IMPLEMENTED: Will show cricket/delete.ejs for ${req.params.id}`
+    `NOT IMPLEMENTED: Will show company/delete.ejs for ${req.params.id}`
   );
 };
 
 // GET /details/:id
 exports.showDetails = (req, res) => {
   res.send(
-    `NOT IMPLEMENTED: Will show cricket/details.ejs for ${req.params.id}`
+    `NOT IMPLEMENTED: Will show company/details.ejs for ${req.params.id}`
   );
 };
 
 // GET /edit/:id
 exports.showEdit = (req, res) => {
-  res.send(`NOT IMPLEMENTED: Will show cricket/edit.ejs for ${req.params.id}`);
+  res.send(`NOT IMPLEMENTED: Will show company/edit.ejs for ${req.params.id}`);
 };

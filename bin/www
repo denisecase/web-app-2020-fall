@@ -100,9 +100,10 @@ async function dbInit() {
 async function seedDatabase() {
   console.log('Initialize the SQLite database with dummy data.');
   await db.sync({ force: true });
-  console.dir(db.models);
+  //console.dir(db.models);
 
   // Dr. Case - rabbit
+  try {
   await db.models.Rabbit.bulkCreate([
     { name: 'Bugs', age: 2, isCartoon: true },
     { name: 'Huggy', age: 2, isCartoon: false },
@@ -110,10 +111,15 @@ async function seedDatabase() {
   ]);
   const numRabbits = await db.models.Rabbit.count();
   console.info(`Seeded ${numRabbits} rabbits.`);
+}
+catch (err) {
+  console.error(`ERROR: Rabbit - ${err.message}`)
+}
 
   // Dr. Hoot - tea
 
   // Blake - game
+  try {
   await db.models.Game.bulkCreate([
     {name: "Uno",  playerCount: 6, isCardGame: true},
 
@@ -123,6 +129,9 @@ async function seedDatabase() {
   ]);
   const numGames = await db.models.Game.count();
   console.info(`Seeded ${numGames} games.`);
+} catch (err) {
+  console.error(`ERROR: Game - ${err.message}`)
+}
 
   // Varsha - animal
   await db.models.Animal.bulkCreate([
@@ -137,7 +146,30 @@ async function seedDatabase() {
 
   // Jack - chief
 
-  // Sreenidhi - student
+  // Sreenidhi - plant
+  try {
+  await db.models.Plant.bulkCreate([
+    { name: 'Hibiscus', variety: 1, isPlant: true },
+    { name: 'Apple', variety: 1, isPlant: false },
+    { name: 'AloeVera', variety: 2, isPlant: true },
+  ]);
+  const numPlant = await db.models.Plant.count();
+  console.info(`Seeded ${numPlant} plant.`);
+}
+catch (err) {
+  console.error(`ERROR: - Plant ${err.message}`)
+}
+
+
+  // Nithya - series
+  await db.models.Series.bulkCreate([
+    { name: 'Better Things', seasons: 4, isComedy: true },
+    { name: 'Breaking Bad', seasons: 5, isComedy: false },
+    { name: 'Money Heist', seasons: 4, isComedy: false }
+  ]);
+  const numSeries = await db.models.Series.count();
+  console.info(`Seeded ${numSeries} seriess.`);
+
 
   // Sri Vasavi - food
   await db.models.Food.bulkCreate([
@@ -146,11 +178,12 @@ async function seedDatabase() {
     { name: 'Spinach', pricePerLB: 2, isMeat: false },
   ]);
   const numFood = await db.models.Food.count();
-  console.info(`Seeded ${numFood} food.`);
+  console.info(`Seeded ${numFood} foods.`);
 
   // Joseph - software
 
   // Stephen - whiskey
+  try {
   await db.models.whiskey.bulkCreate([
     { name: 'Laphroaig 10', age: 10, is: true },
     { name: 'Highland Park 12', age: 12, is: true },
@@ -158,8 +191,13 @@ async function seedDatabase() {
   ]);
   const numWhiskey = await db.models.whiskey.count();
   console.info(`Seeded ${numWhiskey} whiskey.`);
+}
+catch (err) {
+  console.error(`ERROR: - Whiskey ${err.message}`)
+}
 
   // Shivani - book
+  try {
   await db.models.book.bulkCreate([
   { book: "harrypotter ", publishedDate: 1997, isFantasy: true},
   { book: "animalfarm ", publishedDate :1945, isFantasy :  false},
@@ -167,18 +205,41 @@ async function seedDatabase() {
 ]);
 const numbook= await db.models.book.count();
   console.info(`Seeded ${numbook} book.`);
+}
+catch (err) {
+  console.error(`ERROR: - Book ${err.message}`)
+}
 
   // Kunal - videoGame
 
   // Chandler - company
 
-  // Praneeth - course
 
-  // Nithya - series
+  // Praneeth - cricket
+  await db.models.Cricket.bulkCreate([
+    { teamName: 'Indian Team', age: 2, captain: 'Dhoni' },
+    { teamName: 'Australian Team', age: 2, captain: 'Smith' },
+    { teamName: 'South African Team', age: 2, captain: 'ABD' },
+  ]);
+  const numCricket = await db.models.Cricket.count();
+  console.info(`Seeded ${numCricket} cricket team.`);
+
 
   // Zach - fruit
 
   // Prashansa - dance
+  try {
+  await db.models.dance.bulkCreate([
+  { form : "Kuchipudi",    yearIntro: 1502 ,  isTraditional : True},
+{  form : "Bollywood ",   yearIntro :  1960, isTraditional : False},
+{ form: "Bhagra",  yearIntro :1940, isTraditional : True},
+]);
+const numdance= await db.models.dance.count();
+  console.info(`Seeded ${numdance} dance.`);
+}
+catch (err) {
+  console.error(`ERROR: - Dance ${err.message}`)
+}
 
   // Sam - ship
 
