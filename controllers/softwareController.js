@@ -5,14 +5,14 @@
  */
 
 // import dependencies
-const express = require('express');
+// const express = require('express');
 
-const db = require('../models/index');
+// const db = require('../models/index');
 
-// import local code files
-// const model = require('../models/software.js');
+// // import local code files
+// // const model = require('../models/software.js');
 
-// create a router
-const router = express.Router();
+// // create a router
+// const router = express.Router();
 
-module.exports = router;
+// module.exports = router;

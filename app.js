@@ -82,8 +82,8 @@ app.use('/book', require('./routes/book.routes'));
 
 // Chandler - company
 
-// Praneeth - course
-
+// Praneeth - cricket
+app.use('/cricket', require('./routes/cricket.routes'));
 // Nithya - series
 
 // Zach - fruit

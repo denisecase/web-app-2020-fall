@@ -172,8 +172,14 @@ const numbook= await db.models.book.count();
 
   // Chandler - company
 
-  // Praneeth - course
-
+  // Praneeth - cricket
+  await db.models.Cricket.bulkCreate([
+    { teamName: 'Indian Team', age: 2, captain: 'Dhoni' },
+    { teamName: 'Australian Team', age: 2, captain: 'Smith' },
+    { teamName: 'South African Team', age: 2, captain: 'ABD' },
+  ]);
+  const numCricket = await db.models.Cricket.count();
+  console.info(`Seeded ${numCricket} cricket team.`);
   // Nithya - series
 
   // Zach - fruit
