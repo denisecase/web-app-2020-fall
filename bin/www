@@ -146,7 +146,7 @@ async function seedDatabase() {
     { name: 'Spinach', pricePerLB: 2, isMeat: false },
   ]);
   const numFood = await db.models.Food.count();
-  console.info(`Seeded ${numFood} food.`);
+  console.info(`Seeded ${numFood} foods.`);
 
   // Joseph - software
 

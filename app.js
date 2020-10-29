@@ -69,11 +69,12 @@ app.use('/animal', require('./routes/animal.routes'));
 // Sreenidhi - student
 
 // Sri Vasavi - food
-
+app.use('/food', require('./routes/food.routes'));
 // Joseph - software
 
 // Stephen - whiskey
 app.use('/whiskey', require('./routes/whiskey.routes'));
+
 
 // Shivani - book
 app.use('/book', require('./routes/book.routes'));

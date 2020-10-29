@@ -26,7 +26,7 @@ require('./animal')(db, Sequelize.DataTypes);
 // Sreenidhi - student
 
 // Sri Vasavi - food
-
+require('./food')(db, Sequelize.DataTypes);
 // Joseph - software
 
 // Stephen - whiskey
