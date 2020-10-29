@@ -137,7 +137,24 @@ async function seedDatabase() {
 
   // Jack - chief
 
-  // Sreenidhi - student
+  // Sreenidhi - plant
+  await db.models.Plant.bulkCreate([
+    { name: 'Hibiscus', variety: 1, isPlant: true },
+    { name: 'Apple', variety: 1, isPlant: false },
+    { name: 'AloeVera', variety: 2, isPlant: true },
+  ]);
+  const numPlant = await db.models.Plant.count();
+  console.info(`Seeded ${numPlant} plant.`);
+
+  // Nithya - series
+  await db.models.Series.bulkCreate([
+    { name: 'Better Things', seasons: 4, isComedy: true },
+    { name: 'Breaking Bad', seasons: 5, isComedy: false },
+    { name: 'Money Heist', seasons: 4, isComedy: false }
+  ]);
+  const numSeries = await db.models.Series.count();
+  console.info(`Seeded ${numSeries} seriess.`);
+
 
   // Sri Vasavi - food
   await db.models.Food.bulkCreate([
@@ -146,7 +163,7 @@ async function seedDatabase() {
     { name: 'Spinach', pricePerLB: 2, isMeat: false },
   ]);
   const numFood = await db.models.Food.count();
-  console.info(`Seeded ${numFood} food.`);
+  console.info(`Seeded ${numFood} foods.`);
 
   // Joseph - software
 
@@ -172,6 +189,7 @@ const numbook= await db.models.book.count();
 
   // Chandler - company
 
+
   // Praneeth - cricket
   await db.models.Cricket.bulkCreate([
     { teamName: 'Indian Team', age: 2, captain: 'Dhoni' },
@@ -180,11 +198,18 @@ const numbook= await db.models.book.count();
   ]);
   const numCricket = await db.models.Cricket.count();
   console.info(`Seeded ${numCricket} cricket team.`);
-  // Nithya - series
+
 
   // Zach - fruit
 
   // Prashansa - dance
+  await db.models.dance.bulkCreate([
+  { form : "Kuchipudi",    yearIntro: 1502 ,  isTraditional : True},
+{  form : "Bollywood ",   yearIntro :  1960, isTraditional : False},
+{ form: "Bhagra",  yearIntro :1940, isTraditional : True},
+]);
+const numdance= await db.models.dance.count();
+  console.info(`Seeded ${numdance} dance.`);
 
   // Sam - ship
 

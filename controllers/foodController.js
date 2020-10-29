@@ -11,7 +11,7 @@ const db = require('../models/index');
 
 // GET all JSON
 exports.findAll = (req, res) => {
-  db.models.Rabbit.findAll()
+  db.models.Food.findAll()
     .then((data) => {
       res.send(data);
     })
@@ -25,7 +25,7 @@ exports.findAll = (req, res) => {
 // GET one JSON by ID
 exports.findOne = (req, res) => {
   const { id } = req.params;
-  db.models.Rabbit.findByPk(id)
+  db.models.Food.findByPk(id)
     .then((data) => {
       res.send(data);
     })
@@ -41,8 +41,8 @@ exports.findOne = (req, res) => {
 // POST /save
 exports.saveNew = async (req, res) => {
   try {
-    await db.models.Rabbit.create(req.body);
-    return res.redirect('/rabbit');
+    await db.models.Food.create(req.body);
+    return res.redirect('/food');
   } catch (error) {
     return res.status(500).json({ error: error.message });
   }
@@ -52,11 +52,11 @@ exports.saveNew = async (req, res) => {
 exports.saveEdit = async (req, res) => {
   try {
     const { reqId } = req.params.id;
-    const [updated] = await db.models.Rabbit.update(req.body, {
+    const [updated] = await db.models.Food.update(req.body, {
       where: { id: reqId },
     });
     if (updated) {
-      return res.redirect('/rabbit');
+      return res.redirect('/food');
     }
     throw new Error(`${reqId} not found`);
   } catch (error) {
@@ -67,12 +67,12 @@ exports.saveEdit = async (req, res) => {
 // POST /delete/:id
 exports.deleteItem = async (req, res) => {
   try {
-    const { reqId } = req.params.rabbitId;
-    const deleted = await db.models.Rabbit.destroy({
+    const { reqId } = req.params.foodId;
+    const deleted = await db.models.Food.destroy({
       where: { id: reqId },
     });
     if (deleted) {
-      return res.redirect('/rabbit');
+      return res.redirect('/food');
     }
     throw new Error(`${reqId} not found`);
   } catch (error) {
@@ -84,28 +84,26 @@ exports.deleteItem = async (req, res) => {
 
 // GET to this controller base URI (the default)
 exports.showIndex = (req, res) => {
-  // res.send('NOT IMPLEMENTED: Will show rabbit/index.ejs');
-  res.render('rabbit/index.ejs', { title: 'Rabbits', req });
+  // res.send('NOT IMPLEMENTED: Will show food/index.ejs');
+  res.render('food/index.ejs', { title: 'Foods', req });
 };
 
 // GET /create
 exports.showCreate = (req, res) => {
-  res.send(`NOT IMPLEMENTED: Will show rabbit/create.ejs for ${req.params.id}`);
+  res.send(`NOT IMPLEMENTED: Will show food/create.ejs for ${req.params.id}`);
 };
 
 // GET /delete/:id
 exports.showDelete = (req, res) => {
-  res.send(`NOT IMPLEMENTED: Will show rabbit/delete.ejs for ${req.params.id}`);
+  res.send(`NOT IMPLEMENTED: Will show food/delete.ejs for ${req.params.id}`);
 };
 
 // GET /details/:id
 exports.showDetails = (req, res) => {
-  res.send(
-    `NOT IMPLEMENTED: Will show rabbit/details.ejs for ${req.params.id}`
-  );
+  res.send(`NOT IMPLEMENTED: Will show food/details.ejs for ${req.params.id}`);
 };
 
 // GET /edit/:id
 exports.showEdit = (req, res) => {
-  res.send(`NOT IMPLEMENTED: Will show rabbit/edit.ejs for ${req.params.id}`);
+  res.send(`NOT IMPLEMENTED: Will show food/edit.ejs for ${req.params.id}`);
 };

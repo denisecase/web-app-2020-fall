@@ -66,14 +66,16 @@ app.use('/animal', require('./routes/animal.routes'));
 
 // Jack - chief
 
-// Sreenidhi - student
+// Sreenidhi - plant
+app.use('/plant', require('./routes/plant.routes'));
 
 // Sri Vasavi - food
-
+app.use('/food', require('./routes/food.routes'));
 // Joseph - software
-
+ app.use('/software', require('./routes/software.routes'));
 // Stephen - whiskey
 app.use('/whiskey', require('./routes/whiskey.routes'));
+
 
 // Shivani - book
 app.use('/book', require('./routes/book.routes'));
@@ -81,14 +83,17 @@ app.use('/book', require('./routes/book.routes'));
 // Kunal - videoGame
 
 // Chandler - company
+app.use('/company', require('./routes/company.routes'));
 
 // Praneeth - cricket
 app.use('/cricket', require('./routes/cricket.routes'));
 // Nithya - series
+app.use('/series', require('./routes/series.routes'));
 
 // Zach - fruit
 
 // Prashansa - dance
+app.use('/dance', require('./routes/dance.routes'));
 
 // Sam - ship
 

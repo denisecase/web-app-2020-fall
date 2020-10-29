@@ -1,18 +1,18 @@
 /**
- * Software Controller
- * Handles requests related to software (see routes)
- * @author Joseph Dobelmann <s536997@nwmissouri.edu>
+ *  company controller
+ *  Handles requests related to company (see routes)
+ *
+ * @author Chandler Wright <s534776@nwmissouri.edu>
  */
 
 // import dependencies
-// const express = require('express');
+const db = require('../models/index');
 
-// const db = require('../models/index');
+// FUNCTIONS TO RESPOND WITH JSON DATA  ----------------------------------------
 
 // GET all JSON
 exports.findAll = (req, res) => {
-  db.models.software
-    .findAll()
+  db.models.Company.findAll()
     .then((data) => {
       res.send(data);
     })
@@ -26,8 +26,7 @@ exports.findAll = (req, res) => {
 // GET one JSON by ID
 exports.findOne = (req, res) => {
   const { id } = req.params;
-  db.models.software
-    .findByPk(id)
+  db.models.Company.findByPk(id)
     .then((data) => {
       res.send(data);
     })
@@ -43,8 +42,8 @@ exports.findOne = (req, res) => {
 // POST /save
 exports.saveNew = async (req, res) => {
   try {
-    await db.models.software.create(req.body);
-    return res.redirect('/software');
+    await db.models.Company.create(req.body);
+    return res.redirect('/company');
   } catch (error) {
     return res.status(500).json({ error: error.message });
   }
@@ -54,11 +53,11 @@ exports.saveNew = async (req, res) => {
 exports.saveEdit = async (req, res) => {
   try {
     const { reqId } = req.params.id;
-    const [updated] = await db.models.software.update(req.body, {
+    const [updated] = await db.models.Company.update(req.body, {
       where: { id: reqId },
     });
     if (updated) {
-      return res.redirect('/software');
+      return res.redirect('/company');
     }
     throw new Error(`${reqId} not found`);
   } catch (error) {
@@ -69,12 +68,12 @@ exports.saveEdit = async (req, res) => {
 // POST /delete/:id
 exports.deleteItem = async (req, res) => {
   try {
-    const { reqId } = req.params.gameId;
-    const deleted = await db.models.software.destroy({
+    const { reqId } = req.params.companyId;
+    const deleted = await db.models.Copmany.destroy({
       where: { id: reqId },
     });
     if (deleted) {
-      return res.redirect('/software');
+      return res.redirect('/company');
     }
     throw new Error(`${reqId} not found`);
   } catch (error) {
@@ -86,27 +85,32 @@ exports.deleteItem = async (req, res) => {
 
 // GET to this controller base URI (the default)
 exports.showIndex = (req, res) => {
-  // res.send('NOT IMPLEMENTED: Will show software/index.ejs');
-  res.render('software/index.ejs', { title: 'software', req });
+  // res.send('NOT IMPLEMENTED: Will show company/index.ejs');
+  res.render('company/index.ejs', { title: 'company', req });
 };
 
 // GET /create
 exports.showCreate = (req, res) => {
-  res.send(`NOT IMPLEMENTED: Will show software/create.ejs for ${req.params.id}`);
+  res.send(
+    `NOT IMPLEMENTED: Will show company/create.ejs for ${req.params.id}`
+  );
 };
 
 // GET /delete/:id
 exports.showDelete = (req, res) => {
-  res.send(`NOT IMPLEMENTED: Will show software/delete.ejs for ${req.params.id}`);
+  res.send(
+    `NOT IMPLEMENTED: Will show company/delete.ejs for ${req.params.id}`
+  );
 };
 
 // GET /details/:id
 exports.showDetails = (req, res) => {
-  res.send(`NOT IMPLEMENTED: Will show software/details.ejs for ${req.params.id}`);
+  res.send(
+    `NOT IMPLEMENTED: Will show company/details.ejs for ${req.params.id}`
+  );
 };
 
 // GET /edit/:id
 exports.showEdit = (req, res) => {
-  res.send(`NOT IMPLEMENTED: Will show software/edit.ejs for ${req.params.id}`);
+  res.send(`NOT IMPLEMENTED: Will show company/edit.ejs for ${req.params.id}`);
 };
-

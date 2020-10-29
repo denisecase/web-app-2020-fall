@@ -23,10 +23,10 @@ require('./animal')(db, Sequelize.DataTypes);
 
 // Jack - chief
 
-// Sreenidhi - student
+// Sreenidhi - plant
 
 // Sri Vasavi - food
-
+require('./food')(db, Sequelize.DataTypes);
 // Joseph - software
 
 // Stephen - whiskey
@@ -40,6 +40,7 @@ require('./animal')(db, Sequelize.DataTypes);
 // Praneeth - cricket
 require('./cricket')(db, Sequelize.DataTypes);
 // Nithya - series
+require('./series')(db, Sequelize.DataTypes);
 
 // Zach - fruit
 
