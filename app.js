@@ -53,7 +53,11 @@ app.use('/users', require('./routes/users'));
 console.log('app default routes configured');
 
 // Dr. Case - rabbit
-app.use('/rabbit', require('./routes/rabbit.routes'));
+try {
+  app.use('/rabbit', require('./routes/rabbit.routes'));
+} catch (err) {
+  console.error(`ERROR: ${err.message}`);
+}
 
 // Dr. Hoot - tea
 
@@ -72,10 +76,9 @@ app.use('/plant', require('./routes/plant.routes'));
 // Sri Vasavi - food
 app.use('/food', require('./routes/food.routes'));
 // Joseph - software
- app.use('/software', require('./routes/software.routes'));
+app.use('/software', require('./routes/software.routes'));
 // Stephen - whiskey
 app.use('/whiskey', require('./routes/whiskey.routes'));
-
 
 // Shivani - book
 app.use('/book', require('./routes/book.routes'));
@@ -93,7 +96,11 @@ app.use('/series', require('./routes/series.routes'));
 // Zach - fruit
 
 // Prashansa - dance
-app.use('/dance', require('./routes/dance.routes'));
+try {
+  app.use('/dance', require('./routes/dance.routes'));
+} catch (err) {
+  console.error(`ERROR: ${err.message}`);
+}
 
 // Sam - ship
 
