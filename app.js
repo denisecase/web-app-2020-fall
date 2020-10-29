@@ -62,7 +62,12 @@ try {
 // Dr. Hoot - tea
 
 // Blake - game
-app.use('/game', require('./routes/game.routes'));
+try {
+  app.use('/game', require('./routes/game.routes'));
+} catch (err) {
+  console.error(`ERROR: ${err.message}`);
+}
+
 // Varsha - animal
 app.use('/animal', require('./routes/animal.routes'));
 

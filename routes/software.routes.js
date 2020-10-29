@@ -32,7 +32,6 @@ router.post('/save', controller.saveNew);
 router.post('/save/:id', controller.saveEdit);
 router.post('/delete/:id', controller.deleteItem);
 
-
 router.get('/', controller.showIndex);
 router.get('/create', controller.showCreate);
 router.get('/details/:id', controller.showDetails);
