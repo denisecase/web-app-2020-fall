@@ -5,7 +5,7 @@
 ## Prerequisites
 
 - Node.js (comes with npm)
-- Git
+- Git.
 - TortoiseGit
 - VS Code
 - VS Code Extension - [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
