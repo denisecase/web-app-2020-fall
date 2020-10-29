@@ -66,7 +66,8 @@ app.use('/animal', require('./routes/animal.routes'));
 
 // Jack - chief
 
-// Sreenidhi - student
+// Sreenidhi - plant
+app.use('/plant', require('./routes/plant.routes'));
 
 // Sri Vasavi - food
 app.use('/food', require('./routes/food.routes'));
