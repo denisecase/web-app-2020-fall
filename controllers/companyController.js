@@ -86,17 +86,21 @@ exports.deleteItem = async (req, res) => {
 // GET to this controller base URI (the default)
 exports.showIndex = (req, res) => {
   // res.send('NOT IMPLEMENTED: Will show company/index.ejs');
-  res.render('company/index.ejs', { title: 'companies', req });
+  res.render('company/index.ejs', { title: 'company', req });
 };
 
 // GET /create
 exports.showCreate = (req, res) => {
-  res.send(`NOT IMPLEMENTED: Will show company/create.ejs for ${req.params.id}`);
+  res.send(
+    `NOT IMPLEMENTED: Will show company/create.ejs for ${req.params.id}`
+  );
 };
 
 // GET /delete/:id
 exports.showDelete = (req, res) => {
-  res.send(`NOT IMPLEMENTED: Will show company/delete.ejs for ${req.params.id}`);
+  res.send(
+    `NOT IMPLEMENTED: Will show company/delete.ejs for ${req.params.id}`
+  );
 };
 
 // GET /details/:id
