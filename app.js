@@ -85,6 +85,7 @@ app.use('/book', require('./routes/book.routes'));
 // Praneeth - course
 
 // Nithya - series
+app.use('/series', require('./routes/series.routes'));
 
 // Zach - fruit
 

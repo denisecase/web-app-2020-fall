@@ -40,6 +40,7 @@ require('./animal')(db, Sequelize.DataTypes);
 // Praneeth - course
 
 // Nithya - series
+require('./series')(db, Sequelize.DataTypes);
 
 // Zach - fruit
 

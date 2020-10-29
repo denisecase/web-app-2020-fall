@@ -139,6 +139,16 @@ async function seedDatabase() {
 
   // Sreenidhi - student
 
+  // Nithya - series
+  await db.models.Series.bulkCreate([
+    { name: 'Better Things', seasons: 4, isComedy: true },
+    { name: 'Breaking Bad', seasons: 5, isComedy: false },
+    { name: 'Money Heist', seasons: 4, isComedy: false }
+  ]);
+  const numSeries = await db.models.Series.count();
+  console.info(`Seeded ${numSeries} seriess.`);
+
+
   // Sri Vasavi - food
   await db.models.Food.bulkCreate([
     { name: 'Lamb', pricePerLB: 8, isMeat: true },
@@ -173,8 +183,6 @@ const numbook= await db.models.book.count();
   // Chandler - company
 
   // Praneeth - course
-
-  // Nithya - series
 
   // Zach - fruit
 
