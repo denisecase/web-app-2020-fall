@@ -85,8 +85,8 @@ app.use('/software', require('./routes/software.routes'));
 // Stephen - whiskey
 try {
   app.use('/whiskey', require('./routes/whiskey.routes'));
-} catch (err){
-  console.error(`ERROR: ${err.message}`)
+} catch (err) {
+  console.error(`ERROR: ${err.message}`);
 }
 
 // Shivani - book
