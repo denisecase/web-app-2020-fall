@@ -184,12 +184,12 @@ catch (err) {
 
   // Stephen - whiskey
   try {
-  await db.models.whiskey.bulkCreate([
+  await db.models.Whiskey.bulkCreate([
     { name: 'Laphroaig 10', age: 10, is: true },
     { name: 'Highland Park 12', age: 12, is: true },
     { name: 'Redbreast 12', age: 12, is: false },
   ]);
-  const numWhiskey = await db.models.whiskey.count();
+  const numWhiskey = await db.models.Whiskey.count();
   console.info(`Seeded ${numWhiskey} whiskey.`);
 }
 catch (err) {

@@ -83,7 +83,11 @@ app.use('/food', require('./routes/food.routes'));
 // Joseph - software
 app.use('/software', require('./routes/software.routes'));
 // Stephen - whiskey
-app.use('/whiskey', require('./routes/whiskey.routes'));
+try {
+  app.use('/whiskey', require('./routes/whiskey.routes'));
+} catch (err) {
+  console.error(`ERROR: ${err.message}`);
+}
 
 // Shivani - book
 app.use('/book', require('./routes/book.routes'));
