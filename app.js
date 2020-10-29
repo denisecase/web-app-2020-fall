@@ -71,7 +71,7 @@ app.use('/animal', require('./routes/animal.routes'));
 // Sri Vasavi - food
 app.use('/food', require('./routes/food.routes'));
 // Joseph - software
-
+ app.use('/software', require('./routes/software.routes'));
 // Stephen - whiskey
 app.use('/whiskey', require('./routes/whiskey.routes'));
 
