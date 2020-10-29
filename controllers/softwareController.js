@@ -92,21 +92,26 @@ exports.showIndex = (req, res) => {
 
 // GET /create
 exports.showCreate = (req, res) => {
-  res.send(`NOT IMPLEMENTED: Will show software/create.ejs for ${req.params.id}`);
+  res.send(
+    `NOT IMPLEMENTED: Will show software/create.ejs for ${req.params.id}`
+  );
 };
 
 // GET /delete/:id
 exports.showDelete = (req, res) => {
-  res.send(`NOT IMPLEMENTED: Will show software/delete.ejs for ${req.params.id}`);
+  res.send(
+    `NOT IMPLEMENTED: Will show software/delete.ejs for ${req.params.id}`
+  );
 };
 
 // GET /details/:id
 exports.showDetails = (req, res) => {
-  res.send(`NOT IMPLEMENTED: Will show software/details.ejs for ${req.params.id}`);
+  res.send(
+    `NOT IMPLEMENTED: Will show software/details.ejs for ${req.params.id}`
+  );
 };
 
 // GET /edit/:id
 exports.showEdit = (req, res) => {
   res.send(`NOT IMPLEMENTED: Will show software/edit.ejs for ${req.params.id}`);
 };
-

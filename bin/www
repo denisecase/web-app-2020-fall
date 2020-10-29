@@ -119,6 +119,7 @@ catch (err) {
   // Dr. Hoot - tea
 
   // Blake - game
+  try {
   await db.models.Game.bulkCreate([
     {name: "Uno",  playerCount: 6, isCardGame: true},
 
@@ -128,6 +129,9 @@ catch (err) {
   ]);
   const numGames = await db.models.Game.count();
   console.info(`Seeded ${numGames} games.`);
+} catch (err) {
+  console.error(`ERROR: Game - ${err.message}`)
+}
 
   // Varsha - animal
   await db.models.Animal.bulkCreate([
