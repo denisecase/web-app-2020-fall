@@ -6,7 +6,7 @@
 
 - Node.js (comes with npm)
 - Git.
-- TortoiseGit
+- TortoiseGit.
 - VS Code
 - VS Code Extension - [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 - [DB Browser for SQLite](https://sqlitebrowser.org/dl/), e.g., standard for 64 Windows. Save the .msi file and double-click to run it.
