@@ -83,6 +83,7 @@ app.use('/book', require('./routes/book.routes'));
 // Kunal - videoGame
 
 // Chandler - company
+app.use('/company', require('./routes/company.routes'));
 
 // Praneeth - course
 
