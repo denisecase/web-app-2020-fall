@@ -137,7 +137,14 @@ async function seedDatabase() {
 
   // Jack - chief
 
-  // Sreenidhi - student
+  // Sreenidhi - plant
+  await db.models.Plant.bulkCreate([
+    { name: 'Hibiscus', variety: 1, isPlant: true },
+    { name: 'Apple', variety: 1, isPlant: false },
+    { name: 'AloeVera', variety: 2, isPlant: true },
+  ]);
+  const numPlant = await db.models.Plant.count();
+  console.info(`Seeded ${numPlant} plant.`);
 
   // Sri Vasavi - food
   await db.models.Food.bulkCreate([

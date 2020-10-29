@@ -23,7 +23,7 @@ require('./animal')(db, Sequelize.DataTypes);
 
 // Jack - chief
 
-// Sreenidhi - student
+// Sreenidhi - plant
 
 // Sri Vasavi - food
 
