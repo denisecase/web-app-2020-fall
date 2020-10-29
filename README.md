@@ -89,7 +89,7 @@ Once error handling is complete, use npm run dev to start with nodemon.
 npm run start
 ```
 
-View the application locally at <http://localhost:3020/>.
+View the application locally at <http://localhost:3020/>
 
 ## Resources
 
