@@ -30,7 +30,7 @@ require('./food')(db, Sequelize.DataTypes);
 // Joseph - software
 
 // Stephen - whiskey
-
+require('./whiskey')(db, Sequelize.DataTypes);
 // Shivani - book
 
 // Kunal - videoGame
