@@ -113,11 +113,11 @@ async function seedDatabase() {
 
   // Dr. Hoot - tea
   await db.models.Tea.bulkCreate([
-    {name: 'LongJing', pricePerGram:4.0, isPuer: false},
-    {name: 'YiWu', pricePerGram:3.5, isPuer: true},
-    {name: "LiShan", pricePerGram:2.5, isPuer: false},
-    {name: 'TiGuanYin', pricePerGram:0.4, isPuer: false}
-  ])
+    {name: 'LongJing', pricePerGram: 4.0, isPuer: false},
+    {name: 'YiWu', pricePerGram: 3.5, isPuer: true},
+    {name: "LiShan", pricePerGram: 2.5, isPuer: false},
+    {name: 'TiGuanYin', pricePerGram: 0.4, isPuer: false},
+  ]);
   const numTeas = await db.models.Tea.count();
   console.info('Seeded ${numTeas} teas .');
 

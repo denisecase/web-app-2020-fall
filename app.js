@@ -56,7 +56,7 @@ console.log('app default routes configured');
 app.use('/rabbit', require('./routes/rabbit.routes'));
 
 // Dr. Hoot - tea
-app.use('tea', require('./routes/tea.routes'));
+app.use('/tea', require('./routes/tea.routes'));
 
 // Blake - game
 app.use('/game', require('./routes/game.routes'));
