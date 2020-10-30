@@ -10,7 +10,6 @@
 // Export a function that defines the model.
 // It automatically receives the Sequelize connection parameter.
 
-
 module.exports = (sequelize, DataTypes) => {
   sequelize.define('Software', {
     // sqlite creates a rowid attribute automatically
