@@ -7,14 +7,13 @@
     "lint-fix": "eslint --fix .",
     "prettier": "prettier --write .",
     "dev": "nodemon ./bin/www",
-    "start": "node ./bin/www",
+    "start": "set DEBUG=APP:* & node ./bin/www",
     "test": "$(npm bin)/cypress open",
     "sequelize": "./node_modules/.bin/sequelize"
   },
   "dependencies": {
     "consolidate": "latest",
     "cookie-parser": "latest",
-    "debug": "latest",
     "dotenv": "latest",
     "ejs": "latest",
     "express": "latest",
