@@ -10,8 +10,7 @@
     "lint-fix": "eslint --fix .",
     "prettier": "prettier --write .",
     "dev": "nodemon ./bin/www",
-    "start": "node ./bin/www",
-    "sequelize": "./node_modules/.bin/sequelize"
+    "start": "node ./bin/www"
   },
   "dependencies": {
     "compression": "latest",
