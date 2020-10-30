@@ -1,27 +1,65 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+
+    <!--  establish early connections to important third-party origins -->
+    <link rel="preconnect" href="https://use.fontawesome.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+
+    <!-- basic responsive attributes -->
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= title %></title>
+
+
+    <!--
+    https://mdbootstrap.com/docs/standard/getting-started/installation/            
+    Material Design for Bootstrap fonts and icons 
+    preload above for improved performance
+     -->
+
+    <!-- Font Awesome -->
+    <link href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+    <!-- MDB -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/1.0.0/mdb.min.css" rel="stylesheet" />
+
+    <!-- Custom styles at the end -->
     <link rel='stylesheet' href='/stylesheets/style.css' />
 </head>
 
-<body>
+<!--wrap the whole page (header, footer, main) -->
 
-    <% include ('header.ejs') %>
+<body class="page-container">
 
-    <div class="container">
-        <div class="body">
+    <%- include ('header.ejs') %>
+
+    <main class="container context mt-5">
+        <div class="row">
+            <div class="col"></div>
 
             <!-- This part will get replaced with each view. -->
 
             <%- body %>
-
         </div>
-    </div>
+        </div>
+    </main>
 
-    <% include ('footer.ejs') %>
+    <br>
+    <br>
 
+    <%- include ('footer.ejs') %>
+
+
+<!-- MDB -->
+<script
+  type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/1.0.0/mdb.min.js"
+></script>
 </body>
 
 </html>

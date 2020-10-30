@@ -16,6 +16,7 @@ const engines = require('consolidate');
 const expressLayouts = require('express-ejs-layouts');
 const helmet = require('helmet'); // safer http headers
 global.passport = require('passport');
+const compression = require('compression'); // smaller=faster
 
 // app variables
 const isProduction = process.env.NODE_ENV === 'production';
@@ -38,6 +39,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(helmet());
 app.use(expressLayouts);
+app.use(compression()); // compress all routes
 
 // set up user authentication (logging in & admin)
 app.use(global.passport.initialize());
@@ -83,7 +85,11 @@ app.use('/food', require('./routes/food.routes'));
 // Joseph - software
 app.use('/software', require('./routes/software.routes'));
 // Stephen - whiskey
-app.use('/whiskey', require('./routes/whiskey.routes'));
+try {
+  app.use('/whiskey', require('./routes/whiskey.routes'));
+} catch (err) {
+  console.error(`ERROR: ${err.message}`);
+}
 
 // Shivani - book
 app.use('/book', require('./routes/book.routes'));

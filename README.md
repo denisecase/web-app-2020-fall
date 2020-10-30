@@ -2,14 +2,20 @@
 
 > Example of a collaborative MVC web app built with the Express web framework for Node.js.
 
+## Links
+
+- [Webapp on Heroku](https://web-app-2020-fall.herokuapp.com/)
+- [Source](https://github.com/denisecase/web-app-2020-fall)
+
 ## Prerequisites
 
 - Node.js (comes with npm)
-- Git.
-- TortoiseGit.
+- Git
+- TortoiseGit
 - VS Code
 - VS Code Extension - [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 - [DB Browser for SQLite](https://sqlitebrowser.org/dl/), e.g., standard for 64 Windows. Save the .msi file and double-click to run it.
+- [Heroku CLI - to publish](https://devcenter.heroku.com/articles/getting-started-with-nodejs#set-up)
 
 ## Background
 
@@ -19,6 +25,10 @@
 - Added folders for MVC
 - Updated to use express app4 updates
 - [Set up ESLint and Prettier](https://sourcelevel.io/blog/how-to-setup-eslint-and-prettier-on-node)
+
+## Styles
+
+- Based on [MDB 5](https://mdbootstrap.com/docs/standard/) (Material Design Bootstrap 5 - no jQuery)
 
 ## Adding Resources
 
@@ -94,3 +104,6 @@ View the application locally at <http://localhost:3020/>
 ## Resources
 
 - [Getting Started with Node, Express and PostgreSQL using Sequelize](https://morioh.com/p/fe03e5149f97)
+- [EJS CRUD tutorial](https://www.mynotepaper.com/nodejs-simple-crud-with-expressjs-and-mysql)
+- [EJS CRUD repo](https://github.com/mdobydullah/nodejs-crud-with-expressjs-mysql)
+- [MDN Guide to Publishing with Heroku](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/deployment)
