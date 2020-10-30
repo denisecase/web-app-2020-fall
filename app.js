@@ -62,6 +62,7 @@ try {
 }
 
 // Dr. Hoot - tea
+app.use('/tea', require('./routes/tea.routes'));
 
 // Blake - game
 try {
