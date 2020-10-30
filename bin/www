@@ -97,14 +97,20 @@ async function dbInit() {
   console.info('Environment isProduction = ', isProduction);
 
   if (isProduction) {
-    const { Client } = require('pg');
-    console.log(process.env.DATABASE_URL);
+    console.log(`Production Datbase URL:${process.env.DATABASE_URL}`);
+    const connectionString = process.env.DATABASE_URL;
 
-    const client = new Client({
-      connectionString: process.env.DATABASE_URL,
-      ssl: true,
+    const { Pool, Client } = require('pg');
+
+    // pools will use environment variables
+    // for connection information
+    const pool = new Pool({
+      connectionString: connectionString,
     });
 
+    const client = new Client({
+      connectionString: connectionString,
+    });
     client.connect();
   }
 
@@ -131,10 +137,10 @@ async function seedDatabase() {
 
   // Dr. Hoot - tea
   await db.models.Tea.bulkCreate([
-    {name: 'LongJing', pricePerGram: 4.0, isPuer: false},
-    {name: 'YiWu', pricePerGram: 3.5, isPuer: true},
-    {name: "LiShan", pricePerGram: 2.5, isPuer: false},
-    {name: 'TiGuanYin', pricePerGram: 0.4, isPuer: false},
+    { name: 'LongJing', pricePerGram: 4.0, isPuer: false },
+    { name: 'YiWu', pricePerGram: 3.5, isPuer: true },
+    { name: 'LiShan', pricePerGram: 2.5, isPuer: false },
+    { name: 'TiGuanYin', pricePerGram: 0.4, isPuer: false },
   ]);
   const numTeas = await db.models.Tea.count();
   console.info('Seeded ${numTeas} teas .');
@@ -155,18 +161,16 @@ async function seedDatabase() {
   }
 
   // Varsha - animal
-  try{
-
-  
-  await db.models.Animal.bulkCreate([
-    { name: 'Dog', lifeSpan: 22, isPet: true },
-    { name: 'Fox', lifeSpan: 14, isPet: false },
-    { name: 'Cat', lifeSpan: 25, isPet: true },
-  ]);
-  const numAnimals = await db.models.Animal.count();
-  console.info(`Seeded ${numAnimals} animals.`);
-  }catch (err) {
-    console.error(`ERROR: Game - ${err.message}`)
+  try {
+    await db.models.Animal.bulkCreate([
+      { name: 'Dog', lifeSpan: 22, isPet: true },
+      { name: 'Fox', lifeSpan: 14, isPet: false },
+      { name: 'Cat', lifeSpan: 25, isPet: true },
+    ]);
+    const numAnimals = await db.models.Animal.count();
+    console.info(`Seeded ${numAnimals} animals.`);
+  } catch (err) {
+    console.error(`ERROR: Game - ${err.message}`);
   }
   // Felipe - ?
 
@@ -205,17 +209,16 @@ async function seedDatabase() {
 
   // Joseph - software
   try {
-  await db.models.Software.bulkCreate([
-    { name: 'Linux', firstReleased: 1991, isOpenSource: true},
-    { name: 'Tmux', firstReleased: 2007, isOpenSource: true},
-    { name: 'Windows', firstReleased: 1985, isOpenSource: false},
-  ]);
-  const numSoftware = await db.models.Software.count();
-  console.info(`Seeded ${numSoftware} softwares`);
-}
-catch (err) {
-  console.error(`ERROR: - Software ${err.message}`);
-}
+    await db.models.Software.bulkCreate([
+      { name: 'Linux', firstReleased: 1991, isOpenSource: true },
+      { name: 'Tmux', firstReleased: 2007, isOpenSource: true },
+      { name: 'Windows', firstReleased: 1985, isOpenSource: false },
+    ]);
+    const numSoftware = await db.models.Software.count();
+    console.info(`Seeded ${numSoftware} softwares`);
+  } catch (err) {
+    console.error(`ERROR: - Software ${err.message}`);
+  }
   // Stephen - whiskey
   try {
     await db.models.Whiskey.bulkCreate([
