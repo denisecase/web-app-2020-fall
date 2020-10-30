@@ -15,6 +15,8 @@
     "dialect": "postgres",
     "dialectOptions": {
       "rejectUnauthorized": false
-    }
+    },
+    "use_env_variable": "DATABASE_URL",
+    "operatorsAliases": false
   }
 }

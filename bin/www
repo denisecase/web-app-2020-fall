@@ -107,11 +107,15 @@ async function dbInit() {
     const pool = new Pool({
       connectionString: connectionString,
     });
+    console.dir(pool);
 
     const client = new Client({
       connectionString: connectionString,
     });
-    client.connect();
+    console.dir(client);
+    client.connect()
+      .then(() => { console.log('Connected') })
+      .catch(err => console.log('Not connected' + err.message));
   }
 
   await assertDatabaseConnectionOk();
