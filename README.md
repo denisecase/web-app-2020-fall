@@ -16,6 +16,9 @@
 - VS Code Extension - [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 - [DB Browser for SQLite](https://sqlitebrowser.org/dl/), e.g., standard for 64 Windows. Save the .msi file and double-click to run it.
 - [Heroku CLI - to publish](https://devcenter.heroku.com/articles/getting-started-with-nodejs#set-up)
+- [Heroku login](https://id.heroku.com/login)
+
+Create Heroku app with Heroku Postgres (Hobby Dev - free) add-on.
 
 ## Background
 
