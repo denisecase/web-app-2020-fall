@@ -210,8 +210,19 @@ catch (err) {
   console.error(`ERROR: - Book ${err.message}`)
 }
 
-  // Kunal - videoGame
-
+  // Kunal - videogame
+  try {
+    await db.models.videogame.bulkCreate([
+      { name: 'GTA V', playersNeeded: 1, isReleased: true },
+      { name: 'A Way Out', playersNeeded: 2, isReleased: true },
+      { name: 'Cyberpunk 2077', playersNeeded: 1, isReleased: false },
+    ]);
+    const numVideoGame = await db.models.videogame.count();
+    console.info(`Seeded ${numVideoGame} video game.`);
+  }
+  catch (err) {
+    console.error(`ERROR: videogame - ${err.message}`)
+  }
   // Chandler - company
 
 
