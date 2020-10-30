@@ -27,6 +27,7 @@
     "md5": "latest",
     "morgan": "latest",
     "passport": "latest",
+    "pg": "latest",
     "sequelize": "latest",
     "winston": "latest"
   },
