@@ -1,17 +1,20 @@
 {
   "name": "web-app-2020-fall",
   "version": "0.0.0",
+  "engines": {
+    "node": "latest"
+  },
   "private": true,
   "scripts": {
     "lint": "eslint .",
     "lint-fix": "eslint --fix .",
     "prettier": "prettier --write .",
     "dev": "nodemon ./bin/www",
-    "start": "set DEBUG=APP:* & node ./bin/www",
-    "test": "$(npm bin)/cypress open",
+    "start": "node ./bin/www",
     "sequelize": "./node_modules/.bin/sequelize"
   },
   "dependencies": {
+    "compression": "latest",
     "consolidate": "latest",
     "cookie-parser": "latest",
     "dotenv": "latest",
@@ -26,7 +29,8 @@
     "morgan": "latest",
     "passport": "latest",
     "sequelize": "latest",
-    "sqlite3": "latest"
+    "sqlite3": "latest",
+    "winston": "latest"
   },
   "devDependencies": {
     "eslint": "latest",
