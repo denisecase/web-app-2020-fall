@@ -20,6 +20,10 @@
 - Updated to use express app4 updates
 - [Set up ESLint and Prettier](https://sourcelevel.io/blog/how-to-setup-eslint-and-prettier-on-node)
 
+## Styles
+
+- Based on [MDB 5](https://mdbootstrap.com/docs/standard/) (Material Design Bootstrap 5 - no jQuery)
+
 ## Adding Resources
 
 Follow conventions - use standard lowercase, no spaces, follow naming patterns
@@ -94,3 +98,5 @@ View the application locally at <http://localhost:3020/>
 ## Resources
 
 - [Getting Started with Node, Express and PostgreSQL using Sequelize](https://morioh.com/p/fe03e5149f97)
+- [EJS CRUD tutorial](https://www.mynotepaper.com/nodejs-simple-crud-with-expressjs-and-mysql)
+- [EJS CRUD repo](https://github.com/mdobydullah/nodejs-crud-with-expressjs-mysql)
