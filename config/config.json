@@ -13,7 +13,6 @@
   },
   "production": {
     "dialect": "postgres",
-    "ssl": true,
     "dialectOptions": {
       "rejectUnauthorized": false
     },
