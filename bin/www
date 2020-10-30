@@ -204,7 +204,18 @@ async function seedDatabase() {
   console.info(`Seeded ${numFood} foods.`);
 
   // Joseph - software
-
+  try {
+  await db.models.Software.bulkCreate([
+    { name: 'Linux', firstReleased: 1991, isOpenSource: true},
+    { name: 'Tmux', firstReleased: 2007, isOpenSource: true},
+    { name: 'Windows', firstReleased: 1985, isOpenSource: false},
+  ]);
+  const numSoftware = await db.models.Software.count();
+  console.info(`Seeded ${numSoftware} softwares`);
+}
+catch (err) {
+  console.error(`ERROR: - Software ${err.message}`);
+}
   // Stephen - whiskey
   try {
     await db.models.Whiskey.bulkCreate([
