@@ -98,7 +98,7 @@ async function dbInit() {
 }
 
 async function seedDatabase() {
-  console.log('Initialize the SQLite database with dummy data.');
+  console.log('Initialize database with dummy data.');
   await db.sync({ force: true });
   //console.dir(db.models);
 

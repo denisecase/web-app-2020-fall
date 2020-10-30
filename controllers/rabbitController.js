@@ -41,10 +41,9 @@ exports.findOne = (req, res) => {
 // POST /save
 exports.saveNew = async (req, res) => {
   try {
-    console.dir(req.body);
     await db.models.Rabbit.create(req.body);
     return res.redirect('/rabbit');
-  } catch (error) {
+  } catch (err) {
     return res.status(500).json({ error: err.message });
   }
 };
@@ -52,7 +51,7 @@ exports.saveNew = async (req, res) => {
 // POST /save/:id
 exports.saveEdit = async (req, res) => {
   try {
-    const reqId = parseInt(req.params.id);
+    const reqId = parseInt(req.params.id, 10);
     const [updated] = await db.models.Rabbit.update(req.body, {
       where: { id: reqId },
     });
@@ -68,7 +67,7 @@ exports.saveEdit = async (req, res) => {
 // POST /delete/:id
 exports.deleteItem = async (req, res) => {
   try {
-    const reqId = parseInt(req.params.id);
+    const reqId = parseInt(req.params.id, 10);
     const deleted = await db.models.Rabbit.destroy({
       where: { id: reqId },
     });
@@ -110,7 +109,7 @@ exports.showCreate = (req, res) => {
 
 // GET /delete/:id
 exports.showDelete = (req, res) => {
-  const id = req.params.id;
+  const { id } = req.params;
   db.models.Rabbit.findByPk(id)
     .then((data) => {
       res.locals.rabbit = data;
@@ -125,7 +124,7 @@ exports.showDelete = (req, res) => {
 
 // GET /details/:id
 exports.showDetails = (req, res) => {
-  const id = req.params.id;
+  const { id } = req.params;
   db.models.Rabbit.findByPk(id)
     .then((data) => {
       res.locals.rabbit = data;
@@ -140,7 +139,7 @@ exports.showDetails = (req, res) => {
 
 // GET /edit/:id
 exports.showEdit = (req, res) => {
-  const id = req.params.id;
+  const { id } = req.params;
   db.models.Rabbit.findByPk(id)
     .then((data) => {
       res.locals.rabbit = data;
