@@ -29,7 +29,6 @@
     "morgan": "latest",
     "passport": "latest",
     "sequelize": "latest",
-    "sqlite3": "latest",
     "winston": "latest"
   },
   "devDependencies": {
@@ -39,6 +38,7 @@
     "eslint-plugin-import": "latest",
     "eslint-plugin-prettier": "latest",
     "nodemon": "latest",
-    "prettier": "latest"
+    "prettier": "latest",
+    "sqlite3": "latest"
   }
 }
