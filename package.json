@@ -28,6 +28,7 @@
     "morgan": "latest",
     "passport": "latest",
     "pg": "latest",
+    "pg-hstore": "latest",
     "sequelize": "latest",
     "winston": "latest"
   },
