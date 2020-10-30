@@ -14,6 +14,7 @@ const db = new Sequelize(config);
 require('./rabbit')(db, Sequelize.DataTypes);
 
 // Dr. Hoot - tea
+require('./tea')(db, Sequelize.DataTypes);
 
 // Blake - game
 require('./game')(db, Sequelize.DataTypes);
