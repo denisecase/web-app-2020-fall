@@ -32,13 +32,13 @@
     "winston": "latest"
   },
   "devDependencies": {
-    "eslint": "latest",
+    "eslint": "7.11.0",
     "eslint-config-airbnb-base": "latest",
-    "eslint-config-prettier": "latest",
+    "eslint-config-prettier": "6.15.0",
     "eslint-plugin-import": "latest",
     "eslint-plugin-prettier": "latest",
     "nodemon": "latest",
-    "prettier": "latest",
+    "prettier": "2.1.1",
     "sqlite3": "latest"
   }
 }
