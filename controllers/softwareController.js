@@ -4,10 +4,7 @@
  * @author Joseph Dobelmann <s536997@nwmissouri.edu>
  */
 
-// import dependencies
-// const express = require('express');
-
-// const db = require('../models/index');
+const db = require('../models/index');
 
 // GET all JSON
 exports.findAll = (req, res) => {
