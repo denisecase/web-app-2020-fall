@@ -85,28 +85,71 @@ exports.deleteItem = async (req, res) => {
 
 // GET to this controller base URI (the default)
 exports.showIndex = (req, res) => {
+  db.models.Animal.findAll()
+  .then((data) => {
+    res.locals.animals = data;
   // res.send('NOT IMPLEMENTED: Will show animal/index.ejs');
-  res.render('animal/index.ejs', { title: 'animals', req });
+  res.render('animal/index.ejs', { title: 'Animals', req });
+})
+.catch((err) => {
+  res.status(500).send({
+    message: err.message || 'Error retrieving all.',
+  });
+});
 };
 
 // GET /create
 exports.showCreate = (req, res) => {
-  res.send(`NOT IMPLEMENTED: Will show animal/create.ejs for ${req.params.id}`);
+  res.render('animal/create.ejs', {
+    title: 'Animals',
+    res,
+    name: '',
+    lifeSpan: '',
+    isPet: '',
+  });
 };
 
 // GET /delete/:id
 exports.showDelete = (req, res) => {
-  res.send(`NOT IMPLEMENTED: Will show animal/delete.ejs for ${req.params.id}`);
+  const { id } = req.params;
+  db.models.Animal.findByPk(id)
+    .then((data) => {
+      res.locals.animal = data;
+      res.render('animal/delete.ejs', { title: 'Animals', res });
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: `Error retrieving item with id=${id}: ${err.message}`,
+      });
+    });
 };
 
 // GET /details/:id
 exports.showDetails = (req, res) => {
-  res.send(
-    `NOT IMPLEMENTED: Will show animal/details.ejs for ${req.params.id}`
-  );
+  const { id } = req.params;
+  db.models.Animal.findByPk(id)
+    .then((data) => {
+      res.locals.animal = data;
+      res.render('animal/details.ejs', { title: 'Animals', res });
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: `Error retrieving item with id=${id}: ${err.message}`,
+      });
+    });
 };
 
 // GET /edit/:id
 exports.showEdit = (req, res) => {
-  res.send(`NOT IMPLEMENTED: Will show animal/edit.ejs for ${req.params.id}`);
+  const { id } = req.params;
+  db.models.Animal.findByPk(id)
+    .then((data) => {
+      res.locals.animal = data;
+      res.render('animal/details.ejs', { title: 'Animals', res });
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: `Error retrieving item with id=${id}: ${err.message}`,
+      });
+    });
 };
