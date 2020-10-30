@@ -12,9 +12,10 @@
     "benchmark": true
   },
   "production": {
-    "dialect": "sqlite",
-    "storage": "../db-prod.sqlite",
-    "logQueryParameters": true,
-    "benchmark": true
+    "dialect": "postgres",
+    "ssl": true,
+    "dialectOptions": {
+      "ssl": true
+    }
   }
 }
