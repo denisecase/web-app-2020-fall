@@ -16,6 +16,7 @@
     "ssl": true,
     "dialectOptions": {
       "rejectUnauthorized": false
-    }
+    },
+    "use_env_variable": "postgres://vsxzxhwwybqgki:dc0cb04e560c1a2db99762872c0c1bf01841f6141183a94053b4055354f83377@ec2-54-156-85-145.compute-1.amazonaws.com:5432/d6fv16qqg1muj9"
   }
 }
