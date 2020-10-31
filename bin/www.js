@@ -100,13 +100,15 @@ const dbInit = async () => {
       } finally {
         // Release client before any error handling,
         // in case error handling itself throws an error.
+        await assertDatabaseConnectionOk();
+        await seeder(db);
         client.release();
       }
     })().catch((err) => LOG.error(err.stack));
+  } else {
+    await assertDatabaseConnectionOk();
+    await seeder(db);
   }
-
-  await assertDatabaseConnectionOk();
-  await seeder(db);
 };
 
 /**
