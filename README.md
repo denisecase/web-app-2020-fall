@@ -1,5 +1,7 @@
 # web-app-2020-fall
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/dabde95955984dd08493709c421c7da6)](https://app.codacy.com/gh/denisecase/web-app-2020-fall?utm_source=github.com&utm_medium=referral&utm_content=denisecase/web-app-2020-fall&utm_campaign=Badge_Grade)
+
 > Example of a collaborative MVC web app built with the Express web framework for Node.js.
 
 ## Links
