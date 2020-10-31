@@ -42,10 +42,10 @@ const normalizePort = (val) => {
 /**
  * Confirm connection to the database.
  */
-const assertDatabaseConnectionOk = async () => {
-  LOG.info('Checking database connection...');
+const assertDatabaseConnectionOk = async (client) => {
+  LOG.info('Checking database connection with authenticate ...');
   try {
-    await db.authenticate();
+    await client.authenticate();
     LOG.info('Database connection OK!');
   } catch (err) {
     LOG.info(`Unable to connect to the database: ${err.message}`);
@@ -80,7 +80,7 @@ async function testSmallQuery(client) {
 }
 
 async function main(client) {
-  await assertDatabaseConnectionOk();
+  await assertDatabaseConnectionOk(client);
   await testSmallQuery(client);
   await seeder(db);
 }
