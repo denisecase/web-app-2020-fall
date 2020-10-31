@@ -98,7 +98,11 @@ try {
 app.use('/book', require('./routes/book.routes'));
 
 // Kunal - videoGame
-
+try {
+  app.use('/videogame', require('./routes/videogame.routes'));
+} catch (err) {
+  console.error(`ERROR: ${err.message}`);
+}
 // Chandler - company
 app.use('/company', require('./routes/company.routes'));
 

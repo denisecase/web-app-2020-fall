@@ -136,3 +136,4 @@ heroku run sequelize db:migrate --app web-app-2020-fall
 - [EJS CRUD repo](https://github.com/mdobydullah/nodejs-crud-with-expressjs-mysql)
 - [MDN Guide to Publishing with Heroku](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/deployment)
 - [Provising Heroku Postgres](https://devcenter.heroku.com/articles/heroku-postgresql#provisioning-heroku-postgres)
+

@@ -35,7 +35,7 @@ require('./whiskey')(db, Sequelize.DataTypes);
 // Shivani - book
 
 // Kunal - videoGame
-
+require('./videogame')(db, Sequelize.DataTypes);
 // Chandler - company
 
 // Praneeth - cricket
