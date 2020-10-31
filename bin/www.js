@@ -76,9 +76,9 @@ async function testSmallQuery(client) {
   LOG.info('Before running small query');
   const sql = 'SELECT 1 AS x';
   try {
-    const result = await client.query(sql, { raw: true });
+    const records = await client.query(sql, { raw: true });
     LOG.info(
-      `After successfully running small query: ${result.rows.length} row(s).`,
+      `After successfully running small query: ${JSON.stringify(records[0], null, 2)}.`,
     );
   } catch (err) {
     LOG.info(`Error running small query: ${err.message}`);
