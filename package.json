@@ -27,8 +27,6 @@
     "md5": "latest",
     "morgan": "latest",
     "passport": "latest",
-    "pg": "latest",
-    "pg-hstore": "latest",
     "sequelize": "latest",
     "sequelize-cli": "latest",
     "serve-favicon": "latest",

@@ -15,7 +15,6 @@
 const http = require('http');
 const dotenv = require('dotenv');
 const { Sequelize } = require('sequelize');
-const { Client } = require('pg');
 const LOG = require('../util/logger');
 const seeder = require('../util/seeder');
 const db = require('../models/index');
@@ -74,10 +73,16 @@ LOG.info(`Server Launch at port: ${port}`);
  * Test a small query
  */
 async function testSmallQuery(client) {
-  LOG.info('Before small query');
+  LOG.info('Before running small query');
   const sql = 'SELECT 1 AS x';
-  const result = await client.query(sql);
-  LOG.info(`Test query result has ${result.rows.length} row(s).`);
+  try {
+    const result = await client.query(sql, { raw: true });
+    LOG.info(
+      `After successfully running small query: ${result.rows.length} row(s).`,
+    );
+  } catch (err) {
+    LOG.info(`Error running small query: ${err.message}`);
+  }
 }
 
 async function main(client) {
