@@ -5,5 +5,37 @@
 *
 * @author Denise Case <dcase@nwmissouri.edu>
 -->
-
-<p> rabbit delete.ejs </p>
+  
+<% if (rabbit.error) { %>
+  <div class="alert alert-danger" role="alert"><%- rabbit.error %></div>
+  <% } %>
+  
+  <div class="card-body">
+  
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Name</th>
+          <th scope="col">Age</th>
+          <th scope="col">IsCartoon</th>
+          <th width=>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+  
+        <tr>
+          <th scope="row"><%= rabbit.id %></th>
+          <td><%= rabbit.name%></td>
+          <td><%= rabbit.age%></td>
+          <td><%= rabbit.isCartoon%></td>
+          <td>
+            <form action="/rabbit/delete/<%=rabbit.id%>" method="post">
+              <input type="submit" class="btn btn-danger delete" value="Delete" onclick="return alert('Are You sure?')"/>
+            </form>
+          </td>
+        </tr>
+  
+      </tbody>
+    </table>
+  

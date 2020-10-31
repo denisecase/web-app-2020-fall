@@ -13,3 +13,4 @@ module.exports = (sequelize, DataTypes) => {
       isRipe: { type: DataTypes.BOOLEAN },
     });
   };
+
