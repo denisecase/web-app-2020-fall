@@ -131,6 +131,7 @@ heroku run sequelize db:migrate --app web-app-2020-fall
 
 ## Resources
 
+- [Express API with Postgres](https://www.smashingmagazine.com/2020/04/express-api-backend-project-postgresql/)
 - [Getting Started with Node, Express and PostgreSQL using Sequelize](https://morioh.com/p/fe03e5149f97)
 - [EJS CRUD tutorial](https://www.mynotepaper.com/nodejs-simple-crud-with-expressjs-and-mysql)
 - [EJS CRUD repo](https://github.com/mdobydullah/nodejs-crud-with-expressjs-mysql)
