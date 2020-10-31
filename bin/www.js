@@ -14,6 +14,7 @@
 
 const http = require('http');
 const dotenv = require('dotenv');
+const { Sequelize } = require('sequelize');
 const { Client } = require('pg');
 const LOG = require('../util/logger');
 const seeder = require('../util/seeder');
@@ -80,9 +81,14 @@ async function testSmallQuery(client) {
 }
 
 async function main(client) {
-  await assertDatabaseConnectionOk();
+  LOG.info('Checking database connection...');
+  try {
+    await client.authenticate();
+    LOG.info('Database connection OK!');
+  } catch (err) {
+    LOG.info(`Unable to connect to the database: ${err.message}`);
+  }
   await testSmallQuery(client);
-  await seeder(db);
 }
 
 /**
@@ -94,13 +100,7 @@ const dbInit = async () => {
 
   if (isProduction) {
     const config = pgconfigs[process.env.NODE_ENV];
-
-    const client = new Client(config.url, config);
-    client
-      .connect()
-      .then(() => LOG.info('Client connected'))
-      .catch((err) => LOG.error('Client connection error', err.stack));
-
+    const client = new Sequelize(config.url, config);
     main(client);
   } else {
     await assertDatabaseConnectionOk();
