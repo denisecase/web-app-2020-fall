@@ -14,7 +14,7 @@
 
 const http = require('http');
 const dotenv = require('dotenv');
-const Pool = require('pg');
+const { Pool } = require('pg');
 const LOG = require('../util/logger');
 const seeder = require('../util/seeder');
 const db = require('../models/index');
@@ -79,7 +79,10 @@ const dbInit = async () => {
 
     // pools will use environment variables
     // for connection information
-    const pool = new Pool({ connectionString, ssl: true, });
+    const pool = new Pool({
+      connectionString,
+      ssl: { rejectUnauthorized: false },
+    });
 
     // the pool will emit an error on behalf of any idle clients
     // it contains if a backend error or network partition happens
@@ -88,7 +91,7 @@ const dbInit = async () => {
       process.exit(-1); // exit the app
     });
 
-    // This is an IIFE (Immediately Invoked Function Expression) 
+    // This is an IIFE (Immediately Invoked Function Expression)
     // defined and then immediately called
     // note the parenthesis around the definition followed by () to invoke
     (async () => {
