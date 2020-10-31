@@ -104,6 +104,12 @@ npm run start
 
 View the application locally at <http://localhost:3020/>
 
+## Sequelize commands
+
+```PowerShell
+npx sequelize-cli db:migrate
+```
+
 ## Heroku commands
 
 ```PowerShell
