@@ -285,6 +285,17 @@ async function seedDatabase() {
   console.info(`Seeded ${numCricket} cricket team.`);
 
   // Zach - fruit
+  try {
+    await db.models.Fruit.bulkCreate([
+      { name: 'Apple', daysGrowth: 150, isRipe: true },
+      { name: 'Orange', daysGrowth: 20, isRipe: false },
+      { name: 'Pineapple', daysGrowth: 700, isRipe: true },
+    ]);
+    const numFruit = await db.models.Fruit.count();
+    console.info(`Seeded ${numFruit} fruit.`);
+  } catch (err) {
+    console.error(`ERROR: Fruit - ${err.message}`);
+  }
 
   // Prashansa - dance
   try {

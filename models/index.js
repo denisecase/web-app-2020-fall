@@ -44,6 +44,7 @@ require('./cricket')(db, Sequelize.DataTypes);
 require('./series')(db, Sequelize.DataTypes);
 
 // Zach - fruit
+require('./fruit')(db, Sequelize.DataTypes);
 
 // Prashansa - dance
 

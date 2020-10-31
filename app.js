@@ -112,6 +112,11 @@ app.use('/cricket', require('./routes/cricket.routes'));
 app.use('/series', require('./routes/series.routes'));
 
 // Zach - fruit
+try {
+  app.use('/fruit', require('./routes/fruit.routes'));
+} catch (err) {
+  console.error(`ERROR: ${err.message}`);
+}
 
 // Prashansa - dance
 try {
