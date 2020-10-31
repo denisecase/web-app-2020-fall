@@ -20,34 +20,38 @@
 - VS Code
 - VS Code Extension - [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 - [DB Browser for SQLite](https://sqlitebrowser.org/dl/), e.g., standard for 64 Windows. Save the .msi file and double-click to run it.
+
+## Prerequisites for Publishing
+
 - [Heroku CLI - to publish](https://devcenter.heroku.com/articles/getting-started-with-nodejs#set-up)
 - [Heroku login](https://id.heroku.com/login)
 - [PostgreSQL local install](https://www.enterprisedb.com/downloads/postgres-postgresql-downloads)
 
 Create Heroku app with Heroku Postgres (Hobby Dev - free) add-on.
 
-## Background
+## Background - How to Start a New App like this
 
-- Express-generator with EJS
-- Change var to const
-- Change package.json versions to "latest"
-- Added folders for MVC
-- Updated to use express app4 updates
+- Run Express-generator with EJS (dynamically create pages with HTML & embedded JS)
+- Update the JavaScript - change var to const, use async/await
+- Change package.json versions to "latest" - until you have issues, then freeze a version
+- Add folders to organize your code
+- Update to use Express app4 updates - stay current
 - [Set up ESLint and Prettier](https://sourcelevel.io/blog/how-to-setup-eslint-and-prettier-on-node)
 
-## Styles
+## Build Responsive Apps (for all screen sizes)
 
-- Based on [MDB 5](https://mdbootstrap.com/docs/standard/) (Material Design Bootstrap 5 - no jQuery)
+- We choose [MDB 5](https://mdbootstrap.com/docs/standard/) (Material Design Bootstrap 5 - no jQuery)
 
-## Adding Resources
+## Add App-Specific Resources
 
 Follow conventions - use standard lowercase, no spaces, follow naming patterns
 
-We want to be able to perform all CRUD options (create, read, update, delete)
+Enable standard CRUD options (create, read, update, delete)
 
-- Make a model
-- Make a controller
-- Make a views subfolder with 5 views:
+- Make a model & seed some data on startup
+- Route requests to specific routers
+- Route CRUD requests to controller functions
+- Create standard views for the resource
 
 1. create.ejs
 1. delete.ejs
@@ -55,11 +59,11 @@ We want to be able to perform all CRUD options (create, read, update, delete)
 1. edit.ejs
 1. index.ejs
 
-On your initial commit, just add a comment block at the top of each file.
+Add a standard comment block at the top of each file.
 
-Add yourself and your email as the author (follow the examples).
+Add yourself and email as the author (follow examples).
 
-## Contributing
+## How to Contribute
 
 ### Step 1 - Get fresh code.
 
@@ -116,15 +120,15 @@ View the application locally at <http://localhost:3020/>
 npx sequelize-cli db:migrate
 ```
 
-## PostgreSQL commands
+## PostgreSQL commands (for Production Database)
 
 ```PowerShell
 Start-Process 'C:\Program Files\PostgreSQL\13\scripts\runpsql.bat'
-psql "${DATABASE_URL}?sslmode=verify-ca"
+psql "${DATABASE_URL}"
 
 ```
 
-## Heroku commands
+## Heroku commands (for Production App)
 
 ```PowerShell
 heroku login
