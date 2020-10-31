@@ -6,7 +6,7 @@
 const Sequelize = require('sequelize');
 
 const env = process.env.NODE_ENV || 'development';
-const config = require('../config/config.json')[env];
+const config = require('../config/config')[env];
 
 const db = new Sequelize(config);
 
@@ -44,6 +44,7 @@ require('./cricket')(db, Sequelize.DataTypes);
 require('./series')(db, Sequelize.DataTypes);
 
 // Zach - fruit
+require('./fruit')(db, Sequelize.DataTypes);
 
 // Prashansa - dance
 

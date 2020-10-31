@@ -1,141 +1,28 @@
-#!/usr/bin/env node
-
-// Load environment variables from .env file,
-// where API keys and passwords can be configured.
-// dotenv.config({ path: '.env.example' })
-const dotenv = require('dotenv');
-const vars = dotenv.config({ path: '.env' });
-if (vars.error) {
-  throw vars.error;
-}
-console.info(process.env.PORT);
-console.info(vars.parsed);
-console.info('Environment variables loaded.');
-
-const http = require('http');
-const db = require('../models/index');
-
 /**
- * Get port from environment and store in Express.
+ * Initialize the database.
+ *
+ * During development, drop & recreate the database on startup.
+ *
+ * Only as we move into production (and the app is stable) will we
+ * begin to store real data.
+ *  *
+ * @uses Sequelize
+ * @uses winston
+ * *
  */
 
-const port = normalizePort(process.env.PORT || '3020');
-
-const app = require('../app');
-app.set('port', port);
-console.log(`Server Launch at port: ${port}`);
+const LOG = require('./logger');
 
 /**
- * Create HTTP server.
+ * Function to drop/recreate all tables and
+ * seed the database with sample data.
+ *
+ * @param {*} db - the Sequelize data context object
  */
-const server = http.createServer(app);
-
-/**
- * Listen on provided port, on all network interfaces.
- */
-server.listen(port);
-server.on('error', onError);
-server.on('listening', onListening);
-
-/**
- * Normalize a port into a number, string, or false.
- */
-
-function normalizePort(val) {
-  const port = parseInt(val, 10);
-  if (isNaN(port)) {
-    // named pipe
-    return val;
-  }
-  if (port >= 0) {
-    // port number
-    return port;
-  }
-  return false;
-}
-
-/**
- * Event listener for HTTP server "error" event.
- */
-function onError(error) {
-  if (error.syscall !== 'listen') {
-    throw error;
-  }
-
-  const bind = typeof port === 'string' ? 'Pipe ' + port : 'Port ' + port;
-
-  // handle specific listen errors with friendly messages
-  switch (error.code) {
-    case 'EACCES':
-      console.error(bind + ' requires elevated privileges');
-      process.exit(1);
-      break;
-    case 'EADDRINUSE':
-      console.error(bind + ' is already in use');
-      process.exit(1);
-      break;
-    default:
-      throw error;
-  }
-}
-
-// Database functions
-async function assertDatabaseConnectionOk() {
-  console.log(`Checking database connection...`);
-  try {
-    await db.authenticate();
-    console.log('Database connection OK!');
-  } catch (error) {
-    console.log('Unable to connect to the database:');
-    console.log(error.message);
-  }
-}
-
-async function dbInit() {
-
-  const isProduction = process.env.NODE_ENV === 'production';
-
-  if (isProduction) {
-
-    const connectionString = process.env.DATABASE_URL;
-    const { Pool } = require('pg');
-
-    // pools will use environment variables
-    // for connection information
-    const pool = new Pool({
-      connectionString: connectionString,
-      ssl: true,
-    });
-
-    // the pool will emit an error on behalf of any idle clients
-    // it contains if a backend error or network partition happens
-    pool.on('error', (err, client) => {
-      console.error('Unexpected error on idle client', err)
-      process.exit(-1)
-    });
-
-    (async () => {
-      const client = await pool.connect()
-      try {
-        const res = await client.query('SELECT NOW() as now')
-        console.log(res.rows[0])
-      } finally {
-        // Make sure to release the client before any error handling,
-        // just in case the error handling itself throws an error.
-        client.release()
-      }
-    })().catch(err => console.log(err.stack))
-
-  }
-
-  await assertDatabaseConnectionOk();
-  await seedDatabase();
-}
-
-async function seedDatabase() {
-  console.log('Initialize database with dummy data.');
+const seedDatabse = async (db) => {
+  LOG.info('Initialize database with dummy data.');
   await db.sync({ force: true });
-  //console.dir(db.models);
+  // console.dir(db.models);
 
   // Dr. Case - rabbit
   try {
@@ -145,9 +32,9 @@ async function seedDatabase() {
       { name: 'Doc', age: 2, isCartoon: true },
     ]);
     const numRabbits = await db.models.Rabbit.count();
-    console.info(`Seeded ${numRabbits} rabbits.`);
+    LOG.info(`Seeded ${numRabbits} rabbits.`);
   } catch (err) {
-    console.error(`ERROR: Rabbit - ${err.message}`);
+    LOG.error(`ERROR: Rabbit - ${err.message}`);
   }
 
   // Dr. Hoot - tea
@@ -269,9 +156,8 @@ async function seedDatabase() {
     ]);
     const numVideoGame = await db.models.videogame.count();
     console.info(`Seeded ${numVideoGame} video game.`);
-  }
-  catch (err) {
-    console.error(`ERROR: videogame - ${err.message}`)
+  } catch (err) {
+    console.error(`ERROR: videogame - ${err.message}`);
   }
   // Chandler - company
 
@@ -285,6 +171,17 @@ async function seedDatabase() {
   console.info(`Seeded ${numCricket} cricket team.`);
 
   // Zach - fruit
+  try {
+    await db.models.Fruit.bulkCreate([
+      { name: 'Apple', daysGrowth: 150, isRipe: true },
+      { name: 'Orange', daysGrowth: 20, isRipe: false },
+      { name: 'Pineapple', daysGrowth: 700, isRipe: true },
+    ]);
+    const numFruit = await db.models.Fruit.count();
+    console.info(`Seeded ${numFruit} fruit.`);
+  } catch (err) {
+    console.error(`ERROR: Fruit - ${err.message}`);
+  }
 
   // Prashansa - dance
   try {
@@ -299,24 +196,7 @@ async function seedDatabase() {
     console.error(`ERROR: - Dance ${err.message}`);
   }
 
-  // Sam - ship
+  LOG.info('Done seeding!');
+};
 
-  // Lindsey - pokemon
-
-  console.log('Done seeding!');
-}
-
-/**
- * Event listener for HTTP server "listening" event.
- */
-async function onListening() {
-  try {
-    await dbInit();
-  }
-  catch (err) {
-    console.error(`ERROR with database:${err.message}`);
-  }
-  const addr = server.address();
-  const bind = typeof addr === 'string' ? 'pipe ' + addr : 'port ' + addr.port;
-  console.log('Listening on ' + bind);
-}
+module.exports = seedDatabse;
