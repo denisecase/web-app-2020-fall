@@ -41,7 +41,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(helmet());
 app.use(expressLayouts);
 app.use(compression()); // compress all routes
-app.use(favicon(path.join(__dirname,'public','images','favicon.ico')));
+app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 // set up user authentication (logging in & admin)
 app.use(global.passport.initialize());

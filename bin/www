@@ -88,7 +88,6 @@ async function assertDatabaseConnectionOk() {
   } catch (error) {
     console.log('Unable to connect to the database:');
     console.log(error.message);
-    process.exit(1);
   }
 }
 
@@ -130,6 +129,7 @@ async function dbInit() {
   }
 
   await assertDatabaseConnectionOk();
+  await seedDatabase();
 }
 
 async function seedDatabase() {
@@ -298,9 +298,13 @@ async function seedDatabase() {
 /**
  * Event listener for HTTP server "listening" event.
  */
-function onListening() {
-  dbInit();
-  seedDatabase();
+async function onListening() {
+  try {
+    await dbInit();
+  }
+  catch (err) {
+    console.error(`ERROR with database:${err.message}`);
+  }
   const addr = server.address();
   const bind = typeof addr === 'string' ? 'pipe ' + addr : 'port ' + addr.port;
   console.log('Listening on ' + bind);

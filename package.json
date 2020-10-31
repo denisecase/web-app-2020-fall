@@ -9,8 +9,8 @@
     "lint": "eslint .",
     "lint-fix": "eslint --fix .",
     "prettier": "prettier --write .",
-    "dev": "nodemon bin/www",
-    "start": "node bin/www"
+    "dev": "nodemon ./bin/www",
+    "start": "node ./bin/www"
   },
   "dependencies": {
     "compression": "latest",
