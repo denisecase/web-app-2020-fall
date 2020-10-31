@@ -84,6 +84,11 @@ app.use('/rabbit', require('./routes/rabbit.routes'));
 // Nithya - series
 
 // Zach - fruit
+try {
+  app.use('/fruit', require('./routes/fruit.routes'));
+} catch (err) {
+  console.error(`ERROR: ${err.message}`);
+}
 
 // Prashansa - dance
 
