@@ -42,6 +42,7 @@ require('./rabbit')(db, Sequelize.DataTypes);
 // Nithya - series
 
 // Zach - fruit
+require('./fruit')(db, Sequelize.DataTypes);
 
 // Prashansa - dance
 
