@@ -27,7 +27,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       // Other model options go here
-    }
+    },
   );
   return User;
 };
