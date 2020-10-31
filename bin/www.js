@@ -14,7 +14,7 @@
 
 const http = require('http');
 const dotenv = require('dotenv');
-const { Pool } = require('pg');
+const { Client } = require('pg');
 const LOG = require('../util/logger');
 const seeder = require('../util/seeder');
 const db = require('../models/index');
@@ -70,29 +70,18 @@ app.set('port', port);
 LOG.info(`Server Launch at port: ${port}`);
 
 /**
- * Test connect
- */
-async function testConnect(pool) {
-  LOG.info('Before connect');
-  const client = await pool.connect();
-  LOG.info('Connected!');
-  client.release();
-}
-
-/**
  * Test a small query
  */
-async function testSmallQuery(pool) {
+async function testSmallQuery(client) {
   LOG.info('Before small query');
   const sql = 'SELECT 1 AS x';
-  const result = await pool.query(sql);
+  const result = await client.query(sql);
   LOG.info(`Test query result has ${result.rows.length} row(s).`);
 }
 
-async function main(pool) {
-  await testConnect(pool);
-  await assertDatabaseConnectionOk(pool);
-  await testSmallQuery(pool);
+async function main(client) {
+  await assertDatabaseConnectionOk();
+  await testSmallQuery(client);
   await seeder(db);
 }
 
@@ -106,23 +95,13 @@ const dbInit = async () => {
   if (isProduction) {
     const config = pgconfigs[process.env.NODE_ENV];
 
-    // pools will use environment variables
-    // for connection information
-    const pool = new Pool(config.url, config);
-    LOG.info('Connection pool created.');
+    const client = new Client(config.url, config);
+    client
+      .connect()
+      .then(() => LOG.info('Client connected'))
+      .catch((err) => LOG.error('Client connection error', err.stack));
 
-    main(pool)
-      .then(() => {
-        LOG.info('Done');
-        process.exit(0);
-      })
-      .catch((err) => {
-        LOG.error('Error: %s', err);
-        LOG.error('Error: %s', err.stack);
-        process.exit(1);
-      });
-
-    main(pool);
+    main(client);
   } else {
     await assertDatabaseConnectionOk();
     await seeder(db);
