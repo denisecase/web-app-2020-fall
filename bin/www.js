@@ -82,32 +82,18 @@ const dbInit = async () => {
     // pools will use environment variables
     // for connection information
     const pool = new Pool(config.url, config);
-    LOG.info(`Connection pool created (${pool.Number}).`);
+    LOG.info('Connection pool created.');
 
-    // the pool will emit an error on behalf of any idle clients
-    // it contains if a backend error or network partition happens
-    pool.on('error', (err) => {
-      LOG.error(`Unexpected error on idle client: ${err.message}`);
-      process.exit(-1); // exit the app
-    });
-
-    // This is an IIFE (Immediately Invoked Function Expression)
-    // defined and then immediately called
-    // note the parenthesis around the definition followed by () to invoke
     (async () => {
       const client = await pool.connect();
-      LOG.info(`Client connection created (${client.Number}).`);
-      try {
-        const res = await client.query('SELECT NOW() as now');
-        await assertDatabaseConnectionOk();
-        await seeder(db);
-        LOG.info(res.rows[0]);
-      } finally {
-        // Release client before any error handling,
-        // in case error handling itself throws an error.
-        client.release();
-      }
-    })().catch((err) => LOG.error(err.stack));
+      LOG.info('Connection client returned.');
+
+      const result = await client.query('SELECT NOW()');
+      LOG.info(`Test query result has ${result.rows} row(s).`);
+
+      await assertDatabaseConnectionOk();
+      await seeder(db);
+    })();
   } else {
     await assertDatabaseConnectionOk();
     await seeder(db);
