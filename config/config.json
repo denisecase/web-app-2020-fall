@@ -1,20 +1,21 @@
 {
   "development": {
     "dialect": "sqlite",
-    "storage": "../db.sqlite",
+    "storage": "./db.sqlite",
     "logQueryParameters": true,
     "benchmark": true
   },
   "test": {
     "dialect": "sqlite",
-    "storage": "../db-test.sqlite",
+    "storage": "./db-test.sqlite",
     "logQueryParameters": true,
     "benchmark": true
   },
   "production": {
-    "dialect": "sqlite",
-    "storage": "../db-prod.sqlite",
-    "logQueryParameters": true,
-    "benchmark": true
+    "dialect": "postgres",
+    "dialectOptions": {
+      "rejectUnauthorized": false
+    },
+    "use_env_variable": "DATABASE_URL"
   }
 }
