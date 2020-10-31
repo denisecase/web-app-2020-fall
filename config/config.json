@@ -1,13 +1,13 @@
 {
   "development": {
     "dialect": "sqlite",
-    "storage": "../db.sqlite",
+    "storage": "./db.sqlite",
     "logQueryParameters": true,
     "benchmark": true
   },
   "test": {
     "dialect": "sqlite",
-    "storage": "../db-test.sqlite",
+    "storage": "./db-test.sqlite",
     "logQueryParameters": true,
     "benchmark": true
   },

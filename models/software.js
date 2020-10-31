@@ -10,13 +10,11 @@
 // Export a function that defines the model.
 // It automatically receives the Sequelize connection parameter.
 
-const { Sequelize } = require('sequelize/types');
-
 module.exports = (sequelize, DataTypes) => {
   sequelize.define('Software', {
     // sqlite creates a rowid attribute automatically
     name: { type: DataTypes.STRING(30) },
-    firstReleased: { type: DataTypes.INTEGERS },
+    firstReleased: { type: DataTypes.INTEGER },
     isOpenSource: { type: DataTypes.BOOLEAN },
   });
 };

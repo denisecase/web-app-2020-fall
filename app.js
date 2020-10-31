@@ -17,6 +17,7 @@ const expressLayouts = require('express-ejs-layouts');
 const helmet = require('helmet'); // safer http headers
 global.passport = require('passport');
 const compression = require('compression'); // smaller=faster
+const favicon = require('serve-favicon');
 
 // app variables
 const isProduction = process.env.NODE_ENV === 'production';
@@ -40,6 +41,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(helmet());
 app.use(expressLayouts);
 app.use(compression()); // compress all routes
+app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 // set up user authentication (logging in & admin)
 app.use(global.passport.initialize());
@@ -62,6 +64,7 @@ try {
 }
 
 // Dr. Hoot - tea
+app.use('/tea', require('./routes/tea.routes'));
 
 // Blake - game
 try {
