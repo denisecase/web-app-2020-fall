@@ -70,6 +70,33 @@ app.set('port', port);
 LOG.info(`Server Launch at port: ${port}`);
 
 /**
+ * Test connect
+ */
+async function testConnect(pool) {
+  LOG.info('Before connect');
+  const client = await pool.connect();
+  LOG.info('Connected!');
+  client.release();
+}
+
+/**
+ * Test a small query
+ */
+async function testSmallQuery(pool) {
+  LOG.info('Before small query');
+  const sql = 'SELECT 1 AS x';
+  const result = await pool.query(sql);
+  LOG.info(`Test query result has ${result.rows.length} row(s).`);
+}
+
+async function main(pool) {
+  await testConnect(pool);
+  await assertDatabaseConnectionOk(pool);
+  await testSmallQuery(pool);
+  await seeder(db);
+}
+
+/**
  * Connect to the database.
  */
 const dbInit = async () => {
@@ -84,16 +111,18 @@ const dbInit = async () => {
     const pool = new Pool(config.url, config);
     LOG.info('Connection pool created.');
 
-    (async () => {
-      const client = await pool.connect();
-      LOG.info('Connection client returned.');
+    main(pool)
+      .then(() => {
+        LOG.info('Done');
+        process.exit(0);
+      })
+      .catch((err) => {
+        LOG.error('Error: %s', err);
+        LOG.error('Error: %s', err.stack);
+        process.exit(1);
+      });
 
-      const result = await client.query('SELECT NOW()');
-      LOG.info(`Test query result has ${result.rows} row(s).`);
-
-      await assertDatabaseConnectionOk();
-      await seeder(db);
-    })();
+    main(pool);
   } else {
     await assertDatabaseConnectionOk();
     await seeder(db);
