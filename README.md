@@ -108,10 +108,19 @@ View the application locally at <http://localhost:3020/>
 
 ```PowerShell
 heroku login
+heroku addons
+
+heroku addons:create heroku-postgresql:hobby-dev
+
 heroku config --app web-app-2020-fall
+heroku pg:info --app web-app-2020-fall
+heroku pg:diagnose --app web-app-2020-fall
+
 heroku logs --app web-app-2020-fall --tail
 heroku logs --app web-app-2020-fall --tail -p postgres
-heroku pg:info --app web-app-2020-fall
+
+heroku run sequelize db:migrate --app web-app-2020-fall
+```
 
 ## Resources
 
@@ -119,6 +128,5 @@ heroku pg:info --app web-app-2020-fall
 - [EJS CRUD tutorial](https://www.mynotepaper.com/nodejs-simple-crud-with-expressjs-and-mysql)
 - [EJS CRUD repo](https://github.com/mdobydullah/nodejs-crud-with-expressjs-mysql)
 - [MDN Guide to Publishing with Heroku](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/deployment)
-- [Provising Heroku Postgres](https://devcenter.heroku.com/articles/heroku-postgresql#provisioning-heroku-postgres
-)
-```
+- [Provising Heroku Postgres](https://devcenter.heroku.com/articles/heroku-postgresql#provisioning-heroku-postgres)
+

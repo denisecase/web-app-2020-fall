@@ -85,6 +85,7 @@ async function assertDatabaseConnectionOk() {
   try {
     await db.authenticate();
     console.log('Database connection OK!');
+    console.dir(db);
   } catch (error) {
     console.log('Unable to connect to the database:');
     console.log(error.message);
@@ -93,29 +94,40 @@ async function assertDatabaseConnectionOk() {
 }
 
 async function dbInit() {
+
   const isProduction = process.env.NODE_ENV === 'production';
-  console.info('Environment isProduction = ', isProduction);
 
   if (isProduction) {
-    console.log(`Production Datbase URL:${process.env.DATABASE_URL}`);
-    const connectionString = process.env.DATABASE_URL;
 
-    const { Pool, Client } = require('pg');
+    const connectionString = process.env.DATABASE_URL;
+    const { Pool } = require('pg');
 
     // pools will use environment variables
     // for connection information
     const pool = new Pool({
       connectionString: connectionString,
+      ssl: true,
     });
-    console.dir(pool);
 
-    const client = new Client({
-      connectionString: connectionString,
+    // the pool will emit an error on behalf of any idle clients
+    // it contains if a backend error or network partition happens
+    pool.on('error', (err, client) => {
+      console.error('Unexpected error on idle client', err)
+      process.exit(-1)
     });
-    console.dir(client);
-    client.connect()
-      .then(() => { console.log('Connected') })
-      .catch(err => console.log('Not connected' + err.message));
+
+    (async () => {
+      const client = await pool.connect()
+      try {
+        const res = await client.query('SELECT NOW() as now')
+        console.log(res.rows[0])
+      } finally {
+        // Make sure to release the client before any error handling,
+        // just in case the error handling itself throws an error.
+        client.release()
+      }
+    })().catch(err => console.log(err.stack))
+
   }
 
   await assertDatabaseConnectionOk();

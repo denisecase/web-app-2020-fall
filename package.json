@@ -30,6 +30,7 @@
     "pg": "latest",
     "pg-hstore": "latest",
     "sequelize": "latest",
+    "sequelize-cli": "^6.2.0",
     "winston": "latest"
   },
   "devDependencies": {
