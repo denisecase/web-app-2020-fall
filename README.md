@@ -22,6 +22,7 @@
 - [DB Browser for SQLite](https://sqlitebrowser.org/dl/), e.g., standard for 64 Windows. Save the .msi file and double-click to run it.
 - [Heroku CLI - to publish](https://devcenter.heroku.com/articles/getting-started-with-nodejs#set-up)
 - [Heroku login](https://id.heroku.com/login)
+- [PostgreSQL local install](https://www.enterprisedb.com/downloads/postgres-postgresql-downloads)
 
 Create Heroku app with Heroku Postgres (Hobby Dev - free) add-on.
 
@@ -115,6 +116,14 @@ View the application locally at <http://localhost:3020/>
 npx sequelize-cli db:migrate
 ```
 
+## PostgreSQL commands
+
+```PowerShell
+Start-Process 'C:\Program Files\PostgreSQL\13\scripts\runpsql.bat'
+psql "${DATABASE_URL}?sslmode=verify-ca"
+
+```
+
 ## Heroku commands
 
 ```PowerShell
@@ -122,22 +131,27 @@ heroku login
 heroku addons
 
 heroku addons:create heroku-postgresql:hobby-dev
+heroku ps:scale web=1 --app web-app-2020-fall
 
 heroku config --app web-app-2020-fall
 heroku pg:info --app web-app-2020-fall
 heroku pg:diagnose --app web-app-2020-fall
-heroku open --app web-app-2020-fall
+heroku pg:psql postgresql-round-39059 --app web-app-2020-fall
 
 heroku logs --app web-app-2020-fall --tail
 heroku logs --app web-app-2020-fall --tail -p postgres
 
+heroku run sequelize --app web-app-2020-fall
 heroku run sequelize db:migrate --app web-app-2020-fall
+
+heroku open --app web-app-2020-fall
 ```
 
 ## Resources
 
 - [Express API with Postgres](https://www.smashingmagazine.com/2020/04/express-api-backend-project-postgresql/)
 - [See repo](https://github.com/chidimo/Express-API-Template)
+- [Getting Started with Sequelize and Postgres](https://dev.to/nedsoft/getting-started-with-sequelize-and-postgres-emp)
 - [Getting Started with Node, Express and PostgreSQL using Sequelize](https://morioh.com/p/fe03e5149f97)
 - [EJS CRUD tutorial](https://www.mynotepaper.com/nodejs-simple-crud-with-expressjs-and-mysql)
 - [EJS CRUD repo](https://github.com/mdobydullah/nodejs-crud-with-expressjs-mysql)

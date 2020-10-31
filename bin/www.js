@@ -19,6 +19,7 @@ const LOG = require('../util/logger');
 const seeder = require('../util/seeder');
 const db = require('../models/index');
 const app = require('../app');
+const pgconfigs = require('../config/config');
 
 // Helper functions defined first ...................................
 
@@ -75,14 +76,11 @@ const dbInit = async () => {
   const isProduction = process.env.NODE_ENV === 'production';
 
   if (isProduction) {
-    const connectionString = process.env.DATABASE_URL;
+    const config = pgconfigs[process.env.NODE_ENV];
 
     // pools will use environment variables
     // for connection information
-    const pool = new Pool({
-      connectionString,
-      ssl: { rejectUnauthorized: false },
-    });
+    const pool = new Pool(config.url, config);
 
     // the pool will emit an error on behalf of any idle clients
     // it contains if a backend error or network partition happens
