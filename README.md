@@ -138,11 +138,10 @@ heroku pg:info --app web-app-2020-fall
 heroku pg:diagnose --app web-app-2020-fall
 heroku pg:psql postgresql-round-39059 --app web-app-2020-fall
 
-heroku logs --app web-app-2020-fall --tail
-heroku logs --app web-app-2020-fall --tail -p postgres
-
 heroku run sequelize --app web-app-2020-fall
 heroku run sequelize db:migrate --app web-app-2020-fall
+
+heroku logs --app web-app-2020-fall --tail
 
 heroku open --app web-app-2020-fall
 ```

@@ -74,6 +74,7 @@ LOG.info(`Server Launch at port: ${port}`);
  */
 const dbInit = async () => {
   const isProduction = process.env.NODE_ENV === 'production';
+  LOG.info(`Entering dbInit in ${process.env.NODE_ENV} environment.`);
 
   if (isProduction) {
     const config = pgconfigs[process.env.NODE_ENV];
@@ -81,6 +82,7 @@ const dbInit = async () => {
     // pools will use environment variables
     // for connection information
     const pool = new Pool(config.url, config);
+    LOG.info(`Connection pool created (${pool.Number}).`);
 
     // the pool will emit an error on behalf of any idle clients
     // it contains if a backend error or network partition happens
@@ -94,14 +96,15 @@ const dbInit = async () => {
     // note the parenthesis around the definition followed by () to invoke
     (async () => {
       const client = await pool.connect();
+      LOG.info(`Client connection created (${client.Number}).`);
       try {
         const res = await client.query('SELECT NOW() as now');
+        await assertDatabaseConnectionOk();
+        await seeder(db);
         LOG.info(res.rows[0]);
       } finally {
         // Release client before any error handling,
         // in case error handling itself throws an error.
-        await assertDatabaseConnectionOk();
-        await seeder(db);
         client.release();
       }
     })().catch((err) => LOG.error(err.stack));
