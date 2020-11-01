@@ -53,13 +53,13 @@ exports.saveNew = async (req, res) => {
 exports.saveEdit = async (req, res) => {
   try {
     const reqId = parseInt(req.params.id, 10);
-    const [updated] = (await db).models.Rabbit.update(req.body, {
+    LOG.info(`Save id: ${reqId}`);
+    // don't use super-current language features unless you add babel
+    const updated = (await db).models.Rabbit.update(req.body, {
       where: { id: reqId },
     });
-    if (updated) {
-      return res.redirect('/rabbit');
-    }
-    throw new Error(`${reqId} not found`);
+    LOG.info(`Updated: ${updated}`);
+    return res.redirect('/rabbit'); // always redirect back for now
   } catch (err) {
     return res.status(500).send(err.message);
   }
@@ -114,7 +114,11 @@ exports.showDelete = async (req, res) => {
   (await db).models.Rabbit.findByPk(id)
     .then((data) => {
       res.locals.rabbit = data;
-      res.render('rabbit/delete.ejs', { title: 'Rabbits', res });
+      if (data) {
+        res.render('rabbit/delete.ejs', { title: 'Rabbits', res });
+      } else {
+        res.redirect('rabbit/');
+      }
     })
     .catch((err) => {
       res.status(500).send({
