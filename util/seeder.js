@@ -192,6 +192,19 @@ module.exports = async (db) => {
     console.error(`ERROR: - Dance ${err.message}`);
   }
 
+  // Sam - ship
+  try {
+    await db.models.Ship.bulkCreate([
+      { name: 'Sophie', guns: 14, isFictional: true },
+      { name: 'Surprise', guns: 28, isFictional: false },
+      { name: 'Suffolk', guns: 74, isFictional: false },
+    ]);
+    const numShip = await db.models.Ship.count();
+    console.info(`Seeded ${numShip} ship.`);
+  } catch (err) {
+    console.error(`ERROR: - Ship ${err.message}`);
+  }
+
   LOG.info('Done with seeder................');
 
   return db;
