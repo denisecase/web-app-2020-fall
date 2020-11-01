@@ -29,7 +29,7 @@
     "passport": "latest",
     "pg": "latest",
     "pg-hstore": "latest",
-    "sequelize": "latest",
+    "sequelize": "6.3.3",
     "sequelize-cli": "latest",
     "serve-favicon": "latest",
     "winston": "latest"

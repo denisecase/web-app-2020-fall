@@ -4,14 +4,15 @@
  *
  * @author Denise Case <dcase@nwmissouri.edu>
  */
+const LOG = require('../util/logger');
 
-const db = require('../models/index');
+const db = require('../models/index')();
 
 // FUNCTIONS TO RESPOND WITH JSON DATA  ----------------------------------------
 
 // GET all JSON
-exports.findAll = (req, res) => {
-  db.models.Rabbit.findAll()
+exports.findAll = async (req, res) => {
+  (await db).models.Rabbit.findAll()
     .then((data) => {
       res.send(data);
     })
@@ -23,9 +24,9 @@ exports.findAll = (req, res) => {
 };
 
 // GET one JSON by ID
-exports.findOne = (req, res) => {
+exports.findOne = async (req, res) => {
   const { id } = req.params;
-  db.models.Rabbit.findByPk(id)
+  (await db).models.Rabbit.findByPk(id)
     .then((data) => {
       res.send(data);
     })
@@ -41,7 +42,7 @@ exports.findOne = (req, res) => {
 // POST /save
 exports.saveNew = async (req, res) => {
   try {
-    await db.models.Rabbit.create(req.body);
+    (await db).models.Rabbit.create(req.body);
     return res.redirect('/rabbit');
   } catch (err) {
     return res.status(500).json({ error: err.message });
@@ -52,7 +53,7 @@ exports.saveNew = async (req, res) => {
 exports.saveEdit = async (req, res) => {
   try {
     const reqId = parseInt(req.params.id, 10);
-    const [updated] = await db.models.Rabbit.update(req.body, {
+    const [updated] = (await db).models.Rabbit.update(req.body, {
       where: { id: reqId },
     });
     if (updated) {
@@ -68,7 +69,7 @@ exports.saveEdit = async (req, res) => {
 exports.deleteItem = async (req, res) => {
   try {
     const reqId = parseInt(req.params.id, 10);
-    const deleted = await db.models.Rabbit.destroy({
+    const deleted = (await db).models.Rabbit.destroy({
       where: { id: reqId },
     });
     if (deleted) {
@@ -83,8 +84,8 @@ exports.deleteItem = async (req, res) => {
 // RESPOND WITH VIEWS  --------------------------------------------
 
 // GET to this controller base URI (the default)
-exports.showIndex = (req, res) => {
-  db.models.Rabbit.findAll()
+exports.showIndex = async (req, res) => {
+  (await db).models.Rabbit.findAll()
     .then((data) => {
       res.locals.rabbits = data;
       res.render('rabbit/index.ejs', { title: 'Rabbits', res });
@@ -97,7 +98,7 @@ exports.showIndex = (req, res) => {
 };
 
 // GET /create
-exports.showCreate = (req, res) => {
+exports.showCreate = async (req, res) => {
   res.render('rabbit/create.ejs', {
     title: 'Rabbits',
     res,
@@ -108,9 +109,9 @@ exports.showCreate = (req, res) => {
 };
 
 // GET /delete/:id
-exports.showDelete = (req, res) => {
+exports.showDelete = async (req, res) => {
   const { id } = req.params;
-  db.models.Rabbit.findByPk(id)
+  (await db).models.Rabbit.findByPk(id)
     .then((data) => {
       res.locals.rabbit = data;
       res.render('rabbit/delete.ejs', { title: 'Rabbits', res });
@@ -123,9 +124,9 @@ exports.showDelete = (req, res) => {
 };
 
 // GET /details/:id
-exports.showDetails = (req, res) => {
+exports.showDetails = async (req, res) => {
   const { id } = req.params;
-  db.models.Rabbit.findByPk(id)
+  (await db).models.Rabbit.findByPk(id)
     .then((data) => {
       res.locals.rabbit = data;
       res.render('rabbit/details.ejs', { title: 'Rabbits', res });
@@ -138,9 +139,9 @@ exports.showDetails = (req, res) => {
 };
 
 // GET /edit/:id
-exports.showEdit = (req, res) => {
+exports.showEdit = async (req, res) => {
   const { id } = req.params;
-  db.models.Rabbit.findByPk(id)
+  (await db).models.Rabbit.findByPk(id)
     .then((data) => {
       res.locals.rabbit = data;
       res.render('rabbit/edit.ejs', { title: 'Rabbits', res });
