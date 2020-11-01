@@ -41,12 +41,23 @@ exports.findOne = async (req, res) => {
 
 // POST /save
 exports.saveNew = async (req, res) => {
+  // create behaves poorly
+  const context = await db;
   try {
-    (await db).models.Rabbit.create(req.body);
-    return res.redirect('/rabbit');
+    context.models.Rabbit.create(req.body);
   } catch (err) {
-    return res.status(500).json({ error: err.message });
+    // store the user inputs & the validation errors in res.locals.rabbit
+    // err includes err.message & err.errors (array of validator msgs)
+    LOG.error('ERROR SAVING RABBIT');
+    const item = {};
+    item.name = req.body.name;
+    item.age = req.body.age;
+    item.isCartoon = req.body.isCartoon;
+    item.errors = err.errors;
+    res.locals.rabbit = item;
+    LOG.info(` ERROR ADDING RABBIT:${item}`);
   }
+  return res.redirect('/rabbit');
 };
 
 // POST /save/:id
@@ -99,13 +110,15 @@ exports.showIndex = async (req, res) => {
 
 // GET /create
 exports.showCreate = async (req, res) => {
-  res.render('rabbit/create.ejs', {
-    title: 'Rabbits',
-    res,
-    name: '',
-    age: '',
-    isCartoon: '',
-  });
+  // create a temp rabbit and add it to the response.locals object
+  // this will provide a rabbit object to put any validation errors
+  const tempItem = {
+    name: 'RabbitName',
+    age: 1,
+    isCartoon: true,
+  };
+  res.locals.rabbit = tempItem;
+  res.render('rabbit/create.ejs', { title: 'Rabbits', res });
 };
 
 // GET /delete/:id

@@ -29,19 +29,19 @@
     "passport": "latest",
     "pg": "latest",
     "pg-hstore": "latest",
-    "sequelize": "6.3.3",
+    "sequelize": "latest",
     "sequelize-cli": "latest",
     "serve-favicon": "latest",
     "winston": "latest"
   },
   "devDependencies": {
-    "eslint": "7.11.0",
+    "eslint": "lastest",
     "eslint-config-airbnb-base": "latest",
-    "eslint-config-prettier": "6.15.0",
+    "eslint-config-prettier": "lastest",
     "eslint-plugin-import": "latest",
     "eslint-plugin-prettier": "latest",
     "nodemon": "latest",
-    "prettier": "2.1.1",
+    "prettier": "lastest",
     "sqlite3": "latest"
   }
 }

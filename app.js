@@ -136,13 +136,16 @@ try {
 LOG.info('app custom routes configured');
 
 // catch 404 and forward to error handler
-app.use((req, res, next) => {
+app.use((req, res, err, next) => {
+  LOG.error('App 404 Error Status: ', err.status);
   next(createError(404));
 });
 
 // error handler from
 // https://github.com/mdn/express-locallibrary-tutorial/blob/master/app.js
 app.use((err, req, res) => {
+  LOG.error('App All Error Status: ', err.status);
+  LOG.error('App All Error Message: ', err.message);
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};

@@ -22,11 +22,14 @@ module.exports = async (db) => {
 
   // Dr. Case - rabbit
   try {
-    await db.models.Rabbit.bulkCreate([
-      { name: 'Bugs', age: 2, isCartoon: true },
-      { name: 'Huggy', age: 2, isCartoon: false },
-      { name: 'Doc', age: 2, isCartoon: true },
-    ]);
+    await db.models.Rabbit.bulkCreate(
+      [
+        { name: 'Bugs', age: 2, isCartoon: true },
+        { name: 'Huggy', age: 2, isCartoon: false },
+        { name: 'Doc', age: 2, isCartoon: true },
+      ],
+      { validate: true }, // add options object to call new model validators
+    );
     const numRabbits = await db.models.Rabbit.count();
     LOG.info(`Seeded ${numRabbits} rabbits.`);
   } catch (err) {
