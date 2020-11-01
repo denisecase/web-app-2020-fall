@@ -1,5 +1,5 @@
 /**
- * Route rabbit requests to the correct controller function.
+ * Route ship requests to the correct controller function.
  *
  * A request includes:
  *  an HTTP verb (e.g., get or post) AND
@@ -8,13 +8,13 @@
  * Match each expeced verb + URL request
  * with a custom function to handle it
  *
- * @author Zach Watson <s531994@nwmissouri.edu>
+ * @author Sam Ritter <s523855@nwmissouri.edu>
  */
 
 const router = require('express').Router();
-const controller = require('../controllers/fruitController.js');
+const controller = require('../controllers/shipController.js');
 
-console.info('Starting fruit routing.');
+console.info('Starting ship routing.');
 
 // -----------------------------------------------------------------------------
 // match each expeced verb + URL request
@@ -40,6 +40,6 @@ router.get('/details/:id', controller.showDetails);
 router.get('/edit/:id', controller.showEdit);
 router.get('/delete/:id', controller.showDelete);
 
-console.info('Loaded fruit routes.');
+console.info('Loaded ship routes.');
 
 module.exports = router;

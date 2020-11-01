@@ -119,6 +119,13 @@ try {
   LOG.error(`ERROR: ${err.message}`);
 }
 
+// Sam - ship
+try {
+  app.use('/ship', require('./routes/ship.routes'));
+} catch (err) {
+  LOG.error(`ERROR: ${err.message}`);
+}
+
 // Prashansa - dance
 try {
   app.use('/dance', require('./routes/dance.routes'));
