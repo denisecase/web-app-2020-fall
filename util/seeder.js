@@ -1,28 +1,24 @@
 /**
- * Initialize the database.
+ * Seed the database with sample data.
  *
  * During development, drop & recreate the database on startup.
  *
  * Only as we move into production (and the app is stable) will we
  * begin to store real data.
- *  *
- * @uses Sequelize
- * @uses winston
+ *
  * *
  */
 
-const LOG = require('./logger');
+module.exports = async (db) => {
+  const LOG = require('./logger');
+  LOG.info('Starting seeder.......................');
 
-/**
- * Function to drop/recreate all tables and
- * seed the database with sample data.
- *
- * @param {*} db - the Sequelize data context object
- */
-const seedDatabse = async (db) => {
-  LOG.info('Initialize database with dummy data.');
-  await db.sync({ force: true });
-  // console.dir(db.models);
+  try {
+    await db.sync({ force: true });
+    LOG.info('Recreated all tables.');
+  } catch (err) {
+    LOG.error(`ERROR: on sync (recreate) - ${err.message}`);
+  }
 
   // Dr. Case - rabbit
   try {
@@ -45,7 +41,7 @@ const seedDatabse = async (db) => {
     { name: 'TiGuanYin', pricePerGram: 0.4, isPuer: false },
   ]);
   const numTeas = await db.models.Tea.count();
-  console.info('Seeded ${numTeas} teas .');
+  console.info(`Seeded ${numTeas} teas .`);
 
   // Blake - game
   try {
@@ -209,7 +205,7 @@ const seedDatabse = async (db) => {
     console.error(`ERROR: - Ship ${err.message}`);
   }
 
-  LOG.info('Done seeding!');
-};
+  LOG.info('Done with seeder................');
 
-module.exports = seedDatabse;
+  return db;
+};

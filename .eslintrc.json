@@ -17,7 +17,7 @@
     "comma-dangle": "warn",
     "global-require": "warn",
     "prettier/prettier": "error",
-    "operator-linebreak": ["error", "after"],
+    "operator-linebreak": ["warn", "before"],
     "max-len": [
       "warn",
       {

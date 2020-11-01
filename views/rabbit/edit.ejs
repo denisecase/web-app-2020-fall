@@ -11,7 +11,7 @@
     Edit Rabbit
   </div>
   <div class="card-body">
-    <form action="/rabbit/save/<%=rabbit.id%>" method="post">
+    <form action="/rabbit/save/<%= rabbit.id %>" method="post">
       <div class="form-group">
         <label for="name">Name:</label>
         <input type="text" class="form-control" id="name" name="name" value="<%= rabbit.name %>" autocomplete="off">

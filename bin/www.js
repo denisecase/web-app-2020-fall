@@ -14,12 +14,8 @@
 
 const http = require('http');
 const dotenv = require('dotenv');
-const { Client } = require('pg');
 const LOG = require('../util/logger');
-const seeder = require('../util/seeder');
-const db = require('../models/index');
 const app = require('../app');
-const pgconfigs = require('../config/config');
 
 // Helper functions defined first ...................................
 
@@ -40,19 +36,6 @@ const normalizePort = (val) => {
 };
 
 /**
- * Confirm connection to the database.
- */
-const assertDatabaseConnectionOk = async () => {
-  LOG.info('Checking database connection...');
-  try {
-    await db.authenticate();
-    LOG.info('Database connection OK!');
-  } catch (err) {
-    LOG.info(`Unable to connect to the database: ${err.message}`);
-  }
-};
-
-/**
  * Load environment variables from .env file,
  *  where API keys and passwords can be configured.
  */
@@ -68,45 +51,6 @@ LOG.info(`Environment variables loaded: ${vars.parsed}`);
 const port = normalizePort(process.env.PORT);
 app.set('port', port);
 LOG.info(`Server Launch at port: ${port}`);
-
-/**
- * Test a small query
- */
-async function testSmallQuery(client) {
-  LOG.info('Before small query');
-  const sql = 'SELECT 1 AS x';
-  const result = await client.query(sql);
-  LOG.info(`Test query result has ${result.rows.length} row(s).`);
-}
-
-async function main(client) {
-  await assertDatabaseConnectionOk();
-  await testSmallQuery(client);
-  await seeder(db);
-}
-
-/**
- * Connect to the database.
- */
-const dbInit = async () => {
-  const isProduction = process.env.NODE_ENV === 'production';
-  LOG.info(`Entering dbInit in ${process.env.NODE_ENV} environment.`);
-
-  if (isProduction) {
-    const config = pgconfigs[process.env.NODE_ENV];
-
-    const client = new Client(config.url, config);
-    client
-      .connect()
-      .then(() => LOG.info('Client connected'))
-      .catch((err) => LOG.error('Client connection error', err.stack));
-
-    main(client);
-  } else {
-    await assertDatabaseConnectionOk();
-    await seeder(db);
-  }
-};
 
 /**
  * Event listener for HTTP server "error" event.
@@ -149,7 +93,8 @@ const server = http.createServer(app);
  */
 const onListening = async () => {
   try {
-    await dbInit();
+    const db = await require('../models/index')();
+    await require('../util/seeder')(db);
   } catch (err) {
     LOG.error(`ERROR with database:${err.message}`);
   }

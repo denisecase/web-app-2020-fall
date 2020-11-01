@@ -95,32 +95,70 @@ exports.deleteItem = async (req, res) => {
 
 // GET to this controller base URI (the default)
 exports.showIndex = (req, res) => {
-  // res.send('NOT IMPLEMENTED: Will show whiskey/index.ejs');
-  res.render('whiskey/index.ejs', { title: 'Whiskeys', req });
+  db.models.Whiskey.findAll()
+    .then((data) => {
+      res.locals.whiskeys = data;
+      res.render('whiskey/index.ejs', { title: 'Whiskeys', res });
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: err.message || 'Error retrieving all.',
+      });
+    });
 };
 
 // GET /create
 exports.showCreate = (req, res) => {
-  res.send(
-    `NOT IMPLEMENTED: Will show whiskey/create.ejs for ${req.params.id}`,
-  );
+  res.render('whiskey/create.ejs', {
+    title: 'Whiskeys',
+    res,
+    name: '',
+    age: '',
+    isCartoon: '',
+  });
 };
 
 // GET /delete/:id
 exports.showDelete = (req, res) => {
-  res.send(
-    `NOT IMPLEMENTED: Will show whiskey/delete.ejs for ${req.params.id}`,
-  );
+  const { id } = req.params;
+  db.models.Whiskey.findByPk(id)
+    .then((data) => {
+      res.locals.whiskey = data;
+      res.render('whiskey/delete.ejs', { title: 'Whiskeys', res });
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: `Error retrieving item with id=${id}: ${err.message}`,
+      });
+    });
 };
 
 // GET /details/:id
 exports.showDetails = (req, res) => {
-  res.send(
-    `NOT IMPLEMENTED: Will show whiskey/details.ejs for ${req.params.id}`,
-  );
+  const { id } = req.params;
+  db.models.Whiskey.findByPk(id)
+    .then((data) => {
+      res.locals.whiskey = data;
+      res.render('whiskey/details.ejs', { title: 'Whiskeys', res });
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: `Error retrieving item with id=${id}: ${err.message}`,
+      });
+    });
 };
 
 // GET /edit/:id
 exports.showEdit = (req, res) => {
-  res.send(`NOT IMPLEMENTED: Will show whiskey/edit.ejs for ${req.params.id}`);
+  const { id } = req.params;
+  db.models.Whiskey.findByPk(id)
+    .then((data) => {
+      res.locals.whiskey = data;
+      res.render('whiskey/edit.ejs', { title: 'Whiskeys', res });
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: `Error retrieving item with id=${id}: ${err.message}`,
+      });
+    });
 };
