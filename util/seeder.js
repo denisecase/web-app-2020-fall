@@ -184,13 +184,13 @@ module.exports = async (db) => {
 
   // Prashansa - dance
   try {
-    await db.models.dance.bulkCreate([
-      { form: 'Kuchipudi', yearIntro: 1502, isTraditional: True },
-      { form: 'Bollywood ', yearIntro: 1960, isTraditional: False },
-      { form: 'Bhagra', yearIntro: 1940, isTraditional: True },
+    await db.models.Dance.bulkCreate([
+      { form: 'Kuchipudi', yearIntro: 150, isTraditional: true },
+      { form: 'Bollywood ', yearIntro: 196, isTraditional: false },
+      { form: 'Bhagra', yearIntro: 194, isTraditional: true },
     ]);
-    const numdance = await db.models.dance.count();
-    console.info(`Seeded ${numdance} dance.`);
+    const numDance = await db.models.Dance.count();
+    console.info(`Seeded ${numDance} dance.`);
   } catch (err) {
     console.error(`ERROR: - Dance ${err.message}`);
   }
