@@ -141,7 +141,7 @@ psql "${DATABASE_URL}"
 
 ```
 
-## Heroku commands (for Production App)
+## Reference: Helpful Heroku commands (for production reference)
 
 ```PowerShell
 heroku login
