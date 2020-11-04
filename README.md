@@ -12,6 +12,10 @@
 - [Webapp on Heroku](https://web-app-2020-fall.herokuapp.com/)
 - [Source](https://github.com/denisecase/web-app-2020-fall)
 
+## Set Up Machine for Development
+
+First, set up your Windows machine for development - follow the instructions at [Windows Setup For Developers (The Basics)](https://github.com/denisecase/windows-setup). Be able to right-click your project folder and "Open PowerShell here as Administrator". 
+
 ## Prerequisites
 
 - Node.js (comes with npm)
@@ -20,6 +24,15 @@
 - VS Code
 - VS Code Extension - [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 - [DB Browser for SQLite](https://sqlitebrowser.org/dl/), e.g., standard for 64 Windows. Save the .msi file and double-click to run it.
+
+```PowerShell
+choco install nodejs -y
+choco install git -y
+choco install tortoisegit -y
+choco install vscode -y
+choco upgrade all -y
+refresh env
+```
 
 ## Prerequisites for Publishing
 
