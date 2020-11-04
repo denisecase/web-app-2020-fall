@@ -5,12 +5,14 @@
  * @author Blake Bennett <s532542@nwmissouri.edu>
  */
 
-const db = require('../models/index');
+const LOG = require('../util/logger');
+
+const db = require('../models/index')();
 
 // FUNCTIONS TO RESPOND WITH JSON DATA  ----------------------------------------
 
 // GET all JSON
-exports.findAll = (req, res) => {
+exports.findAll = async (req, res) => {
   (await db).models.Game.findAll()
     .then((data) => {
       res.send(data);
@@ -23,7 +25,7 @@ exports.findAll = (req, res) => {
 };
 
 // GET one JSON by ID
-exports.findOne = (req, res) => {
+exports.findOne = async (req, res) => {
   const { id } = req.params;
   (await db).models.Game.findByPk(id)
     .then((data) => {
@@ -40,12 +42,22 @@ exports.findOne = (req, res) => {
 
 // POST /save
 exports.saveNew = async (req, res) => {
+  const context = await db;
   try {
-    await db.models.Game.create(req.body);
-    return res.redirect('/game');
-  } catch (error) {
-    return res.status(500).json({ error: error.message });
+    context.models.Game.create(req.body);
+  } catch (err) {
+    // store the user inputs & the validation errors in res.locals.rabbit
+    // err includes err.message & err.errors (array of validator msgs)
+    LOG.error('ERROR SAVING GAME');
+    const item = {};
+    item.name = req.body.name;
+    item.playerCount = req.body.playerCount;
+    item.isCardGame = req.body.isCardGame;
+    item.errors = err.errors;
+    res.locals.game = item;
+    LOG.info(` ERROR ADDING GAME:${item}`);
   }
+  return res.redirect('/game');
 };
 
 // POST /save/:id
@@ -83,13 +95,22 @@ exports.deleteItem = async (req, res) => {
 // RESPOND WITH VIEWS  --------------------------------------------
 
 // GET to this controller base URI (the default)
-exports.showIndex = (req, res) => {
+exports.showIndex = async (req, res) => {
   // res.send('NOT IMPLEMENTED: Will show game/index.ejs');
-  res.render('game/index.ejs', { title: 'Games', req });
+  (await db).models.Game.findAll()
+    .then((data) => {
+      res.locals.games = data;
+      res.render('game/index.ejs', { title: 'Games', res });
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: err.message || 'Error retrieving all.',
+      });
+    });
 };
 
 // GET /create
-exports.showCreate = (req, res) => {
+exports.showCreate = async (req, res) => {
   // create a temp game and add it to the response.locals object
   // this will provide a game object to put any validation errors
   const tempItem = {
@@ -102,7 +123,7 @@ exports.showCreate = (req, res) => {
 };
 
 // GET /delete/:id
-exports.showDelete = (req, res) => {
+exports.showDelete = async (req, res) => {
   const { id } = req.params;
   (await db).models.Game.findByPk(id)
     .then((data) => {
@@ -125,7 +146,7 @@ exports.showDetails = async (req, res) => {
   const { id } = req.params;
   (await db).models.Game.findByPk(id)
     .then((data) => {
-      res.locals.Game = data;
+      res.locals.game = data;
       res.render('game/details.ejs', { title: 'Games', res });
     })
     .catch((err) => {
@@ -136,7 +157,7 @@ exports.showDetails = async (req, res) => {
 };
 
 // GET /edit/:id
-exports.showEdit = (req, res) => {
+exports.showEdit = async (req, res) => {
   const { id } = req.params;
   (await db).models.Game.findByPk(id)
     .then((data) => {
