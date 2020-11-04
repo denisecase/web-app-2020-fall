@@ -11,7 +11,7 @@ const db = require('../models/index');
 
 // GET all JSON
 exports.findAll = (req, res) => {
-  db.models.Game.findAll()
+  (await db).models.Game.findAll()
     .then((data) => {
       res.send(data);
     })
@@ -25,7 +25,7 @@ exports.findAll = (req, res) => {
 // GET one JSON by ID
 exports.findOne = (req, res) => {
   const { id } = req.params;
-  db.models.Game.findByPk(id)
+  (await db).models.Game.findByPk(id)
     .then((data) => {
       res.send(data);
     })
@@ -90,20 +90,62 @@ exports.showIndex = (req, res) => {
 
 // GET /create
 exports.showCreate = (req, res) => {
-  res.send(`NOT IMPLEMENTED: Will show game/create.ejs for ${req.params.id}`);
+  // create a temp game and add it to the response.locals object
+  // this will provide a game object to put any validation errors
+  const tempItem = {
+    name: 'GameName',
+    playerCount: 1,
+    isCardGame: true,
+  };
+  res.locals.game = tempItem;
+  res.render('game/create.ejs', { title: 'Games', res });
 };
 
 // GET /delete/:id
 exports.showDelete = (req, res) => {
-  res.send(`NOT IMPLEMENTED: Will show game/delete.ejs for ${req.params.id}`);
+  const { id } = req.params;
+  (await db).models.Game.findByPk(id)
+    .then((data) => {
+      res.locals.game = data;
+      if (data) {
+        res.render('game/delete.ejs', { title: 'Games', res });
+      } else {
+        res.redirect('game/');
+      }
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: `Error retrieving item with id=${id}: ${err.message}`,
+      });
+    });
 };
 
 // GET /details/:id
-exports.showDetails = (req, res) => {
-  res.send(`NOT IMPLEMENTED: Will show game/details.ejs for ${req.params.id}`);
+exports.showDetails = async (req, res) => {
+  const { id } = req.params;
+  (await db).models.Game.findByPk(id)
+    .then((data) => {
+      res.locals.Game = data;
+      res.render('game/details.ejs', { title: 'Games', res });
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: `Error retrieving item with id=${id}: ${err.message}`,
+      });
+    });
 };
 
 // GET /edit/:id
 exports.showEdit = (req, res) => {
-  res.send(`NOT IMPLEMENTED: Will show game/edit.ejs for ${req.params.id}`);
+  const { id } = req.params;
+  (await db).models.Game.findByPk(id)
+    .then((data) => {
+      res.locals.game = data;
+      res.render('game/edit.ejs', { title: 'Games', res });
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: `Error retrieving item with id=${id}: ${err.message}`,
+      });
+    });
 };
