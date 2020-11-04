@@ -173,3 +173,9 @@ heroku open --app web-app-2020-fall
 - [EJS CRUD repo](https://github.com/mdobydullah/nodejs-crud-with-expressjs-mysql)
 - [MDN Guide to Publishing with Heroku](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/deployment)
 - [Provising Heroku Postgres](https://devcenter.heroku.com/articles/heroku-postgresql#provisioning-heroku-postgres)
+
+## Resource - Authentication & Authorization
+
+- [ISA NWMSU Repo (GDP 2 Team 4 Section 2)](https://github.com/MAHALAKSHMIKONGARI/GDP_Team-4_Section-2) - example using passport and passport-jwt for user authentication and authorization
+- [ISA NWMSU App](http://isanwmsu.herokuapp.com/)
+
