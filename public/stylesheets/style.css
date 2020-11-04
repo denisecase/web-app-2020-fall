@@ -1,8 +1,15 @@
-body {
-  padding: 50px;
-  font: 14px 'Lucida Grande', Helvetica, Arial, sans-serif;
+/* Custom Styles - use MDB 5 classes as much as possible */
+/* See: https://mdbootstrap.com/docs/standard/ */
+
+:root {
+  /* set new css variables at the top of the tree */
+  --nw-green: #006747;
 }
 
 a {
-  color: #00b7ff;
+  color: var(--nw-green);
+}
+
+.page-container {
+  background-color: lightgrey;
 }

@@ -10,14 +10,14 @@
     "SharedArrayBuffer": "readonly"
   },
   "parserOptions": {
-    "ecmaVersion": 2018
+    "ecmaVersion": 2021
   },
   "plugins": ["prettier"],
   "rules": {
     "comma-dangle": "warn",
     "global-require": "warn",
     "prettier/prettier": "error",
-    "operator-linebreak": ["error", "after"],
+    "operator-linebreak": ["warn", "before"],
     "max-len": [
       "warn",
       {

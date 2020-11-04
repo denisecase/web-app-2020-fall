@@ -1,53 +1,120 @@
 /**
- *  Model index.js
+ *  Model index.js - adds all model definitions into sequelize
+ *
  *
  */
 
-const Sequelize = require('sequelize');
+module.exports = async () => {
+  const LOG = require('../util/logger');
+  LOG.info('Starting models/index.js .......................');
 
-const env = process.env.NODE_ENV || 'development';
-const config = require('../config/config.json')[env];
+  /**
+   * Load environment variables from .env file,
+   *  where API keys and passwords can be configured.
+   */
+  const dotenv = require('dotenv');
+  const vars = dotenv.config({ path: '.env' });
+  if (vars.error) {
+    throw vars.error;
+  }
+  LOG.info(`Environment variables loaded: ${vars.parsed}`);
 
-const db = new Sequelize(config);
+  const { Sequelize, DataTypes } = require('sequelize');
 
-// Dr. Case - rabbit
-require('./rabbit')(db, Sequelize.DataTypes);
+  /**
+   * Test a small query
+   */
+  async function testSmallQuery(sequelize) {
+    LOG.info('Before running small query');
+    const sql = 'SELECT 1 AS x';
+    try {
+      const records = await sequelize.query(sql, { raw: true });
+      LOG.info(
+        `After successfully running small query: ${JSON.stringify(
+          records[0],
+          null,
+          2,
+        )}.`,
+      );
+    } catch (err) {
+      LOG.info(`Error running small query: ${err.message}`);
+    }
+  }
 
-// Dr. Hoot - tea
+  async function main(db) {
+    LOG.info('Checking database connection...');
 
-// Blake - game
-require('./game')(db, Sequelize.DataTypes);
-// Varsha - animal
-require('./animal')(db, Sequelize.DataTypes);
-// Felipe - ?
+    try {
+      await db.authenticate();
+      LOG.info('Database connection OK!');
+    } catch (err) {
+      LOG.info(`Unable to connect to the database: ${err.message}`);
+    }
 
-// Jack - chief
+    try {
+      await testSmallQuery(db);
+    } catch (err) {
+      LOG.error(`Error setting app db: ${err.message}`);
+    }
 
-// Sreenidhi - plant
+    LOG.info('Start reading all model definitions.');
 
-// Sri Vasavi - food
-require('./food')(db, Sequelize.DataTypes);
-// Joseph - software
+    // Dr. Case - rabbit
+    require('./rabbit')(db, DataTypes);
 
-// Stephen - whiskey
+    // Dr. Hoot - tea
+    require('./tea')(db, DataTypes);
 
-// Shivani - book
+    // Blake - game
+    require('./game')(db, DataTypes);
+    // Varsha - animal
+    require('./animal')(db, DataTypes);
+    // Felipe - ?
 
-// Kunal - videoGame
+    // Jack - chief
 
-// Chandler - company
+    // Sreenidhi - plant
 
-// Praneeth - cricket
-require('./cricket')(db, Sequelize.DataTypes);
-// Nithya - series
-require('./series')(db, Sequelize.DataTypes);
+    // Sri Vasavi - food
+    require('./food')(db, DataTypes);
+    // Joseph - software
+    require('./software')(db, DataTypes);
+    // Stephen - whiskey
+    require('./whiskey')(db, DataTypes);
+    // Shivani - book
 
-// Zach - fruit
+    // Kunal - videoGame
+    require('./videogame')(db, DataTypes);
+    // Chandler - company
 
-// Prashansa - dance
+    // Praneeth - cricket
+    require('./cricket')(db, DataTypes);
+    // Nithya - series
+    require('./series')(db, DataTypes);
 
-// Sam - ship
+    // Zach - fruit
+    require('./fruit')(db, DataTypes);
 
-// Lindsey - pokemon
+    // Prashansa - dance
 
-module.exports = db;
+    // Sam - ship
+  }
+
+  /**
+   * Connect and initialize the database.
+   */
+  const dbInit = async () => {
+    const isProduction = process.env.NODE_ENV === 'production';
+    LOG.info(`Entering dbInit in ${process.env.NODE_ENV} environment.`);
+    const pgconfigs = require('../config/config');
+    const config = pgconfigs[process.env.NODE_ENV];
+    const sequelize = isProduction
+      ? new Sequelize(config.url, config)
+      : new Sequelize(config);
+    await main(sequelize);
+    LOG.info('Done connecting and initializing...');
+    return sequelize;
+  };
+
+  return dbInit();
+};

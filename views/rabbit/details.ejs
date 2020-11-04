@@ -6,4 +6,33 @@
 * @author Denise Case <dcase@nwmissouri.edu>
 -->
 
-<p> rabbit details.ejs </p>
+<% if (rabbit.error) { %>
+<div class="alert alert-danger" role="alert"><%- rabbit.error %></div>
+<% } %>
+
+<div class="card-body">
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Age</th>
+        <th scope="col">IsCartoon</th>
+        <th >Action</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <tr>
+        <th scope="row"><%= rabbit.id %></th>
+        <td><%= rabbit.name%></td>
+        <td><%= rabbit.age%></td>
+        <td><%= rabbit.isCartoon%></td>
+        <td>
+          <a class="btn btn-success edit" href="/rabbit">Done</a>
+        </td>
+      </tr>
+
+    </tbody>
+  </table>

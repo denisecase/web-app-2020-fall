@@ -1,34 +1,57 @@
 # web-app-2020-fall
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/dabde95955984dd08493709c421c7da6)](https://app.codacy.com/gh/denisecase/web-app-2020-fall?utm_source=github.com&utm_medium=referral&utm_content=denisecase/web-app-2020-fall&utm_campaign=Badge_Grade)
+![GitHub repo size](https://img.shields.io/github/repo-size/denisecase/web-app-2020-fall?style=flat)
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+[![Code Style](https://badgen.net/badge/code%20style/airbnb/ff5a5f?icon=airbnb)](https://github.com/airbnb/javascript)
+
 > Example of a collaborative MVC web app built with the Express web framework for Node.js.
+
+## Links
+
+- [Webapp on Heroku](https://web-app-2020-fall.herokuapp.com/)
+- [Source](https://github.com/denisecase/web-app-2020-fall)
 
 ## Prerequisites
 
 - Node.js (comes with npm)
-- Git.
-- TortoiseGit.
+- Git
+- TortoiseGit
 - VS Code
 - VS Code Extension - [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 - [DB Browser for SQLite](https://sqlitebrowser.org/dl/), e.g., standard for 64 Windows. Save the .msi file and double-click to run it.
 
-## Background
+## Prerequisites for Publishing
 
-- Express-generator with EJS
-- Change var to const
-- Change package.json versions to "latest"
-- Added folders for MVC
-- Updated to use express app4 updates
+- [Heroku CLI - to publish](https://devcenter.heroku.com/articles/getting-started-with-nodejs#set-up)
+- [Heroku login](https://id.heroku.com/login)
+- [PostgreSQL local install](https://www.enterprisedb.com/downloads/postgres-postgresql-downloads)
+
+Create Heroku app with Heroku Postgres (Hobby Dev - free) add-on.
+
+## Background - How to Start a New App like this
+
+- Run Express-generator with EJS (dynamically create pages with HTML & embedded JS)
+- Update the JavaScript - change var to const, use async/await
+- Change package.json versions to "latest" - until you have issues, then freeze a version
+- Add folders to organize your code
+- Update to use Express app4 updates - stay current
 - [Set up ESLint and Prettier](https://sourcelevel.io/blog/how-to-setup-eslint-and-prettier-on-node)
 
-## Adding Resources
+## Build Responsive Apps (for all screen sizes)
+
+- We choose [MDB 5](https://mdbootstrap.com/docs/standard/) (Material Design Bootstrap 5 - no jQuery)
+
+## Add App-Specific Resources
 
 Follow conventions - use standard lowercase, no spaces, follow naming patterns
 
-We want to be able to perform all CRUD options (create, read, update, delete)
+Enable standard CRUD options (create, read, update, delete)
 
-- Make a model
-- Make a controller
-- Make a views subfolder with 5 views:
+- Make a model & seed some data on startup
+- Route requests to specific routers
+- Route CRUD requests to controller functions
+- Create standard views for the resource
 
 1. create.ejs
 1. delete.ejs
@@ -36,11 +59,11 @@ We want to be able to perform all CRUD options (create, read, update, delete)
 1. edit.ejs
 1. index.ejs
 
-On your initial commit, just add a comment block at the top of each file.
+Add a standard comment block at the top of each file.
 
-Add yourself and your email as the author (follow the examples).
+Add yourself and email as the author (follow examples).
 
-## Contributing
+## How to Contribute
 
 ### Step 1 - Get fresh code.
 
@@ -91,6 +114,49 @@ npm run start
 
 View the application locally at <http://localhost:3020/>
 
+## Sequelize commands
+
+```PowerShell
+npx sequelize-cli db:migrate
+```
+
+## PostgreSQL commands (for Production Database)
+
+```PowerShell
+Start-Process 'C:\Program Files\PostgreSQL\13\scripts\runpsql.bat'
+psql "${DATABASE_URL}"
+
+```
+
+## Heroku commands (for Production App)
+
+```PowerShell
+heroku login
+heroku addons
+
+heroku addons:create heroku-postgresql:hobby-dev
+heroku ps:scale web=1 --app web-app-2020-fall
+
+heroku config --app web-app-2020-fall
+heroku pg:info --app web-app-2020-fall
+heroku pg:diagnose --app web-app-2020-fall
+heroku pg:psql postgresql-round-39059 --app web-app-2020-fall
+
+heroku run sequelize --app web-app-2020-fall
+heroku run sequelize db:migrate --app web-app-2020-fall
+
+heroku logs --app web-app-2020-fall --tail
+
+heroku open --app web-app-2020-fall
+```
+
 ## Resources
 
+- [Express API with Postgres](https://www.smashingmagazine.com/2020/04/express-api-backend-project-postgresql/)
+- [See repo](https://github.com/chidimo/Express-API-Template)
+- [Getting Started with Sequelize and Postgres](https://dev.to/nedsoft/getting-started-with-sequelize-and-postgres-emp)
 - [Getting Started with Node, Express and PostgreSQL using Sequelize](https://morioh.com/p/fe03e5149f97)
+- [EJS CRUD tutorial](https://www.mynotepaper.com/nodejs-simple-crud-with-expressjs-and-mysql)
+- [EJS CRUD repo](https://github.com/mdobydullah/nodejs-crud-with-expressjs-mysql)
+- [MDN Guide to Publishing with Heroku](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/deployment)
+- [Provising Heroku Postgres](https://devcenter.heroku.com/articles/heroku-postgresql#provisioning-heroku-postgres)
