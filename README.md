@@ -14,7 +14,7 @@
 
 ## Set Up Machine for Development
 
-First, set up your Windows machine for development - follow the instructions at [Windows Setup For Developers (The Basics)](https://github.com/denisecase/windows-setup). Be able to right-click your project folder and "Open PowerShell here as Administrator". 
+First, set up your Windows machine for development - follow the instructions at [Windows Setup For Developers (The Basics)](https://github.com/denisecase/windows-setup). Be able to right-click your project folder and "Open PowerShell here as Administrator".
 
 ## Prerequisites
 
@@ -78,14 +78,23 @@ Add yourself and email as the author (follow examples).
 
 ## How to Contribute
 
+### First time only
+
+1. Click the fork icon on this repo to fork it into your own cloud account.
+2. Clone your new cloud repo down to your machine. 
+
 ### Step 1 - Get fresh code.
 
-1. Pull fresh code. (Fork & clone if this is the first time.)
-1. Run npm install
-1. Run npm run start
-1. Verify everything runs.
+1. Pull fresh code from shared cloud repo.
+1. Update your cloud repo (git add and push).
+1. Install dependencies (assume things have changed).
+1. Start the app.
+1. Open your browser to verify everything runs. 
 
-```PowerShell
+```Powershell
+git pull "https://github.com/denisecase/web-app-2020-fall.git"
+git add .
+git push
 npm install
 npm run start
 ```
@@ -97,7 +106,7 @@ lint (clean it up) with ESLint.
 See scripts in package.json.
 
 1. Immediately, make your local edits.
-1. Verify the app still runs & standarize your code (see commands below)
+1. Verify the app still runs & standarize your code.
 
 ```PowerShell
 npm install
@@ -108,12 +117,26 @@ npm run lint
 npm run lint-fix
 ```
 
-### Step 3 - Save your work.
+Fix your code as suggested by the linter. 
+
+### Step 3 - Save and share your work.
 
 1. Git add & git commit locally.
 1. Git push to the origin.
 1. In your updated GitHub repo look for "Pull Request".
 1. Follow instructions (click the green buttons) to prepare a "pull request" into the main repo.
+
+### Step 4 - Refresh before making new contributions
+
+1. Git pull from shared repo to your laptop
+1. Git add any new files from root folder on down (git add .)
+1. Git push to your origin repo (your forked repo in the cloud)
+
+```Powershell
+git pull "https://github.com/denisecase/web-app-2020-fall.git"
+git add .
+git push
+```
 
 ## Start Options
 
@@ -127,13 +150,15 @@ npm run start
 
 View the application locally at <http://localhost:3020/>
 
-## Sequelize commands
+## Reference Command Examples
+
+Sequelize commands
 
 ```PowerShell
 npx sequelize-cli db:migrate
 ```
 
-## PostgreSQL commands (for Production Database)
+PostgreSQL commands (for Production Database)
 
 ```PowerShell
 Start-Process 'C:\Program Files\PostgreSQL\13\scripts\runpsql.bat'
@@ -141,7 +166,7 @@ psql "${DATABASE_URL}"
 
 ```
 
-## Reference: Helpful Heroku commands (for production reference)
+Heroku commands (for production reference)
 
 ```PowerShell
 heroku login
@@ -159,23 +184,41 @@ heroku run sequelize --app web-app-2020-fall
 heroku run sequelize db:migrate --app web-app-2020-fall
 
 heroku logs --app web-app-2020-fall --tail
-
 heroku open --app web-app-2020-fall
 ```
 
 ## Resources
 
+Security
+
+- [GitHub: Node.js Best Practices](https://github.com/goldbergyoni/nodebestpractices)
+- [US Gov: Before You Ship - Static Security Analysis](https://before-you-ship.18f.gov/security/static-analysis/)
+- [OWASP: Node Security Cheatsheet](https://cheatsheetseries.owasp.org/cheatsheets/Nodejs_Security_Cheat_Sheet.html)
+- [Express: Security Best Practices](https://expressjs.com/en/advanced/best-practice-security.html)
+- [ES Lint: Config](https://github.com/EvgenyOrekhov/eslint-config-hardcore)
+
+Sequelize & PostgreSQL
+
 - [Express API with Postgres](https://www.smashingmagazine.com/2020/04/express-api-backend-project-postgresql/)
-- [See repo](https://github.com/chidimo/Express-API-Template)
+- [Express API with Postgres Repo](https://github.com/chidimo/Express-API-Template)
 - [Getting Started with Sequelize and Postgres](https://dev.to/nedsoft/getting-started-with-sequelize-and-postgres-emp)
 - [Getting Started with Node, Express and PostgreSQL using Sequelize](https://morioh.com/p/fe03e5149f97)
+
+Express
+
+- [MDN Web Docs - Express Web Framework](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs)
+
+EJS CRUD
+
 - [EJS CRUD tutorial](https://www.mynotepaper.com/nodejs-simple-crud-with-expressjs-and-mysql)
 - [EJS CRUD repo](https://github.com/mdobydullah/nodejs-crud-with-expressjs-mysql)
+
+Deploying on Heroku
+
 - [MDN Guide to Publishing with Heroku](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/deployment)
 - [Provising Heroku Postgres](https://devcenter.heroku.com/articles/heroku-postgresql#provisioning-heroku-postgres)
 
-## Resources - Authentication & Authorization
+Authentication & Authorization
 
 - [ISA NWMSU Repo (GDP 2 Team 4 Section 2)](https://github.com/MAHALAKSHMIKONGARI/GDP_Team-4_Section-2) - example using passport and passport-jwt for user authentication and authorization
 - [ISA NWMSU App](http://isanwmsu.herokuapp.com/)
-
