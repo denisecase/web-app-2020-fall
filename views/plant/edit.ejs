@@ -6,4 +6,33 @@
 * @author Sreenidhi Madala <s541226@nwmissouri.edu>
 -->
 
-<p> book edit.ejs </p>
+<div class="card">
+    <div class="card-header">
+      Edit Plant
+    </div>
+    <div class="card-body">
+      <form action="/plant/save/<%= plant.id %>" method="post">
+        <div class="form-group">
+          <label for="name">Name:</label>
+          <input type="text" class="form-control" id="name" name="name" value="<%= plant.name %>" autocomplete="off">
+        </div>
+        <div class="form-group">
+          <label for="varieties">varieties:</label>
+          <input type="number" class="form-control" id="varieties" name="varieties" value="<%= plant.varieties %>" min=1 max=100 step=1 default=2
+            autocomplete="off">
+        </div>
+        <br>
+        <!-- Checked checkbox -->
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="checkbox" value="<%= plant.isPlant %>" checked />
+          <label class="form-check-label" for="checkbox">
+            Is Plant?
+          </label>
+        </div>
+        <br>
+        <div class="form-group">
+          <input type="submit" class="btn btn-info" title="Submits a POST /save/:id request" value="Save" />
+        </div>
+      </form>
+    </div>
+  </div>

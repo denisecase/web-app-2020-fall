@@ -82,7 +82,11 @@ app.use('/animal', require('./routes/animal.routes'));
 // Jack - chief
 
 // Sreenidhi - plant
-app.use('/plant', require('./routes/plant.routes'));
+try {
+  app.use('/plant', require('./routes/plant.routes'));
+} catch (err) {
+  LOG.error(`ERROR: ${err.message}`);
+}
 
 // Sri Vasavi - food
 app.use('/food', require('./routes/food.routes'));
