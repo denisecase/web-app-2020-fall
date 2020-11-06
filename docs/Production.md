@@ -38,3 +38,33 @@ Verify you have a "DATABASE_URL" variable that starts with "postgres://..." as s
 
 ![Heroku Config Variables](./HerokuConfigVars.PNG)
 
+## Verify Locally
+
+Install the Heroku CLI (find official documentation). 
+
+From your project repo, Open PowerShell as Administrator and run:
+
+```PowerShell
+heroku login
+```
+
+Verify add-ons:
+
+```PowerShell
+heroku addons
+```
+
+Verify more (use the name of your app, not the web app one below):
+
+```PowerShell
+heroku config --app web-app-2020-fall
+heroku pg:info --app web-app-2020-fall
+heroku pg:diagnose --app web-app-2020-fall
+```
+
+Check your Heroku logs & open your Heroku app in a browser:
+
+```PowerShell
+heroku logs --app web-app-2020-fall --tail
+heroku open --app web-app-2020-fall
+```
