@@ -31,7 +31,7 @@ choco install git -y
 choco install tortoisegit -y
 choco install vscode -y
 choco upgrade all -y
-refresh env
+refreshenv
 ```
 
 ## Prerequisites for Publishing
