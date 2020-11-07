@@ -4,9 +4,38 @@
  *
  * @author Denise Case <dcase@nwmissouri.edu>
  */
+
+// OPTIONAL: If using Sequelize validation features
+const { ValidationError } = require('sequelize');
+
 const LOG = require('../util/logger');
 
 const db = require('../models/index')();
+
+// OPTIONAL: VALIDATION Helper function ----------------------
+
+/**
+ * Prepare an item from the request information and add
+ * an 'error' attribute to share with the view.
+ *
+ * @param {*} err - the error
+ * @param {*} req - the request
+ * @returns - the item to attach to response.locals
+ */
+async function prepareInvalidItem(err, req) {
+  LOG.error('ERROR SAVING ITEM');
+  LOG.error('Captured validation error: ', err.errors[0].message);
+  const item = {};
+  if (req.body.id) {
+    item.id = req.body.id;
+  }
+  item.name = req.body.name;
+  item.age = req.body.age;
+  item.isCartoon = req.body.isCartoon;
+  item.error = err.errors[0].message;
+  LOG.info(`ERROR SAVING ITEM: ${JSON.stringify(item)}`);
+  return item;
+}
 
 // FUNCTIONS TO RESPOND WITH JSON DATA  ----------------------------------------
 
@@ -41,38 +70,37 @@ exports.findOne = async (req, res) => {
 
 // POST /save
 exports.saveNew = async (req, res) => {
-  // create behaves poorly
-  const context = await db;
   try {
-    context.models.Rabbit.create(req.body);
+    const context = await db;
+    await context.models.Rabbit.create(req.body);
+    return res.redirect('/rabbit');
   } catch (err) {
-    // store the user inputs & the validation errors in res.locals.rabbit
-    // err includes err.message & err.errors (array of validator msgs)
-    LOG.error('ERROR SAVING RABBIT');
-    const item = {};
-    item.name = req.body.name;
-    item.age = req.body.age;
-    item.isCartoon = req.body.isCartoon;
-    item.errors = err.errors;
-    res.locals.rabbit = item;
-    LOG.info(` ERROR ADDING RABBIT:${item}`);
+    if (err instanceof ValidationError) {
+      const item = await prepareInvalidItem(err, req);
+      res.locals.rabbit = item;
+      return res.render('rabbit/create.ejs', { title: 'Rabbits', res });
+    }
+    return res.redirect('/rabbit');
   }
-  return res.redirect('/rabbit');
 };
 
 // POST /save/:id
 exports.saveEdit = async (req, res) => {
   try {
     const reqId = parseInt(req.params.id, 10);
-    LOG.info(`Save id: ${reqId}`);
-    // don't use super-current language features unless you add babel
-    const updated = (await db).models.Rabbit.update(req.body, {
+    const context = await db;
+    const updated = await context.models.Rabbit.update(req.body, {
       where: { id: reqId },
     });
-    LOG.info(`Updated: ${updated}`);
-    return res.redirect('/rabbit'); // always redirect back for now
+    LOG.info(`Updated: ${JSON.stringify(updated)}`);
+    return res.redirect('/rabbit');
   } catch (err) {
-    return res.status(500).send(err.message);
+    if (err instanceof ValidationError) {
+      const item = await prepareInvalidItem(err, req);
+      res.locals.rabbit = item;
+      return res.render('rabbit/edit.ejs', { title: 'Rabbits', res });
+    }
+    return res.redirect('/rabbit');
   }
 };
 
