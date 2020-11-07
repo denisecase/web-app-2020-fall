@@ -13,6 +13,7 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "bcryptjs": "latest",
     "compression": "latest",
     "consolidate": "latest",
     "cookie-parser": "latest",
@@ -20,11 +21,12 @@
     "ejs": "latest",
     "express": "latest",
     "express-ejs-layouts": "latest",
+    "express-session": "latest",
     "express-validator": "latest",
     "fs": "latest",
     "helmet": "latest",
     "http-errors": "latest",
-    "md5": "latest",
+    "jsonwebtoken": "latest",
     "morgan": "latest",
     "passport": "latest",
     "pg": "latest",

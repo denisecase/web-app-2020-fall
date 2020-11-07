@@ -208,6 +208,21 @@ module.exports = async (db) => {
     console.error(`ERROR: - Ship ${err.message}`);
   }
 
+  // Dr. Case - user
+  try {
+    await db.models.User.bulkCreate(
+      [
+        { email: 'dcase@nwmissouri.edu', password: 'dcase1' },
+        { email: 'hoot@nwmissouri.edu', password: 'hoot22' },
+      ],
+      { validate: true }, // add options object to call new model validators
+    );
+    const numRabbits = await db.models.Rabbit.count();
+    LOG.info(`Seeded ${numRabbits} rabbits.`);
+  } catch (err) {
+    LOG.error(`ERROR: Rabbit - ${err.message}`);
+  }
+
   LOG.info('Done with seeder................');
 
   return db;

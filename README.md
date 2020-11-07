@@ -81,7 +81,7 @@ Add yourself and email as the author (follow examples).
 ### First time only
 
 1. Click the fork icon on this repo to fork it into your own cloud account.
-2. Clone your new cloud repo down to your machine. 
+2. Clone your new cloud repo down to your machine.
 
 ### Step 1 - Get fresh code.
 
@@ -89,7 +89,7 @@ Add yourself and email as the author (follow examples).
 1. Update your cloud repo (git add and push).
 1. Install dependencies (assume things have changed).
 1. Start the app.
-1. Open your browser to verify everything runs. 
+1. Open your browser to verify everything runs.
 
 ```Powershell
 git pull "https://github.com/denisecase/web-app-2020-fall.git"
@@ -117,7 +117,7 @@ npm run lint
 npm run lint-fix
 ```
 
-Fix your code as suggested by the linter. 
+Fix your code as suggested by the linter.
 
 ### Step 3 - Save and share your work.
 
@@ -199,8 +199,6 @@ Security
 
 Sequelize & PostgreSQL
 
-- [Express API with Postgres](https://www.smashingmagazine.com/2020/04/express-api-backend-project-postgresql/)
-- [Express API with Postgres Repo](https://github.com/chidimo/Express-API-Template)
 - [Getting Started with Sequelize and Postgres](https://dev.to/nedsoft/getting-started-with-sequelize-and-postgres-emp)
 - [Getting Started with Node, Express and PostgreSQL using Sequelize](https://morioh.com/p/fe03e5149f97)
 
@@ -220,5 +218,6 @@ Deploying on Heroku
 
 Authentication & Authorization
 
+- [NWMSU GDP1 - The Hunt](https://github.com/Krishna-Koyyalamudi/The-Hunt)
 - [ISA NWMSU Repo (GDP 2 Team 4 Section 2)](https://github.com/MAHALAKSHMIKONGARI/GDP_Team-4_Section-2) - example using passport and passport-jwt for user authentication and authorization
 - [ISA NWMSU App](http://isanwmsu.herokuapp.com/)

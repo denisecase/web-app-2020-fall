@@ -143,16 +143,12 @@ app.use((req, res, err, next) => {
 
 // error handler from
 // https://github.com/mdn/express-locallibrary-tutorial/blob/master/app.js
-app.use((err, req, res) => {
-  LOG.error('App All Error Status: ', err.status);
-  LOG.error('App All Error Message: ', err.message);
+app.use((req, res, err) => {
   // set locals, only providing error in development
-  res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
-
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.render('error', { title: 'Error', res });
 });
 
 // export the express app (helpful for testing)

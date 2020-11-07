@@ -1,26 +1,26 @@
-# Production 
+# Production
 
-In Heroku, click New / Create new app. 
+In Heroku, click New / Create new app.
 
-Name your app. 
+Name your app.
 
 ## Set up automatic deployment
 
-From your Heroku dashboard, click on your app. 
+From your Heroku dashboard, click on your app.
 
-Click "Deploy". 
+Click "Deploy".
 
-Under "deployment method", select GitHub. 
+Under "deployment method", select GitHub.
 
-Under "automatic deploys", enable automatic deploys from the main branch. 
+Under "automatic deploys", enable automatic deploys from the main branch.
 
 ## Add Datastore Add-on
 
-From your Heroku dashboard, click on your app. 
+From your Heroku dashboard, click on your app.
 
-Click "Resources". 
+Click "Resources".
 
-Click "Find more add-ons". 
+Click "Find more add-ons".
 
 Add Heroku Postgres (free hobby dev option).
 
@@ -28,19 +28,19 @@ Add Heroku Postgres (free hobby dev option).
 
 ## Verify Datastore
 
-From your Heroku dashboard, click on your app. 
+From your Heroku dashboard, click on your app.
 
 Click "Settings".
 
 Click "Reveal Config Vars".
 
-Verify you have a "DATABASE_URL" variable that starts with "postgres://..." as shown below. 
+Verify you have a "DATABASE_URL" variable that starts with "postgres://..." as shown below.
 
 ![Heroku Config Variables](./HerokuConfigVars.PNG)
 
 ## Verify Locally
 
-Install the Heroku CLI (find official documentation). 
+Install the Heroku CLI (find official documentation).
 
 From your project repo, Open PowerShell as Administrator and run:
 
