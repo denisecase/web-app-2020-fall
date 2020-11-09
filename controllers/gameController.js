@@ -4,10 +4,36 @@
  *
  * @author Blake Bennett <s532542@nwmissouri.edu>
  */
+const { ValidationError } = require('sequelize');
 
 const LOG = require('../util/logger');
 
 const db = require('../models/index')();
+
+// OPTIONAL: VALIDATION Helper function ----------------------
+
+/**
+ * Prepare an item from the request information and add
+ * an 'error' attribute to share with the view.
+ *
+ * @param {*} err - the error
+ * @param {*} req - the request
+ * @returns - the item to attach to response.locals
+ */
+async function prepareInvalidItem(err, req) {
+  LOG.error('ERROR SAVING ITEM');
+  LOG.error('Captured validation error: ', err.errors[0].message);
+  const item = {};
+  if (req.body.id) {
+    item.id = req.body.id;
+  }
+  item.name = req.body.name;
+  item.playerCount = req.body.playerCount;
+  item.isCardGame = req.body.isCardGame;
+  item.error = err.errors[0].message;
+  LOG.info(`ERROR SAVING ITEM: ${JSON.stringify(item)}`);
+  return item;
+}
 
 // FUNCTIONS TO RESPOND WITH JSON DATA  ----------------------------------------
 
@@ -42,53 +68,53 @@ exports.findOne = async (req, res) => {
 
 // POST /save
 exports.saveNew = async (req, res) => {
-  const context = await db;
   try {
-    context.models.Game.create(req.body);
+    const context = await db;
+    await context.models.Game.create(req.body);
+    return res.redirect('/game');
   } catch (err) {
-    // store the user inputs & the validation errors in res.locals.rabbit
-    // err includes err.message & err.errors (array of validator msgs)
-    LOG.error('ERROR SAVING GAME');
-    const item = {};
-    item.name = req.body.name;
-    item.playerCount = req.body.playerCount;
-    item.isCardGame = req.body.isCardGame;
-    item.errors = err.errors;
-    res.locals.game = item;
-    LOG.info(` ERROR ADDING GAME:${item}`);
+    if (err instanceof ValidationError) {
+      const item = await prepareInvalidItem(err, req);
+      res.locals.game = item;
+      return res.render('game/create.ejs', { title: 'Gamess', res });
+    }
+    return res.redirect('/game');
   }
-  return res.redirect('/game');
 };
 
 // POST /save/:id
 exports.saveEdit = async (req, res) => {
   try {
-    const { reqId } = req.params.id;
-    const [updated] = await db.models.Game.update(req.body, {
+    const reqId = parseInt(req.params.id, 10);
+    const context = await db;
+    const updated = await context.models.Game.update(req.body, {
       where: { id: reqId },
     });
-    if (updated) {
-      return res.redirect('/game');
+    LOG.info(`Updated: ${JSON.stringify(updated)}`);
+    return res.redirect('/game');
+  } catch (err) {
+    if (err instanceof ValidationError) {
+      const item = await prepareInvalidItem(err, req);
+      res.locals.game = item;
+      return res.render('game/edit.ejs', { title: 'Games', res });
     }
-    throw new Error(`${reqId} not found`);
-  } catch (error) {
-    return res.status(500).send(error.message);
+    return res.redirect('/game');
   }
 };
 
 // POST /delete/:id
 exports.deleteItem = async (req, res) => {
   try {
-    const { reqId } = req.params.gameId;
-    const deleted = await db.models.Game.destroy({
+    const reqId = parseInt(req.params.id, 10);
+    const deleted = (await db).models.Game.destroy({
       where: { id: reqId },
     });
     if (deleted) {
       return res.redirect('/game');
     }
     throw new Error(`${reqId} not found`);
-  } catch (error) {
-    return res.status(500).send(error.message);
+  } catch (err) {
+    return res.status(500).send(err.message);
   }
 };
 
