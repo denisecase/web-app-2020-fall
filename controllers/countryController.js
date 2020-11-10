@@ -4,12 +4,6 @@
  *
  * @author Felipe Sato <s531355@nwmissouri.edu>
  */
-/**
- *  country controller
- *  Handles requests related to country (see routes)
- *
- * @author shivani tangellapally <s540965@nwmissouri.edu>
- */
 
 const db = require('../models/index');
 
