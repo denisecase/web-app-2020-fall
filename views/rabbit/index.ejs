@@ -6,6 +6,71 @@
 *  to dyanmically create a webpage to list all rabbits.
 *
 * @author Denise Case <dcase@nwmissouri.edu>
+
+* based on https://www.mynotepaper.com/nodejs-simple-crud-with-expressjs-and-mysql
+* repo https://github.com/mdobydullah/nodejs-crud-with-expressjs-mysql
+
 -->
 
-<p> IN PROGRESS - This is rabbit index.ejs </p>
+<% if (locals.rabbits.success) { %>
+<div class="alert alert-success" role="alert"><%- rabbit.success %></div>
+<% } %>
+
+<% if (locals.rabbits.error) { %>
+<div class="alert alert-danger" role="alert"><%- rabbit.error %></div>
+<% } %>
+
+<div class="card">
+  <div class="card-header">
+    <ul class="nav nav-pills w-100">
+      <li class="nav-pill active">
+        <a class="nav-link">Rabbits</a>
+      </li>
+      <li class="nav-pill ml-auto">
+        <a class="nav-link active" href="/rabbit/create"><i class="fas fa-plus"></i></a>
+      </li>
+    </ul>
+  </div>
+  <div class="card-body">
+
+    <% if(rabbits.length) { %>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Name</th>
+          <th scope="col">Age</th>
+          <th scope="col">IsCartoon?</th>
+          <th >Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for(let i = 0; i< rabbits.length; i++) { %>
+        <tr>
+          <th scope="row"><%= rabbits[i].id %></th>
+          <td><%= rabbits[i].name%></td>
+          <td><%= rabbits[i].age%></td>
+          <td><%= rabbits[i].isCartoon%></td>
+          <td>
+            <a class="btn btn-primary details" href="../rabbit/details/<%=rabbits[i].id%>"><i
+                class="fab fa-sistrix" title="test"></i></a>
+            <a class="btn btn-success edit" href="../rabbit/edit/<%=rabbits[i].id%>"><i class="fas fa-user-edit"></i></a>
+            <a class="btn btn-danger delete" href="../rabbit/delete/<%=rabbits[i].id%>"><i
+                class="fas fa-trash-alt"></i></a>
+          </td>
+        </tr>
+        <% } %>
+      </tbody>
+    </table>
+    <% } %>
+
+    <!-- if result is empty -->
+    <% if(!rabbits.length) { %>
+    <p class="text-center">No rabbits found!</p>
+    <% } %>
+
+    <br>
+    <h3>Mouse over icons to see where you will go.</h3>
+
+  </div>
+</div>
