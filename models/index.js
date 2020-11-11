@@ -86,7 +86,7 @@ module.exports = async () => {
     // Kunal - videoGame
     require('./videogame')(db, DataTypes);
     // Chandler - company
-
+    require('./company')(db, DataTypes);
     // Praneeth - cricket
     require('./cricket')(db, DataTypes);
     // Nithya - series
