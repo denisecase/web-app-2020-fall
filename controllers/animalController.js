@@ -53,7 +53,7 @@ exports.findAll = async (req, res) => {
 };
 
 // GET one JSON by ID
-exports.findOne = async  (req, res) => {
+exports.findOne = async (req, res) => {
   const { id } = req.params;
   (await db).models.Animal.findByPk(id)
     .then((data) => {
@@ -138,7 +138,7 @@ exports.showIndex = async (req, res) => {
 
 // GET /create
 exports.showCreate = async (req, res) => {
-   // create a temp rabbit and add it to the response.locals object
+  // create a temp rabbit and add it to the response.locals object
   // this will provide a rabbit object to put any validation errors
   const tempItem = {
     name: 'AnimalName',
@@ -156,9 +156,9 @@ exports.showDelete = async (req, res) => {
     .then((data) => {
       res.locals.animal = data;
       if (data) {
-        res.render('rabbit/delete.ejs', { title: 'Rabbits', res });
+        res.render('animal/delete.ejs', { title: 'Rabbits', res });
       } else {
-        res.redirect('rabbit/');
+        res.redirect('animal/');
       }
     })
     .catch((err) => {
@@ -169,7 +169,7 @@ exports.showDelete = async (req, res) => {
 };
 
 // GET /details/:id
-exports.showDetails = async  (req, res) => {
+exports.showDetails = async (req, res) => {
   const { id } = req.params;
   (await db).models.Animal.findByPk(id)
     .then((data) => {
@@ -184,12 +184,12 @@ exports.showDetails = async  (req, res) => {
 };
 
 // GET /edit/:id
-exports.showEdit = (req, res) => {
+exports.showEdit = async (req, res) => {
   const { id } = req.params;
   (await db).models.Animal.findByPk(id)
     .then((data) => {
       res.locals.animal = data;
-      res.render('animal/details.ejs', { title: 'Animals', res });
+      res.render('animal/edit.ejs', { title: 'Animals', res });
     })
     .catch((err) => {
       res.status(500).send({
