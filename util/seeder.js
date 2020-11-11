@@ -214,7 +214,7 @@ module.exports = async (db) => {
       { name: 'Suffolk', guns: 74, isFictional: false },
     ]);
     const numShip = await db.models.Ship.count();
-    console.info(`Seeded ${numShip} ship.`);
+    console.info(`Seeded ${numShip} ships.`);
   } catch (err) {
     console.error(`ERROR: - Ship ${err.message}`);
   }
