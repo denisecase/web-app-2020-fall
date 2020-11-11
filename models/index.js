@@ -98,6 +98,7 @@ module.exports = async () => {
     // Prashansa - dance
 
     // Sam - ship
+    require('./ship')(db, DataTypes);
 
     // Users
     require('./user')(db, DataTypes);
