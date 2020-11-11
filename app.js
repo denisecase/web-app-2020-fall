@@ -75,7 +75,11 @@ try {
 }
 
 // Varsha - animal
-app.use('/animal', require('./routes/animal.routes'));
+try {
+  app.use('/animal', require('./routes/animal.routes'));
+} catch (err) {
+  LOG.error(`ERROR: ${err.message}`);
+}
 
 // Felipe - ?
 
