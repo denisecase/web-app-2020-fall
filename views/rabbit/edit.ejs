@@ -11,20 +11,20 @@
     Edit Rabbit
   </div>
   <div class="card-body">
-    <form action="/rabbit/save/<%=rabbit.id%>" method="post">
+    <form action="/rabbit/save/<%= rabbit.id %>" method="post">
       <div class="form-group">
         <label for="name">Name:</label>
-        <input type="text" class="form-control" name="name" value="<%= name %>" autocomplete="off">
+        <input type="text" class="form-control" id="name" name="name" value="<%= rabbit.name %>" autocomplete="off">
       </div>
       <div class="form-group">
         <label for="age">Age:</label>
-        <input type="number" class="form-control" id="age" name="age" value="<%= age %>" min=1 max=100 step=1 default=2
+        <input type="number" class="form-control" id="age" name="age" value="<%= rabbit.age %>" min=1 max=100 step=1 default=2
           autocomplete="off">
       </div>
       <br>
       <!-- Checked checkbox -->
       <div class="form-check">
-        <input type="checkbox" class="form-check-input" id="checkbox" value="<%= isCartoon %>" checked />
+        <input type="checkbox" class="form-check-input" id="checkbox" value="<%= rabbit.isCartoon %>" checked />
         <label class="form-check-label" for="checkbox">
           Is Cartoon?
         </label>

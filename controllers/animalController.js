@@ -86,16 +86,16 @@ exports.deleteItem = async (req, res) => {
 // GET to this controller base URI (the default)
 exports.showIndex = (req, res) => {
   db.models.Animal.findAll()
-  .then((data) => {
-    res.locals.animals = data;
-  // res.send('NOT IMPLEMENTED: Will show animal/index.ejs');
-  res.render('animal/index.ejs', { title: 'Animals', req });
-})
-.catch((err) => {
-  res.status(500).send({
-    message: err.message || 'Error retrieving all.',
-  });
-});
+    .then((data) => {
+      res.locals.animals = data;
+      // res.send('NOT IMPLEMENTED: Will show animal/index.ejs');
+      res.render('animal/index.ejs', { title: 'Animals', req });
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: err.message || 'Error retrieving all.',
+      });
+    });
 };
 
 // GET /create

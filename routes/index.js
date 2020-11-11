@@ -26,4 +26,6 @@ router.get('/index', (req, res) => {
   res.render('index.ejs', { title: appTitle, subTitle: appSubTitle });
 });
 
+router.use('/user', require('./users'));
+
 module.exports = router;
