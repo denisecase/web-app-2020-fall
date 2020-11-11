@@ -5,8 +5,11 @@
  */
 
 const { ValidationError } = require('sequelize');
+
 const LOG = require('../util/logger');
+
 const db = require('../models/index')();
+
 // OPTIONAL: VALIDATION Helper function ----------------------
 
 /**
@@ -32,6 +35,7 @@ async function prepareInvalidItem(err, req) {
   return item;
 }
 
+// FUNCTIONS TO RESPOND WITH JSON DATA  ----------------------------------------
 
 // GET all JSON
 exports.findAll = async (req, res) => {
@@ -72,7 +76,7 @@ exports.saveNew = async (req, res) => {
     if (err instanceof ValidationError) {
       const item = await prepareInvalidItem(err, req);
       res.locals.software = item;
-      return res.render('software/create.ejs', {title: 'Software', res});
+      return res.render('software/create.ejs', { title: 'Software', res });
     }
     return res.redirect('/software');
   }
@@ -92,7 +96,7 @@ exports.saveEdit = async (req, res) => {
     if (err instanceof ValidationError) {
       const item = await prepareInvalidItem(err, req);
       res.locals.software = item;
-      return res.redner('software/edit.ejs', {title: 'Software', res});
+      return res.redner('software/edit.ejs', { title: 'Software', res });
     }
     return res.redirect('/software');
   }
@@ -118,11 +122,10 @@ exports.deleteItem = async (req, res) => {
 
 // GET to this controller base URI (the default)
 exports.showIndex = async (req, res) => {
-  // res.send('NOT IMPLEMENTED: Will show software/index.ejs');
   (await db).models.Software.findAll()
   .then((data) => {
     res.locals.software = data;
-    res.render('software/index.ejs', { title: 'Software', res});
+    res.render('software/index.ejs', { title: 'Software', res });
   })
   .catch((err) => {
     res.status(500).send({
@@ -139,7 +142,7 @@ exports.showCreate = async (req, res) => {
     isOpenSource: true,
   };
   res.locals.software = tempItem;
-  res.render('software/create.ejs', { title: 'Software', res});
+  res.render('software/create.ejs', { title: 'Software', res });
 };
 
 // GET /delete/:id
@@ -149,7 +152,7 @@ exports.showDelete = async (req, res) => {
   .then((data) => {
     res.locals.software = data;
     if (data) {
-      res.render('software/delete.ejs', { title: 'Software', res});
+      res.render('software/delete.ejs', { title: 'Software', res });
     } else {
       res.redirect('software/');
     }
