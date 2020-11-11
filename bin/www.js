@@ -1,13 +1,15 @@
-#!/usr/bin/env node
-
 /**
- * Start up in different environments
+ * Perform environment and network-related configuration.
+ *
+ * Separates aspects that change in different environments, e.g.:
  *
  * - development
  * - test
  * - production
  *
- * Use new ES6 syntax.
+ *
+ * @ link https://github.com/goldbergyoni/nodebestpractices/blob/master/sections/projectstructre/separateexpress.md
+ *
  */
 
 // Import dependencies ............................................
@@ -16,6 +18,8 @@ const http = require('http');
 const dotenv = require('dotenv');
 const LOG = require('../util/logger');
 const app = require('../app');
+
+const server = http.createServer(app);
 
 // Helper functions defined first ...................................
 
@@ -78,12 +82,6 @@ const onError = (error) => {
 };
 
 // Configure & start the server .........................................
-
-/**
- * Create HTTP server
- * Pass in (inject) the Express app
- */
-const server = http.createServer(app);
 
 /**
  * Event listener for HTTP server "listening" event.

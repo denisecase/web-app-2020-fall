@@ -63,15 +63,18 @@ module.exports = async (db) => {
 
   // Varsha - animal
   try {
-    await db.models.Animal.bulkCreate([
-      { name: 'Dog', lifeSpan: 22, isPet: true },
-      { name: 'Fox', lifeSpan: 14, isPet: false },
-      { name: 'Cat', lifeSpan: 25, isPet: true },
-    ]);
+    await db.models.Animal.bulkCreate(
+      [
+        { name: 'Dog', lifeSpan: 22, isPet: true },
+        { name: 'Fox', lifeSpan: 14, isPet: false },
+        { name: 'Cat', lifeSpan: 25, isPet: true },
+      ],
+      { validate: true }, // add options object to call new model validators
+    );
     const numAnimals = await db.models.Animal.count();
-    console.info(`Seeded ${numAnimals} animals.`);
+    LOG.info(`Seeded ${numAnimals} animals.`);
   } catch (err) {
-    console.error(`ERROR: Game - ${err.message}`);
+    LOG.error(`ERROR: Animal - ${err.message}`);
   }
   // Felipe - ?
 
@@ -206,6 +209,21 @@ module.exports = async (db) => {
     console.info(`Seeded ${numShip} ship.`);
   } catch (err) {
     console.error(`ERROR: - Ship ${err.message}`);
+  }
+
+  // Dr. Case - user
+  try {
+    await db.models.User.bulkCreate(
+      [
+        { email: 'dcase@nwmissouri.edu', password: 'dcase1' },
+        { email: 'hoot@nwmissouri.edu', password: 'hoot22' },
+      ],
+      { validate: true }, // add options object to call new model validators
+    );
+    const numRabbits = await db.models.Rabbit.count();
+    LOG.info(`Seeded ${numRabbits} rabbits.`);
+  } catch (err) {
+    LOG.error(`ERROR: Rabbit - ${err.message}`);
   }
 
   LOG.info('Done with seeder................');

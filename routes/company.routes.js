@@ -13,8 +13,9 @@
 
 const router = require('express').Router();
 const controller = require('../controllers/companyController.js');
+const LOG = require('../util/logger');
 
-console.info('Starting company routing.');
+LOG.info('Starting company routing.');
 
 // -----------------------------------------------------------------------------
 // match each expeced verb + URL request
@@ -40,6 +41,6 @@ router.get('/details/:id', controller.showDetails);
 router.get('/edit/:id', controller.showEdit);
 router.get('/delete/:id', controller.showDelete);
 
-console.info('Loaded company routes.');
+LOG.info('Loaded company routes.');
 
 module.exports = router;
