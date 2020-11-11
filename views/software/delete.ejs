@@ -6,4 +6,35 @@
 * @author Joseph Dobelmann <s536997@nwmissouri.edu>
 -->
 
-<p> software delete.ejs </p>
+<% if (software.error) { %>
+    <div class="alert alert-danger" role="alert"><%- software.error %></div>
+    <% } %>
+    
+    <div class="card-body">
+    
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">firstReleased</th>
+            <th scope="col">isOpenSource</th>
+            <th width=>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+    
+          <tr>
+            <th scope="row"><%= software.id %></th>
+            <td><%= software.name%></td>
+            <td><%= software.firstReleased%></td>
+            <td><%= software.isOpenSource%></td>
+            <td>
+              <form action="/software/delete/<%=software.id%>" method="post">
+                <input type="submit" class="btn btn-danger delete" value="Delete" onclick="return alert('Are You sure?')"/>
+              </form>
+            </td>
+          </tr>
+    
+        </tbody>
+      </table>
