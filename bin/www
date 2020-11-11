@@ -175,8 +175,14 @@ const numbook= await db.models.book.count();
 
   // Sam - ship
 
-// Lindsey - pokemon
-
+  // Lindsey - pokemon
+    await db.models.pokemon.bulkCreate([
+      { name: 'Crobat', generation: 2, isStarter: false },
+      { name: 'Raboot', generation: 4, isStarter: true },
+      { name: 'Oshawott', generation: 2, isStarter: true },
+    ]);
+    const numPokemon = await db.models.pokemon.count();
+    console.info(`Seeded ${numPokemon} Pokemon.`);
 
 
   console.log('Done seeding!');
