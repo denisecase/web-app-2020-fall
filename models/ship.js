@@ -6,7 +6,7 @@
  * For more information about defining sequelize models, see
  * https://sequelize.org/v5/manual/data-types.html
  *
- */ 
+ */
 // Export a function that defines the model.
 // It automatically receives the Sequelize connection parameter.
 
