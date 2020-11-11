@@ -6,4 +6,38 @@
 * @author Varsha vellanki<s540114@nwmissouri.edu>
 -->
 
-<p> animal create.ejs </p>
+
+<% if (animal && animal.error) { %>
+    <div class="alert alert-danger" role="alert"><%- JSON.stringify(animal.error) %></div>
+    <% } %>
+  
+  <div class="card">
+    <div class="card-header">
+      Add Animal
+    </div>
+    <div class="card-body">
+      <form action="/animal/save" method="post">
+        <div class="form-group">
+          <label for="name">Name:</label>
+          <input type="text" class="form-control" id="name" name="name" value="<%= animal.name %>" autocomplete="off">
+        </div>
+        <div class="form-group">
+          <label for="lifeSpan">LifeSpan:</label>
+          <input type="number" class="form-control" id="lifeSpan" name="lifeSpan" value="<%= animal.lifeSpan %>" min=1 max=100 step=1 default=1
+            autocomplete="off">
+        </div>
+        <br>
+        <!-- Checked checkbox -->
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="checkbox" value="<%= animal.isPet %>" checked />
+          <label class="form-check-label" for="checkbox">
+            Is Pet?
+          </label>
+        </div>
+        <br>
+        <div class="form-group">
+          <input type="submit" class="btn btn-info" title="Submits a POST /save request" value="Create" />
+        </div>
+      </form>
+    </div>
+  </div>
