@@ -6,4 +6,34 @@
 * @author  Sreenidhi Madala <s541226@nwmissouri.edu>
 -->
 
-<p> book details.ejs </p>
+<% if (plant.error) { %>
+    <div class="alert alert-danger" role="alert"><%- plant.error %></div>
+    <% } %>
+    
+    <div class="card-body">
+    
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">varieties</th>
+            <th scope="col">IsPlant</th>
+            <th >Action</th>
+          </tr>
+        </thead>
+        <tbody>
+    
+          <tr>
+            <th scope="row"><%= plant.id %></th>
+            <td><%= plant.name%></td>
+            <td><%= plant.varieties%></td>
+            <td><%= plant.isPlant%></td>
+            <td>
+              <a class="btn btn-success edit" href="/plant">Done</a>
+            </td>
+          </tr>
+    
+        </tbody>
+      </table>
+    
