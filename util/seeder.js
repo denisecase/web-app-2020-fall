@@ -159,7 +159,15 @@ module.exports = async (db) => {
     console.error(`ERROR: videogame - ${err.message}`);
   }
   // Chandler - company
-
+  try {
+    await db.models.Company.bulkCreate([
+      { name: 'Nintendo', founded: 1889, isPublic: true },
+    ]);
+    const numCompanies = await db.models.Company.count();
+    console.info(`Seeded ${numCompanies} companies.`);
+  } catch (err) {
+    console.error(`ERROR: Company - ${err.message}`);
+  }
   // Praneeth - cricket
   await db.models.Cricket.bulkCreate([
     { teamName: 'Indian Team', age: 2, captain: 'Dhoni' },
