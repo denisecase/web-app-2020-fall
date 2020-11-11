@@ -156,7 +156,7 @@ exports.showDelete = async (req, res) => {
     .then((data) => {
       res.locals.animal = data;
       if (data) {
-        res.render('animal/delete.ejs', { title: 'Rabbits', res });
+        res.render('animal/delete.ejs', { title: 'Animals', res });
       } else {
         res.redirect('animal/');
       }
