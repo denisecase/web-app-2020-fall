@@ -8,4 +8,69 @@
 * @author  Varsha Vellanki <s540114@nwmissouri.edu>
 -->
 
-<p> IN PROGRESS - This is animal index.ejs </p>
+
+
+
+
+<% if (locals.animals.success) { %>
+    <div class="alert alert-success" role="alert"><%- animal.success %></div>
+    <% } %>
+    
+    <% if (locals.animals.error) { %>
+    <div class="alert alert-danger" role="alert"><%- animal.error %></div>
+    <% } %>
+    
+    <div class="card">
+      <div class="card-header">
+        <ul class="nav nav-pills w-100">
+          <li class="nav-pill active">
+            <a class="nav-link">Animals</a>
+          </li>
+          <li class="nav-pill ml-auto">
+            <a class="nav-link active" href="/animal/create"><i class="fas fa-plus"></i></a>
+          </li>
+        </ul>
+      </div>
+      <div class="card-body">
+    
+        <% if(animals.length) { %>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Name</th>
+              <th scope="col">Lifespan</th>
+              <th scope="col">IsPet?</th>
+              <th >Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for(let i = 0; i< animals.length; i++) { %>
+            <tr>
+              <th scope="row"><%= animals[i].id %></th>
+              <td><%= animals[i].name%></td>
+              <td><%= animals[i].lifeSpan%></td>
+              <td><%= animals[i].isPet%></td>
+              <td>
+                <a class="btn btn-primary details" href="../animal/details/<%=animals[i].id%>"><i
+                    class="fab fa-sistrix" title="test"></i></a>
+                <a class="btn btn-success edit" href="../animal/edit/<%=animals[i].id%>"><i class="fas fa-user-edit"></i></a>
+                <a class="btn btn-danger delete" href="../animal/delete/<%=animals[i].id%>"><i
+                    class="fas fa-trash-alt"></i></a>
+              </td>
+            </tr>
+            <% } %>
+          </tbody>
+        </table>
+        <% } %>
+    
+        <!-- if result is empty -->
+        <% if(!animals.length) { %>
+        <p class="text-center">No animals found!</p>
+        <% } %>
+    
+        <br>
+        <h3>Mouse over icons to see where you will go.</h3>
+    
+      </div>
+    </div>

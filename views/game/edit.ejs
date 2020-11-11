@@ -6,4 +6,33 @@
 * @author Blake Bennett <s532542@nwmissouri.edu>
 -->
 
-<p> game edit.ejs </p>
+<div class="card">
+    <div class="card-header">
+      Edit game
+    </div>
+    <div class="card-body">
+      <form action="/game/save/<%= game.id %>" method="post">
+        <div class="form-group">
+          <label for="name">Name:</label>
+          <input type="text" class="form-control" id="name" name="name" value="<%= game.name %>" autocomplete="off">
+        </div>
+        <div class="form-group">
+          <label for="playerCount">playerCount:</label>
+          <input type="number" class="form-control" id="playerCount" name="playerCount" value="<%= game.playerCount %>" min=1 max=100 step=1 default=2
+            autocomplete="off">
+        </div>
+        <br>
+        <!-- Checked checkbox -->
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="checkbox" value="<%= game.isCardGame %>" checked />
+          <label class="form-check-label" for="checkbox">
+            Is CardGame?
+          </label>
+        </div>
+        <br>
+        <div class="form-group">
+          <input type="submit" class="btn btn-info" title="Submits a POST /save/:id request" value="Save" />
+        </div>
+      </form>
+    </div>
+  </div>

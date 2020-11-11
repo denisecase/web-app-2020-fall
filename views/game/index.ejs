@@ -6,4 +6,65 @@
 * @author Blake Bennett <s532542@nwmissouri.edu>
 -->
 
-<p> IN PROGRESS - This is game index.ejs </p>
+<% if (locals.games.success) { %>
+    <div class="alert alert-success" role="alert"><%- game.success %></div>
+    <% } %>
+    
+    <% if (locals.games.error) { %>
+    <div class="alert alert-danger" role="alert"><%- game.error %></div>
+    <% } %>
+    
+    <div class="card">
+      <div class="card-header">
+        <ul class="nav nav-pills w-100">
+          <li class="nav-pill active">
+            <a class="nav-link">games</a>
+          </li>
+          <li class="nav-pill ml-auto">
+            <a class="nav-link active" href="/game/create"><i class="fas fa-plus"></i></a>
+          </li>
+        </ul>
+      </div>
+      <div class="card-body">
+    
+        <% if(games.length) { %>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Name</th>
+              <th scope="col">playerCount</th>
+              <th scope="col">IsCardGame?</th>
+              <th >Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for(let i = 0; i< games.length; i++) { %>
+            <tr>
+              <th scope="row"><%= games[i].id %></th>
+              <td><%= games[i].name%></td>
+              <td><%= games[i].playerCount%></td>
+              <td><%= games[i].isCardGame%></td>
+              <td>
+                <a class="btn btn-primary details" href="../game/details/<%=games[i].id%>"><i
+                    class="fab fa-sistrix" title="test"></i></a>
+                <a class="btn btn-success edit" href="../game/edit/<%=games[i].id%>"><i class="fas fa-user-edit"></i></a>
+                <a class="btn btn-danger delete" href="../game/delete/<%=games[i].id%>"><i
+                    class="fas fa-trash-alt"></i></a>
+              </td>
+            </tr>
+            <% } %>
+          </tbody>
+        </table>
+        <% } %>
+    
+        <!-- if result is empty -->
+        <% if(!games.length) { %>
+        <p class="text-center">No games found!</p>
+        <% } %>
+    
+        <br>
+        <h3>Mouse over icons to see where you will go.</h3>
+    
+      </div>
+    </div>

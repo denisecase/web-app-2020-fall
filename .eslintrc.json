@@ -1,23 +1,28 @@
 {
   "env": {
     "commonjs": true,
-    "es6": true,
+    "es2021": true,
     "node": true
   },
-  "extends": ["prettier", "airbnb-base"],
+  "extends": [
+    "airbnb-base",
+    "prettier",
+    "plugin:node/recommended",
+    "plugin:security/recommended"
+  ],
   "globals": {
     "Atomics": "readonly",
     "SharedArrayBuffer": "readonly"
   },
   "parserOptions": {
-    "ecmaVersion": 2018
+    "ecmaVersion": 2020
   },
-  "plugins": ["prettier"],
+  "plugins": ["prettier", "security"],
   "rules": {
     "comma-dangle": "warn",
     "global-require": "warn",
     "prettier/prettier": "error",
-    "operator-linebreak": ["error", "after"],
+    "operator-linebreak": ["warn", "before"],
     "max-len": [
       "warn",
       {
@@ -25,6 +30,8 @@
         "ignoreStrings": true
       }
     ],
-    "no-restricted-syntax": "warn"
+    "no-restricted-syntax": "warn",
+    "node/exports-style": ["warn", "module.exports"],
+    "node/file-extension-in-import": ["error", "always"]
   }
 }
