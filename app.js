@@ -105,7 +105,11 @@ try {
   LOG.error(`ERROR: ${err.message}`);
 }
 // Chandler - company
-app.use('/company', require('./routes/company.routes'));
+try {
+  app.use('/company', require('./routes/company.routes'));
+} catch (err) {
+  LOG.error(`ERROR: ${err.message}`);
+}
 
 // Praneeth - cricket
 app.use('/cricket', require('./routes/cricket.routes'));
