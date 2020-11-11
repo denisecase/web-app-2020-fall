@@ -141,6 +141,13 @@ try {
   LOG.error(`ERROR: ${err.message}`);
 }
 
+//Lindsey - Pokemon
+try {
+  app.use('/pokemon', require('./routes/pokemon.routes'));
+} catch (err) {
+  LOG.error(`ERROR: ${err.message}`);
+}
+
 LOG.info('app custom routes configured');
 
 // catch 404 and forward to error handler

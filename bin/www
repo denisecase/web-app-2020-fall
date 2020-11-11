@@ -1,0 +1,194 @@
+#!/usr/bin/env node
+
+// Load environment variables from .env file,
+// where API keys and passwords can be configured.
+// dotenv.config({ path: '.env.example' })
+const dotenv = require('dotenv');
+const vars = dotenv.config({ path: '.env' });
+if (vars.error) {
+  throw vars.error;
+}
+console.info(process.env.PORT);
+console.info(vars.parsed);
+console.info('Environment variables loaded.');
+
+const debug = require('debug')('web-app-2020-fall:server');
+const http = require('http');
+const db = require('../models/index');
+
+/**
+ * Get port from environment and store in Express.
+ */
+
+const port = normalizePort(process.env.PORT || '3020');
+
+const app = require('../app');
+app.set('port', port);
+console.log(`Server Launch at port: ${port}`);
+
+/**
+ * Create HTTP server.
+ */
+const server = http.createServer(app);
+
+/**
+ * Listen on provided port, on all network interfaces.
+ */
+server.listen(port);
+server.on('error', onError);
+server.on('listening', onListening);
+
+/**
+ * Normalize a port into a number, string, or false.
+ */
+
+function normalizePort(val) {
+  const port = parseInt(val, 10);
+  if (isNaN(port)) {
+    // named pipe
+    return val;
+  }
+  if (port >= 0) {
+    // port number
+    return port;
+  }
+  return false;
+}
+
+/**
+ * Event listener for HTTP server "error" event.
+ */
+function onError(error) {
+  if (error.syscall !== 'listen') {
+    throw error;
+  }
+
+  const bind = typeof port === 'string' ? 'Pipe ' + port : 'Port ' + port;
+
+  // handle specific listen errors with friendly messages
+  switch (error.code) {
+    case 'EACCES':
+      console.error(bind + ' requires elevated privileges');
+      process.exit(1);
+      break;
+    case 'EADDRINUSE':
+      console.error(bind + ' is already in use');
+      process.exit(1);
+      break;
+    default:
+      throw error;
+  }
+}
+
+// Database functions
+async function assertDatabaseConnectionOk() {
+  console.log(`Checking database connection...`);
+  try {
+    await db.authenticate();
+    console.log('Database connection OK!');
+  } catch (error) {
+    console.log('Unable to connect to the database:');
+    console.log(error.message);
+    process.exit(1);
+  }
+}
+
+async function dbInit() {
+  await assertDatabaseConnectionOk();
+}
+
+async function seedDatabase() {
+  console.log('Initialize the SQLite database with dummy data.');
+  await db.sync({ force: true });
+  console.dir(db.models);
+
+  // Dr. Case - rabbit
+  await db.models.Rabbit.bulkCreate([
+    { name: 'Bugs', age: 2, isCartoon: true },
+    { name: 'Huggy', age: 2, isCartoon: false },
+    { name: 'Doc', age: 2, isCartoon: true },
+  ]);
+  const numRabbits = await db.models.Rabbit.count();
+  console.info(`Seeded ${numRabbits} rabbits.`);
+
+  // Dr. Hoot - tea
+
+  // Blake - game
+  await db.models.Game.bulkCreate([
+    {name: "Uno",  playerCount: 6, isCardGame: true},
+
+    {name: "Sorry",  playerCount: 4, isCardGame: false},
+
+    {name: "Monopoly",  playerCount: 4, isCardGame: false},
+  ]);
+  const numGames = await db.models.Game.count();
+  console.info(`Seeded ${numGames} games.`);
+
+  // Varsha - animal
+  await db.models.Animal.bulkCreate([
+    { name: 'Dog', lifeSpan: 22, isPet: true },
+    { name: 'Fox', lifeSpan: 14, isPet: false },
+    { name: 'Cat', lifeSpan: 25, isPet: true },
+  ]);
+  const numAnimals = await db.models.Animal.count();
+  console.info(`Seeded ${numAnimals} animals.`);
+
+  // Felipe - ?
+
+  // Jack - chief
+
+  // Sreenidhi - student
+
+  // Sri Vasavi - food
+  await db.models.Food.bulkCreate([
+    { name: 'Lamb', pricePerLB: 8, isMeat: true },
+    { name: 'Fish', pricePerLB: 4, isMeat: true },
+    { name: 'Spinach', pricePerLB: 2, isMeat: false },
+  ]);
+  const numFood = await db.models.Food.count();
+  console.info(`Seeded ${numFood} food.`);
+
+  // Joseph - software
+
+  // Stephen - whiskey
+
+  // Shivani - book
+  await db.models.book.bulkCreate([
+  { book: "harrypotter ", publishedDate: 1997, isFantasy: true},
+  { book: "animalfarm ", publishedDate :1945, isFantasy :  false},
+  { book: "hobbit" , publishedDate : 1937, isFantasy : true  },
+]);
+const numbook= await db.models.book.count();
+  console.info(`Seeded ${numbook} book.`);
+
+  // Kunal - videoGame
+
+  // Chandler - company
+
+  // Praneeth - course
+
+  // Nithya - series
+
+  // Zach - fruit
+
+  // Prashansa - dance
+
+  // Sam - ship
+
+// Lindsey - pokemon
+
+
+
+  console.log('Done seeding!');
+}
+
+/**
+ * Event listener for HTTP server "listening" event.
+ */
+function onListening() {
+  dbInit();
+  seedDatabase();
+  const addr = server.address();
+  const bind = typeof addr === 'string' ? 'pipe ' + addr : 'port ' + addr.port;
+  debug('Listening on ' + bind);
+}
