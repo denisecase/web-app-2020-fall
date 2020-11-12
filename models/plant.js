@@ -46,18 +46,18 @@ module.exports = (db, DataTypes) => {
         },
       },
     },
-    varieties: {
+    variety: {
       type: DataTypes.INTEGER,
       defaultValue: 1,
       required: true,
       validate: {
         max: {
           args: 100,
-          msg: 'Age must be 100 or less.',
+          msg: 'varieties must be 100 or less.',
         },
         min: {
           args: 1,
-          msg: 'variety must be 1 or more.',
+          msg: 'varieties must be 1 or more.',
         },
       },
     },

@@ -53,7 +53,8 @@ exports.findAll = async (req, res) => {
 // GET one JSON by ID
 exports.findOne = async (req, res) => {
   const { id } = req.params;
-  (await db).models.software.findByPk(id)
+  (await db).models.software
+    .findByPk(id)
     .then((data) => {
       res.send(data);
     })
@@ -88,7 +89,7 @@ exports.saveEdit = async (req, res) => {
     const reqId = parseInt(req.params.id, 10);
     const context = await db;
     const updated = await context.models.software.update(req.body, {
-      where: {id: reqId},
+      where: { id: reqId },
     });
     LOG.info(`Updated: ${JSON.stringify(updated)}`);
     return res.redirect('/software');
@@ -123,15 +124,15 @@ exports.deleteItem = async (req, res) => {
 // GET to this controller base URI (the default)
 exports.showIndex = async (req, res) => {
   (await db).models.Software.findAll()
-  .then((data) => {
-    res.locals.software = data;
-    res.render('software/index.ejs', { title: 'Software', res });
-  })
-  .catch((err) => {
-    res.status(500).send({
-      message: err.message || 'Error retrieving all.',
+    .then((data) => {
+      res.locals.software = data;
+      res.render('software/index.ejs', { title: 'Software', res });
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: err.message || 'Error retrieving all.',
+      });
     });
-  });
 };
 
 // GET /create
@@ -149,47 +150,47 @@ exports.showCreate = async (req, res) => {
 exports.showDelete = async (req, res) => {
   const { id } = req.params;
   (await db).models.Software.findByPk(id)
-  .then((data) => {
-    res.locals.software = data;
-    if (data) {
-      res.render('software/delete.ejs', { title: 'Software', res });
-    } else {
-      res.redirect('software/');
-    }
-  })
-  .catch((err) => {
-    res.status(500).send({
-      message: `Error retrieving item with id=${id}: ${err.message}`,
+    .then((data) => {
+      res.locals.software = data;
+      if (data) {
+        res.render('software/delete.ejs', { title: 'Software', res });
+      } else {
+        res.redirect('software/');
+      }
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: `Error retrieving item with id=${id}: ${err.message}`,
+      });
     });
-  });
 };
 
 // GET /details/:id
 exports.showDetails = async (req, res) => {
   const { id } = req.params;
   (await db).models.Software.findByPk(id)
-  .then((data) => {
-    res.locals.software = data;
-    res.render('software/details.ejs', { title: 'Software', res });
-  })
-  .catch((err) => {
-    res.status(500).send({
-      message: `Error retrieving item with id=${id}: ${err.message}`,
+    .then((data) => {
+      res.locals.software = data;
+      res.render('software/details.ejs', { title: 'Software', res });
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: `Error retrieving item with id=${id}: ${err.message}`,
+      });
     });
-  })
 };
 
 // GET /edit/:id
 exports.showEdit = async (req, res) => {
   const { id } = req.params;
   (await db).models.Software.findByPk(id)
-  .then((data) => {
-    res.locals.software = data;
-    res.render('software/edit.ejs', { title: 'Software', res });
-  })
-  .catch((err) => {
-    res.status(500).send({
-      message: `Error retrieving item with id=${id}: ${err.message}`,
+    .then((data) => {
+      res.locals.software = data;
+      res.render('software/edit.ejs', { title: 'Software', res });
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: `Error retrieving item with id=${id}: ${err.message}`,
+      });
     });
-  });
 };

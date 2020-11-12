@@ -1,7 +1,7 @@
 <!--
-*  book delete view
+*  plant delete view
 *  Uses HTML and embedded JavaScript (EJS) 
-*  to dyanmically create a webpage to delete a book.
+*  to dyanmically create a webpage to delete a plant.
 *
 * @author Sreenidhi Madala <s541226@nwmissouri.edu>
 -->
@@ -17,7 +17,7 @@
           <tr>
             <th scope="col">ID</th>
             <th scope="col">Name</th>
-            <th scope="col">varieties</th>
+            <th scope="col">variety</th>
             <th scope="col">IsPlant</th>
             <th width=>Action</th>
           </tr>
@@ -27,7 +27,7 @@
           <tr>
             <th scope="row"><%= plant.id %></th>
             <td><%= plant.name%></td>
-            <td><%= plant.varieties%></td>
+            <td><%= plant.variety%></td>
             <td><%= plant.isPlant%></td>
             <td>
               <form action="/plant/delete/<%=plant.id%>" method="post">

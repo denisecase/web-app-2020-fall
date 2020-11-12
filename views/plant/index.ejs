@@ -1,9 +1,9 @@
 <!--
-*  book index view
+*  plant index view
 *  (the default book page)
 *  
 *  Uses HTML and embedded JavaScript (EJS) 
-*  to dyanmically create a webpage to list all book.
+*  to dyanmically create a webpage to list all plant.
 *
 * @author Sreenidhi Madala <s541226@nwmissouri.edu>
 
@@ -40,7 +40,7 @@
             <tr>
               <th scope="col">ID</th>
               <th scope="col">Name</th>
-              <th scope="col">varieties</th>
+              <th scope="col">variety</th>
               <th scope="col">IsPlant?</th>
               <th >Action</th>
             </tr>
@@ -50,7 +50,7 @@
             <tr>
               <th scope="row"><%= plants[i].id %></th>
               <td><%= plants[i].name%></td>
-              <td><%= plants[i].varieties%></td>
+              <td><%= plants[i].variety%></td>
               <td><%= plants[i].isPlant%></td>
               <td>
                 <a class="btn btn-primary details" href="../plant/details/<%=plants[i].id%>"><i

@@ -5,9 +5,37 @@
  * @author Sreenidhi Madala <s541226@nwmissouri.edu>
  */
 
+// OPTIONAL: If using Sequelize validation features
+const { ValidationError } = require('sequelize');
+
 const LOG = require('../util/logger');
 
 const db = require('../models/index')();
+
+// OPTIONAL: VALIDATION Helper function ----------------------
+
+/**
+ * Prepare an item from the request information and add
+ * an 'error' attribute to share with the view.
+ *
+ * @param {*} err - the error
+ * @param {*} req - the request
+ * @returns - the item to attach to response.locals
+ */
+async function prepareInvalidItem(err, req) {
+  LOG.error('ERROR SAVING ITEM');
+  LOG.error('Captured validation error: ', err.errors[0].message);
+  const item = {};
+  if (req.body.id) {
+    item.id = req.body.id;
+  }
+  item.name = req.body.name;
+  item.variety = req.body.variety;
+  item.isPlant = req.body.isPlant;
+  item.error = err.errors[0].message;
+  LOG.info(`ERROR SAVING ITEM: ${JSON.stringify(item)}`);
+  return item;
+}
 
 // FUNCTIONS TO RESPOND WITH JSON DATA  ----------------------------------------
 
@@ -42,38 +70,37 @@ exports.findOne = async (req, res) => {
 
 // POST /save
 exports.saveNew = async (req, res) => {
-  // create behaves poorly
-  const context = await db;
   try {
-    context.models.Plant.create(req.body);
+    const context = await db;
+    await context.models.Plant.create(req.body);
+    return res.redirect('/plant');
   } catch (err) {
-    // store the user inputs & the validation errors in res.locals.plant
-    // err includes err.message & err.errors (array of validator msgs)
-    LOG.error('ERROR SAVING PLANT');
-    const item = {};
-    item.name = req.body.name;
-    item.varieties = req.body.varieties;
-    item.isPlant = req.body.isPlant;
-    item.errors = err.errors;
-    res.locals.plant = item;
-    LOG.info(` ERROR ADDING PLANT:${item}`);
+    if (err instanceof ValidationError) {
+      const item = await prepareInvalidItem(err, req);
+      res.locals.plant = item;
+      return res.render('plant/create.ejs', { title: 'Plants', res });
+    }
+    return res.redirect('/plant');
   }
-  return res.redirect('/plant');
 };
 
 // POST /save/:id
 exports.saveEdit = async (req, res) => {
   try {
     const reqId = parseInt(req.params.id, 10);
-    LOG.info(`Save id: ${reqId}`);
-    // don't use super-current language features unless you add babel
-    const updated = (await db).models.Plant.update(req.body, {
+    const context = await db;
+    const updated = await context.models.Plant.update(req.body, {
       where: { id: reqId },
     });
-    LOG.info(`Updated: ${updated}`);
-    return res.redirect('/plant'); // always redirect back for now
+    LOG.info(`Updated: ${JSON.stringify(updated)}`);
+    return res.redirect('/plant');
   } catch (err) {
-    return res.status(500).send(err.message);
+    if (err instanceof ValidationError) {
+      const item = await prepareInvalidItem(err, req);
+      res.locals.plant = item;
+      return res.render('plant/edit.ejs', { title: 'Plants', res });
+    }
+    return res.redirect('/plant');
   }
 };
 
@@ -115,7 +142,7 @@ exports.showCreate = async (req, res) => {
   // this will provide a plant object to put any validation errors
   const tempItem = {
     name: 'PlantName',
-    varieties: 1,
+    variety: 1,
     isPlant: true,
   };
   res.locals.plant = tempItem;

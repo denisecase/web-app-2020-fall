@@ -1,7 +1,7 @@
 <!--
-*  book edit view
+*  plant edit view
 *  Uses HTML and embedded JavaScript (EJS) 
-*  to dyanmically create a webpage to edit a book.
+*  to dyanmically create a webpage to edit a plant.
 *
 * @author Sreenidhi Madala <s541226@nwmissouri.edu>
 -->
@@ -17,8 +17,8 @@
           <input type="text" class="form-control" id="name" name="name" value="<%= plant.name %>" autocomplete="off">
         </div>
         <div class="form-group">
-          <label for="varieties">varieties:</label>
-          <input type="number" class="form-control" id="varieties" name="varieties" value="<%= plant.varieties %>" min=1 max=100 step=1 default=2
+          <label for="variety">variety:</label>
+          <input type="number" class="form-control" id="variety" name="variety" value="<%= plant.variety %>" min=1 max=100 step=1 default=2
             autocomplete="off">
         </div>
         <br>

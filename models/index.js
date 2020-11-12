@@ -74,7 +74,7 @@ module.exports = async () => {
     // Jack - chief
 
     // Sreenidhi - plant
-
+    require('./plant')(db, DataTypes);
     // Sri Vasavi - food
     require('./food')(db, DataTypes);
     // Joseph - software
