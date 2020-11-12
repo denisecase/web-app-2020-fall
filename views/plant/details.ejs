@@ -1,7 +1,7 @@
 <!--
-*  book details view
+*  plant details view
 *  Uses HTML and embedded JavaScript (EJS) 
-*  to dyanmically create a webpage to display a book.
+*  to dyanmically create a webpage to display a plant.
 *
 * @author  Sreenidhi Madala <s541226@nwmissouri.edu>
 -->
@@ -17,7 +17,7 @@
           <tr>
             <th scope="col">#</th>
             <th scope="col">Name</th>
-            <th scope="col">varieties</th>
+            <th scope="col">variety</th>
             <th scope="col">IsPlant</th>
             <th >Action</th>
           </tr>
@@ -27,7 +27,7 @@
           <tr>
             <th scope="row"><%= plant.id %></th>
             <td><%= plant.name%></td>
-            <td><%= plant.varieties%></td>
+            <td><%= plant.variety%></td>
             <td><%= plant.isPlant%></td>
             <td>
               <a class="btn btn-success edit" href="/plant">Done</a>
