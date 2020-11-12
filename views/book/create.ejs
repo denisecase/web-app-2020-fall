@@ -18,11 +18,11 @@
     <div class="card-body">
       <form action="/book/save" method="post"></form>
         <div class="form-group">
-          <label for="name">book:</label>
+          <label for="book">book:</label>
           <input type="text" class="form-control" id="book" name="book" value="<%= book.book %>" autocomplete="off">
         </div>
         <div class="form-group">
-          <label for="age">publishedDate:</label>
+          <label for="publishedDate">publishedDate:</label>
           <input type="number" class="form-control" id="publishedDate" name="publishedDate" value="<%= book.publishedDate %>" >
         </div>
         <br>
@@ -30,7 +30,7 @@
         <div class="form-check">
           <input type="checkbox" class="form-check-input" id="checkbox" value="<%= book.isFantasy %>" checked />
           <label class="form-check-label" for="checkbox">
-            Is Cartoon?
+            Is Fantasy?
           </label>
         </div>
         <br>
