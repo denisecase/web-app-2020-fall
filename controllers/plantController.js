@@ -5,7 +5,7 @@
  * @author Sreenidhi Madala <s541226@nwmissouri.edu>
  */
 
- // OPTIONAL: If using Sequelize validation features
+// OPTIONAL: If using Sequelize validation features
 const { ValidationError } = require('sequelize');
 
 const LOG = require('../util/logger');
