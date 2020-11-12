@@ -39,7 +39,7 @@ router.get('/create', controller.showCreate);
 router.get('/details/:id', controller.showDetails);
 router.get('/edit/:id', controller.showEdit);
 router.get('/delete/:id', controller.showDelete);
- 
+
 console.info('Loaded game routes.');
 
 module.exports = router;

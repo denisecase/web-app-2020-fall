@@ -18,7 +18,7 @@ module.exports = (db, DataTypes) => {
   db.define('Rabbit', {
     // sqlite creates a rowid attribute automatically
     name: {
-      type: DataTypes.STRING(30), 
+      type: DataTypes.STRING(30),
       unique: true,
       required: true,
       allowNull: false,

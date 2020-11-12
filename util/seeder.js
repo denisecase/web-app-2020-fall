@@ -87,15 +87,18 @@ module.exports = async (db) => {
 
   // Sreenidhi - plant
   try {
-    await db.models.Plant.bulkCreate([
-      { name: 'Hibiscus', variety: 1, isPlant: true },
-      { name: 'Apple', variety: 1, isPlant: false },
-      { name: 'AloeVera', variety: 2, isPlant: true },
-    ]);
-    const numPlant = await db.models.Plant.count();
-    LOG.info(`Seeded ${numPlant} plant.`);
+    await db.models.Plant.bulkCreate(
+      [
+        { name: 'Hibicus', varieties: 1, isPlant: true },
+        { name: 'Apple', varieties: 1, isPlant: false },
+        { name: 'AleoVera', varieties: 1, isPlant: true },
+      ],
+      { validate: true }, // add options object to call new model validators
+    );
+    const numPlants = await db.models.Plant.count();
+    LOG.info(`Seeded ${numPlants} plants.`);
   } catch (err) {
-    LOG.error(`ERROR: - Plant ${err.message}`);
+    LOG.error(`ERROR: Plant - ${err.message}`);
   }
 
   // Nithya - series

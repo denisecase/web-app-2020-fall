@@ -12,20 +12,17 @@
 // Export a function that defines the model.
 // It automatically receives the Sequelize connection parameter.
 
-
 module.exports = (db, DataTypes) => {
   db.define('Dance', {
     // sqlite creates a rowid attribute automatically
     form: {
-      type: DataTypes.STRING(300)
+      type: DataTypes.STRING(300),
     },
-    yearIntro : {
+    yearIntro: {
       type: DataTypes.INTEGER,
-
     },
-    isTraditional : {
+    isTraditional: {
       type: DataTypes.BOOLEAN,
-  
     },
   });
 };
