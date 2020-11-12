@@ -54,7 +54,7 @@ exports.saveNew = async (req, res) => {
     item.form = req.body.form;
     item.yearIntro = req.body.yearIntro;
     item.isTraditional = req.body.isTraditional;
-    //item.errors = err.errors;
+    // item.errors = err.errors;
     res.locals.dance = item;
     LOG.info(` ERROR ADDING RABBIT:${item}`);
   }
