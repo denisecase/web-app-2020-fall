@@ -8,4 +8,65 @@
 * @author shivani tangellapally <s540965@nwmissouri.edu>
 -->
 
-<p> IN PROGRESS - This is book index.ejs </p>
+<% if (locals.books.success) { %>
+    <div class="alert alert-success" role="alert"><%- book.success %></div>
+    <% } %>
+    
+    <% if (locals.books.error) { %>
+    <div class="alert alert-danger" role="alert"><%- book.error %></div>
+    <% } %>
+    
+    <div class="card">
+      <div class="card-header">
+        <ul class="nav nav-pills w-100">
+          <li class="nav-pill active">
+            <a class="nav-link">Books</a>
+          </li>
+          <li class="nav-pill ml-auto">
+            <a class="nav-link active" href="/book/create"><i class="fas fa-plus"></i></a>
+          </li>
+        </ul>
+      </div>
+      <div class="card-body">
+    
+        <% if(books.length) { %>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">book</th>
+              <th scope="col">publishedDate</th>
+              <th scope="col">isFantasy?</th>
+              <th >Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for(let i = 0; i< books.length; i++) { %>
+            <tr>
+              <th scope="row"><%= books[i].id %></th>
+              <td><%= books[i].book%></td>
+              <td><%= books[i].publishedDate%></td>
+              <td><%= books[i].isFantasy%></td>
+              <td>
+                <a class="btn btn-primary details" href="../book/details/<%=books[i].id%>"><i
+                    class="fab fa-sistrix" title="test"></i></a>
+                <a class="btn btn-success edit" href="../book/edit/<%=books[i].id%>"><i class="fas fa-user-edit"></i></a>
+                <a class="btn btn-danger delete" href="../book/delete/<%=books[i].id%>"><i
+                    class="fas fa-trash-alt"></i></a>
+              </td>
+            </tr>
+            <% } %>
+          </tbody>
+        </table>
+        <% } %>
+    
+        <!-- if result is empty -->
+        <% if(!books.length) { %>
+        <p class="text-center">No books found!</p>
+        <% } %>
+    
+        <br>
+        <h3>Mouse over icons to see where you will go.</h3>
+    
+      </div>
+    </div>

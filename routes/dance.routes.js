@@ -40,6 +40,6 @@ router.get('/details/:id', controller.showDetails);
 router.get('/edit/:id', controller.showEdit);
 router.get('/delete/:id', controller.showDelete);
 
-console.info('Loaded dance routes.');
+console.info('Loaded dance routes.'); 
 
 module.exports = router;
