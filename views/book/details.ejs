@@ -6,4 +6,33 @@
 * @author  shivani tangellapally <s540965@nwmissouri.edu>
 -->
 
-<p> book details.ejs </p>
+<% if (book.error) { %>
+    <div class="alert alert-danger" role="alert"><%- book.error %></div>
+    <% } %>
+    
+    <div class="card-body">
+    
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Book</th>
+            <th scope="col">PublishedDate</th>
+            <th scope="col">isFantasy</th>
+            <th >Action</th>
+          </tr>
+        </thead>
+        <tbody>
+    
+          <tr>
+            <th scope="row"><%= book.id %></th>
+            <td><%= book.book%></td>
+            <td><%= book.publishedDate%></td>
+            <td><%= book.isFantasy%></td>
+            <td>
+              <a class="btn btn-success edit" href="/book">Done</a>
+            </td>
+          </tr>
+    
+        </tbody>
+      </table>

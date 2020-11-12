@@ -6,4 +6,37 @@
 * @author shivani tangellapally <s540965@nwmissouri.edu>
 -->
 
-<p> book create.ejs </p>
+
+<% if (book && book.error) { %>
+    <div class="alert alert-danger" role="alert"><%- JSON.stringify(book.error) %></div>
+    <% } %>
+  
+  <div class="card">
+    <div class="card-header">
+      Add Book
+    </div>
+    <div class="card-body">
+      <form action="/book/save" method="post"></form>
+        <div class="form-group">
+          <label for="name">book:</label>
+          <input type="text" class="form-control" id="book" name="book" value="<%= book.book %>" autocomplete="off">
+        </div>
+        <div class="form-group">
+          <label for="age">publishedDate:</label>
+          <input type="number" class="form-control" id="publishedDate" name="publishedDate" value="<%= book.publishedDate %>" >
+        </div>
+        <br>
+        <!-- Checked checkbox -->
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="checkbox" value="<%= book.isFantasy %>" checked />
+          <label class="form-check-label" for="checkbox">
+            Is Cartoon?
+          </label>
+        </div>
+        <br>
+        <div class="form-group">
+          <input type="submit" class="btn btn-info" title="Submits a POST /save request" value="Create" />
+        </div>
+      </form>
+    </div>
+  </div>

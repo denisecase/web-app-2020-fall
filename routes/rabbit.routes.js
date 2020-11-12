@@ -12,7 +12,7 @@
  */
 
 const router = require('express').Router();
-const controller = require('../controllers/rabbitController.js');
+const controller = require('../controllers/rabbitController.js'); 
 
 console.info('Starting rabbit routing.');
 
@@ -39,7 +39,7 @@ router.get('/create', controller.showCreate);
 router.get('/details/:id', controller.showDetails);
 router.get('/edit/:id', controller.showEdit);
 router.get('/delete/:id', controller.showDelete);
-
+ 
 console.info('Loaded rabbit routes.');
 
 module.exports = router;
