@@ -227,6 +227,19 @@ module.exports = async (db) => {
     LOG.error(`ERROR: - Ship ${err.message}`);
   }
 
+  // Lindsey - Pokemon
+  try {
+    await db.models.Pokemon.bulkCreate([
+      { name: 'Crobat', generation: 2, isStarter: false },
+      { name: 'Raboot', generation: 8, isStarter: true },
+      { name: 'Oshawott', generation: 5, isStarter: true },
+    ]);
+    const numPokemon = await db.models.Pokemon.count();
+    LOG.info(`Seeded ${numPokemon} Pokemon.`);
+  } catch (err) {
+    LOG.error(`ERROR: - Pokemon ${err.message}`);
+  }
+
   // Dr. Case - user
   try {
     await db.models.User.bulkCreate(

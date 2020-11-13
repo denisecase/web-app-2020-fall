@@ -145,7 +145,7 @@ try {
   LOG.error(`ERROR: ${err.message}`);
 }
 
-//Lindsey - Pokemon
+// Lindsey - Pokemon
 try {
   app.use('/pokemon', require('./routes/pokemon.routes'));
 } catch (err) {

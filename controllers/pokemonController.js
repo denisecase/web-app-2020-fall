@@ -97,7 +97,7 @@ exports.saveEdit = async (req, res) => {
   } catch (err) {
     if (err instanceof ValidationError) {
       const item = await prepareInvalidItem(err, req);
-      res.locals.rabbit = item;
+      res.locals.pokemon = item;
       return res.render('pokemon/edit.ejs', { title: 'Pokemon', res });
     }
     return res.redirect('/pokemon');
