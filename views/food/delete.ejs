@@ -1,9 +1,42 @@
 <!--
-*  Food delete view
+*  food delete view
 *  Uses HTML and embedded JavaScript (EJS) 
 *  to dyanmically create a webpage to delete a food.
 *
 * @author Sri Vasavi Vipparla <S540791@nwmissouri.edu>
 -->
 
-<p> food delete.ejs </p>
+
+<% if (food.error) { %>
+    <div class="alert alert-danger" role="alert"><%- food.error %></div>
+    <% } %>
+    
+    <div class="card-body">
+    
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">pricePerLB</th>
+            <th scope="col">IsMeat</th>
+            <th width=>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+    
+          <tr>
+            <th scope="row"><%= food.id %></th>
+            <td><%= food.name%></td>
+            <td><%= food.pricePerLB%></td>
+            <td><%= food.isMeat%></td>
+            <td>
+              <form action="/food/delete/<%=food.id%>" method="post">
+                <input type="submit" class="btn btn-danger delete" value="Delete" onclick="return alert('Are You sure?')"/>
+              </form>
+            </td>
+          </tr>
+    
+        </tbody>
+      </table>
+    

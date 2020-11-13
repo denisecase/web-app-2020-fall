@@ -1,5 +1,5 @@
 <!--
-*  Food index view
+*  food index view
 *  (the default food page)
 *  
 *  Uses HTML and embedded JavaScript (EJS) 
@@ -8,4 +8,65 @@
 * @author Sri Vasavi Vipparla <S540791@nwmissouri.edu>
 -->
 
-<p> IN PROGRESS - This is food index.ejs </p>
+<% if (locals.foods.success) { %>
+    <div class="alert alert-success" role="alert"><%- food.success %></div>
+    <% } %>
+    
+    <% if (locals.foods.error) { %>
+    <div class="alert alert-danger" role="alert"><%- food.error %></div>
+    <% } %>
+    
+    <div class="card">
+      <div class="card-header">
+        <ul class="nav nav-pills w-100">
+          <li class="nav-pill active">
+            <a class="nav-link">foods</a>
+          </li>
+          <li class="nav-pill ml-auto">
+            <a class="nav-link active" href="/food/create"><i class="fas fa-plus"></i></a>
+          </li>
+        </ul>
+      </div>
+      <div class="card-body">
+    
+        <% if(foods.length) { %>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Name</th>
+              <th scope="col">pricePerLB</th>
+              <th scope="col">IsMeat?</th>
+              <th >Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for(let i = 0; i< foods.length; i++) { %>
+            <tr>
+              <th scope="row"><%= foods[i].id %></th>
+              <td><%= foods[i].name%></td>
+              <td><%= foods[i].pricePerLB%></td>
+              <td><%= foods[i].isMeat%></td>
+              <td>
+                <a class="btn btn-primary details" href="../food/details/<%=foods[i].id%>"><i
+                    class="fab fa-sistrix" title="test"></i></a>
+                <a class="btn btn-success edit" href="../food/edit/<%=foods[i].id%>"><i class="fas fa-user-edit"></i></a>
+                <a class="btn btn-danger delete" href="../food/delete/<%=foods[i].id%>"><i
+                    class="fas fa-trash-alt"></i></a>
+              </td>
+            </tr>
+            <% } %>
+          </tbody>
+        </table>
+        <% } %>
+    
+        <!-- if result is empty -->
+        <% if(!foods.length) { %>
+        <p class="text-center">No foods found!</p>
+        <% } %>
+    
+        <br>
+        <h3>Mouse over icons to see where you will go.</h3>
+    
+      </div>
+    </div>
