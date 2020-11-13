@@ -5,7 +5,72 @@
 *  Uses HTML and embedded JavaScript (EJS) 
 *  to dyanmically create a webpage to list all whiskeys.
 *
-* @author Stephen Burke <burke.stephenpaul@gmail.com>
+* @author Denise Case <dcase@nwmissouri.edu>
+
+* based on https://www.mynotepaper.com/nodejs-simple-crud-with-expressjs-and-mysql
+* repo https://github.com/mdobydullah/nodejs-crud-with-expressjs-mysql
+
 -->
 
-<p> IN PROGRESS - This is whiskey index.ejs </p>
+<% if (locals.whiskeys.success) { %>
+    <div class="alert alert-success" role="alert"><%- whiskey.success %></div>
+    <% } %>
+    
+    <% if (locals.whiskeys.error) { %>
+    <div class="alert alert-danger" role="alert"><%- whiskey.error %></div>
+    <% } %>
+    
+    <div class="card">
+      <div class="card-header">
+        <ul class="nav nav-pills w-100">
+          <li class="nav-pill active">
+            <a class="nav-link">Whiskeys</a>
+          </li>
+          <li class="nav-pill ml-auto">
+            <a class="nav-link active" href="/whiskey/create"><i class="fas fa-plus"></i></a>
+          </li>
+        </ul>
+      </div>
+      <div class="card-body">
+    
+        <% if(whiskeys.length) { %>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Name</th>
+              <th scope="col">Age</th>
+              <th scope="col">IsScotch?</th>
+              <th >Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for(let i = 0; i< whiskeys.length; i++) { %>
+            <tr>
+              <th scope="row"><%= whiskeys[i].id %></th>
+              <td><%= whiskeys[i].name%></td>
+              <td><%= whiskeys[i].age%></td>
+              <td><%= whiskeys[i].isScotch%></td>
+              <td>
+                <a class="btn btn-primary details" href="../whiskey/details/<%=whiskeys[i].id%>"><i
+                    class="fab fa-sistrix" title="test"></i></a>
+                <a class="btn btn-success edit" href="../whiskey/edit/<%=whiskeys[i].id%>"><i class="fas fa-user-edit"></i></a>
+                <a class="btn btn-danger delete" href="../whiskey/delete/<%=whiskeys[i].id%>"><i
+                    class="fas fa-trash-alt"></i></a>
+              </td>
+            </tr>
+            <% } %>
+          </tbody>
+        </table>
+        <% } %>
+    
+        <!-- if result is empty -->
+        <% if(!whiskeys.length) { %>
+        <p class="text-center">No whiskeys found!</p>
+        <% } %>
+    
+        <br>
+        <h3>Mouse over icons to see where you will go.</h3>
+    
+      </div>
+    </div>
