@@ -111,13 +111,13 @@ module.exports = async (db) => {
   LOG.info(`Seeded ${numSeries} seriess.`);
 
   // Sri Vasavi - food
-  await db.models.Food.bulkCreate([
+  await db.models.food.bulkCreate([
     { name: 'Lamb', pricePerLB: 8, isMeat: true },
     { name: 'Fish', pricePerLB: 4, isMeat: true },
     { name: 'Spinach', pricePerLB: 2, isMeat: false },
   ]);
-  const numFood = await db.models.Food.count();
-  LOG.info(`Seeded ${numFood} foods.`);
+  const numfood = await db.models.food.count();
+  LOG.info(`Seeded ${numfood} foods.`);
 
   // Joseph - software
   try {

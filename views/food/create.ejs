@@ -1,9 +1,42 @@
 <!--
-*  Food create view
+*  food create view
 *  Uses HTML and embedded JavaScript (EJS) 
 *  to dyanmically create a webpage to create a new food.
 *
 * @author Sri Vasavi Vipparla <S540791@nwmissouri.edu>
 -->
 
-<p> food create.ejs </p>
+<% if (food && food.error) { %>
+    <div class="alert alert-danger" role="alert"><%- JSON.stringify(food.error) %></div>
+    <% } %>
+  
+  <div class="card">
+    <div class="card-header">
+      Add food
+    </div>
+    <div class="card-body">
+      <form action="/food/save" method="post">
+        <div class="form-group">
+          <label for="name">Name:</label>
+          <input type="text" class="form-control" id="name" name="name" value="<%= food.name %>" autocomplete="off">
+        </div>
+        <div class="form-group">
+          <label for="pricePerLB">pricePerLB:</label>
+          <input type="number" class="form-control" id="pricePerLB" name="pricePerLB" value="<%= food.pricePerLB %>" min=1 max=100 step=1 default=1
+            autocomplete="off">
+        </div>
+        <br>
+        <!-- Checked checkbox -->
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="checkbox" value="<%= food.isMeat %>" checked />
+          <label class="form-check-label" for="checkbox">
+            Is Meat?
+          </label>
+        </div>
+        <br>
+        <div class="form-group">
+          <input type="submit" class="btn btn-info" title="Submits a POST /save request" value="Create" />
+        </div>
+      </form>
+    </div>
+  </div>
