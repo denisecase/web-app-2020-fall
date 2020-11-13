@@ -14,8 +14,6 @@
 const router = require('express').Router();
 const controller = require('../controllers/pokemonController.js');
 
-console.info('Starting pokemon routing.');
-
 // -----------------------------------------------------------------------------
 // match each expeced verb + URL request
 // with a custom function to handle it
@@ -39,7 +37,5 @@ router.get('/create', controller.showCreate);
 router.get('/details/:id', controller.showDetails);
 router.get('/edit/:id', controller.showEdit);
 router.get('/delete/:id', controller.showDelete);
-
-console.info('Loaded pokemon routes.');
 
 module.exports = router;
