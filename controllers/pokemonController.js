@@ -1,10 +1,11 @@
 /**
- *  ship controller
- *  Handles requests related to ships (see routes)
+ *  Pokemon controller
+ *  Handles requests related to pokemon (see routes)
  *
- * @author Sam Ritter <s523855@nwmissouri.edu>
+ * @author Lindsey Fares <s524219@nwmissouri.edu>
  */
 
+// OPTIONAL: If using Sequelize validation features
 const { ValidationError } = require('sequelize');
 
 const LOG = require('../util/logger');
@@ -29,8 +30,8 @@ async function prepareInvalidItem(err, req) {
     item.id = req.body.id;
   }
   item.name = req.body.name;
-  item.guns = req.body.guns;
-  item.isFictional = req.body.isFictional;
+  item.generation = req.body.generation;
+  item.isStarter = req.body.isStarter;
   item.error = err.errors[0].message;
   LOG.info(`ERROR SAVING ITEM: ${JSON.stringify(item)}`);
   return item;
@@ -40,7 +41,7 @@ async function prepareInvalidItem(err, req) {
 
 // GET all JSON
 exports.findAll = async (req, res) => {
-  (await db).models.Ship.findAll()
+  (await db).models.Pokemon.findAll()
     .then((data) => {
       res.send(data);
     })
@@ -54,7 +55,7 @@ exports.findAll = async (req, res) => {
 // GET one JSON by ID
 exports.findOne = async (req, res) => {
   const { id } = req.params;
-  (await db).models.Ship.findByPk(id)
+  (await db).models.Pokemon.findByPk(id)
     .then((data) => {
       res.send(data);
     })
@@ -71,15 +72,15 @@ exports.findOne = async (req, res) => {
 exports.saveNew = async (req, res) => {
   try {
     const context = await db;
-    await context.models.Ship.create(req.body);
-    return res.redirect('/ship');
+    await context.models.Pokemon.create(req.body);
+    return res.redirect('/pokemon');
   } catch (err) {
     if (err instanceof ValidationError) {
       const item = await prepareInvalidItem(err, req);
-      res.locals.ship = item;
-      return res.render('ship/create.ejs', { title: 'Ships', res });
+      res.locals.pokemon = item;
+      return res.render('pokemon/create.ejs', { title: 'Pokemon', res });
     }
-    return res.redirect('/ship');
+    return res.redirect('/pokemon');
   }
 };
 
@@ -88,18 +89,18 @@ exports.saveEdit = async (req, res) => {
   try {
     const reqId = parseInt(req.params.id, 10);
     const context = await db;
-    const updated = await context.models.Ship.update(req.body, {
+    const updated = await context.models.Pokemon.update(req.body, {
       where: { id: reqId },
     });
     LOG.info(`Updated: ${JSON.stringify(updated)}`);
-    return res.redirect('/ship');
+    return res.redirect('/pokemon');
   } catch (err) {
     if (err instanceof ValidationError) {
       const item = await prepareInvalidItem(err, req);
-      res.locals.ship = item;
-      return res.render('ship/edit.ejs', { title: 'Ships', res });
+      res.locals.pokemon = item;
+      return res.render('pokemon/edit.ejs', { title: 'Pokemon', res });
     }
-    return res.redirect('/ship');
+    return res.redirect('/pokemon');
   }
 };
 
@@ -107,11 +108,11 @@ exports.saveEdit = async (req, res) => {
 exports.deleteItem = async (req, res) => {
   try {
     const reqId = parseInt(req.params.id, 10);
-    const deleted = (await db).models.Ship.destroy({
+    const deleted = (await db).models.Pokemon.destroy({
       where: { id: reqId },
     });
     if (deleted) {
-      return res.redirect('/ship');
+      return res.redirect('/pokemon');
     }
     throw new Error(`${reqId} not found`);
   } catch (err) {
@@ -123,11 +124,10 @@ exports.deleteItem = async (req, res) => {
 
 // GET to this controller base URI (the default)
 exports.showIndex = async (req, res) => {
-  // res.send('NOT IMPLEMENTED: Will show ship/index.ejs');
-  (await db).models.Ship.findAll()
+  (await db).models.Pokemon.findAll()
     .then((data) => {
-      res.locals.ships = data;
-      res.render('ship/index.ejs', { title: 'Ships', res });
+      res.locals.pokemon = data;
+      res.render('pokemon/index.ejs', { title: 'Pokemon', res });
     })
     .catch((err) => {
       res.status(500).send({
@@ -138,27 +138,27 @@ exports.showIndex = async (req, res) => {
 
 // GET /create
 exports.showCreate = async (req, res) => {
-  // create a temp ship and add it to the response.locals object
-  // this will provide a ship object to put any validation errors
+  // create a temp pokemon and add it to the response.locals object
+  // this will provide a pokemon object to put any validation errors
   const tempItem = {
-    name: 'ShipName',
-    guns: 1,
-    isFictional: true,
+    name: 'PokemonName',
+    generation: 1,
+    isStarter: true,
   };
-  res.locals.ship = tempItem;
-  res.render('ship/create.ejs', { title: 'Ships', res });
+  res.locals.pokemon = tempItem;
+  res.render('pokemon/create.ejs', { title: 'Pokemon', res });
 };
 
 // GET /delete/:id
 exports.showDelete = async (req, res) => {
   const { id } = req.params;
-  (await db).models.Ship.findByPk(id)
+  (await db).models.Pokemon.findByPk(id)
     .then((data) => {
-      res.locals.ship = data;
+      res.locals.pokemon = data;
       if (data) {
-        res.render('ship/delete.ejs', { title: 'Ships', res });
+        res.render('pokemon/delete.ejs', { title: 'Pokemon', res });
       } else {
-        res.redirect('ship/');
+        res.redirect('pokemon/');
       }
     })
     .catch((err) => {
@@ -171,10 +171,10 @@ exports.showDelete = async (req, res) => {
 // GET /details/:id
 exports.showDetails = async (req, res) => {
   const { id } = req.params;
-  (await db).models.Ship.findByPk(id)
+  (await db).models.Pokemon.findByPk(id)
     .then((data) => {
-      res.locals.ship = data;
-      res.render('ship/details.ejs', { title: 'Ships', res });
+      res.locals.pokemon = data;
+      res.render('pokemon/details.ejs', { title: 'Pokemon', res });
     })
     .catch((err) => {
       res.status(500).send({
@@ -186,10 +186,10 @@ exports.showDetails = async (req, res) => {
 // GET /edit/:id
 exports.showEdit = async (req, res) => {
   const { id } = req.params;
-  (await db).models.Ship.findByPk(id)
+  (await db).models.Pokemon.findByPk(id)
     .then((data) => {
-      res.locals.ship = data;
-      res.render('ship/edit.ejs', { title: 'Ships', res });
+      res.locals.pokemon = data;
+      res.render('pokemon/edit.ejs', { title: 'Pokemon', res });
     })
     .catch((err) => {
       res.status(500).send({

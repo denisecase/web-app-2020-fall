@@ -1,9 +1,39 @@
 <!--
-*  book details view
+*  plant details view
 *  Uses HTML and embedded JavaScript (EJS) 
-*  to dyanmically create a webpage to display a book.
+*  to dyanmically create a webpage to display a plant.
 *
 * @author  Sreenidhi Madala <s541226@nwmissouri.edu>
 -->
 
-<p> book details.ejs </p>
+<% if (plant.error) { %>
+    <div class="alert alert-danger" role="alert"><%- plant.error %></div>
+    <% } %>
+    
+    <div class="card-body">
+    
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">variety</th>
+            <th scope="col">IsPlant</th>
+            <th >Action</th>
+          </tr>
+        </thead>
+        <tbody>
+    
+          <tr>
+            <th scope="row"><%= plant.id %></th>
+            <td><%= plant.name%></td>
+            <td><%= plant.variety%></td>
+            <td><%= plant.isPlant%></td>
+            <td>
+              <a class="btn btn-success edit" href="/plant">Done</a>
+            </td>
+          </tr>
+    
+        </tbody>
+      </table>
+    

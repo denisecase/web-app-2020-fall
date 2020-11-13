@@ -67,10 +67,10 @@ Enable standard CRUD options (create, read, update, delete)
 - Create standard views for the resource
 
 1. create.ejs
-1. delete.ejs
-1. details.ejs
-1. edit.ejs
-1. index.ejs
+2. delete.ejs
+3. details.ejs
+4. edit.ejs
+5. index.ejs
 
 Add a standard comment block at the top of each file.
 
@@ -83,13 +83,13 @@ Add yourself and email as the author (follow examples).
 1. Click the fork icon on this repo to fork it into your own cloud account.
 2. Clone your new cloud repo down to your machine.
 
-### Step 1 - Get fresh code.
+### Step 1 - Get fresh code
 
 1. Pull fresh code from shared cloud repo.
-1. Update your cloud repo (git add and push).
-1. Install dependencies (assume things have changed).
-1. Start the app.
-1. Open your browser to verify everything runs.
+2. Update your cloud repo (git add and push).
+3. Install dependencies (assume there have been changes).
+4. Start the app.
+5. Open your browser to verify everything runs.
 
 ```Powershell
 git pull "https://github.com/denisecase/web-app-2020-fall.git"
@@ -99,14 +99,14 @@ npm install
 npm run start
 ```
 
-### Step 2 - Make your contributions.
+### Step 2 - Make your contributions
 
 As you test your code, format it with Prettier and
 lint (clean it up) with ESLint.
 See scripts in package.json.
 
-1. Immediately, make your local edits.
-1. Verify the app still runs & standarize your code.
+1. While code is fresh, make your local edits.
+2. Verify the app still runs & standarize your code.
 
 ```PowerShell
 npm install
@@ -119,18 +119,18 @@ npm run lint-fix
 
 Fix your code as suggested by the linter.
 
-### Step 3 - Save and share your work.
+### Step 3 - Save and share your work
 
 1. Git add & git commit locally.
-1. Git push to the origin.
-1. In your updated GitHub repo look for "Pull Request".
-1. Follow instructions (click the green buttons) to prepare a "pull request" into the main repo.
+2. Git push to the origin.
+3. In your updated GitHub repo look for "Pull Request".
+4. Follow instructions (click the green buttons) to prepare a "pull request" into the main repo.
 
 ### Step 4 - Refresh before making new contributions
 
 1. Git pull from shared repo to your laptop
-1. Git add any new files from root folder on down (git add .)
-1. Git push to your origin repo (your forked repo in the cloud)
+2. Git add any new files from root folder on down (git add .)
+3. Git push to your origin repo (your forked repo in the cloud)
 
 ```Powershell
 git pull "https://github.com/denisecase/web-app-2020-fall.git"

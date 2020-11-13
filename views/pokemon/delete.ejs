@@ -1,14 +1,13 @@
 <!--
-*  food delete view
+*  Pokemon delete view
 *  Uses HTML and embedded JavaScript (EJS) 
-*  to dyanmically create a webpage to delete a food.
+*  to dyanmically create a webpage to delete a Pokemon.
 *
-* @author Sri Vasavi Vipparla <S540791@nwmissouri.edu>
+* @author Lindsey Fares <s524219@nwmissouri.edu>
 -->
-
-
-<% if (food.error) { %>
-    <div class="alert alert-danger" role="alert"><%- food.error %></div>
+  
+<% if (pokemon.error) { %>
+    <div class="alert alert-danger" role="alert"><%- pokemon.error %></div>
     <% } %>
     
     <div class="card-body">
@@ -18,20 +17,20 @@
           <tr>
             <th scope="col">ID</th>
             <th scope="col">Name</th>
-            <th scope="col">pricePerLB</th>
-            <th scope="col">IsMeat</th>
+            <th scope="col">Generation</th>
+            <th scope="col">IsStarter</th>
             <th width=>Action</th>
           </tr>
         </thead>
         <tbody>
     
           <tr>
-            <th scope="row"><%= food.id %></th>
-            <td><%= food.name%></td>
-            <td><%= food.pricePerLB%></td>
-            <td><%= food.isMeat%></td>
+            <th scope="row"><%= pokemon.id %></th>
+            <td><%= pokemon.name%></td>
+            <td><%= pokemon.generation%></td>
+            <td><%= pokemon.isStarter%></td>
             <td>
-              <form action="/food/delete/<%=food.id%>" method="post">
+              <form action="/pokemon/delete/<%=pokemon.id%>" method="post">
                 <input type="submit" class="btn btn-danger delete" value="Delete" onclick="return alert('Are You sure?')"/>
               </form>
             </td>

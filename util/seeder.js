@@ -9,8 +9,13 @@
  * *
  */
 
+// NEW! Best practices recommend:
+// put ALL imports FIRST rather than 'hiding' them in code below
+// use a LOGGER that writes to files / turns off console logging in production
+
+const LOG = require('./logger');
+
 module.exports = async (db) => {
-  const LOG = require('./logger');
   LOG.info('Starting seeder.......................');
 
   try {
@@ -44,7 +49,7 @@ module.exports = async (db) => {
     { name: 'TiGuanYin', pricePerGram: 0.4, isPuer: false },
   ]);
   const numTeas = await db.models.Tea.count();
-  console.info(`Seeded ${numTeas} teas .`);
+  LOG.info(`Seeded ${numTeas} teas .`);
 
   // Blake - game
   try {
@@ -56,9 +61,9 @@ module.exports = async (db) => {
       { name: 'Monopoly', playerCount: 4, isCardGame: false },
     ]);
     const numGames = await db.models.Game.count();
-    console.info(`Seeded ${numGames} games.`);
+    LOG.info(`Seeded ${numGames} games.`);
   } catch (err) {
-    console.error(`ERROR: Game - ${err.message}`);
+    LOG.error(`ERROR: Game - ${err.message}`);
   }
 
   // Varsha - animal
@@ -82,15 +87,18 @@ module.exports = async (db) => {
 
   // Sreenidhi - plant
   try {
-    await db.models.Plant.bulkCreate([
-      { name: 'Hibiscus', variety: 1, isPlant: true },
-      { name: 'Apple', variety: 1, isPlant: false },
-      { name: 'AloeVera', variety: 2, isPlant: true },
-    ]);
-    const numPlant = await db.models.Plant.count();
-    console.info(`Seeded ${numPlant} plant.`);
+    await db.models.Plant.bulkCreate(
+      [
+        { name: 'Hibicus', varieties: 1, isPlant: true },
+        { name: 'Apple', varieties: 1, isPlant: false },
+        { name: 'AleoVera', varieties: 1, isPlant: true },
+      ],
+      { validate: true }, // add options object to call new model validators
+    );
+    const numPlants = await db.models.Plant.count();
+    LOG.info(`Seeded ${numPlants} plants.`);
   } catch (err) {
-    console.error(`ERROR: - Plant ${err.message}`);
+    LOG.error(`ERROR: Plant - ${err.message}`);
   }
 
   // Nithya - series
@@ -100,16 +108,16 @@ module.exports = async (db) => {
     { name: 'Money Heist', seasons: 4, isComedy: false },
   ]);
   const numSeries = await db.models.Series.count();
-  console.info(`Seeded ${numSeries} seriess.`);
+  LOG.info(`Seeded ${numSeries} seriess.`);
 
   // Sri Vasavi - food
-  await db.models.Food.bulkCreate([
+  await db.models.food.bulkCreate([
     { name: 'Lamb', pricePerLB: 8, isMeat: true },
     { name: 'Fish', pricePerLB: 4, isMeat: true },
     { name: 'Spinach', pricePerLB: 2, isMeat: false },
   ]);
-  const numFood = await db.models.Food.count();
-  console.info(`Seeded ${numFood} foods.`);
+  const numfood = await db.models.food.count();
+  LOG.info(`Seeded ${numfood} foods.`);
 
   // Joseph - software
   try {
@@ -119,9 +127,9 @@ module.exports = async (db) => {
       { name: 'Windows', firstReleased: 1985, isOpenSource: false },
     ]);
     const numSoftware = await db.models.Software.count();
-    console.info(`Seeded ${numSoftware} softwares`);
+    LOG.info(`Seeded ${numSoftware} softwares`);
   } catch (err) {
-    console.error(`ERROR: - Software ${err.message}`);
+    LOG.error(`ERROR: - Software ${err.message}`);
   }
   // Stephen - whiskey
   try {
@@ -131,22 +139,22 @@ module.exports = async (db) => {
       { name: 'Redbreast 12', age: 12, is: false },
     ]);
     const numWhiskey = await db.models.Whiskey.count();
-    console.info(`Seeded ${numWhiskey} whiskey.`);
+    LOG.info(`Seeded ${numWhiskey} whiskey.`);
   } catch (err) {
-    console.error(`ERROR: - Whiskey ${err.message}`);
+    LOG.error(`ERROR: - Whiskey ${err.message}`);
   }
 
   // Shivani - book
   try {
-    await db.models.book.bulkCreate([
+    await db.models.Book.bulkCreate([
       { book: 'harrypotter ', publishedDate: 1997, isFantasy: true },
       { book: 'animalfarm ', publishedDate: 1945, isFantasy: false },
       { book: 'hobbit', publishedDate: 1937, isFantasy: true },
     ]);
     const numbook = await db.models.book.count();
-    console.info(`Seeded ${numbook} book.`);
+    LOG.info(`Seeded ${numbook} book.`);
   } catch (err) {
-    console.error(`ERROR: - Book ${err.message}`);
+    LOG.error(`ERROR: - Book ${err.message}`);
   }
 
   // Kunal - videogame
@@ -157,9 +165,9 @@ module.exports = async (db) => {
       { name: 'Cyberpunk 2077', playersNeeded: 1, isReleased: false },
     ]);
     const numVideoGame = await db.models.videogame.count();
-    console.info(`Seeded ${numVideoGame} video game.`);
+    LOG.info(`Seeded ${numVideoGame} video game.`);
   } catch (err) {
-    console.error(`ERROR: videogame - ${err.message}`);
+    LOG.error(`ERROR: videogame - ${err.message}`);
   }
   // Chandler - company
   try {
@@ -167,9 +175,9 @@ module.exports = async (db) => {
       { name: 'Nintendo', founded: 1889, isPublic: true },
     ]);
     const numCompanies = await db.models.Company.count();
-    console.info(`Seeded ${numCompanies} companies.`);
+    LOG.info(`Seeded ${numCompanies} companies.`);
   } catch (err) {
-    console.error(`ERROR: Company - ${err.message}`);
+    LOG.error(`ERROR: Company - ${err.message}`);
   }
   // Praneeth - cricket
   await db.models.Cricket.bulkCreate([
@@ -178,7 +186,7 @@ module.exports = async (db) => {
     { teamName: 'South African Team', age: 2, captain: 'ABD' },
   ]);
   const numCricket = await db.models.Cricket.count();
-  console.info(`Seeded ${numCricket} cricket team.`);
+  LOG.info(`Seeded ${numCricket} cricket team.`);
 
   // Zach - fruit
   try {
@@ -188,22 +196,22 @@ module.exports = async (db) => {
       { name: 'Pineapple', daysGrowth: 700, isRipe: true },
     ]);
     const numFruit = await db.models.Fruit.count();
-    console.info(`Seeded ${numFruit} fruit.`);
+    LOG.info(`Seeded ${numFruit} fruit.`);
   } catch (err) {
-    console.error(`ERROR: Fruit - ${err.message}`);
+    LOG.error(`ERROR: Fruit - ${err.message}`);
   }
 
   // Prashansa - dance
   try {
-    await db.models.dance.bulkCreate([
-      { form: 'Kuchipudi', yearIntro: 1502, isTraditional: True },
-      { form: 'Bollywood ', yearIntro: 1960, isTraditional: False },
-      { form: 'Bhagra', yearIntro: 1940, isTraditional: True },
+    await db.models.Dance.bulkCreate([
+      { form: 'Kuchipudi', yearIntro: 150, isTraditional: true },
+      { form: 'Bollywood ', yearIntro: 196, isTraditional: false },
+      { form: 'Bhagra', yearIntro: 194, isTraditional: true },
     ]);
-    const numdance = await db.models.dance.count();
-    console.info(`Seeded ${numdance} dance.`);
+    const numDance = await db.models.Dance.count();
+    LOG.info(`Seeded ${numDance} dance.`);
   } catch (err) {
-    console.error(`ERROR: - Dance ${err.message}`);
+    LOG.error(`ERROR: - Dance ${err.message}`);
   }
 
   // Sam - ship
@@ -214,9 +222,22 @@ module.exports = async (db) => {
       { name: 'Suffolk', guns: 74, isFictional: false },
     ]);
     const numShip = await db.models.Ship.count();
-    console.info(`Seeded ${numShip} ship.`);
+    LOG.info(`Seeded ${numShip} ships.`);
   } catch (err) {
-    console.error(`ERROR: - Ship ${err.message}`);
+    LOG.error(`ERROR: - Ship ${err.message}`);
+  }
+
+  // Lindsey - Pokemon
+  try {
+    await db.models.Pokemon.bulkCreate([
+      { name: 'Crobat', generation: 2, isStarter: false },
+      { name: 'Raboot', generation: 8, isStarter: true },
+      { name: 'Oshawott', generation: 5, isStarter: true },
+    ]);
+    const numPokemon = await db.models.Pokemon.count();
+    LOG.info(`Seeded ${numPokemon} Pokemon.`);
+  } catch (err) {
+    LOG.error(`ERROR: - Pokemon ${err.message}`);
   }
 
   // Dr. Case - user
