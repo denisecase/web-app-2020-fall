@@ -1,0 +1,39 @@
+<!--
+*  Pokemon details view
+*  Uses HTML and embedded JavaScript (EJS) 
+*  to dyanmically create a webpage to display a Pokemon.
+*
+* @author Lindsey Fares <s524219@nwmissouri.edu>
+-->
+
+<% if (rabbit.error) { %>
+    <div class="alert alert-danger" role="alert"><%- rabbit.error %></div>
+    <% } %>
+    
+    <div class="card-body">
+    
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Generation</th>
+            <th scope="col">IsStarter</th>
+            <th >Action</th>
+          </tr>
+        </thead>
+        <tbody>
+    
+          <tr>
+            <th scope="row"><%= pokemon.id %></th>
+            <td><%= pokemon.name%></td>
+            <td><%= pokemon.generation%></td>
+            <td><%= pokemon.isStarter%></td>
+            <td>
+              <a class="btn btn-success edit" href="/pokemon">Done</a>
+            </td>
+          </tr>
+    
+        </tbody>
+      </table>
+    
