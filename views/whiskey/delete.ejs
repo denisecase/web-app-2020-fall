@@ -3,7 +3,39 @@
 *  Uses HTML and embedded JavaScript (EJS) 
 *  to dyanmically create a webpage to delete a whiskey.
 *
-* @author Denise Case <dcase@nwmissouri.edu>
+* @author Stephen Burke <burke.stephenpaul@gmail.com>
 -->
-
-<p> whiskey delete.ejs </p>
+  
+<% if (whiskey.error) { %>
+    <div class="alert alert-danger" role="alert"><%- whiskey.error %></div>
+    <% } %>
+    
+    <div class="card-body">
+    
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Age</th>
+            <th scope="col">IsCartoon</th>
+            <th width=>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+    
+          <tr>
+            <th scope="row"><%= whiskey.id %></th>
+            <td><%= whiskey.name%></td>
+            <td><%= whiskey.age%></td>
+            <td><%= whiskey.isScotch%></td>
+            <td>
+              <form action="/whiskey/delete/<%=whiskey.id%>" method="post">
+                <input type="submit" class="btn btn-danger delete" value="Delete" onclick="return alert('Are You sure?')"/>
+              </form>
+            </td>
+          </tr>
+    
+        </tbody>
+      </table>
+    
