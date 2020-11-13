@@ -13,7 +13,8 @@
 
 const router = require('express').Router();
 const controller = require('../controllers/animalController.js');
-const LOG= require('../util/logger');
+const LOG = require('../util/logger');
+
 LOG.info('Starting animal routing.');
 
 // -----------------------------------------------------------------------------
