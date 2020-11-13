@@ -5,14 +5,15 @@
  * @author Sai Prashansa Ambarkar <S541063@nwmissouri.edu>
  */
 
-const db = require('../models/index');
+const LOG = require('../util/logger');
+
+const db = require('../models/index')();
 
 // FUNCTIONS TO RESPOND WITH JSON DATA  ----------------------------------------
 
 // GET all JSON
-exports.findAll = (req, res) => {
-  db.models.dance
-    .findAll()
+exports.findAll = async (req, res) => {
+  (await db).models.Dance.findAll()
     .then((data) => {
       res.send(data);
     })
@@ -24,10 +25,9 @@ exports.findAll = (req, res) => {
 };
 
 // GET one JSON by ID
-exports.findOne = (req, res) => {
+exports.findOne = async (req, res) => {
   const { id } = req.params;
-  db.models.dance
-    .findByPk(id)
+  (await db).models.Dance.findByPk(id)
     .then((data) => {
       res.send(data);
     })
@@ -42,70 +42,131 @@ exports.findOne = (req, res) => {
 
 // POST /save
 exports.saveNew = async (req, res) => {
+  // create behaves poorly
+  const context = await db;
   try {
-    await db.models.dance.create(req.body);
-    return res.redirect('/dance');
-  } catch (error) {
-    return res.status(500).json({ error: error.message });
+    context.models.Dance.create(req.body);
+  } catch (err) {
+    // store the user inputs & the validation errors in res.locals.dance
+    // err includes err.message & err.errors (array of validator msgs)
+    LOG.error('ERROR SAVING RABBIT');
+    const item = {};
+    item.form = req.body.form;
+    item.yearIntro = req.body.yearIntro;
+    item.isTraditional = req.body.isTraditional;
+    // item.errors = err.errors;
+    res.locals.dance = item;
+    LOG.info(` ERROR ADDING RABBIT:${item}`);
   }
+  return res.redirect('/dance');
 };
 
 // POST /save/:id
 exports.saveEdit = async (req, res) => {
   try {
-    const { reqId } = req.params.id;
-    const [updated] = await db.models.dance.update(req.body, {
+    const reqId = parseInt(req.params.id, 10);
+    LOG.info(`Save id: ${reqId}`);
+    // don't use super-current language features unless you add babel
+    const updated = (await db).models.Dance.update(req.body, {
       where: { id: reqId },
     });
-    if (updated) {
-      return res.redirect('/dance');
-    }
-    throw new Error(`${reqId} not found`);
-  } catch (error) {
-    return res.status(500).send(error.message);
+    LOG.info(`Updated: ${updated}`);
+    return res.redirect('/dance'); // always redirect back for now
+  } catch (err) {
+    return res.status(500).send(err.message);
   }
 };
 
 // POST /delete/:id
 exports.deleteItem = async (req, res) => {
   try {
-    const { reqId } = req.params.danceId;
-    const deleted = await db.models.dance.destroy({
+    const reqId = parseInt(req.params.id, 10);
+    const deleted = (await db).models.Dance.destroy({
       where: { id: reqId },
     });
     if (deleted) {
       return res.redirect('/dance');
     }
     throw new Error(`${reqId} not found`);
-  } catch (error) {
-    return res.status(500).send(error.message);
+  } catch (err) {
+    return res.status(500).send(err.message);
   }
 };
 
 // RESPOND WITH VIEWS  --------------------------------------------
 
 // GET to this controller base URI (the default)
-exports.showIndex = (req, res) => {
-  // res.send('NOT IMPLEMENTED: Will show dance/index.ejs');
-  res.render('dance/index.ejs', { title: 'dances', req });
+exports.showIndex = async (req, res) => {
+  (await db).models.Dance.findAll()
+    .then((data) => {
+      res.locals.dances = data;
+      res.render('dance/index.ejs', { title: 'Dances', res });
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: err.message || 'Error retrieving all.',
+      });
+    });
 };
 
 // GET /create
-exports.showCreate = (req, res) => {
-  res.send(`NOT IMPLEMENTED: Will show dance/create.ejs for ${req.params.id}`);
+exports.showCreate = async (req, res) => {
+  // create a temp dance and add it to the response.locals object
+  // this will provide a dance object to put any validation errors
+  const tempItem = {
+    name: 'DanceName',
+    yearIntro: 1999,
+    isTraditional: true,
+  };
+  res.locals.dance = tempItem;
+  res.render('dance/create.ejs', { title: 'Dances', res });
 };
 
 // GET /delete/:id
-exports.showDelete = (req, res) => {
-  res.send(`NOT IMPLEMENTED: Will show dance/delete.ejs for ${req.params.id}`);
+exports.showDelete = async (req, res) => {
+  const { id } = req.params;
+  (await db).models.Dance.findByPk(id)
+    .then((data) => {
+      res.locals.dance = data;
+      if (data) {
+        res.render('dance/delete.ejs', { title: 'Dances', res });
+      } else {
+        res.redirect('dance/');
+      }
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: `Error retrieving item with id=${id}: ${err.message}`,
+      });
+    });
 };
 
 // GET /details/:id
-exports.showDetails = (req, res) => {
-  res.send(`NOT IMPLEMENTED: Will show dance/details.ejs for ${req.params.id}`);
+exports.showDetails = async (req, res) => {
+  const { id } = req.params;
+  (await db).models.Dance.findByPk(id)
+    .then((data) => {
+      res.locals.dance = data;
+      res.render('dance/details.ejs', { title: 'Dances', res });
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: `Error retrieving item with id=${id}: ${err.message}`,
+      });
+    });
 };
 
 // GET /edit/:id
-exports.showEdit = (req, res) => {
-  res.send(`NOT IMPLEMENTED: Will show dance/edit.ejs for ${req.params.id}`);
+exports.showEdit = async (req, res) => {
+  const { id } = req.params;
+  (await db).models.Dance.findByPk(id)
+    .then((data) => {
+      res.locals.dance = data;
+      res.render('dance/edit.ejs', { title: 'Dances', res });
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: `Error retrieving item with id=${id}: ${err.message}`,
+      });
+    });
 };

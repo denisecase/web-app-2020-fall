@@ -1,5 +1,5 @@
 /**
- * Route company requests to the correct controller function.
+ * Route pokemon requests to the correct controller function.
  *
  * A request includes:
  *  an HTTP verb (e.g., get or post) AND
@@ -8,14 +8,13 @@
  * Match each expeced verb + URL request
  * with a custom function to handle it
  *
- * @author Chandler Wright <s534776@nwmissouri.edu>
+ * @author Lindsey Fares <s524219@nwmissouri.edu>
  */
 
 const router = require('express').Router();
-const controller = require('../controllers/companyController.js');
-const LOG = require('../util/logger');
+const controller = require('../controllers/pokemonController.js');
 
-LOG.info('Starting company routing.');
+console.info('Starting pokemon routing.');
 
 // -----------------------------------------------------------------------------
 // match each expeced verb + URL request
@@ -41,6 +40,6 @@ router.get('/details/:id', controller.showDetails);
 router.get('/edit/:id', controller.showEdit);
 router.get('/delete/:id', controller.showDelete);
 
-LOG.info('Loaded company routes.');
+console.info('Loaded pokemon routes.');
 
 module.exports = router;

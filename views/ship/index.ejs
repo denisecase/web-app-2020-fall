@@ -1,11 +1,72 @@
 <!--
 *  ship index view
-*  (the default ship page)
+*  (the default ship pguns)
 *  
 *  Uses HTML and embedded JavaScript (EJS) 
-*  to dyanmically create a webpage to list all ships.
+*  to dyanmically create a webpguns to list all ships.
 *
 * @author Sam Ritter <s523855@nwmissouri.edu>
 -->
 
-<p> IN PROGRESS - This is ship index.ejs </p>
+<% if (locals.ships.success) { %>
+    <div class="alert alert-success" role="alert"><%- ship.success %></div>
+    <% } %>
+    
+    <% if (locals.ships.error) { %>
+    <div class="alert alert-danger" role="alert"><%- ship.error %></div>
+    <% } %>
+    
+    <div class="card">
+      <div class="card-header">
+        <ul class="nav nav-pills w-100">
+          <li class="nav-pill active">
+            <a class="nav-link">Ships</a>
+          </li>
+          <li class="nav-pill ml-auto">
+            <a class="nav-link active" href="/ship/create"><i class="fas fa-plus"></i></a>
+          </li>
+        </ul>
+      </div>
+      <div class="card-body">
+    
+        <% if(ships.length) { %>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Name</th>
+              <th scope="col">Guns</th>
+              <th scope="col">IsFictional?</th>
+              <th >Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for(let i = 0; i< ships.length; i++) { %>
+            <tr>
+              <th scope="row"><%= ships[i].id %></th>
+              <td><%= ships[i].name%></td>
+              <td><%= ships[i].guns%></td>
+              <td><%= ships[i].isFictional%></td>
+              <td>
+                <a class="btn btn-primary details" href="../ship/details/<%=ships[i].id%>"><i
+                    class="fab fa-sistrix" title="test"></i></a>
+                <a class="btn btn-success edit" href="../ship/edit/<%=ships[i].id%>"><i class="fas fa-user-edit"></i></a>
+                <a class="btn btn-danger delete" href="../ship/delete/<%=ships[i].id%>"><i
+                    class="fas fa-trash-alt"></i></a>
+              </td>
+            </tr>
+            <% } %>
+          </tbody>
+        </table>
+        <% } %>
+    
+        <!-- if result is empty -->
+        <% if(!ships.length) { %>
+        <p class="text-center">No ships found!</p>
+        <% } %>
+    
+        <br>
+        <h3>Mouse over icons to see where you will go.</h3>
+    
+      </div>
+    </div>

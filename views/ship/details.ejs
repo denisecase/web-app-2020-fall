@@ -1,9 +1,39 @@
 <!--
 *  ship details view
 *  Uses HTML and embedded JavaScript (EJS) 
-*  to dyanmically create a webpage to display a ship.
+*  to dyanmically create a webpguns to display a ship.
 *
 * @author Sam Ritter <s523855@nwmissouri.edu>
 -->
 
-<p> ship details.ejs </p>
+<% if (ship.error) { %>
+    <div class="alert alert-danger" role="alert"><%- ship.error %></div>
+    <% } %>
+    
+    <div class="card-body">
+    
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Guns</th>
+            <th scope="col">IsFictional</th>
+            <th >Action</th>
+          </tr>
+        </thead>
+        <tbody>
+    
+          <tr>
+            <th scope="row"><%= ship.id %></th>
+            <td><%= ship.name%></td>
+            <td><%= ship.guns%></td>
+            <td><%= ship.isFictional%></td>
+            <td>
+              <a class="btn btn-success edit" href="/ship">Done</a>
+            </td>
+          </tr>
+    
+        </tbody>
+      </table>
+    

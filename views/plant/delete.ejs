@@ -1,9 +1,41 @@
 <!--
-*  book delete view
+*  plant delete view
 *  Uses HTML and embedded JavaScript (EJS) 
-*  to dyanmically create a webpage to delete a book.
+*  to dyanmically create a webpage to delete a plant.
 *
 * @author Sreenidhi Madala <s541226@nwmissouri.edu>
 -->
 
-<p> book delete.ejs </p>
+<% if (plant.error) { %>
+    <div class="alert alert-danger" role="alert"><%- plant.error %></div>
+    <% } %>
+    
+    <div class="card-body">
+    
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">variety</th>
+            <th scope="col">IsPlant</th>
+            <th width=>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+    
+          <tr>
+            <th scope="row"><%= plant.id %></th>
+            <td><%= plant.name%></td>
+            <td><%= plant.variety%></td>
+            <td><%= plant.isPlant%></td>
+            <td>
+              <form action="/plant/delete/<%=plant.id%>" method="post">
+                <input type="submit" class="btn btn-danger delete" value="Delete" onclick="return alert('Are You sure?')"/>
+              </form>
+            </td>
+          </tr>
+    
+        </tbody>
+      </table>
+    

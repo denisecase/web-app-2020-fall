@@ -1,9 +1,41 @@
 <!--
 *  ship delete view
 *  Uses HTML and embedded JavaScript (EJS) 
-*  to dyanmically create a webpage to delete a ship.
+*  to dyanmically create a webpguns to delete a ship.
 *
 * @author Sam Ritter <s523855@nwmissouri.edu>
 -->
 
-<p> ship delete.ejs </p>
+<% if (ship.error) { %>
+    <div class="alert alert-danger" role="alert"><%- ship.error %></div>
+    <% } %>
+    
+    <div class="card-body">
+    
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Guns</th>
+            <th scope="col">IsFictional</th>
+            <th width=>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+    
+          <tr>
+            <th scope="row"><%= ship.id %></th>
+            <td><%= ship.name%></td>
+            <td><%= ship.guns%></td>
+            <td><%= ship.isFictional%></td>
+            <td>
+              <form action="/ship/delete/<%=ship.id%>" method="post">
+                <input type="submit" class="btn btn-danger delete" value="Delete" onclick="return alert('Are You sure?')"/>
+              </form>
+            </td>
+          </tr>
+    
+        </tbody>
+      </table>
+    

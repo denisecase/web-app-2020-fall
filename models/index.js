@@ -74,7 +74,7 @@ module.exports = async () => {
     // Jack - chief
 
     // Sreenidhi - plant
-
+    require('./plant')(db, DataTypes);
     // Sri Vasavi - food
     require('./food')(db, DataTypes);
     // Joseph - software
@@ -82,11 +82,11 @@ module.exports = async () => {
     // Stephen - whiskey
     require('./whiskey')(db, DataTypes);
     // Shivani - book
-
+    require('./book')(db, DataTypes);
     // Kunal - videoGame
     require('./videogame')(db, DataTypes);
     // Chandler - company
-
+    require('./company')(db, DataTypes);
     // Praneeth - cricket
     require('./cricket')(db, DataTypes);
     // Nithya - series
@@ -96,8 +96,9 @@ module.exports = async () => {
     require('./fruit')(db, DataTypes);
 
     // Prashansa - dance
-
+    require('./dance')(db, DataTypes);
     // Sam - ship
+    require('./ship')(db, DataTypes);
 
     // Users
     require('./user')(db, DataTypes);
