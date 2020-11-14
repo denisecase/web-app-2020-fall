@@ -25,6 +25,7 @@
     "express-validator": "latest",
     "fs": "latest",
     "helmet": "latest",
+    "hover.css": "latest",
     "http-errors": "latest",
     "jsonwebtoken": "latest",
     "morgan": "latest",

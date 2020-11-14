@@ -1,0 +1,32 @@
+{
+  "name": "web-app-2020-fall",
+  "short_name": "F20",
+  "manifest_version": 2,
+  "content_security_policy": "script-src 'self' 'unsafe-eval' https://cdnjs.cloudflare.com 'unsafe-inline'; object-src 'self'",
+  "theme_color": "#006747",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "scope": "/",
+  "start_url": "./bin/www.js",
+  "orientation": "portrait",
+  "description": "Northwest Missouri State University 44-563 Big App.",
+  "author": {
+    "name": "Denise Case",
+    "website": "https://denisecase.github.io",
+    "github": "https://github.com/denisecase",
+    "source-repo": "https://github.com/denisecase/web-app-2020-fall"
+  },
+  "gcm_sender_id": "?",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
