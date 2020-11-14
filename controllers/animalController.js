@@ -75,8 +75,8 @@ module.exports.saveNew = async (req, res) => {
     await context.models.Animal.create(req.body);
     return res.redirect('/animal');
   } catch (error) {
-    if (err instanceof ValidationError) {
-      const item = await prepareInvalidItem(err, req);
+    if (error instanceof ValidationError) {
+      const item = await prepareInvalidItem(error, req);
       res.locals.animal = item;
       return res.render('animal/create.ejs', { title: 'Animals', res });
     }
