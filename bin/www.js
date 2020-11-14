@@ -73,11 +73,9 @@ const onError = (error) => {
     case 'EACCES':
       LOG.info(`${bind} requires elevated privileges`);
       process.exit(1);
-      break;
     case 'EADDRINUSE':
       LOG.info(`${bind} is already in use`);
       process.exit(1);
-      break;
     default:
       throw error;
   }
