@@ -6,4 +6,33 @@
 * @author Varsha vellanki <s540114@nwmissouri.edu>
 -->
 
-<p> animal details.ejs </p>
+<% if (animal.error) { %>
+    <div class="alert alert-danger" role="alert"><%- animal.error %></div>
+    <% } %>
+    
+    <div class="card-body">
+    
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">LifeSpan</th>
+            <th scope="col">IsPet</th>
+            <th >Action</th>
+          </tr>
+        </thead>
+        <tbody>
+    
+          <tr>
+            <th scope="row"><%= animal.id %></th>
+            <td><%= animal.name%></td>
+            <td><%= animal.lifeSpan%></td>
+            <td><%= animal.isPet%></td>
+            <td>
+              <a class="btn btn-success edit" href="/animal">Done</a>
+            </td>
+          </tr>
+    
+        </tbody>
+      </table>

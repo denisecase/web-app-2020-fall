@@ -1,0 +1,76 @@
+<!--
+*  Pokemon index view
+*  (the default Pokemon page)
+*  
+*  Uses HTML and embedded JavaScript (EJS) 
+*  to dyanmically create a webpage to list all Pokemon.
+*
+* @author Lindsey Fares <s524219@nwmissouri.edu>
+
+* based on https://www.mynotepaper.com/nodejs-simple-crud-with-expressjs-and-mysql
+* repo https://github.com/mdobydullah/nodejs-crud-with-expressjs-mysql
+
+-->
+
+<% if (locals.pokemon.success) { %>
+    <div class="alert alert-success" role="alert"><%- pokemon.success %></div>
+    <% } %>
+    
+    <% if (locals.pokemon.error) { %>
+    <div class="alert alert-danger" role="alert"><%- pokemon.error %></div>
+    <% } %>
+    
+    <div class="card">
+      <div class="card-header">
+        <ul class="nav nav-pills w-100">
+          <li class="nav-pill active">
+            <a class="nav-link">Pokemon</a>
+          </li>
+          <li class="nav-pill ml-auto">
+            <a class="nav-link active" href="/pokemon/create"><i class="fas fa-plus"></i></a>
+          </li>
+        </ul>
+      </div>
+      <div class="card-body">
+    
+        <% if(pokemon.length) { %>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Name</th>
+              <th scope="col">Generation</th>
+              <th scope="col">IsStarter?</th>
+              <th >Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for(let i = 0; i< pokemon.length; i++) { %>
+            <tr>
+              <th scope="row"><%= pokemon[i].id %></th>
+              <td><%= pokemon[i].name%></td>
+              <td><%= pokemon[i].generation%></td>
+              <td><%= pokemon[i].isStarter%></td>
+              <td>
+                <a class="btn btn-primary details" href="../pokemon/details/<%=pokemon[i].id%>"><i
+                    class="fab fa-sistrix" title="test"></i></a>
+                <a class="btn btn-success edit" href="../pokemon/edit/<%=pokemon[i].id%>"><i class="fas fa-user-edit"></i></a>
+                <a class="btn btn-danger delete" href="../pokemon/delete/<%=pokemon[i].id%>"><i
+                    class="fas fa-trash-alt"></i></a>
+              </td>
+            </tr>
+            <% } %>
+          </tbody>
+        </table>
+        <% } %>
+    
+        <!-- if result is empty -->
+        <% if(!pokemon.length) { %>
+        <p class="text-center">No Pokemon found!</p>
+        <% } %>
+    
+        <br>
+        <h3>Mouse over icons to see where you will go.</h3>
+    
+      </div>
+    </div>

@@ -13,8 +13,9 @@
 
 const router = require('express').Router();
 const controller = require('../controllers/animalController.js');
+const LOG = require('../util/logger');
 
-console.info('Starting animal routing.');
+LOG.info('Starting animal routing.');
 
 // -----------------------------------------------------------------------------
 // match each expeced verb + URL request
@@ -40,6 +41,6 @@ router.get('/details/:id', controller.showDetails);
 router.get('/edit/:id', controller.showEdit);
 router.get('/delete/:id', controller.showDelete);
 
-console.info('Loaded animal routes.');
+LOG.info('Loaded animal routes.');
 
 module.exports = router;

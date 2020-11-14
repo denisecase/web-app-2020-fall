@@ -3,7 +3,37 @@
 *  Uses HTML and embedded JavaScript (EJS) 
 *  to dyanmically create a webpage to display a whiskey.
 *
-* @author Denise Case <dcase@nwmissouri.edu>
+* @author Stephen Burke <burke.stephenpaul@gmail.com>
 -->
 
-<p> whiskey details.ejs </p>
+<% if (whiskey.error) { %>
+    <div class="alert alert-danger" role="alert"><%- whiskey.error %></div>
+    <% } %>
+    
+    <div class="card-body">
+    
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Age</th>
+            <th scope="col">IsScotch</th>
+            <th >Action</th>
+          </tr>
+        </thead>
+        <tbody>
+    
+          <tr>
+            <th scope="row"><%= whiskey.id %></th>
+            <td><%= whiskey.name%></td>
+            <td><%= whiskey.age%></td>
+            <td><%= whiskey.isScotch%></td>
+            <td>
+              <a class="btn btn-success edit" href="/whiskey">Done</a>
+            </td>
+          </tr>
+    
+        </tbody>
+      </table>
+    

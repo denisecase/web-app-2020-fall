@@ -1,11 +1,77 @@
 <!--
-*  book index view
+*  plant index view
 *  (the default book page)
 *  
 *  Uses HTML and embedded JavaScript (EJS) 
-*  to dyanmically create a webpage to list all book.
+*  to dyanmically create a webpage to list all plant.
 *
 * @author Sreenidhi Madala <s541226@nwmissouri.edu>
+
+
+* based on https://www.mynotepaper.com/nodejs-simple-crud-with-expressjs-and-mysql
+* repo https://github.com/mdobydullah/nodejs-crud-with-expressjs-mysql
+
 -->
 
-<p> IN PROGRESS - This is book index.ejs </p>
+<% if (locals.plants.success) { %>
+    <div class="alert alert-success" role="alert"><%- plant.success %></div>
+    <% } %>
+    
+    <% if (locals.plants.error) { %>
+    <div class="alert alert-danger" role="alert"><%- plant.error %></div>
+    <% } %>
+    
+    <div class="card">
+      <div class="card-header">
+        <ul class="nav nav-pills w-100">
+          <li class="nav-pill active">
+            <a class="nav-link">Plants</a>
+          </li>
+          <li class="nav-pill ml-auto">
+            <a class="nav-link active" href="/plant/create"><i class="fas fa-plus"></i></a>
+          </li>
+        </ul>
+      </div>
+      <div class="card-body">
+    
+        <% if(plants.length) { %>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Name</th>
+              <th scope="col">variety</th>
+              <th scope="col">IsPlant?</th>
+              <th >Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for(let i = 0; i< plants.length; i++) { %>
+            <tr>
+              <th scope="row"><%= plants[i].id %></th>
+              <td><%= plants[i].name%></td>
+              <td><%= plants[i].variety%></td>
+              <td><%= plants[i].isPlant%></td>
+              <td>
+                <a class="btn btn-primary details" href="../plant/details/<%=plants[i].id%>"><i
+                    class="fab fa-sistrix" title="test"></i></a>
+                <a class="btn btn-success edit" href="../plant/edit/<%=plants[i].id%>"><i class="fas fa-user-edit"></i></a>
+                <a class="btn btn-danger delete" href="../plant/delete/<%=plants[i].id%>"><i
+                    class="fas fa-trash-alt"></i></a>
+              </td>
+            </tr>
+            <% } %>
+          </tbody>
+        </table>
+        <% } %>
+    
+        <!-- if result is empty -->
+        <% if(!plants.length) { %>
+        <p class="text-center">No plants found!</p>
+        <% } %>
+    
+        <br>
+        <h3>Mouse over icons to see where you will go.</h3>
+    
+      </div>
+    </div>

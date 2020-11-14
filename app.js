@@ -75,14 +75,22 @@ try {
 }
 
 // Varsha - animal
-app.use('/animal', require('./routes/animal.routes'));
+try {
+  app.use('/animal', require('./routes/animal.routes'));
+} catch (err) {
+  LOG.error(`ERROR: ${err.message}`);
+}
 
 // Felipe - ?
 
 // Jack - chief
 
 // Sreenidhi - plant
-app.use('/plant', require('./routes/plant.routes'));
+try {
+  app.use('/plant', require('./routes/plant.routes'));
+} catch (err) {
+  LOG.error(`ERROR: ${err.message}`);
+}
 
 // Sri Vasavi - food
 app.use('/food', require('./routes/food.routes'));
@@ -105,7 +113,11 @@ try {
   LOG.error(`ERROR: ${err.message}`);
 }
 // Chandler - company
-app.use('/company', require('./routes/company.routes'));
+try {
+  app.use('/company', require('./routes/company.routes'));
+} catch (err) {
+  LOG.error(`ERROR: ${err.message}`);
+}
 
 // Praneeth - cricket
 app.use('/cricket', require('./routes/cricket.routes'));
@@ -129,6 +141,13 @@ try {
 // Prashansa - dance
 try {
   app.use('/dance', require('./routes/dance.routes'));
+} catch (err) {
+  LOG.error(`ERROR: ${err.message}`);
+}
+
+// Lindsey - Pokemon
+try {
+  app.use('/pokemon', require('./routes/pokemon.routes'));
 } catch (err) {
   LOG.error(`ERROR: ${err.message}`);
 }

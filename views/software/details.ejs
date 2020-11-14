@@ -6,4 +6,34 @@
 * @author Joseph Dobelmann <s536997@nwmissouri.edu
 -->
 
-<p> software details.ejs </p>
+<% if (software.error) { %>
+    <div class="alert alert-danger" role="alert"><%- software.error %></div>
+    <% } %>
+    
+    <div class="card-body">
+    
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">firstReleased</th>
+            <th scope="col">isOpenSource</th>
+            <th >Action</th>
+          </tr>
+        </thead>
+        <tbody>
+    
+          <tr>
+            <th scope="row"><%= software.id %></th>
+            <td><%= software.name%></td>
+            <td><%= software.firstReleased%></td>
+            <td><%= software.isOpenSource%></td>
+            <td>
+              <a class="btn btn-success edit" href="/software">Done</a>
+            </td>
+          </tr>
+    
+        </tbody>
+      </table>
+    

@@ -4,15 +4,42 @@
  *
  * @author Chandler Wright <s534776@nwmissouri.edu>
  */
+const { ValidationError } = require('sequelize');
 
-// import dependencies
-const db = require('../models/index');
+const LOG = require('../util/logger');
+
+const db = require('../models/index')();
+
+// OPTIONAL: VALIDATION Helper function ----------------------
+
+/**
+ * Prepare an item from the request information and add
+ * an 'error' attribute to share with the view.
+ *
+ * @param {*} err - the error
+ * @param {*} req - the request
+ * @returns - the item to attach to response.locals
+ */
+async function prepareInvalidItem(err, req) {
+  LOG.error('ERROR SAVING ITEM');
+  LOG.error('Captured validation error: ', err.errors[0].message);
+  const item = {};
+  if (req.body.id) {
+    item.id = req.body.id;
+  }
+  item.name = req.body.name;
+  item.founded = req.body.founded;
+  item.isPublic = req.body.isPublic;
+  item.error = err.errors[0].message;
+  LOG.info(`ERROR SAVING ITEM: ${JSON.stringify(item)}`);
+  return item;
+}
 
 // FUNCTIONS TO RESPOND WITH JSON DATA  ----------------------------------------
 
 // GET all JSON
-exports.findAll = (req, res) => {
-  db.models.Company.findAll()
+module.exports.findAll = async (req, res) => {
+  (await db).models.Company.findAll()
     .then((data) => {
       res.send(data);
     })
@@ -24,9 +51,9 @@ exports.findAll = (req, res) => {
 };
 
 // GET one JSON by ID
-exports.findOne = (req, res) => {
+module.exports.findOne = async (req, res) => {
   const { id } = req.params;
-  db.models.Company.findByPk(id)
+  (await db).models.Company.findByPk(id)
     .then((data) => {
       res.send(data);
     })
@@ -40,77 +67,131 @@ exports.findOne = (req, res) => {
 // HANDLE EXECUTE DATA MODIFICATION REQUESTS -----------------------------------
 
 // POST /save
-exports.saveNew = async (req, res) => {
+module.exports.saveNew = async (req, res) => {
   try {
-    await db.models.Company.create(req.body);
+    const context = await db;
+    await context.models.Company.create(req.body);
     return res.redirect('/company');
-  } catch (error) {
-    return res.status(500).json({ error: error.message });
+  } catch (err) {
+    if (err instanceof ValidationError) {
+      const item = await prepareInvalidItem(err, req);
+      res.locals.company = item;
+      return res.render('company/create.ejs', { title: 'Companies', res });
+    }
+    return res.redirect('/company');
   }
 };
 
 // POST /save/:id
-exports.saveEdit = async (req, res) => {
+module.exports.saveEdit = async (req, res) => {
   try {
-    const { reqId } = req.params.id;
-    const [updated] = await db.models.Company.update(req.body, {
+    const reqId = parseInt(req.params.id, 10);
+    const context = await db;
+    const updated = await context.models.Company.update(req.body, {
       where: { id: reqId },
     });
-    if (updated) {
-      return res.redirect('/company');
+    LOG.info(`Updated: ${JSON.stringify(updated)}`);
+    return res.redirect('/company');
+  } catch (err) {
+    if (err instanceof ValidationError) {
+      const item = await prepareInvalidItem(err, req);
+      res.locals.company = item;
+      return res.render('company/edit.ejs', { title: 'Companies', res });
     }
-    throw new Error(`${reqId} not found`);
-  } catch (error) {
-    return res.status(500).send(error.message);
+    return res.redirect('/company');
   }
 };
 
 // POST /delete/:id
-exports.deleteItem = async (req, res) => {
+module.exports.deleteItem = async (req, res) => {
   try {
-    const { reqId } = req.params.companyId;
-    const deleted = await db.models.Copmany.destroy({
+    const reqId = parseInt(req.params.id, 10);
+    const deleted = (await db).models.Company.destroy({
       where: { id: reqId },
     });
     if (deleted) {
       return res.redirect('/company');
     }
     throw new Error(`${reqId} not found`);
-  } catch (error) {
-    return res.status(500).send(error.message);
+  } catch (err) {
+    return res.status(500).send(err.message);
   }
 };
 
 // RESPOND WITH VIEWS  --------------------------------------------
 
 // GET to this controller base URI (the default)
-exports.showIndex = (req, res) => {
-  // res.send('NOT IMPLEMENTED: Will show company/index.ejs');
-  res.render('company/index.ejs', { title: 'company', req });
+module.exports.showIndex = async (req, res) => {
+  (await db).models.Company.findAll()
+    .then((data) => {
+      res.locals.companies = data;
+      res.render('company/index.ejs', { title: 'Companies', res });
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: err.message || 'Error retrieving all.',
+      });
+    });
 };
 
 // GET /create
-exports.showCreate = (req, res) => {
-  res.send(
-    `NOT IMPLEMENTED: Will show company/create.ejs for ${req.params.id}`,
-  );
+module.exports.showCreate = async (req, res) => {
+  // create a temp company and add it to the response.locals object
+  // this will provide a company object to put any validation errors
+  const tempItem = {
+    name: 'CompanyName',
+    founded: 2020,
+    isPublic: true,
+  };
+  res.locals.company = tempItem;
+  res.render('company/create.ejs', { title: 'Companies', res });
 };
 
 // GET /delete/:id
-exports.showDelete = (req, res) => {
-  res.send(
-    `NOT IMPLEMENTED: Will show company/delete.ejs for ${req.params.id}`,
-  );
+module.exports.showDelete = async (req, res) => {
+  const { id } = req.params;
+  (await db).models.Company.findByPk(id)
+    .then((data) => {
+      res.locals.company = data;
+      if (data) {
+        res.render('company/delete.ejs', { title: 'Companies', res });
+      } else {
+        res.redirect('company/');
+      }
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: `Error retrieving item with id=${id}: ${err.message}`,
+      });
+    });
 };
 
 // GET /details/:id
-exports.showDetails = (req, res) => {
-  res.send(
-    `NOT IMPLEMENTED: Will show company/details.ejs for ${req.params.id}`,
-  );
+module.exports.showDetails = async (req, res) => {
+  const { id } = req.params;
+  (await db).models.Company.findByPk(id)
+    .then((data) => {
+      res.locals.company = data;
+      res.render('company/details.ejs', { title: 'Companies', res });
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: `Error retrieving item with id=${id}: ${err.message}`,
+      });
+    });
 };
 
 // GET /edit/:id
-exports.showEdit = (req, res) => {
-  res.send(`NOT IMPLEMENTED: Will show company/edit.ejs for ${req.params.id}`);
+module.exports.showEdit = async (req, res) => {
+  const { id } = req.params;
+  (await db).models.Company.findByPk(id)
+    .then((data) => {
+      res.locals.company = data;
+      res.render('company/edit.ejs', { title: 'Companies', res });
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: `Error retrieving item with id=${id}: ${err.message}`,
+      });
+    });
 };

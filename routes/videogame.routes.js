@@ -1,5 +1,5 @@
 /**
- * Route food requests to the correct controller function.
+ * Route video game requests to the correct controller function.
  *
  * A request includes:
  *  an HTTP verb (e.g., get or post) AND

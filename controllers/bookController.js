@@ -5,14 +5,15 @@
  * @author shivani tangellapally <s540965@nwmissouri.edu>
  */
 
-const db = require('../models/index');
+const LOG = require('../util/logger');
+
+const db = require('../models/index')();
 
 // FUNCTIONS TO RESPOND WITH JSON DATA  ----------------------------------------
 
 // GET all JSON
-exports.findAll = (req, res) => {
-  db.models.book
-    .findAll()
+module.exports.findAll = async (req, res) => {
+  (await db).models.Book.findAll()
     .then((data) => {
       res.send(data);
     })
@@ -24,10 +25,9 @@ exports.findAll = (req, res) => {
 };
 
 // GET one JSON by ID
-exports.findOne = (req, res) => {
+module.exports.findOne = async (req, res) => {
   const { id } = req.params;
-  db.models.book
-    .findByPk(id)
+  (await db).models.Book.findByPk(id)
     .then((data) => {
       res.send(data);
     })
@@ -41,71 +41,132 @@ exports.findOne = (req, res) => {
 // HANDLE EXECUTE DATA MODIFICATION REQUESTS -----------------------------------
 
 // POST /save
-exports.saveNew = async (req, res) => {
+module.exports.saveNew = async (req, res) => {
+  // create behaves poorly
+  const context = await db;
   try {
-    await db.models.book.create(req.body);
-    return res.redirect('/book');
-  } catch (error) {
-    return res.status(500).json({ error: error.message });
+    context.models.Book.create(req.body);
+  } catch (err) {
+    // store the user inputs & the validation errors in res.locals.book
+    // err includes err.message & err.errors (array of validator msgs)
+    LOG.error('ERROR SAVING RABBIT');
+    const item = {};
+    item.name = req.body.name;
+    item.age = req.body.age;
+    item.isCartoon = req.body.isCartoon;
+    item.errors = err.errors;
+    res.locals.book = item;
+    LOG.info(` ERROR ADDING RABBIT:${item}`);
   }
+  return res.redirect('/book');
 };
 
 // POST /save/:id
-exports.saveEdit = async (req, res) => {
+module.exports.saveEdit = async (req, res) => {
   try {
-    const { reqId } = req.params.id;
-    const [updated] = await db.models.book.update(req.body, {
+    const reqId = parseInt(req.params.id, 10);
+    LOG.info(`Save id: ${reqId}`);
+    // don't use super-current language features unless you add babel
+    const updated = (await db).models.Book.update(req.body, {
       where: { id: reqId },
     });
-    if (updated) {
-      return res.redirect('/book');
-    }
-    throw new Error(`${reqId} not found`);
-  } catch (error) {
-    return res.status(500).send(error.message);
+    LOG.info(`Updated: ${updated}`);
+    return res.redirect('/book'); // always redirect back for now
+  } catch (err) {
+    return res.status(500).send(err.message);
   }
 };
 
 // POST /delete/:id
-exports.deleteItem = async (req, res) => {
+module.exports.deleteItem = async (req, res) => {
   try {
-    const { reqId } = req.params.bookId;
-    const deleted = await db.models.book.destroy({
+    const reqId = parseInt(req.params.id, 10);
+    const deleted = (await db).models.Book.destroy({
       where: { id: reqId },
     });
     if (deleted) {
       return res.redirect('/book');
     }
     throw new Error(`${reqId} not found`);
-  } catch (error) {
-    return res.status(500).send(error.message);
+  } catch (err) {
+    return res.status(500).send(err.message);
   }
 };
 
 // RESPOND WITH VIEWS  --------------------------------------------
 
 // GET to this controller base URI (the default)
-exports.showIndex = (req, res) => {
-  // res.send('NOT IMPLEMENTED: Will show book/index.ejs');
-  res.render('book/index.ejs', { title: 'book', req });
+module.exports.showIndex = async (req, res) => {
+  (await db).models.Book.findAll()
+    .then((data) => {
+      res.locals.books = data;
+      res.render('book/index.ejs', { title: 'Books', res });
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: err.message || 'Error retrieving all.',
+      });
+    });
 };
 
 // GET /create
-exports.showCreate = (req, res) => {
-  res.send(`NOT IMPLEMENTED: Will show book/create.ejs for ${req.params.id}`);
+module.exports.showCreate = async (req, res) => {
+  // create a temp book and add it to the response.locals object
+  // this will provide a book object to put any validation errors
+  const tempItem = {
+    name: 'RabbitName',
+    age: 1,
+    isCartoon: true,
+  };
+  res.locals.book = tempItem;
+  res.render('book/create.ejs', { title: 'Books', res });
 };
 
 // GET /delete/:id
-exports.showDelete = (req, res) => {
-  res.send(`NOT IMPLEMENTED: Will show book/delete.ejs for ${req.params.id}`);
+module.exports.showDelete = async (req, res) => {
+  const { id } = req.params;
+  (await db).models.Book.findByPk(id)
+    .then((data) => {
+      res.locals.book = data;
+      if (data) {
+        res.render('book/delete.ejs', { title: 'Books', res });
+      } else {
+        res.redirect('book/');
+      }
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: `Error retrieving item with id=${id}: ${err.message}`,
+      });
+    });
 };
 
 // GET /details/:id
-exports.showDetails = (req, res) => {
-  res.send(`NOT IMPLEMENTED: Will show book/details.ejs for ${req.params.id}`);
+module.exports.showDetails = async (req, res) => {
+  const { id } = req.params;
+  (await db).models.Book.findByPk(id)
+    .then((data) => {
+      res.locals.book = data;
+      res.render('book/details.ejs', { title: 'Books', res });
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: `Error retrieving item with id=${id}: ${err.message}`,
+      });
+    });
 };
 
 // GET /edit/:id
-exports.showEdit = (req, res) => {
-  res.send(`NOT IMPLEMENTED: Will show book/edit.ejs for ${req.params.id}`);
+module.exports.showEdit = async (req, res) => {
+  const { id } = req.params;
+  (await db).models.Book.findByPk(id)
+    .then((data) => {
+      res.locals.book = data;
+      res.render('book/edit.ejs', { title: 'Books', res });
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: `Error retrieving item with id=${id}: ${err.message}`,
+      });
+    });
 };

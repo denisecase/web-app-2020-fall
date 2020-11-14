@@ -8,4 +8,67 @@
 * @author Joseph Dobelmann <s536997@nwmissouri.edu>
 -->
 
-<p> IN PROGRESS - This is software index.ejs </p>
+<% if (locals.software.success) { %>
+    <div class="alert alert-success" role="alert"><%- software.success %></div>
+    <% } %>
+    
+    <% if (locals.software.error) { %>
+    <div class="alert alert-danger" role="alert"><%- software.error %></div>
+    <% } %>
+
+
+    <div class="card">
+      <div class="card-header">
+        <ul class="nav nav-pills w-100">
+          <li class="nav-pill active">
+            <a class="nav-link">software</a>
+          </li>
+          <li class="nav-pill ml-auto">
+            <a class="nav-link active" href="/software/create"><i class="fas fa-plus"></i></a>
+          </li>
+        </ul>
+      </div>
+      <div class="card-body">
+
+
+        <% if(software.length) { %>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Name</th>
+              <th scope="col">firstReleased</th>
+              <th scope="col">isOpenSource</th>
+              <th >Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for(let i = 0; i< software.length; i++) { %>
+            <tr>
+              <th scope="row"><%= software[i].id %></th>
+              <td><%= software[i].name%></td>
+              <td><%= software[i].firstReleased%></td>
+              <td><%= software[i].isOpenSource%></td>
+              <td>
+                <a class="btn btn-primary details" href="../software/details/<%=software[i].id%>"><i
+                    class="fab fa-sistrix" title="test"></i></a>
+                <a class="btn btn-success edit" href="../software/edit/<%=software[i].id%>"><i class="fas fa-user-edit"></i></a>
+                <a class="btn btn-danger delete" href="../software/delete/<%=software[i].id%>"><i
+                    class="fas fa-trash-alt"></i></a>
+              </td>
+            </tr>
+            <% } %>
+          </tbody>
+        </table>
+        <% } %>
+
+        <!-- Return error if result is empty-->
+        <% if(!software.length) { %>
+        <p class="text-center">No software found!</p>
+        <% } %>
+    
+        <br>
+        <h3>Mouse over icons to see where you will go.</h3>
+    
+      </div>
+    </div>

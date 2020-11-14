@@ -1,9 +1,40 @@
 <!--
-*  Food details view
+*  food details view
 *  Uses HTML and embedded JavaScript (EJS) 
 *  to dyanmically create a webpage to display a food.
 *
 * @author Sri vasavi Vipparla  <S540791@nwmissouri.edu>
 -->
 
-<p> food details.ejs </p>
+
+<% if (food.error) { %>
+    <div class="alert alert-danger" role="alert"><%- food.error %></div>
+    <% } %>
+    
+    <div class="card-body">
+    
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">PricePerLB</th>
+            <th scope="col">IsMeat</th>
+            <th >Action</th>
+          </tr>
+        </thead>
+        <tbody>
+    
+          <tr>
+            <th scope="row"><%= food.id %></th>
+            <td><%= food.name%></td>
+            <td><%= food.PricePerLB%></td>
+            <td><%= food.isMeat%></td>
+            <td>
+              <a class="btn btn-success edit" href="/food">Done</a>
+            </td>
+          </tr>
+    
+        </tbody>
+      </table>
+    
