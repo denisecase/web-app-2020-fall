@@ -4,6 +4,7 @@
 ![GitHub repo size](https://img.shields.io/github/repo-size/denisecase/web-app-2020-fall?style=flat)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 [![Code Style](https://badgen.net/badge/code%20style/airbnb/ff5a5f?icon=airbnb)](https://github.com/airbnb/javascript)
+[![Known Vulnerabilities](https://snyk.io/test/github/denisecase/web-app-2020-fall/badge.svg?targetFile=package.json)](https://snyk.io/test/github/denisecase/web-app-2020-fall?targetFile=package.json)
 
 > Example of a collaborative MVC web app built with the Express web framework for Node.js.
 
