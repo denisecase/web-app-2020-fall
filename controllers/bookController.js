@@ -12,7 +12,7 @@ const db = require('../models/index')();
 // FUNCTIONS TO RESPOND WITH JSON DATA  ----------------------------------------
 
 // GET all JSON
-exports.findAll = async (req, res) => {
+module.exports.findAll = async (req, res) => {
   (await db).models.Book.findAll()
     .then((data) => {
       res.send(data);
@@ -25,7 +25,7 @@ exports.findAll = async (req, res) => {
 };
 
 // GET one JSON by ID
-exports.findOne = async (req, res) => {
+module.exports.findOne = async (req, res) => {
   const { id } = req.params;
   (await db).models.Book.findByPk(id)
     .then((data) => {
@@ -41,7 +41,7 @@ exports.findOne = async (req, res) => {
 // HANDLE EXECUTE DATA MODIFICATION REQUESTS -----------------------------------
 
 // POST /save
-exports.saveNew = async (req, res) => {
+module.exports.saveNew = async (req, res) => {
   // create behaves poorly
   const context = await db;
   try {
@@ -62,7 +62,7 @@ exports.saveNew = async (req, res) => {
 };
 
 // POST /save/:id
-exports.saveEdit = async (req, res) => {
+module.exports.saveEdit = async (req, res) => {
   try {
     const reqId = parseInt(req.params.id, 10);
     LOG.info(`Save id: ${reqId}`);
@@ -78,7 +78,7 @@ exports.saveEdit = async (req, res) => {
 };
 
 // POST /delete/:id
-exports.deleteItem = async (req, res) => {
+module.exports.deleteItem = async (req, res) => {
   try {
     const reqId = parseInt(req.params.id, 10);
     const deleted = (await db).models.Book.destroy({
@@ -96,7 +96,7 @@ exports.deleteItem = async (req, res) => {
 // RESPOND WITH VIEWS  --------------------------------------------
 
 // GET to this controller base URI (the default)
-exports.showIndex = async (req, res) => {
+module.exports.showIndex = async (req, res) => {
   (await db).models.Book.findAll()
     .then((data) => {
       res.locals.books = data;
@@ -110,7 +110,7 @@ exports.showIndex = async (req, res) => {
 };
 
 // GET /create
-exports.showCreate = async (req, res) => {
+module.exports.showCreate = async (req, res) => {
   // create a temp book and add it to the response.locals object
   // this will provide a book object to put any validation errors
   const tempItem = {
@@ -123,7 +123,7 @@ exports.showCreate = async (req, res) => {
 };
 
 // GET /delete/:id
-exports.showDelete = async (req, res) => {
+module.exports.showDelete = async (req, res) => {
   const { id } = req.params;
   (await db).models.Book.findByPk(id)
     .then((data) => {
@@ -142,7 +142,7 @@ exports.showDelete = async (req, res) => {
 };
 
 // GET /details/:id
-exports.showDetails = async (req, res) => {
+module.exports.showDetails = async (req, res) => {
   const { id } = req.params;
   (await db).models.Book.findByPk(id)
     .then((data) => {
@@ -157,7 +157,7 @@ exports.showDetails = async (req, res) => {
 };
 
 // GET /edit/:id
-exports.showEdit = async (req, res) => {
+module.exports.showEdit = async (req, res) => {
   const { id } = req.params;
   (await db).models.Book.findByPk(id)
     .then((data) => {

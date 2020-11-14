@@ -10,7 +10,7 @@ const db = require('../models/index');
 // FUNCTIONS TO RESPOND WITH JSON DATA  ----------------------------------------
 
 // GET all JSON
-exports.findAll = (req, res) => {
+module.exports.findAll = (req, res) => {
   db.models.Chief.findAll()
     .then((data) => {
       res.send(data);
@@ -23,7 +23,7 @@ exports.findAll = (req, res) => {
 };
 
 // GET one JSON by ID
-exports.findOne = (req, res) => {
+module.exports.findOne = (req, res) => {
   const { id } = req.params;
   db.models.Chief.findByPk(id)
     .then((data) => {
@@ -39,7 +39,7 @@ exports.findOne = (req, res) => {
 // HANDLE EXECUTE DATA MODIFICATION REQUESTS -----------------------------------
 
 // POST /save
-exports.saveNew = async (req, res) => {
+module.exports.saveNew = async (req, res) => {
   try {
     await db.models.Chief.create(req.body);
     return res.redirect('/chief');
@@ -49,7 +49,7 @@ exports.saveNew = async (req, res) => {
 };
 
 // POST /save/:id
-exports.saveEdit = async (req, res) => {
+module.exports.saveEdit = async (req, res) => {
   try {
     const { reqId } = req.params.id;
     const [updated] = await db.models.Chief.update(req.body, {
@@ -65,7 +65,7 @@ exports.saveEdit = async (req, res) => {
 };
 
 // POST /delete/:id
-exports.deleteItem = async (req, res) => {
+module.exports.deleteItem = async (req, res) => {
   try {
     const { reqId } = req.params.chiefId;
     const deleted = await db.models.Chief.destroy({
@@ -83,27 +83,27 @@ exports.deleteItem = async (req, res) => {
 // RESPOND WITH VIEWS  --------------------------------------------
 
 // GET to this controller base URI (the default)
-exports.showIndex = (req, res) => {
+module.exports.showIndex = (req, res) => {
   // res.send('NOT IMPLEMENTED: Will show rabbit/index.ejs');
   res.render('chief/index.ejs', { title: 'Chiefs', req });
 };
 
 // GET /create
-exports.showCreate = (req, res) => {
+module.exports.showCreate = (req, res) => {
   res.send(`NOT IMPLEMENTED: Will show chief/create.ejs for ${req.params.id}`);
 };
 
 // GET /delete/:id
-exports.showDelete = (req, res) => {
+module.exports.showDelete = (req, res) => {
   res.send(`NOT IMPLEMENTED: Will show chief/delete.ejs for ${req.params.id}`);
 };
 
 // GET /details/:id
-exports.showDetails = (req, res) => {
+module.exports.showDetails = (req, res) => {
   res.send(`NOT IMPLEMENTED: Will show chief/details.ejs for ${req.params.id}`);
 };
 
 // GET /edit/:id
-exports.showEdit = (req, res) => {
+module.exports.showEdit = (req, res) => {
   res.send(`NOT IMPLEMENTED: Will show chief/edit.ejs for ${req.params.id}`);
 };
