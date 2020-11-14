@@ -6,7 +6,7 @@
  */
 
 // OPTIONAL: If using Sequelize validation features
-const { ValidationError } = require('sequelize');
+// const { ValidationError } = require('sequelize');
 
 const LOG = require('../util/logger');
 

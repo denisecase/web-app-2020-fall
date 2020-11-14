@@ -3,23 +3,43 @@
  *
  *
  */
+const dotenv = require('dotenv');
+const { Sequelize, DataTypes } = require('sequelize');
+const pgconfigs = require('../config/config');
+const LOG = require('../util/logger');
+const rabbit = require('./rabbit');
+const tea = require('./tea');
+const game = require('./game');
+const animal = require('./animal');
+const country = require('./country');
+const chief = require('./chief');
+const plant = require('./plant');
+const food = require('./food');
+const software = require('./software');
+const whiskey = require('./whiskey');
+const book = require('./book');
+const videogame = require('./videogame');
+const company = require('./company');
+const cricket = require('./cricket');
+const series = require('./series');
+const fruit = require('./fruit');
+const dance = require('./dance');
+const ship = require('./ship');
+const pokemon = require('./pokemon');
+const user = require('./user');
 
 module.exports = async () => {
-  const LOG = require('../util/logger');
   LOG.info('Starting models/index.js .......................');
 
   /**
    * Load environment variables from .env file,
    *  where API keys and passwords can be configured.
    */
-  const dotenv = require('dotenv');
   const vars = dotenv.config({ path: '.env' });
   if (vars.error) {
     throw vars.error;
   }
   LOG.info(`Environment variables loaded: ${vars.parsed}`);
-
-  const { Sequelize, DataTypes } = require('sequelize');
 
   /**
    * Test a small query
@@ -60,50 +80,64 @@ module.exports = async () => {
     LOG.info('Start reading all model definitions.');
 
     // Dr. Case - rabbit
-    require('./rabbit')(db, DataTypes);
+    rabbit(db, DataTypes);
 
     // Dr. Hoot - tea
-    require('./tea')(db, DataTypes);
+    tea(db, DataTypes);
 
     // Blake - game
-    require('./game')(db, DataTypes);
+    game(db, DataTypes);
+
     // Varsha - animal
-    require('./animal')(db, DataTypes);
-    // Felipe - ?
+    animal(db, DataTypes);
+
+    // Felipe - country
+    country(db, DataTypes);
 
     // Jack - chief
+    chief(db, DataTypes);
 
     // Sreenidhi - plant
-    require('./plant')(db, DataTypes);
+    plant(db, DataTypes);
+
     // Sri Vasavi - food
-    require('./food')(db, DataTypes);
+    food(db, DataTypes);
+
     // Joseph - software
-    require('./software')(db, DataTypes);
+    software(db, DataTypes);
+
     // Stephen - whiskey
-    require('./whiskey')(db, DataTypes);
+    whiskey(db, DataTypes);
+
     // Shivani - book
-    require('./book')(db, DataTypes);
+    book(db, DataTypes);
+
     // Kunal - videoGame
-    require('./videogame')(db, DataTypes);
+    videogame(db, DataTypes);
+
     // Chandler - company
-    require('./company')(db, DataTypes);
+    company(db, DataTypes);
+
     // Praneeth - cricket
-    require('./cricket')(db, DataTypes);
+    cricket(db, DataTypes);
+
     // Nithya - series
-    require('./series')(db, DataTypes);
+    series(db, DataTypes);
 
     // Zach - fruit
-    require('./fruit')(db, DataTypes);
+    fruit(db, DataTypes);
 
     // Prashansa - dance
-    require('./dance')(db, DataTypes);
+    dance(db, DataTypes);
+
     // Sam - ship
-    require('./ship')(db, DataTypes);
+    ship(db, DataTypes);
+
     // Lindsey - pokemon
-    require('./pokemon')(db, DataTypes);
+    pokemon(db, DataTypes);
 
     // Users
-    require('./user')(db, DataTypes);
+    user(db, DataTypes);
   }
 
   /**
@@ -112,7 +146,6 @@ module.exports = async () => {
   const dbInit = async () => {
     const isProduction = process.env.NODE_ENV === 'production';
     LOG.info(`Entering dbInit in ${process.env.NODE_ENV} environment.`);
-    const pgconfigs = require('../config/config');
     const config = pgconfigs[process.env.NODE_ENV];
     const sequelize = isProduction
       ? new Sequelize(config.url, config)
