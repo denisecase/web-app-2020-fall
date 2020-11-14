@@ -2,7 +2,7 @@
   "name": "web-app-2020-fall",
   "version": "0.0.0",
   "engines": {
-    "node": "14.x"
+    "node": "14"
   },
   "private": true,
   "scripts": {
@@ -10,7 +10,8 @@
     "lint-fix": "eslint --fix .",
     "prettier": "prettier --write .",
     "dev": "nodemon ./bin/www",
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "test" : "echo \"Error: no test specified\""
   },
   "dependencies": {
     "bcryptjs": "latest",
