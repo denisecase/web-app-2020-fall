@@ -8,7 +8,8 @@
  * - production
  *
  *
- * @ link https://github.com/goldbergyoni/nodebestpractices/blob/master/sections/projectstructre/separateexpress.md
+ * @link https://github.com/goldbergyoni/nodebestpractices/
+ *        sections/projectstructre/separateexpress.md
  *
  */
 
