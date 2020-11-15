@@ -24,7 +24,7 @@
     "express-ejs-layouts": "latest",
     "express-session": "latest",
     "express-validator": "latest",
-    "fs": "latest",
+    "fs": "0.0.2",
     "helmet": "latest",
     "hover.css": "latest",
     "http-errors": "latest",
