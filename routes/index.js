@@ -97,7 +97,11 @@ try {
 }
 
 // Sri Vasavi - food
+try{
 router.use('/food', foodRoutes);
+}catch(err){
+  LOG.error(`ERROR: ${err.message}`);
+}
 
 // Joseph - software
 router.use('/software', softwareRoutes);
