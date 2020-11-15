@@ -223,3 +223,17 @@ Authentication & Authorization
 - [NWMSU GDP1 - The Hunt](https://github.com/Krishna-Koyyalamudi/The-Hunt)
 - [ISA NWMSU Repo (GDP 2 Team 4 Section 2)](https://github.com/MAHALAKSHMIKONGARI/GDP_Team-4_Section-2) - example using passport and passport-jwt for user authentication and authorization
 - [ISA NWMSU App](http://isanwmsu.herokuapp.com/)
+
+# Contribute
+See our [Contributing Guide](./CONTRIBUTING.md) for instructions on how to contribute code.
+
+## Contributors
+
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[![All Contributors](https://img.shields.io/badge/all_contributors-13-orange.svg?style=flat-square)](#contributors)
+<!-- ALL-CONTRIBUTORS-BADGE:END --> 
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Your contributions are appreciated!
+

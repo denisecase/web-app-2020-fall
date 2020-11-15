@@ -11,7 +11,7 @@
     "prettier": "prettier --write .",
     "dev": "nodemon ./bin/www",
     "start": "node ./bin/www",
-    "test" : "echo \"Error: no test specified\""
+    "test": "echo \"Error: no test specified\""
   },
   "dependencies": {
     "bcryptjs": "latest",
@@ -39,6 +39,7 @@
     "winston": "latest"
   },
   "devDependencies": {
+    "all-contributors-cli": "^6.19.0",
     "eslint": "latest",
     "eslint-config-airbnb-base": "latest",
     "eslint-config-prettier": "latest",
