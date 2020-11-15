@@ -13,8 +13,9 @@
 
 const router = require('express').Router();
 const controller = require('../controllers/foodController.js');
+const LOG = require('../util/logger');
 
-console.info('Starting food routing.');
+LOG.info('Starting food routing.');
 
 // -----------------------------------------------------------------------------
 // match each expeced verb + URL request
@@ -40,6 +41,6 @@ router.get('/details/:id', controller.showDetails);
 router.get('/edit/:id', controller.showEdit);
 router.get('/delete/:id', controller.showDelete);
 
-console.info('Loaded food routes.');
+LOG.info('Loaded food routes.');
 
 module.exports = router;
