@@ -6,8 +6,11 @@
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 [![Code Style](https://badgen.net/badge/code%20style/airbnb/ff5a5f?icon=airbnb)](https://github.com/airbnb/javascript)
 [![Known Vulnerabilities](https://snyk.io/test/github/denisecase/web-app-2020-fall/badge.svg?targetFile=package.json)](https://snyk.io/test/github/denisecase/web-app-2020-fall?targetFile=package.json)
+
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+
 [![All Contributors](https://img.shields.io/badge/all_contributors-19-orange.svg?style=flat-square)](#contributors-)
+
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 > Example of a collaborative MVC web app built with the Express web framework for Node.js.
@@ -234,6 +237,7 @@ See our [Contributing Guide](./CONTRIBUTING.md) for instructions on how to contr
 ## Contributors
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->

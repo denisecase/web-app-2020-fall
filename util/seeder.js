@@ -181,9 +181,9 @@ module.exports = async (db) => {
   }
   // Praneeth - cricket
   await db.models.Cricket.bulkCreate([
-    { teamName: 'Indian Team', age: 2, captain: 'Dhoni' },
-    { teamName: 'Australian Team', age: 2, captain: 'Smith' },
-    { teamName: 'South African Team', age: 2, captain: 'ABD' },
+    { name: 'IPL', age: 2, isCricket: true },
+    { name: 'Football', age: 2, isCricket: false },
+    { name: 'World Cup', age: 2, isCricket: true },
   ]);
   const numCricket = await db.models.Cricket.count();
   LOG.info(`Seeded ${numCricket} cricket team.`);

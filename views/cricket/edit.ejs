@@ -6,4 +6,36 @@
 * @author Praneeth Vallabhaneni <S541312@nwmissouri.edu>
 -->
 
-<p> cricket edit.ejs </p>
+
+
+<% if (cricket.error) { %>
+    <div class="alert alert-danger" role="alert"><%- cricket.error %></div>
+    <% } %>
+    
+    <div class="card-body">
+    
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Age</th>
+            <th scope="col">IsCricket</th>
+            <th >Action</th>
+          </tr>
+        </thead>
+        <tbody>
+    
+          <tr>
+            <th scope="row"><%= cricket.id %></th>
+            <td><%= cricket.name%></td>
+            <td><%= cricket.age%></td>
+            <td><%= cricket.isCricket%></td>
+            <td>
+              <a class="btn btn-success edit" href="/cricket">Done</a>
+            </td>
+          </tr>
+    
+        </tbody>
+      </table>
+    
