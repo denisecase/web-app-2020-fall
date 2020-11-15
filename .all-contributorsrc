@@ -19,6 +19,15 @@
         "code",
         "doc"
       ]
+    },
+    {
+      "login": "StephenBurke",
+      "name": "Stephen Burke",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/42814417?v=4",
+      "profile": "https://github.com/StephenBurke",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7
