@@ -1,6 +1,6 @@
 # web-app-2020-fall
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-10-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-11-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 [![Build Status](https://travis-ci.org/denisecase/web-app-2020-fall.svg?branch=main)](https://travis-ci.org/denisecase/web-app-2020-fall)
@@ -251,6 +251,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/chanWright"><img src="https://avatars0.githubusercontent.com/u/25439117?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Chandler Wright</b></sub></a><br /><a href="https://github.com/denisecase/web-app-2020-fall/commits?author=chanWright" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/Charles-Hoot"><img src="https://avatars2.githubusercontent.com/u/32575563?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Charles-Hoot</b></sub></a><br /><a href="https://github.com/denisecase/web-app-2020-fall/commits?author=Charles-Hoot" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/zachariahwatson"><img src="https://avatars0.githubusercontent.com/u/54414185?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Zach Watson</b></sub></a><br /><a href="https://github.com/denisecase/web-app-2020-fall/commits?author=zachariahwatson" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/praneethvallabhaneni"><img src="https://avatars0.githubusercontent.com/u/71108379?v=4?s=100" width="100px;" alt=""/><br /><sub><b>praneethvallabhaneni</b></sub></a><br /><a href="https://github.com/denisecase/web-app-2020-fall/commits?author=praneethvallabhaneni" title="Code">💻</a></td>
   </tr>
 </table>
 
