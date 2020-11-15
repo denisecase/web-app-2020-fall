@@ -1,6 +1,6 @@
 # web-app-2020-fall
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 [![Build Status](https://travis-ci.org/denisecase/web-app-2020-fall.svg?branch=main)](https://travis-ci.org/denisecase/web-app-2020-fall)
@@ -241,6 +241,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   <tr>
     <td align="center"><a href="https://github.com/denisecase"><img src="https://avatars0.githubusercontent.com/u/13016516?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Denise Case</b></sub></a><br /><a href="https://github.com/denisecase/web-app-2020-fall/commits?author=denisecase" title="Code">💻</a> <a href="https://github.com/denisecase/web-app-2020-fall/commits?author=denisecase" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/StephenBurke"><img src="https://avatars1.githubusercontent.com/u/42814417?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Stephen Burke</b></sub></a><br /><a href="https://github.com/denisecase/web-app-2020-fall/commits?author=StephenBurke" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/lrfares1996"><img src="https://avatars3.githubusercontent.com/u/54172122?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Lindsey Fares</b></sub></a><br /><a href="https://github.com/denisecase/web-app-2020-fall/commits?author=lrfares1996" title="Code">💻</a></td>
   </tr>
 </table>
 
