@@ -1,5 +1,5 @@
 /**
- * Route food requests to the correct controller function.
+ * Route country requests to the correct controller function.
  *
  * A request includes:
  *  an HTTP verb (e.g., get or post) AND
@@ -8,13 +8,13 @@
  * Match each expeced verb + URL request
  * with a custom function to handle it
  *
- * @author Sri Vasavi Vipparla Case <S540791@nwmissouri.edu>
+ * @author Felipe Sato  <s531355@nwmissouri.edu>
  */
 
 const router = require('express').Router();
-const controller = require('../controllers/foodController.js');
+const controller = require('../controllers/countryController.js');
 
-console.info('Starting food routing.');
+console.info('Starting country routing.');
 
 // -----------------------------------------------------------------------------
 // match each expeced verb + URL request
@@ -40,6 +40,6 @@ router.get('/details/:id', controller.showDetails);
 router.get('/edit/:id', controller.showEdit);
 router.get('/delete/:id', controller.showDelete);
 
-console.info('Loaded food routes.');
+console.info('Loaded country routes.');
 
 module.exports = router;

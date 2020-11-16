@@ -1,9 +1,17 @@
 # web-app-2020-fall
 
+[![Build Status](https://travis-ci.org/denisecase/web-app-2020-fall.svg?branch=main)](https://travis-ci.org/denisecase/web-app-2020-fall)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/dabde95955984dd08493709c421c7da6)](https://app.codacy.com/gh/denisecase/web-app-2020-fall?utm_source=github.com&utm_medium=referral&utm_content=denisecase/web-app-2020-fall&utm_campaign=Badge_Grade)
 ![GitHub repo size](https://img.shields.io/github/repo-size/denisecase/web-app-2020-fall?style=flat)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 [![Code Style](https://badgen.net/badge/code%20style/airbnb/ff5a5f?icon=airbnb)](https://github.com/airbnb/javascript)
+[![Known Vulnerabilities](https://snyk.io/test/github/denisecase/web-app-2020-fall/badge.svg?targetFile=package.json)](https://snyk.io/test/github/denisecase/web-app-2020-fall?targetFile=package.json)
+
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+
+[![All Contributors](https://img.shields.io/badge/all_contributors-19-orange.svg?style=flat-square)](#contributors-)
+
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 > Example of a collaborative MVC web app built with the Express web framework for Node.js.
 
@@ -221,3 +229,49 @@ Authentication & Authorization
 - [NWMSU GDP1 - The Hunt](https://github.com/Krishna-Koyyalamudi/The-Hunt)
 - [ISA NWMSU Repo (GDP 2 Team 4 Section 2)](https://github.com/MAHALAKSHMIKONGARI/GDP_Team-4_Section-2) - example using passport and passport-jwt for user authentication and authorization
 - [ISA NWMSU App](http://isanwmsu.herokuapp.com/)
+
+# Contribute
+
+See our [Contributing Guide](./CONTRIBUTING.md) for instructions on how to contribute code.
+
+## Contributors
+
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/denisecase"><img src="https://avatars0.githubusercontent.com/u/13016516?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Denise Case</b></sub></a><br /><a href="https://github.com/denisecase/web-app-2020-fall/commits?author=denisecase" title="Code">💻</a> <a href="https://github.com/denisecase/web-app-2020-fall/commits?author=denisecase" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/StephenBurke"><img src="https://avatars1.githubusercontent.com/u/42814417?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Stephen Burke</b></sub></a><br /><a href="https://github.com/denisecase/web-app-2020-fall/commits?author=StephenBurke" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/lrfares1996"><img src="https://avatars3.githubusercontent.com/u/54172122?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Lindsey Fares</b></sub></a><br /><a href="https://github.com/denisecase/web-app-2020-fall/commits?author=lrfares1996" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/bben6087"><img src="https://avatars2.githubusercontent.com/u/54418954?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Blake Bennett</b></sub></a><br /><a href="https://github.com/denisecase/web-app-2020-fall/commits?author=bben6087" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/SRitt12"><img src="https://avatars0.githubusercontent.com/u/54680543?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Sam Ritter</b></sub></a><br /><a href="https://github.com/denisecase/web-app-2020-fall/commits?author=SRitt12" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/cherryvarsha99"><img src="https://avatars2.githubusercontent.com/u/70028775?v=4?s=100" width="100px;" alt=""/><br /><sub><b>varsha vellanki</b></sub></a><br /><a href="https://github.com/denisecase/web-app-2020-fall/commits?author=cherryvarsha99" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/shivani-ta"><img src="https://avatars2.githubusercontent.com/u/69983357?v=4?s=100" width="100px;" alt=""/><br /><sub><b>shivani tangellapally</b></sub></a><br /><a href="https://github.com/denisecase/web-app-2020-fall/commits?author=shivani-ta" title="Code">💻</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/chanWright"><img src="https://avatars0.githubusercontent.com/u/25439117?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Chandler Wright</b></sub></a><br /><a href="https://github.com/denisecase/web-app-2020-fall/commits?author=chanWright" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/Charles-Hoot"><img src="https://avatars2.githubusercontent.com/u/32575563?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Charles-Hoot</b></sub></a><br /><a href="https://github.com/denisecase/web-app-2020-fall/commits?author=Charles-Hoot" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/zachariahwatson"><img src="https://avatars0.githubusercontent.com/u/54414185?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Zach Watson</b></sub></a><br /><a href="https://github.com/denisecase/web-app-2020-fall/commits?author=zachariahwatson" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/praneethvallabhaneni"><img src="https://avatars0.githubusercontent.com/u/71108379?v=4?s=100" width="100px;" alt=""/><br /><sub><b>praneethvallabhaneni</b></sub></a><br /><a href="https://github.com/denisecase/web-app-2020-fall/commits?author=praneethvallabhaneni" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/PrashansaAmbarkar"><img src="https://avatars1.githubusercontent.com/u/70028754?v=4?s=100" width="100px;" alt=""/><br /><sub><b>PrashansaAmbarkar</b></sub></a><br /><a href="https://github.com/denisecase/web-app-2020-fall/commits?author=PrashansaAmbarkar" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/JackWBeaver"><img src="https://avatars2.githubusercontent.com/u/54329775?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Jack Beaver</b></sub></a><br /><a href="https://github.com/denisecase/web-app-2020-fall/commits?author=JackWBeaver" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/Srivasavi-vipparla"><img src="https://avatars1.githubusercontent.com/u/69984398?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Sri Vasavi</b></sub></a><br /><a href="https://github.com/denisecase/web-app-2020-fall/commits?author=Srivasavi-vipparla" title="Code">💻</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/FelipeGHB"><img src="https://avatars1.githubusercontent.com/u/46767469?v=4?s=100" width="100px;" alt=""/><br /><sub><b>FelipeGHB</b></sub></a><br /><a href="https://github.com/denisecase/web-app-2020-fall/commits?author=FelipeGHB" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/KarepeN"><img src="https://avatars0.githubusercontent.com/u/70028952?v=4?s=100" width="100px;" alt=""/><br /><sub><b>KarepeN</b></sub></a><br /><a href="https://github.com/denisecase/web-app-2020-fall/commits?author=KarepeN" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/kvohra93"><img src="https://avatars1.githubusercontent.com/u/70285661?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Kunal</b></sub></a><br /><a href="https://github.com/denisecase/web-app-2020-fall/commits?author=kvohra93" title="Code">💻</a></td>
+    <td align="center"><a href="https://www.codacy.com/"><img src="https://avatars3.githubusercontent.com/u/23704769?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Codacy Badger</b></sub></a><br /><a href="https://github.com/denisecase/web-app-2020-fall/commits?author=codacy-badger" title="Code">💻</a></td>
+    <td align="center"><a href="https://snyk.io/"><img src="https://avatars2.githubusercontent.com/u/19733683?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Snyk bot</b></sub></a><br /><a href="https://github.com/denisecase/web-app-2020-fall/commits?author=snyk-bot" title="Code">💻</a></td>
+  </tr>
+</table>
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Your contributions are appreciated!
