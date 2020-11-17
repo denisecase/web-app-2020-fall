@@ -1,11 +1,73 @@
 <!--
-*  Rabbit index view
-*  (the default rabbit page)
+*  Fruit index view
+*  (the default fruit page)
 *  
 *  Uses HTML and embedded JavaScript (EJS) 
-*  to dyanmically create a webpage to list all rabbits.
+*  to dyanmically create a webpage to list all fruit.
 *
-* @author Denise Case <dcase@nwmissouri.edu>
+* @author Zach Watson <s531994@nwmissouri.edu>
 -->
 
-<p> IN PROGRESS - This is fruit index.ejs </p>
+<% if (locals.fruit.success) { %>
+    <div class="alert alert-success" role="alert"><%- fruit.success %></div>
+    <% } %>
+    
+    <% if (locals.fruit.error) { %>
+    <div class="alert alert-danger" role="alert"><%- fruit.error %></div>
+    <% } %>
+    
+    <div class="card">
+      <div class="card-header">
+        <ul class="nav nav-pills w-100">
+          <li class="nav-pill active">
+            <a class="nav-link">Fruit</a>
+          </li>
+          <li class="nav-pill ml-auto">
+            <a class="nav-link active" href="/fruit/create"><i class="fas fa-plus"></i></a>
+          </li>
+        </ul>
+      </div>
+      <div class="card-body">
+    
+        <% if(fruit.length) { %>
+          <p>test</p>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Name</th>
+              <th scope="col">DaysGrowth</th>
+              <th scope="col">IsRipe?</th>
+              <th >Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for(let i = 0; i< fruit.length; i++) { %>
+            <tr>
+              <th scope="row"><%= fruit[i].id %></th>
+              <td><%= fruit[i].name%></td>
+              <td><%= fruit[i].daysGrowth%></td>
+              <td><%= fruit[i].isRipe%></td>
+              <td>
+                <a class="btn btn-primary details" href="../fruit/details/<%=fruit[i].id%>"><i
+                    class="fab fa-sistrix" title="test"></i></a>
+                <a class="btn btn-success edit" href="../fruit/edit/<%=fruit[i].id%>"><i class="fas fa-user-edit"></i></a>
+                <a class="btn btn-danger delete" href="../fruit/delete/<%=fruit[i].id%>"><i
+                    class="fas fa-trash-alt"></i></a>
+              </td>
+            </tr>
+            <% } %>
+          </tbody>
+        </table>
+        <% } %>
+    
+        <!-- if result is empty -->
+        <% if(!fruit.length) { %>
+        <p class="text-center">No fruit found!</p>
+        <% } %>
+    
+        <br>
+        <h3>Mouse over icons to see where you will go.</h3>
+    
+      </div>
+    </div>

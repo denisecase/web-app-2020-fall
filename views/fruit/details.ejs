@@ -1,9 +1,39 @@
 <!--
-*  Rabbit details view
+*  Fruit details view
 *  Uses HTML and embedded JavaScript (EJS) 
-*  to dyanmically create a webpage to display a rabbit.
+*  to dyanmically create a webpage to display a fruit.
 *
-* @author Denise Case <dcase@nwmissouri.edu>
+* @author Zach Watson <s531994@nwmissouri.edu>
 -->
 
-<p> fruit details.ejs </p>
+<% if (fruit.error) { %>
+    <div class="alert alert-danger" role="alert"><%- fruit.error %></div>
+    <% } %>
+    
+    <div class="card-body">
+    
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">DaysGrowth</th>
+            <th scope="col">IsRipe</th>
+            <th >Action</th>
+          </tr>
+        </thead>
+        <tbody>
+    
+          <tr>
+            <th scope="row"><%= fruit.id %></th>
+            <td><%= fruit.name%></td>
+            <td><%= fruit.daysGrowth%></td>
+            <td><%= fruit.isRipe%></td>
+            <td>
+              <a class="btn btn-success edit" href="/fruit">Done</a>
+            </td>
+          </tr>
+    
+        </tbody>
+      </table>
+    
