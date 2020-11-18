@@ -4,7 +4,6 @@
  *
  * @author Nithya Karepe<s540109@nwmissouri.edu>
  */
-
 module.exports = (db, DataTypes) => {
   db.define('Series', {
     // sqlite creates a rowid attribute automatically

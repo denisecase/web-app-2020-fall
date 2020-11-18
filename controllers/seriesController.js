@@ -1,6 +1,6 @@
 /**
- *  series controller
- *  Handles requests related to seriess(see routes)
+ *  Series controller
+ *  Handles requests related to series(see routes)
  *
  * @author Nithya Karepe <s540109@nwmissouri.edu>
  */
