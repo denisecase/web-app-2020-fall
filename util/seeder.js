@@ -108,7 +108,7 @@ module.exports = async (db) => {
     { name: 'Money Heist', seasons: 4, isComedy: false },
   ]);
   const numSeries = await db.models.Series.count();
-  LOG.info(`Seeded ${numSeries} seriess.`);
+  LOG.info(`Seeded ${numSeries} series.`);
 
   // Sri Vasavi - food
   await db.models.food.bulkCreate([

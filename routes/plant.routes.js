@@ -13,8 +13,9 @@
 
 const router = require('express').Router();
 const controller = require('../controllers/plantController.js');
+const LOG = require('../util/logger');
 
-console.info('Starting plant routing.');
+LOG.info('Starting plant routing.');
 
 // -----------------------------------------------------------------------------
 // match each expeced verb + URL request
@@ -40,6 +41,6 @@ router.get('/details/:id', controller.showDetails);
 router.get('/edit/:id', controller.showEdit);
 router.get('/delete/:id', controller.showDelete);
 
-console.info('Loaded plant routes.');
+LOG.info('Loaded plant routes.');
 
 module.exports = router;

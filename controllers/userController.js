@@ -6,7 +6,7 @@
  */
 
 // OPTIONAL: If using Sequelize validation features
-const { ValidationError } = require('sequelize');
+// const { ValidationError } = require('sequelize');
 
 const LOG = require('../util/logger');
 
@@ -15,7 +15,7 @@ const db = require('../models/index')();
 // FUNCTIONS TO RESPOND WITH JSON DATA  ----------------------------------------
 
 // GET all JSON
-exports.findAll = async (req, res) => {
+module.exports.findAll = async (req, res) => {
   (await db).models.User.findAll()
     .then((data) => {
       res.send(data);
@@ -30,19 +30,19 @@ exports.findAll = async (req, res) => {
 // HANDLE EXECUTE DATA MODIFICATION REQUESTS -----------------------------------
 
 // POST /login
-exports.postLogin = async (req, res) => {
+module.exports.postLogin = async (req, res) => {
   LOG.info('Called login');
   return res.redirect('/');
 };
 
 // POST /register
-exports.postRegister = async (req, res) => {
+module.exports.postRegister = async (req, res) => {
   LOG.info('Called register');
   return res.redirect('/');
 };
 
 // POST /forgot-password
-exports.postForgotPassword = async (req, res) => {
+module.exports.postForgotPassword = async (req, res) => {
   LOG.info('Called forgot password');
   return res.redirect('/');
 };
@@ -50,16 +50,16 @@ exports.postForgotPassword = async (req, res) => {
 // RESPOND WITH VIEWS  --------------------------------------------
 
 // GET /login
-exports.showLogin = async (req, res) => {
+module.exports.showLogin = async (req, res) => {
   return res.render('user/login.ejs', { title: 'Users', res });
 };
 
 // GET /register
-exports.showRegister = async (req, res) => {
+module.exports.showRegister = async (req, res) => {
   return res.render('user/register.ejs', { title: 'Users', res });
 };
 
 // GET /forgot-password
-exports.showForgotPassword = async (req, res) => {
+module.exports.showForgotPassword = async (req, res) => {
   return res.render('user/forgotPassword.ejs', { title: 'Users', res });
 };

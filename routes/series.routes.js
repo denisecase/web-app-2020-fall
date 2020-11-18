@@ -10,11 +10,11 @@
  *
  * @author Nithya Karepe<s540109@nwmissouri.edu>
  */
-
 const router = require('express').Router();
 const controller = require('../controllers/seriesController.js');
+const LOG = require('../util/logger');
 
-console.info('Starting series routing.');
+LOG.info('Starting series routing.');
 
 // -----------------------------------------------------------------------------
 // match each expeced verb + URL request
@@ -40,6 +40,6 @@ router.get('/details/:id', controller.showDetails);
 router.get('/edit/:id', controller.showEdit);
 router.get('/delete/:id', controller.showDelete);
 
-console.info('Loaded series routes.');
+LOG.info('Loaded series routes.');
 
 module.exports = router;

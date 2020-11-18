@@ -1,9 +1,40 @@
 <!--
-*  Rabbit delete view
+*  Fruit delete view
 *  Uses HTML and embedded JavaScript (EJS) 
-*  to dyanmically create a webpage to delete a rabbit.
+*  to dyanmically create a webpage to delete a fruit.
 *
-* @author Denise Case <dcase@nwmissouri.edu>
+* @author Zach Watson <s531994@nwmissouri.edu>
 -->
 
-<p> fruit delete.ejs </p>
+<% if (fruit.error) { %>
+    <div class="alert alert-danger" role="alert"><%- fruit.error %></div>
+    <% } %>
+    
+    <div class="card-body">
+    
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">DaysGrowth</th>
+            <th scope="col">IsRipe</th>
+            <th width=>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+    
+          <tr>
+            <th scope="row"><%= fruit.id %></th>
+            <td><%= fruit.name%></td>
+            <td><%= fruit.daysGrowth%></td>
+            <td><%= fruit.isRipe%></td>
+            <td>
+              <form action="/fruit/delete/<%=fruit.id%>" method="post">
+                <input type="submit" class="btn btn-danger delete" value="Delete" onclick="return alert('Are You sure?')"/>
+              </form>
+            </td>
+          </tr>
+    
+        </tbody>
+      </table>

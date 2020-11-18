@@ -12,7 +12,7 @@
  */
 
 const router = require('express').Router();
-const controller = require('../controllers/videogameController.js');
+const controller = require('../controllers/videoGameController');
 
 console.info('Starting Video Game routing.');
 
