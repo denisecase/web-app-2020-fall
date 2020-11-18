@@ -6,4 +6,36 @@
 * @author Nithya Karepe<s540109@nwmissouri.edu>
 -->
 
-<p> series delete.ejs </p>
+<% if (series.error) { %>
+    <div class="alert alert-danger" role="alert"><%- series.error %></div>
+    <% } %>
+    
+    <div class="card-body">
+    
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Seasons</th>
+            <th scope="col">IsComedy</th>
+            <th width=>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+    
+          <tr>
+            <th scope="row"><%= series.id %></th>
+            <td><%= series.name%></td>
+            <td><%= series.seasons%></td>
+            <td><%= series.isComedy%></td>
+            <td>
+              <form action="/series/delete/<%=series.id%>" method="post">
+                <input type="submit" class="btn btn-danger delete" value="Delete" onclick="return alert('Are You sure?')"/>
+              </form>
+            </td>
+          </tr>
+    
+        </tbody>
+      </table>
+    
