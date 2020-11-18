@@ -8,4 +8,66 @@
 * @author Nithya Karepe<s540109@nwmissouri.edu>
 -->
 
-<p> IN PROGRESS - This is series index.ejs </p>
+
+<% if (locals.series.success) { %>
+    <div class="alert alert-success" role="alert"><%- series.success %></div>
+    <% } %>
+    
+    <% if (locals.series.error) { %>
+    <div class="alert alert-danger" role="alert"><%- series.error %></div>
+    <% } %>
+    
+    <div class="card">
+      <div class="card-header">
+        <ul class="nav nav-pills w-100">
+          <li class="nav-pill active">
+            <a class="nav-link">Series</a>
+          </li>
+          <li class="nav-pill ml-auto">
+            <a class="nav-link active" href="/series/create"><i class="fas fa-plus"></i></a>
+          </li>
+        </ul>
+      </div>
+      <div class="card-body">
+    
+        <% if(series.length) { %>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Name</th>
+              <th scope="col">Seasons</th>
+              <th scope="col">IsComedy?</th>
+              <th >Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for(let i = 0; i< series.length; i++) { %>
+            <tr>
+              <th scope="row"><%= series[i].id %></th>
+              <td><%= series[i].name%></td>
+              <td><%= series[i].seasons%></td>
+              <td><%= series[i].isComedy%></td>
+              <td>
+                <a class="btn btn-primary details" href="../series/details/<%=series[i].id%>"><i
+                    class="fab fa-sistrix" title="test"></i></a>
+                <a class="btn btn-success edit" href="../series/edit/<%=series[i].id%>"><i class="fas fa-user-edit"></i></a>
+                <a class="btn btn-danger delete" href="../series/delete/<%=series[i].id%>"><i
+                    class="fas fa-trash-alt"></i></a>
+              </td>
+            </tr>
+            <% } %>
+          </tbody>
+        </table>
+        <% } %>
+    
+        <!-- if result is empty -->
+        <% if(!series.length) { %>
+        <p class="text-center">No series found!</p>
+        <% } %>
+    
+        <br>
+        <h3>Mouse over icons to see where you will go.</h3>
+    
+      </div>
+    </div>
