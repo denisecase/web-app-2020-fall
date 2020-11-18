@@ -10,7 +10,6 @@
  *
  * @author Nithya Karepe<s540109@nwmissouri.edu>
  */
-
 const router = require('express').Router();
 const controller = require('../controllers/seriesController.js');
 const LOG = require('../util/logger');
