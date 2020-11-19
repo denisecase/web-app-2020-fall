@@ -1,0 +1,47 @@
+<!--
+*  chief create view
+*  Uses HTML and embedded JavaScript (EJS) 
+*  to dyanmically create a webpage to create a new chief.
+*
+* @author Jack W Beaver <s526937@nwmissouri.edu>
+-->
+
+
+<% if (chief && chief.error) { %>
+    <div class="alert alert-danger" role="alert"><%- JSON.stringify(chief.error) %></div>
+    <% } %>
+  
+  <div class="card">
+    <div class="card-header">
+      Add chief
+    </div>
+    <div class="card-body">
+      <form action="/chief/save" method="post"></form>
+        <div class="form-group">
+          <label for="chief">chief:</label>
+          <input type="text" class="form-control" id="chief" name="chief" value="<%= chief.chief %>" autocomplete="off">
+        </div>
+        <div class="form-group">
+          <label for="player">player:</label>
+          <input type="number" class="form-control" id="player" name="player" value="<%= chief.player %>" >
+        </div>
+        <br>
+        <div class="form-group">
+          <label for="teamSince">teamSince:</label>
+          <input type="number" class="form-control" id="teamSince" name="teamSince" value="<%= chief.teamSince %>" >
+        </div>
+        <br>
+        <!-- Checked checkbox -->
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="checkbox" value="<%= chief.isSuperBowlChamp %>" checked />
+          <label class="form-check-label" for="checkbox">
+            Is SuperBowl Champ?
+          </label>
+        </div>
+        <br>
+        <div class="form-group">
+          <input type="submit" class="btn btn-info" title="Submits a POST /save request" value="Create" />
+        </div>
+      </form>
+    </div>
+  </div>

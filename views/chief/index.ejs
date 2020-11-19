@@ -1,0 +1,74 @@
+<!--
+*  chief index view
+*  (the default chief page)
+*  
+*  Uses HTML and embedded JavaScript (EJS) 
+*  to dyanmically create a webpage to list all chief.
+*
+* @author Jack W Beaver <s526937@nwmissouri.edu>
+-->
+
+<% if (locals.chiefs.success) { %>
+    <div class="alert alert-success" role="alert"><%- chief.success %></div>
+    <% } %>
+    
+    <% if (locals.chiefs.error) { %>
+    <div class="alert alert-danger" role="alert"><%- chief.error %></div>
+    <% } %>
+    
+    <div class="card">
+      <div class="card-header">
+        <ul class="nav nav-pills w-100">
+          <li class="nav-pill active">
+            <a class="nav-link">chiefs</a>
+          </li>
+          <li class="nav-pill ml-auto">
+            <a class="nav-link active" href="/chief/create"><i class="fas fa-plus"></i></a>
+          </li>
+        </ul>
+      </div>
+      <div class="card-body">
+    
+        <% if(chiefs.length) { %>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">chief</th>
+              <th scope="col">player</th>
+              <th scope="col">teamSince</th>
+              <th scope="col">isSuperBowlChamp</th>
+              <th >Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for(let i = 0; i< chiefs.length; i++) { %>
+            <tr>
+              <th scope="row"><%= chiefs[i].id %></th>
+              <td><%= chiefs[i].chief%></td>
+              <td><%= chiefs[i].player%></td>
+              <td><%= chiefs[i].teamSince%></td>
+              <td><%= chiefs[i].isSuperBowlChamp%></td>
+              <td>
+                <a class="btn btn-primary details" href="../chief/details/<%=chiefs[i].id%>"><i
+                    class="fab fa-sistrix" title="test"></i></a>
+                <a class="btn btn-success edit" href="../chief/edit/<%=chiefs[i].id%>"><i class="fas fa-user-edit"></i></a>
+                <a class="btn btn-danger delete" href="../chief/delete/<%=chiefs[i].id%>"><i
+                    class="fas fa-trash-alt"></i></a>
+              </td>
+            </tr>
+            <% } %>
+          </tbody>
+        </table>
+        <% } %>
+    
+        <!-- if result is empty -->
+        <% if(!chief.length) { %>
+        <p class="text-center">No chiefs found!</p>
+        <% } %>
+    
+        <br>
+        <h3>Mouse over icons to see where you will go.</h3>
+    
+      </div>
+    </div>
