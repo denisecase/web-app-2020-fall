@@ -21,9 +21,8 @@ module.exports = (db, DataTypes) => {
         type: DataTypes.STRING(50),
       },
     },
-  },
-  {
-    // Other model options go here
- 
-  });
+    {
+      // Other model options go here
+    }
+  );
 };

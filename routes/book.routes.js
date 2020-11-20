@@ -13,8 +13,9 @@
 
 const router = require('express').Router();
 const controller = require('../controllers/bookController.js');
+const LOG = require('../util/logger');
 
-console.info('Starting book routing.');
+LOG.info('Starting book routing.');
 
 // -----------------------------------------------------------------------------
 // match each expeced verb + URL request
