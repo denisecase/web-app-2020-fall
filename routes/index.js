@@ -13,7 +13,6 @@ const LOG = require('../util/logger');
 const userRouter = require('./users');
 const rabbitRoutes = require('./rabbit.routes');
 const animalRoutes = require('./animal.routes');
-const teaRoutes = require('./tea.routes');
 const gameRoutes = require('./game.routes');
 const countryRoutes = require('./country.routes');
 const chiefRoutes = require('./chief.routes');
@@ -30,6 +29,11 @@ const fruitRoutes = require('./fruit.routes');
 const shipRoutes = require('./ship.routes');
 const danceRoutes = require('./dance.routes');
 const pokemanRoutes = require('./pokemon.routes');
+const clueRoutes = require('./clue.routes');
+const competitionRoutes = require('./competition.routes');
+const locationRoutes = require('./location.routes');
+const questRoutes = require('./quest.routes');
+const teamRoutes = require('./team.routes');
 
 LOG.info('routes/index.js: STARTING custom routes......');
 
@@ -57,9 +61,6 @@ try {
 } catch (err) {
   LOG.error(`ERROR: ${err.message}`);
 }
-
-// Dr. Hoot - tea
-router.use('/tea', teaRoutes);
 
 // Blake - game
 try {
@@ -159,6 +160,36 @@ try {
 // Lindsey - Pokemon
 try {
   router.use('/pokemon', pokemanRoutes);
+} catch (err) {
+  LOG.error(`ERROR: ${err.message}`);
+}
+
+// Dr. Case - hunt
+try {
+  router.use('/clue', clueRoutes);
+} catch (err) {
+  LOG.error(`ERROR: ${err.message}`);
+}
+try {
+  router.use('/competition', competitionRoutes);
+} catch (err) {
+  LOG.error(`ERROR: ${err.message}`);
+}
+
+try {
+  router.use('/location', locationRoutes);
+} catch (err) {
+  LOG.error(`ERROR: ${err.message}`);
+}
+
+try {
+  router.use('/quest', questRoutes);
+} catch (err) {
+  LOG.error(`ERROR: ${err.message}`);
+}
+
+try {
+  router.use('/team', teamRoutes);
 } catch (err) {
   LOG.error(`ERROR: ${err.message}`);
 }

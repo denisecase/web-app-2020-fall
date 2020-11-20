@@ -93,27 +93,27 @@ module.exports.showIndex = (req, res) => {
 // GET /create
 module.exports.showCreate = (req, res) => {
   res.send(
-    `NOT IMPLEMENTED: Will show videogame/create.ejs for ${req.params.id}`,
+    `NOT IMPLEMENTED: Will show videogame/create.ejs for ${req.params.id}`
   );
 };
 
 // GET /delete/:id
 module.exports.showDelete = (req, res) => {
   res.send(
-    `NOT IMPLEMENTED: Will show videogame/delete.ejs for ${req.params.id}`,
+    `NOT IMPLEMENTED: Will show videogame/delete.ejs for ${req.params.id}`
   );
 };
 
 // GET /details/:id
 module.exports.showDetails = (req, res) => {
   res.send(
-    `NOT IMPLEMENTED: Will show videogame/details.ejs for ${req.params.id}`,
+    `NOT IMPLEMENTED: Will show videogame/details.ejs for ${req.params.id}`
   );
 };
 
 // GET /edit/:id
 module.exports.showEdit = (req, res) => {
   res.send(
-    `NOT IMPLEMENTED: Will show videogame/edit.ejs for ${req.params.id}`,
+    `NOT IMPLEMENTED: Will show videogame/edit.ejs for ${req.params.id}`
   );
 };

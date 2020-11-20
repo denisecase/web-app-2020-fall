@@ -1,45 +1,20 @@
 /**
- *  Chief controller
- *  Handles requests related to chiefs (see routes)
+ *  Quest controller
+ *  Handles requests related to this resource (see routes)
  *
- * @author Jack W Beaver <s526937@nwmissouri.edu>
+ * @author Denise Case <dcase@nwmissouri.edu>
  */
-
-const { ValidationError } = require('sequelize');
-
+// const { ValidationError } = require('sequelize');
 const LOG = require('../util/logger');
-
 const db = require('../models/index')();
 
-// OPTIONAL: VALIDATION Helper function ----------------------
+const tabTitle = 'Quests';
 
-/**
- * Prepare an item from the request information and add
- * an 'error' attribute to share with the view.
- *
- * @param {*} err - the error
- * @param {*} req - the request
- * @returns - the item to attach to response.locals
- */
-async function prepareInvalidItem(err, req) {
-  LOG.error('ERROR SAVING ITEM');
-  LOG.error('Captured validation error: ', err.errors[0].message);
-  const item = {};
-  if (req.body.id) {
-    item.id = req.body.id;
-  }
-  item.name = req.body.player;
-  item.playerCount = req.body.teamSince;
-  item.isCardchief = req.body.isSuperBowlChamp;
-  item.error = err.errors[0].message;
-  LOG.info(`ERROR SAVING ITEM: ${JSON.stringify(item)}`);
-  return item;
-}
 // FUNCTIONS TO RESPOND WITH JSON DATA  ----------------------------------------
 
 // GET all JSON
 module.exports.findAll = async (req, res) => {
-  (await db).models.Chief.findAll()
+  (await db).models.Quest.findAll()
     .then((data) => {
       res.send(data);
     })
@@ -53,7 +28,7 @@ module.exports.findAll = async (req, res) => {
 // GET one JSON by ID
 module.exports.findOne = async (req, res) => {
   const { id } = req.params;
-  (await db).models.Chief.findByPk(id)
+  (await db).models.Quest.findByPk(id)
     .then((data) => {
       res.send(data);
     })
@@ -70,15 +45,15 @@ module.exports.findOne = async (req, res) => {
 module.exports.saveNew = async (req, res) => {
   try {
     const context = await db;
-    await context.models.chief.create(req.body);
-    return res.redirect('/chief');
+    await context.models.Quest.create(req.body);
+    return res.redirect('/quest');
   } catch (err) {
-    if (err instanceof ValidationError) {
-      const item = await prepareInvalidItem(err, req);
-      res.locals.chief = item;
-      return res.render('chief/create.ejs', { title: 'chiefs', res });
-    }
-    return res.redirect('/chief');
+    // if (err instanceof ValidationError) {
+    //   const item = await prepareInvalidItem(err, req);
+    //   res.locals.quest = item;
+    //   return res.render('quest/create.ejs', { title: tabTitle, res });
+    // }
+    return res.redirect('/quest');
   }
 };
 
@@ -87,18 +62,18 @@ module.exports.saveEdit = async (req, res) => {
   try {
     const reqId = parseInt(req.params.id, 10);
     const context = await db;
-    const updated = await context.models.chief.update(req.body, {
+    const updated = await context.models.Quest.update(req.body, {
       where: { id: reqId },
     });
     LOG.info(`Updated: ${JSON.stringify(updated)}`);
-    return res.redirect('/chief');
+    return res.redirect('/quest');
   } catch (err) {
-    if (err instanceof ValidationError) {
-      const item = await prepareInvalidItem(err, req);
-      res.locals.chief = item;
-      return res.render('chief/edit.ejs', { title: 'chiefs', res });
-    }
-    return res.redirect('/chief');
+    // if (err instanceof ValidationError) {
+    //   const item = await prepareInvalidItem(err, req);
+    //   res.locals.quest = item;
+    //   return res.render('quest/edit.ejs', { title: tabTitle, res });
+    // }
+    return res.redirect('/quest');
   }
 };
 
@@ -106,11 +81,11 @@ module.exports.saveEdit = async (req, res) => {
 module.exports.deleteItem = async (req, res) => {
   try {
     const reqId = parseInt(req.params.id, 10);
-    const deleted = (await db).models.chief.destroy({
+    const deleted = (await db).models.Quest.destroy({
       where: { id: reqId },
     });
     if (deleted) {
-      return res.redirect('/chief');
+      return res.redirect('/quest');
     }
     throw new Error(`${reqId} not found`);
   } catch (err) {
@@ -122,12 +97,10 @@ module.exports.deleteItem = async (req, res) => {
 
 // GET to this controller base URI (the default)
 module.exports.showIndex = async (req, res) => {
-  // res.send('NOT IMPLEMENTED: Will show chief/index.ejs');
-  (await db).models.chief
-    .findAll()
+  (await db).models.Quest.findAll()
     .then((data) => {
-      res.locals.chiefs = data;
-      res.render('chief/index.ejs', { title: 'chiefs', res });
+      res.locals.quests = data;
+      res.render('quest/index.ejs', { title: tabTitle, res });
     })
     .catch((err) => {
       res.status(500).send({
@@ -138,28 +111,26 @@ module.exports.showIndex = async (req, res) => {
 
 // GET /create
 module.exports.showCreate = async (req, res) => {
-  // create a temp chief and add it to the response.locals object
-  // this will provide a chief object to put any validation errors
+  // create a temporary item and add it to the response.locals object
+  // this also provides a place to pass any validation errors to the view
+  // Important! attributes must match those defined in the model
   const tempItem = {
-    name: 'chiefName',
-    playerCount: 1,
-    isCardchief: true,
+    name: 'QuestName',
   };
-  res.locals.chief = tempItem;
-  res.render('chief/create.ejs', { title: 'chiefs', res });
+  res.locals.quest = tempItem;
+  res.render('quest/create.ejs', { title: tabTitle, res });
 };
 
 // GET /delete/:id
 module.exports.showDelete = async (req, res) => {
   const { id } = req.params;
-  (await db).models.chief
-    .findByPk(id)
+  (await db).models.Quest.findByPk(id)
     .then((data) => {
-      res.locals.chief = data;
+      res.locals.quest = data;
       if (data) {
-        res.render('chief/delete.ejs', { title: 'chiefs', res });
+        res.render('quest/delete.ejs', { title: tabTitle, res });
       } else {
-        res.redirect('chief/');
+        res.redirect('quest/');
       }
     })
     .catch((err) => {
@@ -172,11 +143,10 @@ module.exports.showDelete = async (req, res) => {
 // GET /details/:id
 module.exports.showDetails = async (req, res) => {
   const { id } = req.params;
-  (await db).models.chief
-    .findByPk(id)
+  (await db).models.Quest.findByPk(id)
     .then((data) => {
-      res.locals.chief = data;
-      res.render('chief/details.ejs', { title: 'chiefs', res });
+      res.locals.quest = data;
+      res.render('quest/details.ejs', { title: tabTitle, res });
     })
     .catch((err) => {
       res.status(500).send({
@@ -188,11 +158,10 @@ module.exports.showDetails = async (req, res) => {
 // GET /edit/:id
 module.exports.showEdit = async (req, res) => {
   const { id } = req.params;
-  (await db).models.chief
-    .findByPk(id)
+  (await db).models.Quest.findByPk(id)
     .then((data) => {
-      res.locals.chief = data;
-      res.render('chief/edit.ejs', { title: 'chiefs', res });
+      res.locals.quest = data;
+      res.render('quest/edit.ejs', { title: tabTitle, res });
     })
     .catch((err) => {
       res.status(500).send({

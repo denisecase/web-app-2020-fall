@@ -30,6 +30,7 @@
         "ignoreStrings": true
       }
     ],
+
     "new-cap": 0,
     "no-restricted-syntax": "warn",
     "node/exports-style": ["warn", "module.exports"],

@@ -93,21 +93,21 @@ module.exports.showIndex = (req, res) => {
 // GET /create
 module.exports.showCreate = (req, res) => {
   res.send(
-    `NOT IMPLEMENTED: Will show country/create.ejs for ${req.params.id}`,
+    `NOT IMPLEMENTED: Will show country/create.ejs for ${req.params.id}`
   );
 };
 
 // GET /delete/:id
 module.exports.showDelete = (req, res) => {
   res.send(
-    `NOT IMPLEMENTED: Will show country/delete.ejs for ${req.params.id}`,
+    `NOT IMPLEMENTED: Will show country/delete.ejs for ${req.params.id}`
   );
 };
 
 // GET /details/:id
 module.exports.showDetails = (req, res) => {
   res.send(
-    `NOT IMPLEMENTED: Will show country/details.ejs for ${req.params.id}`,
+    `NOT IMPLEMENTED: Will show country/details.ejs for ${req.params.id}`
   );
 };
 

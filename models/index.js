@@ -8,7 +8,6 @@ const { Sequelize, DataTypes } = require('sequelize');
 const pgconfigs = require('../config/config');
 const LOG = require('../util/logger');
 const rabbit = require('./rabbit');
-const tea = require('./tea');
 const game = require('./game');
 const animal = require('./animal');
 const country = require('./country');
@@ -27,6 +26,11 @@ const dance = require('./dance');
 const ship = require('./ship');
 const pokemon = require('./pokemon');
 const user = require('./user');
+const clue = require('./clue');
+const competition = require('./competition');
+const location = require('./location');
+const quest = require('./quest');
+const team = require('./team');
 
 module.exports = async () => {
   LOG.info('Starting models/index.js .......................');
@@ -53,8 +57,8 @@ module.exports = async () => {
         `After successfully running small query: ${JSON.stringify(
           records[0],
           null,
-          2,
-        )}.`,
+          2
+        )}.`
       );
     } catch (err) {
       LOG.info(`Error running small query: ${err.message}`);
@@ -81,9 +85,6 @@ module.exports = async () => {
 
     // Dr. Case - rabbit
     rabbit(db, DataTypes);
-
-    // Dr. Hoot - tea
-    tea(db, DataTypes);
 
     // Blake - game
     game(db, DataTypes);
@@ -138,6 +139,13 @@ module.exports = async () => {
 
     // Users
     user(db, DataTypes);
+
+    // Hunt
+    clue(db, DataTypes);
+    competition(db, DataTypes);
+    quest(db, DataTypes);
+    location(db, DataTypes);
+    team(db, DataTypes);
   }
 
   /**

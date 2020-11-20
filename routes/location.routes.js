@@ -1,5 +1,5 @@
 /**
- * Route tea requests to the correct controller function.
+ * Route location requests to the correct controller function.
  *
  * A request includes:
  *  an HTTP verb (e.g., get or post) AND
@@ -8,17 +8,17 @@
  * Match each expeced verb + URL request
  * with a custom function to handle it
  *
- * @author Charles Hoot <hoot@nwmissouri.edu>
+ * @author Denise Case <dcase@nwmissouri.edu>
  */
 
 const router = require('express').Router();
-const controller = require('../controllers/teaController.js');
+const controller = require('../controllers/locationController.js');
 const LOG = require('../util/logger');
 
-LOG.info('Starting tea routing.');
+LOG.info('Starting location routing.');
 
 // -----------------------------------------------------------------------------
-// match each expeced verb + URL request
+// match each expeced HTTP verb + URL endpoint request
 // with a custom function to handle it
 // -----------------------------------------------------------------------------
 
@@ -41,6 +41,6 @@ router.get('/details/:id', controller.showDetails);
 router.get('/edit/:id', controller.showEdit);
 router.get('/delete/:id', controller.showDelete);
 
-LOG.info('Loaded tea routes.');
+LOG.info('Loaded locations routes.');
 
 module.exports = router;
