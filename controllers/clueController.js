@@ -100,7 +100,7 @@ module.exports.deleteItem = async (req, res) => {
 module.exports.showIndex = async (req, res) => {
   (await db).models.Clue.findAll()
     .then((data) => {
-      res.locals.rabbits = data;
+      res.locals.clues = data;
       res.render('clue/index.ejs', { title: tabTitle, res });
     })
     .catch((err) => {
@@ -112,12 +112,11 @@ module.exports.showIndex = async (req, res) => {
 
 // GET /create
 module.exports.showCreate = async (req, res) => {
-  // create a temp clue and add it to the response.locals object
-  // this will provide a clue object to put any validation errors
+  // create a temporary item and add it to the response.locals object
+  // this also provides a place to pass any validation errors to the view
+  // Important! attributes must match those defined in the model
   const tempItem = {
-    name: 'RabbitName',
-    age: 1,
-    isCartoon: true,
+    name: 'ClueName',
   };
   res.locals.clue = tempItem;
   res.render('clue/create.ejs', { title: tabTitle, res });

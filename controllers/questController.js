@@ -99,7 +99,7 @@ module.exports.deleteItem = async (req, res) => {
 module.exports.showIndex = async (req, res) => {
   (await db).models.Quest.findAll()
     .then((data) => {
-      res.locals.rabbits = data;
+      res.locals.quests = data;
       res.render('quest/index.ejs', { title: tabTitle, res });
     })
     .catch((err) => {
@@ -111,12 +111,11 @@ module.exports.showIndex = async (req, res) => {
 
 // GET /create
 module.exports.showCreate = async (req, res) => {
-  // create a temp quest and add it to the response.locals object
-  // this will provide a quest object to put any validation errors
+  // create a temporary item and add it to the response.locals object
+  // this also provides a place to pass any validation errors to the view
+  // Important! attributes must match those defined in the model
   const tempItem = {
-    name: 'RabbitName',
-    age: 1,
-    isCartoon: true,
+    name: 'QuestName',
   };
   res.locals.quest = tempItem;
   res.render('quest/create.ejs', { title: tabTitle, res });

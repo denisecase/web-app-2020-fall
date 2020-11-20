@@ -18,5 +18,9 @@ module.exports = (db, DataTypes) => {
     name: {
       type: DataTypes.STRING(50),
     },
+  },
+  {
+    // Other model options go here
+    freezeTableName: true, // table name will be model name - no plurals
   });
 };

@@ -13,10 +13,17 @@
 // It automatically receives the Sequelize connection parameter.
 
 module.exports = (db, DataTypes) => {
-  db.define('Clue', {
-    // sqlite creates a rowid attribute automatically
-    name: {
-      type: DataTypes.STRING(50),
+  db.define(
+    'Clue',
+    {
+      // sqlite creates a rowid attribute automatically
+      name: {
+        type: DataTypes.STRING(50),
+      },
     },
-  });
+    {
+      // Other model options go here
+      freezeTableName: true, // table name will be model name - no plurals
+    }
+  );
 };
