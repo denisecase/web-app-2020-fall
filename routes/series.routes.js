@@ -1,5 +1,5 @@
 /**
- * Route rabbit requests to the correct controller function.
+ * Route series requests to the correct controller function.
  *
  * A request includes:
  *  an HTTP verb (e.g., get or post) AND
