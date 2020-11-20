@@ -238,7 +238,11 @@ module.exports = async (db) => {
         { id: 1, email: 'dcase@nwmissouri.edu', password: 'password' },
         { id: 2, email: 'hoot@nwmissouri.edu', password: 'password' },
         { id: 3, email: 'alex154590@gmail.com', password: 'password' },
-        { id: 4, email: 'samarpita.chandolu@outlook.com', password: 'password' },
+        {
+          id: 4,
+          email: 'samarpita.chandolu@outlook.com',
+          password: 'password',
+        },
         { id: 5, email: 'bhanu1994@gmail.com', password: 'password' },
         { id: 6, email: 'chandu131198@gmail.com', password: 'password' },
         { id: 7, email: 'chanduhvg@gmail.com', password: 'password' },
@@ -287,11 +291,10 @@ module.exports = async (db) => {
     await db.models.Quest.bulkCreate(
       [
         { id: 1, name: 'Dragon Hunt' },
-        { id: 2,name: 'Duck Hunt' },
-        { id: 3,name: 'South Campus' },
-        { id: 4,name: 'East Campus' },
-        { id: 5,name: 'North Campus' },
-
+        { id: 2, name: 'Duck Hunt' },
+        { id: 3, name: 'South Campus' },
+        { id: 4, name: 'East Campus' },
+        { id: 5, name: 'North Campus' },
       ],
       { validate: true } // add options object to call new model validators
     );
@@ -327,7 +330,6 @@ module.exports = async (db) => {
         { name: 'February Fun' },
         { name: 'March Madness' },
         { name: 'Final Event' },
-
       ],
       { validate: true } // add options object to call new model validators
     );
@@ -336,8 +338,6 @@ module.exports = async (db) => {
   } catch (err) {
     LOG.error(`ERROR: Competitions seeding - ${err.message}`);
   }
-
-
 
   LOG.info('Done with seeder................');
 

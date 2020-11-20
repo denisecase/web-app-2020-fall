@@ -5,7 +5,7 @@
  * @author Denise Case <dcase@nwmissouri.edu>
  */
 
-//const { ValidationError } = require('sequelize');
+// const { ValidationError } = require('sequelize');
 const LOG = require('../util/logger');
 const db = require('../models/index')();
 
