@@ -62,6 +62,13 @@ try {
   LOG.error(`ERROR: ${err.message}`);
 }
 
+// Dr. Hoot - tea
+try {
+  router.use('/tea', teaRoutes);
+} catch (err) {
+  Log.error(`ERROR: ${err.message}`);
+}
+
 // Blake - game
 try {
   router.use('/game', gameRoutes);

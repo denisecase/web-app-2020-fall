@@ -8,6 +8,7 @@ const { Sequelize, DataTypes } = require('sequelize');
 const pgconfigs = require('../config/config');
 const LOG = require('../util/logger');
 const rabbit = require('./rabbit');
+const tea = require('./tea');
 const game = require('./game');
 const animal = require('./animal');
 const country = require('./country');
@@ -85,6 +86,9 @@ module.exports = async () => {
 
     // Dr. Case - rabbit
     rabbit(db, DataTypes);
+
+     // Dr. Hoot - tea
+     tea(db, DataTypes);
 
     // Blake - game
     game(db, DataTypes);
