@@ -13,7 +13,6 @@ const LOG = require('../util/logger');
 const userRouter = require('./users');
 const rabbitRoutes = require('./rabbit.routes');
 const animalRoutes = require('./animal.routes');
-const teaRoutes = require('./tea.routes');
 const gameRoutes = require('./game.routes');
 const countryRoutes = require('./country.routes');
 const chiefRoutes = require('./chief.routes');
@@ -57,9 +56,6 @@ try {
 } catch (err) {
   LOG.error(`ERROR: ${err.message}`);
 }
-
-// Dr. Hoot - tea
-router.use('/tea', teaRoutes);
 
 // Blake - game
 try {
