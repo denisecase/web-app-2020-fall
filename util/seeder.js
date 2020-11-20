@@ -19,10 +19,10 @@ module.exports = async (db) => {
   LOG.info('Starting seeder.......................');
 
   try {
-    await db.sync({ force: true });
-    LOG.info('Recreated all tables.');
+    const syncResult = await db.sync({ force: true });
+    LOG.info(`Recreated all tables: ${syncResult}`);
   } catch (err) {
-    LOG.error(`ERROR: on sync (recreate) - ${err.message}`);
+    LOG.error(`ERROR: on sync process - ${err.message}`);
   }
 
   // Dr. Case - rabbit

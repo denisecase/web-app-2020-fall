@@ -23,18 +23,18 @@ module.exports = (db, DataTypes) => {
       },
       creatorUserId: {
         type: DataTypes.INTEGER,
-        references: {
-          model: 'Users',
-          foreignKey: 'id',
-        },
+        // references: {
+        //   model: "Users",
+        //   foreignKey: "id"
+        // },
         defaultValue: 3,
       },
       questId: {
         type: DataTypes.INTEGER,
-        references: {
-          model: 'Quests',
-          foreignKey: 'id',
-        },
+        // references: {
+        //     model: "Quests",
+        //     foreignKey: "id"
+        // },
         defaultValue: 1,
       },
       startDateTime: {
@@ -48,7 +48,6 @@ module.exports = (db, DataTypes) => {
     },
     {
       // Other model options go here
-      freezeTableName: true, // table name will be model name - no plurals
     }
   );
 };
