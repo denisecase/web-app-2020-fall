@@ -38,22 +38,22 @@ async function prepareInvalidItem(err, req) {
 // FUNCTIONS TO RESPOND WITH JSON DATA  ----------------------------------------
 
 // GET all JSON
-module.exports.findAll = (req, res) => {
-  db.models.Chief.findAll()
+module.exports.findAll = async (req, res) => {
+  (await db).models.Chief.findAll()
     .then((data) => {
       res.send(data);
     })
     .catch((err) => {
       res.status(500).send({
-        message: err.message || 'Error retrieving item.',
+        message: err.message || 'Error retrieving all.',
       });
     });
 };
 
 // GET one JSON by ID
-module.exports.findOne = (req, res) => {
+module.exports.findOne = async (req, res) => {
   const { id } = req.params;
-  db.models.Chief.findByPk(id)
+  (await db).models.Chief.findByPk(id)
     .then((data) => {
       res.send(data);
     })
@@ -63,6 +63,7 @@ module.exports.findOne = (req, res) => {
       });
     });
 };
+
 
 // HANDLE EXECUTE DATA MODIFICATION REQUESTS -----------------------------------
 
