@@ -37,6 +37,6 @@ module.exports = (db, DataTypes) => {
     },
     {
       // Other model options go here
-    },
+    }
   );
 };

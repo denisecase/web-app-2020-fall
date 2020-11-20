@@ -33,7 +33,7 @@ module.exports = async (db) => {
         { name: 'Huggy', age: 2, isCartoon: false },
         { name: 'Doc', age: 2, isCartoon: true },
       ],
-      { validate: true }, // add options object to call new model validators
+      { validate: true } // add options object to call new model validators
     );
     const numRabbits = await db.models.Rabbit.count();
     LOG.info(`Seeded ${numRabbits} rabbits.`);
@@ -64,7 +64,7 @@ module.exports = async (db) => {
         { name: 'Fox', lifeSpan: 14, isPet: false },
         { name: 'Cat', lifeSpan: 25, isPet: true },
       ],
-      { validate: true }, // add options object to call new model validators
+      { validate: true } // add options object to call new model validators
     );
     const numAnimals = await db.models.Animal.count();
     LOG.info(`Seeded ${numAnimals} animals.`);
@@ -83,7 +83,7 @@ module.exports = async (db) => {
         { name: 'Apple', varieties: 1, isPlant: false },
         { name: 'AleoVera', varieties: 1, isPlant: true },
       ],
-      { validate: true }, // add options object to call new model validators
+      { validate: true } // add options object to call new model validators
     );
     const numPlants = await db.models.Plant.count();
     LOG.info(`Seeded ${numPlants} plants.`);
@@ -237,7 +237,7 @@ module.exports = async (db) => {
         { email: 'dcase@nwmissouri.edu', password: 'dcase1' },
         { email: 'hoot@nwmissouri.edu', password: 'hoot22' },
       ],
-      { validate: true }, // add options object to call new model validators
+      { validate: true } // add options object to call new model validators
     );
     const numRabbits = await db.models.Rabbit.count();
     LOG.info(`Seeded ${numRabbits} rabbits.`);

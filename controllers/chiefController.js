@@ -64,7 +64,6 @@ module.exports.findOne = async (req, res) => {
     });
 };
 
-
 // HANDLE EXECUTE DATA MODIFICATION REQUESTS -----------------------------------
 
 // POST /save
@@ -124,7 +123,8 @@ module.exports.deleteItem = async (req, res) => {
 // GET to this controller base URI (the default)
 module.exports.showIndex = async (req, res) => {
   // res.send('NOT IMPLEMENTED: Will show chief/index.ejs');
-  (await db).models.chief.findAll()
+  (await db).models.chief
+    .findAll()
     .then((data) => {
       res.locals.chiefs = data;
       res.render('chief/index.ejs', { title: 'chiefs', res });
@@ -152,7 +152,8 @@ module.exports.showCreate = async (req, res) => {
 // GET /delete/:id
 module.exports.showDelete = async (req, res) => {
   const { id } = req.params;
-  (await db).models.chief.findByPk(id)
+  (await db).models.chief
+    .findByPk(id)
     .then((data) => {
       res.locals.chief = data;
       if (data) {
@@ -171,7 +172,8 @@ module.exports.showDelete = async (req, res) => {
 // GET /details/:id
 module.exports.showDetails = async (req, res) => {
   const { id } = req.params;
-  (await db).models.chief.findByPk(id)
+  (await db).models.chief
+    .findByPk(id)
     .then((data) => {
       res.locals.chief = data;
       res.render('chief/details.ejs', { title: 'chiefs', res });
@@ -186,7 +188,8 @@ module.exports.showDetails = async (req, res) => {
 // GET /edit/:id
 module.exports.showEdit = async (req, res) => {
   const { id } = req.params;
-  (await db).models.chief.findByPk(id)
+  (await db).models.chief
+    .findByPk(id)
     .then((data) => {
       res.locals.chief = data;
       res.render('chief/edit.ejs', { title: 'chiefs', res });
