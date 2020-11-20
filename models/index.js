@@ -26,6 +26,11 @@ const dance = require('./dance');
 const ship = require('./ship');
 const pokemon = require('./pokemon');
 const user = require('./user');
+const clue = require('./clue');
+const competition = require('./competition');
+const location = require('./location');
+const quest = require('./quest');
+const team = require('./team');
 
 module.exports = async () => {
   LOG.info('Starting models/index.js .......................');
@@ -52,8 +57,8 @@ module.exports = async () => {
         `After successfully running small query: ${JSON.stringify(
           records[0],
           null,
-          2,
-        )}.`,
+          2
+        )}.`
       );
     } catch (err) {
       LOG.info(`Error running small query: ${err.message}`);
@@ -134,6 +139,13 @@ module.exports = async () => {
 
     // Users
     user(db, DataTypes);
+
+    // Hunt
+    clue(db, DataTypes);
+    competition(db, DataTypes);
+    quest(db, DataTypes);
+    location(db, DataTypes);
+    team(db, DataTypes);
   }
 
   /**
