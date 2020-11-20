@@ -12,6 +12,7 @@ const express = require('express');
 const LOG = require('../util/logger');
 const userRouter = require('./users');
 const rabbitRoutes = require('./rabbit.routes');
+const teaRoutes = require('./tea.routes');
 const animalRoutes = require('./animal.routes');
 const gameRoutes = require('./game.routes');
 const countryRoutes = require('./country.routes');

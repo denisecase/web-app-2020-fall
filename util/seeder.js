@@ -257,6 +257,7 @@ module.exports = async (db) => {
     LOG.info(`Seeded ${numTeas} teas .`);
   } catch (err) {
     LOG.error(`ERROR: Tea - ${err.message}`);
+  }
 
   LOG.info('Done with seeder................');
 
