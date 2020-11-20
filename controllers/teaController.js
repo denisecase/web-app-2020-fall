@@ -29,9 +29,10 @@ async function prepareInvalidItem(err, req) {
   if (req.body.id) {
     item.id = req.body.id;
   }
+
   item.name = req.body.name;
-  item.age = req.body.age;
-  item.isCartoon = req.body.isCartoon;
+  item.pricePerGram = req.body.pricePerGram;
+  item.isPuer = req.body.isPuer;
   item.error = err.errors[0].message;
   LOG.info(`ERROR SAVING ITEM: ${JSON.stringify(item)}`);
   return item;
@@ -42,7 +43,7 @@ async function prepareInvalidItem(err, req) {
 // FUNCTIONS TO RESPOND WITH JSON DATA  ----------------------------------------
 
 // GET all JSON
-module.exports.findAll = (req, res) => {
+module.exports.findAll = async (req, res) => {
   (await db).models.Tea.findAll()
     .then((data) => {
       res.send(data);
@@ -55,7 +56,7 @@ module.exports.findAll = (req, res) => {
 };
 
 // GET one JSON by ID
-module.exports.findOne = (req, res) => {
+module.exports.findOne = async (req, res) => {
   const { id } = req.params;
   (await db).models.Tea.findByPk(id)
     .then((data) => {
