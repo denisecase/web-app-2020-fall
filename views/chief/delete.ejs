@@ -1,0 +1,42 @@
+<!--
+*  chief delete view
+*  Uses HTML and embedded JavaScript (EJS) 
+*  to dyanmically create a webpage to delete a chief.
+*
+* @author Jack W Beaver <s526937@nwmissouri.edu>
+-->
+
+<% if (chief.error) { %>
+    <div class="alert alert-danger" role="alert"><%- chief.error %></div>
+    <% } %>
+    
+    <div class="card-body">
+    
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">chief</th>
+            <th scope="col">players</th>
+            <th scope="col">teamSince</th>
+            <th scope="col">isSuperBowlChamp</th>
+            <th width=>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+    
+          <tr>
+            <th scope="row"><%= chief.id %></th>
+            <td><%= chief.chief%></td>
+            <td><%= chief.player%></td>
+            <td><%= chief.teamSince%></td>
+            <td><%= chief.isSuperBowlChamp%></td>
+            <td>
+              <form action="/chief/delete/<%=chief.id%>" method="post">
+                <input type="submit" class="btn btn-danger delete" value="Delete" onclick="return alert('Are You sure?')"/>
+              </form>
+            </td>
+          </tr>
+    
+        </tbody>
+      </table>

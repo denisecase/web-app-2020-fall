@@ -52,8 +52,8 @@ module.exports = (db, DataTypes) => {
           msg: 'Gun count must be 140 or less.',
         },
         min: {
-          args: 0,
-          msg: 'Gun count must be 0 or more.',
+          args: 1,
+          msg: 'Gun count must be 1 or more.',
         },
       },
     },
