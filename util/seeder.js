@@ -330,36 +330,40 @@ module.exports = async (db) => {
           name: 'December Challenge',
           creatorUserId: 5,
           questId: 1,
-          startDateTime: new Date(2020,11,4,8,0,0), // month is zero index
-          endDateTime: new Date(2020,11,4,9,0,0),  // dec
+          startDateTime: new Date(2020, 11, 4, 8, 0, 0), // month is zero index
+          endDateTime: new Date(2020, 11, 4, 9, 0, 0), // dec
         },
         {
-          id: 2, name: 'January Return',
+          id: 2,
+          name: 'January Return',
           creatorUserId: 10,
           questId: 2,
-          startDateTime: new Date(2021,0,15,8,0,0), // month is zero index
-          endDateTime: new Date(2021,0,15,9,0,0),  // jan
+          startDateTime: new Date(2021, 0, 15, 8, 0, 0), // month is zero index
+          endDateTime: new Date(2021, 0, 15, 9, 0, 0), // jan
         },
         {
-          id: 3, name: 'February Fun',
+          id: 3,
+          name: 'February Fun',
           creatorUserId: 15,
           questId: 3,
-          startDateTime: new Date(2021,1,15,8,0,0), // month is zero index
-          endDateTime: new Date(2021,1,15,9,0,0),  // feb
+          startDateTime: new Date(2021, 1, 15, 8, 0, 0), // month is zero index
+          endDateTime: new Date(2021, 1, 15, 9, 0, 0), // feb
         },
         {
-          id: 4, name: 'March Madness',
+          id: 4,
+          name: 'March Madness',
           creatorUserId: 20,
           questId: 4,
-          startDateTime: new Date(2021,2,15,8,0,0), // month is zero index
-          endDateTime: new Date(2021,2,15,9,0,0), // mar
+          startDateTime: new Date(2021, 2, 15, 8, 0, 0), // month is zero index
+          endDateTime: new Date(2021, 2, 15, 9, 0, 0), // mar
         },
         {
-          id: 5, name: 'Final Event',
+          id: 5,
+          name: 'Final Event',
           creatorUserId: 9,
           questId: 2,
-          startDateTime: new Date(2021,3,15,8,0,0), // month is zero index
-          endDateTime: new Date(2021,3,15,9,0,0), // apr
+          startDateTime: new Date(2021, 3, 15, 8, 0, 0), // month is zero index
+          endDateTime: new Date(2021, 3, 15, 9, 0, 0), // apr
         },
       ],
       { validate: true } // add options object to call new model validators
