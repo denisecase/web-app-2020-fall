@@ -33,7 +33,7 @@ module.exports = async (db) => {
         { name: 'Huggy', age: 2, isCartoon: false },
         { name: 'Doc', age: 2, isCartoon: true },
       ],
-      { validate: true }, // add options object to call new model validators
+      { validate: true } // add options object to call new model validators
     );
     const numRabbits = await db.models.Rabbit.count();
     LOG.info(`Seeded ${numRabbits} rabbits.`);
@@ -64,7 +64,7 @@ module.exports = async (db) => {
         { name: 'Fox', lifeSpan: 14, isPet: false },
         { name: 'Cat', lifeSpan: 25, isPet: true },
       ],
-      { validate: true }, // add options object to call new model validators
+      { validate: true } // add options object to call new model validators
     );
     const numAnimals = await db.models.Animal.count();
     LOG.info(`Seeded ${numAnimals} animals.`);
@@ -83,7 +83,7 @@ module.exports = async (db) => {
         { name: 'Apple', varieties: 1, isPlant: false },
         { name: 'AleoVera', varieties: 1, isPlant: true },
       ],
-      { validate: true }, // add options object to call new model validators
+      { validate: true } // add options object to call new model validators
     );
     const numPlants = await db.models.Plant.count();
     LOG.info(`Seeded ${numPlants} plants.`);
@@ -230,20 +230,114 @@ module.exports = async (db) => {
     LOG.error(`ERROR: - Pokemon ${err.message}`);
   }
 
-  // Dr. Case - user
+  // ------------------------------------------------
+
   try {
     await db.models.User.bulkCreate(
       [
-        { email: 'dcase@nwmissouri.edu', password: 'dcase1' },
-        { email: 'hoot@nwmissouri.edu', password: 'hoot22' },
+        { id: 1, email: 'dcase@nwmissouri.edu', password: 'password' },
+        { id: 2, email: 'hoot@nwmissouri.edu', password: 'password' },
+        { id: 3, email: 'alex154590@gmail.com', password: 'password' },
+        { id: 4, email: 'samarpita.chandolu@outlook.com', password: 'password' },
+        { id: 5, email: 'bhanu1994@gmail.com', password: 'password' },
+        { id: 6, email: 'chandu131198@gmail.com', password: 'password' },
+        { id: 7, email: 'chanduhvg@gmail.com', password: 'password' },
+        { id: 8, email: 'p.harichandraprasad@gmail.com', password: 'password' },
+        { id: 9, email: 'krishna.ksk1996@gmail.com', password: 'password' },
+        { id: 10, email: 'mohansai03@outlook.com', password: 'password' },
+        { id: 11, email: 'prasad.gd@gmail.com', password: 'password' },
+        { id: 12, email: 'pruthvunaskanti@hotmail.com', password: 'password' },
+        { id: 14, email: 'raviteja.pagidoju@gmail.com', password: 'password' },
+        { id: 15, email: 'saikrish1545@gmail.com', password: 'password' },
+        { id: 16, email: 'teja2004@woutlook.com', password: 'password' },
+        { id: 17, email: 'srkvodnala@gmail.com', password: 'password' },
+        { id: 18, email: 'csrisudheera@gmail.com', password: 'password' },
+        { id: 19, email: 'swaroopreddy.g@gmail.com', password: 'password' },
+        { id: 20, email: 'swaroopat@hotmail.com', password: 'password' },
+        { id: 21, email: 'kiran021997@gmail.com', password: 'password' },
+        { id: 22, email: 'yashwanthrocks@gmail.com', password: 'password' },
+        { id: 23, email: 'vishal041197@outlook.com', password: 'password' },
       ],
-      { validate: true }, // add options object to call new model validators
+      { validate: true } // add options object to call new model validators
     );
-    const numRabbits = await db.models.Rabbit.count();
-    LOG.info(`Seeded ${numRabbits} rabbits.`);
+    const numUsers = await db.models.User.count();
+    LOG.info(`Seeded ${numUsers} users.`);
   } catch (err) {
-    LOG.error(`ERROR: Rabbit - ${err.message}`);
+    LOG.error(`ERROR: User seeding - ${err.message}`);
   }
+
+  try {
+    await db.models.Team.bulkCreate(
+      [
+        { id: 1, name: 'Thunder Guys' },
+        { id: 2, name: 'Mavericks' },
+        { id: 3, name: 'Sunrisers horizons' },
+        { id: 4, name: 'Barbies' },
+        { id: 5, name: 'Hunters' },
+      ],
+      { validate: true } // add options object to call new model validators
+    );
+    const num = await db.models.Team.count();
+    LOG.info(`Seeded ${num} teams.`);
+  } catch (err) {
+    LOG.error(`ERROR: Team seeding - ${err.message}`);
+  }
+
+  try {
+    await db.models.Quest.bulkCreate(
+      [
+        { id: 1, name: 'Dragon Hunt' },
+        { id: 2,name: 'Duck Hunt' },
+        { id: 3,name: 'South Campus' },
+        { id: 4,name: 'East Campus' },
+        { id: 5,name: 'North Campus' },
+
+      ],
+      { validate: true } // add options object to call new model validators
+    );
+    const num = await db.models.Quest.count();
+    LOG.info(`Seeded ${num} quests.`);
+  } catch (err) {
+    LOG.error(`ERROR: Quest seeding - ${err.message}`);
+  }
+
+  try {
+    await db.models.Location.bulkCreate(
+      [
+        { name: 'Bearcat football stadium' },
+        { name: 'Colden Pond' },
+        { name: 'Bearcat Soccer field' },
+        { name: 'Field House' },
+        { name: 'Admin building' },
+        { name: 'Bell tower' },
+      ],
+      { validate: true } // add options object to call new model validators
+    );
+    const num = await db.models.Location.count();
+    LOG.info(`Seeded ${num} locations.`);
+  } catch (err) {
+    LOG.error(`ERROR: Location seeding - ${err.message}`);
+  }
+
+  try {
+    await db.models.Competition.bulkCreate(
+      [
+        { name: 'December Challenge' },
+        { name: 'January Return' },
+        { name: 'February Fun' },
+        { name: 'March Madness' },
+        { name: 'Final Event' },
+
+      ],
+      { validate: true } // add options object to call new model validators
+    );
+    const num = await db.models.Competition.count();
+    LOG.info(`Seeded ${num} competitions.`);
+  } catch (err) {
+    LOG.error(`ERROR: Competitions seeding - ${err.message}`);
+  }
+
+
 
   LOG.info('Done with seeder................');
 
