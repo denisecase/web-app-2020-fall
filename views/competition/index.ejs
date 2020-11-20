@@ -39,6 +39,10 @@
           <tr>
             <th scope="col">ID</th>
             <th scope="col">Name</th>
+            <th scope="col">Creator</th>
+            <th scope="col">Quest</th>
+            <th scope="col">Start</th>
+            <th scope="col">End</th>
             <th >Action</th>
           </tr>
         </thead>
@@ -46,7 +50,11 @@
           <% for(let i = 0; i< competitions.length; i++) { %>
           <tr>
             <th scope="row"><%= competitions[i].id %></th>
-            <td><%= competitions[i].name%></td>
+            <td><%= competitions[i].name %></td>
+            <td><%= competitions[i].creatorUserId %></td>
+            <td><%= competitions[i].questId %></td>
+            <td><%= competitions[i].startDateTime %></td>
+            <td><%= competitions[i].endDateTime %></td>
             <td>
               <a class="btn btn-primary details" href="../competition/details/<%=competitions[i].id%>"><i
                   class="fab fa-sistrix" title="test"></i></a>

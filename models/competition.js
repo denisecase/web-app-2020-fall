@@ -17,6 +17,36 @@ module.exports = (db, DataTypes) => {
     // sqlite creates a rowid attribute automatically
     name: {
       type: DataTypes.STRING(50),
+      defaultValue: 'NewCompetitionName'
     },
-  });
+    creatorUserId: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: "Users",
+        foreignKey: "id"
+      },
+      defaultValue: 3,
+    },
+    questId: {
+      type: DataTypes.INTEGER,
+      references: {
+          model: "Quests",
+          foreignKey: "id"
+      }, 
+      defaultValue : 1,
+    },
+    startDateTime: {
+      type: DataTypes.DATE,
+      defaultValue: new Date(),
+    },
+     endDateTime: {
+      type: DataTypes.DATE,
+      defaultValue: new Date(),
+    },
+  },
+  {
+    // Other model options go here
+    freezeTableName: true, // table name will be model name - no plurals
+  }
+  );
 };

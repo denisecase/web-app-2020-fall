@@ -37,6 +37,7 @@ module.exports = (db, DataTypes) => {
     },
     {
       // Other model options go here
+      freezeTableName: true // table name will be model name - no plurals
     }
   );
 };
