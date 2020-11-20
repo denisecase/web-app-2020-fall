@@ -4,7 +4,7 @@
  *
  * @author Denise Case <dcase@nwmissouri.edu>
  */
-//const { ValidationError } = require('sequelize');
+// const { ValidationError } = require('sequelize');
 const LOG = require('../util/logger');
 const db = require('../models/index')();
 
@@ -99,7 +99,7 @@ module.exports.deleteItem = async (req, res) => {
 module.exports.showIndex = async (req, res) => {
   (await db).models.Competition.findAll()
     .then((data) => {
-      res.locals.rabbits = data;
+      res.locals.competitions = data;
       res.render('competition/index.ejs', { title: tabTitle, res });
     })
     .catch((err) => {
@@ -111,12 +111,11 @@ module.exports.showIndex = async (req, res) => {
 
 // GET /create
 module.exports.showCreate = async (req, res) => {
-  // create a temp competition and add it to the response.locals object
-  // this will provide a competition object to put any validation errors
+  // create a temporary item and add it to the response.locals object
+  // this also provides a place to pass any validation errors to the view
+  // Important! attributes must match those defined in the model
   const tempItem = {
-    name: 'RabbitName',
-    age: 1,
-    isCartoon: true,
+    name: 'CompetitionName',
   };
   res.locals.competition = tempItem;
   res.render('competition/create.ejs', { title: tabTitle, res });

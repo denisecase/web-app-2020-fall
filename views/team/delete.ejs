@@ -1,0 +1,37 @@
+<!--
+*  Team delete view
+*  Uses HTML and embedded JavaScript (EJS) 
+*  to dyanmically create a webpage to display the item to delete.
+*
+* @author Denise Case <dcase@nwmissouri.edu>
+-->
+  
+<% if (team.error) { %>
+  <div class="alert alert-danger" role="alert"><%- team.error %></div>
+  <% } %>
+  
+  <div class="card-body">
+  
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Name</th>
+          <th width=>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+  
+        <tr>
+          <th scope="row"><%= team.id %></th>
+          <td><%= team.name%></td>
+          <td>
+            <form action="/team/delete/<%=team.id%>" method="post">
+              <input type="submit" class="btn btn-danger delete" value="Delete" onclick="return alert('Are you sure?')"/>
+            </form>
+          </td>
+        </tr>
+  
+      </tbody>
+    </table>
+  

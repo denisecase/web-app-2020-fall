@@ -1,0 +1,35 @@
+<!--
+*  Location details view
+*  Uses HTML and embedded JavaScript (EJS) 
+*  to dyanmically create a webpage to display a resource.
+*
+* @author Denise Case <dcase@nwmissouri.edu>
+-->
+
+<% if (location.error) { %>
+  <div class="alert alert-danger" role="alert"><%- location.error %></div>
+  <% } %>
+  
+  <div class="card-body">
+  
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th >Action</th>
+        </tr>
+      </thead>
+      <tbody>
+  
+        <tr>
+          <th scope="row"><%= location.id %></th>
+          <td><%= location.name%></td>
+          <td>
+            <a class="btn btn-success edit" href="/location">Done</a>
+          </td>
+        </tr>
+  
+      </tbody>
+    </table>
+  

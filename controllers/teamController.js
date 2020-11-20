@@ -4,7 +4,7 @@
  *
  * @author Denise Case <dcase@nwmissouri.edu>
  */
-//const { ValidationError } = require('sequelize');
+// const { ValidationError } = require('sequelize');
 const LOG = require('../util/logger');
 const db = require('../models/index')();
 
@@ -99,7 +99,7 @@ module.exports.deleteItem = async (req, res) => {
 module.exports.showIndex = async (req, res) => {
   (await db).models.Team.findAll()
     .then((data) => {
-      res.locals.rabbits = data;
+      res.locals.teams = data;
       res.render('team/index.ejs', { title: tabTitle, res });
     })
     .catch((err) => {
@@ -111,12 +111,11 @@ module.exports.showIndex = async (req, res) => {
 
 // GET /create
 module.exports.showCreate = async (req, res) => {
-  // create a temp team and add it to the response.locals object
-  // this will provide a team object to put any validation errors
+  // create a temporary item and add it to the response.locals object
+  // this also provides a place to pass any validation errors to the view
+  // Important! attributes must match those defined in the model
   const tempItem = {
-    name: 'RabbitName',
-    age: 1,
-    isCartoon: true,
+    name: 'TeamName',
   };
   res.locals.team = tempItem;
   res.render('team/create.ejs', { title: tabTitle, res });
