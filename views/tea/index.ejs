@@ -3,13 +3,13 @@
 *  (the default tea page)
 *  
 *  Uses HTML and embedded JavaScript (EJS) 
-*  to dyanmically create a webpage to list all rabbits.
+*  to dyanmically create a webpage to list all teas.
 *
 * Adapted by hoot@nwmissouri.edu
 * @author Charles Hoot <hoot@nwmissouri.edu>
 -->
 
-<% if (locals.tea.success) { %>
+<% if (locals.teas.success) { %>
     <div class="alert alert-success" role="alert"><%- tea.success %></div>
     <% } %>
     
@@ -30,7 +30,7 @@
       </div>
       <div class="card-body">
     
-        <% if(tea.length) { %>
+        <% if(teas.length) { %>
         <table class="table">
           <thead>
             <tr>
