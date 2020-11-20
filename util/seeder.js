@@ -19,10 +19,10 @@ module.exports = async (db) => {
   LOG.info('Starting seeder.......................');
 
   try {
-    await db.sync({ force: true });
-    LOG.info('Recreated all tables.');
+    const syncResult = await db.sync({ force: true });
+    LOG.info(`Recreated all tables: ${syncResult}`);
   } catch (err) {
-    LOG.error(`ERROR: on sync (recreate) - ${err.message}`);
+    LOG.error(`ERROR: on sync process - ${err.message}`);
   }
 
   // Dr. Case - rabbit
@@ -331,7 +331,7 @@ module.exports = async (db) => {
           creatorUserId: 5,
           questId: 1,
           startDateTime: new Date(2020, 11, 4, 8, 0, 0), // month is zero index
-          endDateTime: new Date(2020, 11, 4, 9, 0, 0), // dec
+          endDateTime: new Date(2020, 11, 4, 9, 0, 0),  // dec
         },
         {
           id: 2,
@@ -339,7 +339,7 @@ module.exports = async (db) => {
           creatorUserId: 10,
           questId: 2,
           startDateTime: new Date(2021, 0, 15, 8, 0, 0), // month is zero index
-          endDateTime: new Date(2021, 0, 15, 9, 0, 0), // jan
+          endDateTime: new Date(2021, 0, 15, 9, 0, 0),  // jan
         },
         {
           id: 3,
@@ -347,7 +347,7 @@ module.exports = async (db) => {
           creatorUserId: 15,
           questId: 3,
           startDateTime: new Date(2021, 1, 15, 8, 0, 0), // month is zero index
-          endDateTime: new Date(2021, 1, 15, 9, 0, 0), // feb
+          endDateTime: new Date(2021, 1, 15, 9, 0, 0),  // feb
         },
         {
           id: 4,
