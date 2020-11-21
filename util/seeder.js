@@ -401,6 +401,9 @@ module.exports = async (db) => {
           questId: 1,
           startDateTime: new Date(2020, 11, 4, 8, 0, 0), // month is zero index
           endDateTime: new Date(2020, 11, 4, 9, 0, 0), // dec
+          startLatitude: 40.3506,
+          startLongitude: -94.88289,
+          startDescription: 'Near Colden Pond Bridge',
         },
         {
           id: 2,
@@ -409,6 +412,9 @@ module.exports = async (db) => {
           questId: 2,
           startDateTime: new Date(2021, 0, 15, 8, 0, 0), // month is zero index
           endDateTime: new Date(2021, 0, 15, 9, 0, 0), // jan
+          startLatitude: 40.3506,
+          startLongitude: -94.88289,
+          startDescription: 'Near Colden Pond Bridge',
         },
         {
           id: 3,
@@ -417,6 +423,9 @@ module.exports = async (db) => {
           questId: 3,
           startDateTime: new Date(2021, 1, 15, 8, 0, 0), // month is zero index
           endDateTime: new Date(2021, 1, 15, 9, 0, 0), // feb
+          startLatitude: 40.3506,
+          startLongitude: -94.88289,
+          startDescription: 'Near Colden Pond Bridge',
         },
         {
           id: 4,
@@ -425,6 +434,9 @@ module.exports = async (db) => {
           questId: 4,
           startDateTime: new Date(2021, 2, 15, 8, 0, 0), // month is zero index
           endDateTime: new Date(2021, 2, 15, 9, 0, 0), // mar
+          startLatitude: 40.3506,
+          startLongitude: -94.88289,
+          startDescription: 'Near Colden Pond Bridge',
         },
         {
           id: 5,
@@ -433,6 +445,9 @@ module.exports = async (db) => {
           questId: 5,
           startDateTime: new Date(2021, 3, 15, 8, 0, 0), // month is zero index
           endDateTime: new Date(2021, 3, 15, 9, 0, 0), // apr
+          startLatitude: 40.3506,
+          startLongitude: -94.88289,
+          startDescription: 'Near Colden Pond Bridge',
         },
         {
           id: 6,
@@ -441,6 +456,9 @@ module.exports = async (db) => {
           questId: 6,
           startDateTime: new Date(2020, 11, 15, 8, 0, 0), // month is zero index
           endDateTime: new Date(2020, 11, 15, 9, 0, 0), // dec quest
+          startLatitude: 40.3506,
+          startLongitude: -94.88289,
+          startDescription: 'Near Colden Pond Bridge',
         },
       ],
       { validate: true } // add options object to call new model validators
@@ -449,6 +467,60 @@ module.exports = async (db) => {
     LOG.info(`Seeded ${num} competitions.`);
   } catch (err) {
     LOG.error(`ERROR: Competitions seeding - ${err.message}`);
+  }
+
+  try {
+    // create the many-to-many records for competition teams
+    await db.models.CompetitionTeam.bulkCreate(
+      [
+        // competition teams
+        { id: 11, competitionId: 1, teamId: 1 },
+        { id: 12, competitionId: 1, teamId: 2 },
+        { id: 13, competitionId: 1, teamId: 3 },
+        { id: 14, competitionId: 1, teamId: 4 },
+        { id: 15, competitionId: 1, teamId: 5 },
+
+        // competition teams
+        { id: 21, competitionId: 2, teamId: 1 },
+        { id: 22, competitionId: 2, teamId: 2 },
+        { id: 23, competitionId: 2, teamId: 3 },
+        { id: 24, competitionId: 2, teamId: 4 },
+        { id: 25, competitionId: 2, teamId: 5 },
+
+        // competition teams
+        { id: 31, competitionId: 3, teamId: 1 },
+        { id: 32, competitionId: 3, teamId: 2 },
+        { id: 33, competitionId: 3, teamId: 3 },
+        { id: 34, competitionId: 3, teamId: 4 },
+        { id: 35, competitionId: 3, teamId: 5 },
+
+        // competition teams
+        { id: 41, competitionId: 4, teamId: 1 },
+        { id: 42, competitionId: 4, teamId: 2 },
+        { id: 43, competitionId: 4, teamId: 3 },
+        { id: 44, competitionId: 4, teamId: 4 },
+        { id: 45, competitionId: 4, teamId: 5 },
+
+        // competition teams
+        { id: 51, competitionId: 5, teamId: 1 },
+        { id: 52, competitionId: 5, teamId: 2 },
+        { id: 53, competitionId: 5, teamId: 3 },
+        { id: 54, competitionId: 5, teamId: 4 },
+        { id: 55, competitionId: 5, teamId: 5 },
+
+        // competition teams
+        { id: 61, competitionId: 6, teamId: 1 },
+        { id: 62, competitionId: 6, teamId: 2 },
+        { id: 63, competitionId: 6, teamId: 3 },
+        { id: 64, competitionId: 6, teamId: 4 },
+        { id: 65, competitionId: 6, teamId: 5 },
+      ],
+      { validate: true } // add options object to call new model validators
+    );
+    const num = await db.models.CompetitionTeam.count();
+    LOG.info(`Seeded ${num} CompetitionTeam records.`);
+  } catch (err) {
+    LOG.error(`ERROR: CompetitionTeam seeding - ${err.message}`);
   }
 
   // Dr Hoot - tea
