@@ -12,7 +12,7 @@ const express = require('express');
 const LOG = require('../util/logger');
 const userRouter = require('./users');
 const rabbitRoutes = require('./rabbit.routes');
-const teaRoutes = require('./tea.routes'); 
+const teaRoutes = require('./tea.routes');
 const animalRoutes = require('./animal.routes');
 const gameRoutes = require('./game.routes');
 const countryRoutes = require('./country.routes');
@@ -35,6 +35,7 @@ const competitionRoutes = require('./competition.routes');
 const locationRoutes = require('./location.routes');
 const questRoutes = require('./quest.routes');
 const teamRoutes = require('./team.routes');
+const playerRoutes = require('./player.routes');
 
 LOG.info('routes/index.js: STARTING custom routes......');
 
@@ -200,6 +201,12 @@ try {
 
 try {
   router.use('/quest', questRoutes);
+} catch (err) {
+  LOG.error(`ERROR: ${err.message}`);
+}
+
+try {
+  router.use('/player', playerRoutes);
 } catch (err) {
   LOG.error(`ERROR: ${err.message}`);
 }

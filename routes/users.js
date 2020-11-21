@@ -21,10 +21,10 @@ console.info('Starting user routing.');
 // with a custom function to handle it
 // -----------------------------------------------------------------------------
 
-// handle requests for JSON (HTTP GET) - temporary
+// handle requests for JSON (HTTP GET) - use for combo boxes and & display
 
-router.get('/', controller.findAll);
 router.get('/findall', controller.findAll);
+router.get('/findone/:id', controller.findOne);
 
 // handle requests to perform update actions (HTTP POST)
 
@@ -37,6 +37,10 @@ router.post('/forgot-password', controller.postForgotPassword);
 router.get('/login', controller.showLogin);
 router.get('/register', controller.showRegister);
 router.get('/forgot-password', controller.showForgotPassword);
+
+// add one request to show a page listing all users (HTTP GET)
+
+router.get('/', controller.showIndex);
 
 console.info('Loaded user routes.');
 
