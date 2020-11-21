@@ -53,6 +53,10 @@ module.exports = async () => {
         );
       })
       .forEach((file) => {
+        // we like require statement to be explicit - and at the top
+        // of the file, but this is more concise, so for now at
+        // least we are breaking the rules
+        //
         // require each model definer
         require(path.join(__dirname, file))(sequelize, DataTypes);
       });
