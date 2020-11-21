@@ -138,8 +138,8 @@ module.exports.showIndex = async (req, res) => {
 
 // GET /create
 module.exports.showCreate = async (req, res) => {
-  // create a temp rabbit and add it to the response.locals object
-  // this will provide a rabbit object to put any validation errors
+  // create a temp animal and add it to the response.locals object
+  // this will provide a animal object to put any validation errors
   const tempItem = {
     name: 'AnimalName',
     lifeSpan: 1,

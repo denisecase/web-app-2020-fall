@@ -13,10 +13,16 @@
 // It automatically receives the Sequelize connection parameter.
 
 module.exports = (db, DataTypes) => {
-  db.define('Team', {
-    // sqlite creates a rowid attribute automatically
-    name: {
-      type: DataTypes.STRING(50),
+  db.define(
+    'Team',
+    {
+      // sqlite creates a rowid attribute automatically
+      name: {
+        type: DataTypes.STRING(50),
+      },
     },
-  });
+    {
+      // Other model options go here
+    }
+  );
 };

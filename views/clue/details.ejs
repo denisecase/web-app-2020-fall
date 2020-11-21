@@ -1,0 +1,35 @@
+<!--
+*  Clue details view
+*  Uses HTML and embedded JavaScript (EJS) 
+*  to dyanmically create a webpage to display a resource.
+*
+* @author Denise Case <dcase@nwmissouri.edu>
+-->
+
+<% if (clue.error) { %>
+  <div class="alert alert-danger" role="alert"><%- clue.error %></div>
+  <% } %>
+  
+  <div class="card-body">
+  
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th >Action</th>
+        </tr>
+      </thead>
+      <tbody>
+  
+        <tr>
+          <th scope="row"><%= clue.id %></th>
+          <td><%= clue.name%></td>
+          <td>
+            <a class="btn btn-success edit" href="/clue">Done</a>
+          </td>
+        </tr>
+  
+      </tbody>
+    </table>
+  

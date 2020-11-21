@@ -1,0 +1,72 @@
+<!--
+*  Quest index view
+*  (the default page for this resource)
+*  
+*  Uses HTML and embedded JavaScript (EJS) 
+*  to dyanmically create a webpage to list all of this type of resource.
+*
+* @author Denise Case <dcase@nwmissouri.edu>
+
+* based on https://www.mynotepaper.com/nodejs-simple-crud-with-expressjs-and-mysql
+* repo https://github.com/mdobydullah/nodejs-crud-with-expressjs-mysql
+
+-->
+
+<% if (locals.quests.success) { %>
+  <div class="alert alert-success" role="alert"><%- quest.success %></div>
+  <% } %>
+  
+  <% if (locals.quests.error) { %>
+  <div class="alert alert-danger" role="alert"><%- quest.error %></div>
+  <% } %>
+  
+  <div class="card">
+    <div class="card-header">
+      <ul class="nav nav-pills w-100">
+        <li class="nav-pill active">
+          <a class="nav-link">Quests</a>
+        </li>
+        <li class="nav-pill ml-auto">
+          <a class="nav-link active" href="/quest/create"><i class="fas fa-plus"></i></a>
+        </li>
+      </ul>
+    </div>
+    <div class="card-body">
+  
+      <% if(quests.length) { %>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th >Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for(let i = 0; i< quests.length; i++) { %>
+          <tr>
+            <th scope="row"><%= quests[i].id %></th>
+            <td><%= quests[i].name%></td>
+            <td>
+              <a class="btn btn-primary details" href="../quest/details/<%=quests[i].id%>"><i
+                  class="fab fa-sistrix" title="test"></i></a>
+              <a class="btn btn-success edit" href="../quest/edit/<%=quests[i].id%>"><i class="fas fa-user-edit"></i></a>
+              <a class="btn btn-danger delete" href="../quest/delete/<%=quests[i].id%>"><i
+                  class="fas fa-trash-alt"></i></a>
+            </td>
+          </tr>
+          <% } %>
+        </tbody>
+      </table>
+      <% } %>
+  
+      <!-- if result is empty -->
+      <% if(!quests.length) { %>
+      <p class="text-center">No quests found!</p>
+      <% } %>
+  
+      <br>
+      <h3>Mouse over icons to see where you will go.</h3>
+  
+    </div>
+  </div>

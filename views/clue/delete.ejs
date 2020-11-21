@@ -1,0 +1,37 @@
+<!--
+*  Clue delete view
+*  Uses HTML and embedded JavaScript (EJS) 
+*  to dyanmically create a webpage to display the item to delete.
+*
+* @author Denise Case <dcase@nwmissouri.edu>
+-->
+  
+<% if (clue.error) { %>
+  <div class="alert alert-danger" role="alert"><%- clue.error %></div>
+  <% } %>
+  
+  <div class="card-body">
+  
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Name</th>
+          <th width=>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+  
+        <tr>
+          <th scope="row"><%= clue.id %></th>
+          <td><%= clue.name%></td>
+          <td>
+            <form action="/clue/delete/<%=clue.id%>" method="post">
+              <input type="submit" class="btn btn-danger delete" value="Delete" onclick="return alert('Are you sure?')"/>
+            </form>
+          </td>
+        </tr>
+  
+      </tbody>
+    </table>
+  

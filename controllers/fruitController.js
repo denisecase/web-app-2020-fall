@@ -6,9 +6,36 @@
  */
 
 // import dependencies
+const { ValidationError } = require('sequelize');
+
 const LOG = require('../util/logger');
 
 const db = require('../models/index')();
+
+// OPTIONAL: VALIDATION Helper function ----------------------
+
+/**
+ * Prepare an item from the request information and add
+ * an 'error' attribute to share with the view.
+ *
+ * @param {*} err - the error
+ * @param {*} req - the request
+ * @returns - the item to attach to response.locals
+ */
+async function prepareInvalidItem(err, req) {
+  LOG.error('ERROR SAVING ITEM');
+  LOG.error('Captured validation error: ', err.errors[0].message);
+  const item = {};
+  if (req.body.id) {
+    item.id = req.body.id;
+  }
+  item.name = req.body.name;
+  item.daysGrowth = req.body.daysGrowth;
+  item.isRipe = req.body.isRipe;
+  item.error = err.errors[0].message;
+  LOG.info(`ERROR SAVING ITEM: ${JSON.stringify(item)}`);
+  return item;
+}
 
 // FUNCTIONS TO RESPOND WITH JSON DATA  ----------------------------------------
 

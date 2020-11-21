@@ -72,11 +72,13 @@ const onError = (error) => {
   // handle specific listen errors with friendly messages
   switch (error.code) {
     case 'EACCES':
-      LOG.info(`${bind} requires elevated privileges`);
-      process.exit(1);
+      throw new error(`${bind} requires elevated privileges`);
+    // LOG.info(`${bind} requires elevated privileges`);
+    // process.exit(1);
     case 'EADDRINUSE':
-      LOG.info(`${bind} is already in use`);
-      process.exit(1);
+      throw new error(`${bind} is already in use`);
+    // LOG.info(`${bind} is already in use`);
+    // process.exit(1);
     default:
       throw error;
   }

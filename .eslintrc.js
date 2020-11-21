@@ -34,5 +34,6 @@ module.exports = {
     'no-restricted-syntax': 'warn',
     'node/exports-style': ['warn', 'module.exports'],
     'node/file-extension-in-import': ['error', 'always'],
+    'import/no-dynamic-require': 'warn',
   },
 };
