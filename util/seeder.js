@@ -261,6 +261,7 @@ module.exports = async (db) => {
         { id: 21, email: 'kiran021997@gmail.com', password: 'password' },
         { id: 22, email: 'yashwanthrocks@gmail.com', password: 'password' },
         { id: 23, email: 'vishal041197@outlook.com', password: 'password' },
+        { id: 24, email: 'default@email.com', password: 'password' },
       ],
       { validate: true } // add options object to call new model validators
     );
