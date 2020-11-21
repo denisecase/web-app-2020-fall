@@ -16,26 +16,10 @@ module.exports = (db, DataTypes) => {
   db.define(
     'Competition',
     {
-      // sqlite creates a rowid attribute automatically
+      // sqlite creates an id attribute automatically
       name: {
         type: DataTypes.STRING(50),
         defaultValue: 'NewCompetitionName',
-      },
-      creatorUserId: {
-        type: DataTypes.INTEGER,
-        // references: {
-        //   model: "Users",
-        //   foreignKey: "id"
-        // },
-        defaultValue: 3,
-      },
-      questId: {
-        type: DataTypes.INTEGER,
-        // references: {
-        //     model: "Quests",
-        //     foreignKey: "id"
-        // },
-        defaultValue: 1,
       },
       startDateTime: {
         type: DataTypes.DATE,
@@ -44,6 +28,18 @@ module.exports = (db, DataTypes) => {
       endDateTime: {
         type: DataTypes.DATE,
         defaultValue: new Date(),
+      },
+      startLatitude: {
+        type: DataTypes.DECIMAL,
+        defaultValue: 40.3506,
+      },
+      startLongitude: {
+        type: DataTypes.DECIMAL,
+        defaultValue: -94.88289,
+      },
+      startDescription: {
+        type: DataTypes.STRING,
+        defaultValue: 'Describe Start Location',
       },
     },
     {
