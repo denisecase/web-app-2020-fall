@@ -13,7 +13,7 @@
     <div class="alert alert-success" role="alert"><%- tea.success %></div>
     <% } %>
     
-    <% if (locals.tea.error) { %>
+    <% if (locals.teas.error) { %>
     <div class="alert alert-danger" role="alert"><%- tea.error %></div>
     <% } %>
     
@@ -42,7 +42,7 @@
             </tr>
           </thead>
           <tbody>
-            <% for(let i = 0; i< tea.length; i++) { %>
+            <% for(let i = 0; i< teas.length; i++) { %>
             <tr>
               <th scope="row"><%= teas[i].id %></th>
               <td><%= teas[i].name%></td>

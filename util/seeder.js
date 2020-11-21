@@ -245,16 +245,18 @@ module.exports = async (db) => {
     LOG.error(`ERROR: Rabbit - ${err.message}`);
   }
 
-    // Dr. Hoot - tea
-    try {
-    await db.models.Tea.bulkCreate([
-      { name: 'LongJing', pricePerGram: 4.0, isPuer: false },
-      { name: 'YiWu', pricePerGram: 3.5, isPuer: true },
-      { name: 'LiShan', pricePerGram: 2.5, isPuer: false },
-      { name: 'TiGuanYin', pricePerGram: 0.4, isPuer: false },
-    ]);
+   
+  // Dr Hoot - tea
+  try {
+    await db.models.Tea.bulkCreate(
+      [
+        { name: 'LongJing', pricePerGram: 4.0, isPuer: false },
+        { name: 'YiWu', pricePerGram: 3.5, isPuer: true },
+        { name: 'LiShan', pricePerGram: 2.5, isPuer: false },
+        { name: 'TiGuanYin', pricePerGram: 0.4, isPuer: false },
+      ]);
     const numTeas = await db.models.Tea.count();
-    LOG.info(`Seeded ${numTeas} teas .`);
+    LOG.info(`Seeded ${numTeas} teas.`);
   } catch (err) {
     LOG.error(`ERROR: Tea - ${err.message}`);
   }

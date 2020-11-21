@@ -13,7 +13,7 @@ module.exports = (db, DataTypes) => {
       unique: true,
       required: true,
       allowNull: false,
-      defaultValue: 'Tea',
+      defaultValue: 'GoodStuff',
       validate: {
         is: {
           args: /^[A-Za-z]+$/i, // matches a RegExp
@@ -29,7 +29,7 @@ module.exports = (db, DataTypes) => {
         },
         max: {
           args: [30],
-          msg: 'Name is limited to 32 characters.',
+          msg: 'Name is limited to 30 characters.',
         },
         min: {
           args: [3],
@@ -44,11 +44,11 @@ module.exports = (db, DataTypes) => {
       validate: {
         max: {
           args: 100.0,
-          msg: 'Price per gram must be 100.0 or less.',
+          msg: 'Price per gram must be 100.0 or less',
         },
         min: {
-          args: 0.0,
-          msg: 'Price per gram must be 0.0 or more.',
+          args: 0.01,
+          msg: 'Price per gram must be 0.01 or more',
         },
       },
     },

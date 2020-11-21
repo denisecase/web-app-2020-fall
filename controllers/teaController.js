@@ -143,7 +143,7 @@ module.exports.showCreate = async (req, res) => {
   // create a temp tea and add it to the response.locals object
   // this will provide a tea object to put any validation errors
   const tempItem = {
-    name: 'TeatName',
+    name: 'TeaName',
     pricePerGram: 2.3,
     isPuer: true,
   };
