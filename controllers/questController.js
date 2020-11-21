@@ -14,7 +14,21 @@ const tabTitle = 'Quests';
 
 // GET all JSON
 module.exports.findAll = async (req, res) => {
-  (await db).models.Quest.findAll()
+  (await db).models.Quest.findAll({
+    attributes: {
+      exclude: ['createdAt', 'updatedAt'],
+    },
+    include: [
+      {
+        model: (await db).models.User,
+        attributes: ['id', 'email'], // creator
+      },
+      {
+        model: (await db).models.Location,
+        attributes: ['id', 'name'],
+      },
+    ],
+  })
     .then((data) => {
       res.send(data);
     })

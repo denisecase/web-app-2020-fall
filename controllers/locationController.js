@@ -14,7 +14,21 @@ const tabTitle = 'Locations';
 
 // GET all JSON
 module.exports.findAll = async (req, res) => {
-  (await db).models.Location.findAll()
+  (await db).models.Location.findAll({
+    attributes: {
+      exclude: ['createdAt', 'updatedAt'],
+    },
+    include: [
+      {
+        model: (await db).models.Quest,
+        attributes: ['id', 'name'],
+      },
+      {
+        model: (await db).models.Clue,
+        attributes: ['id', 'name'],
+      },
+    ],
+  })
     .then((data) => {
       res.send(data);
     })

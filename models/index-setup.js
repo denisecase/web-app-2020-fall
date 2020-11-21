@@ -33,7 +33,7 @@ module.exports = async (sequelize) => {
   Location.hasMany(Clue);
   Clue.belongsTo(Location);
 
-  // one competition has exactly one quest
+  // one competition has exactly one quest (quests cannot be reused)
   Competition.hasOne(Quest);
   Quest.belongsTo(Competition);
 
@@ -44,25 +44,18 @@ module.exports = async (sequelize) => {
 
   // one user can create many quests
   User.hasMany(Quest);
-  Quest.belongsTo(User, {
-    foreignKey: 'creatorUserId',
-  });
+  Quest.belongsTo(User);
 
   // one user can create many teams
   User.hasMany(Team);
-  Team.belongsTo(User, {
-    foreignKey: 'creatorUserId',
-  });
+  Team.belongsTo(User);
 
   // one user can create many competitions
   User.hasMany(Competition);
-  Competition.belongsTo(User, {
-    foreignKey: 'creatorUserId',
-  });
+  Competition.belongsTo(User);
 
   // every player is the same as one user (one-to-one)
+  // by default, it will put the key (in this case) in the Player table
   User.hasOne(Player);
-  Player.belongsTo(User, {
-    foreignKey: 'playerUserId',
-  });
+  Player.belongsTo(User);
 };

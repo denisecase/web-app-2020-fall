@@ -14,7 +14,25 @@ const tabTitle = 'Competitions';
 
 // GET all JSON
 module.exports.findAll = async (req, res) => {
-  (await db).models.Competition.findAll()
+  (await db).models.Competition.findAll({
+    attributes: {
+      exclude: ['createdAt', 'updatedAt'],
+    },
+    include: [
+      {
+        model: (await db).models.User,
+        attributes: ['id', 'email'], // creator
+      },
+      {
+        model: (await db).models.Quest,
+        attributes: ['id', 'name'],
+      },
+      {
+        model: (await db).models.Team,
+        attributes: ['id', 'name'],
+      },
+    ],
+  })
     .then((data) => {
       res.send(data);
     })

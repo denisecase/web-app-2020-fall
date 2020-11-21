@@ -15,7 +15,15 @@ const tabTitle = 'Clues';
 
 // GET all JSON
 module.exports.findAll = async (req, res) => {
-  (await db).models.Clue.findAll()
+  (await db).models.Clue.findAll({
+    attributes: {
+      exclude: ['createdAt', 'updatedAt'],
+    },
+    include: {
+      model: (await db).models.Location,
+      attributes: ['id', 'name'],
+    },
+  })
     .then((data) => {
       res.send(data);
     })

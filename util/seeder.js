@@ -273,11 +273,11 @@ module.exports = async (db) => {
   try {
     await db.models.Team.bulkCreate(
       [
-        { id: 1, name: 'Thunder Thinkers', creatorUserId: 18 },
-        { id: 2, name: 'Mavericks', creatorUserId: 19 },
-        { id: 3, name: 'Sunrisers Horizons', creatorUserId: 15 },
-        { id: 4, name: 'Barbies', creatorUserId: 21 },
-        { id: 5, name: 'Hunters', creatorUserId: 5 },
+        { id: 1, name: 'Thunder Thinkers', UserId: 18 },
+        { id: 2, name: 'Mavericks', UserId: 19 },
+        { id: 3, name: 'Sunrisers Horizons', UserId: 15 },
+        { id: 4, name: 'Barbies', UserId: 21 },
+        { id: 5, name: 'Hunters', UserId: 5 },
       ],
       { validate: true } // add options object to call new model validators
     );
@@ -288,35 +288,37 @@ module.exports = async (db) => {
   }
 
   try {
+    // Foreign keys begin with a capital letter by default
+    // When the app is running, go to /player/findAll to see more
     await db.models.Player.bulkCreate(
       [
-        { id: 101, playerUserId: 1, name: 'dabombcase', teamId: 1 },
-        { id: 102, playerUserId: 2, name: 'happeninhoot', teamId: 2 },
-        { id: 103, playerUserId: 3, name: 'awesomealex', teamId: 3 },
-        { id: 104, playerUserId: 4, name: 'supersamarpitachandolu', teamId: 3 },
-        { id: 105, playerUserId: 5, name: 'bestbhanu', teamId: 4 },
-        { id: 106, playerUserId: 6, name: 'cunningchandu', teamId: 5 },
-        { id: 107, playerUserId: 7, name: 'crusherchanduhvg', teamId: 1 },
+        { id: 101, UserId: 1, name: 'dabombcase', TeamId: 1 },
+        { id: 102, UserId: 2, name: 'happeninhoot', TeamId: 2 },
+        { id: 103, UserId: 3, name: 'awesomealex', TeamId: 3 },
+        { id: 104, UserId: 4, name: 'supersamarpitachandolu', TeamId: 3 },
+        { id: 105, UserId: 5, name: 'bestbhanu', TeamId: 4 },
+        { id: 106, UserId: 6, name: 'cunningchandu', TeamId: 5 },
+        { id: 107, UserId: 7, name: 'crusherchanduhvg', TeamId: 1 },
         {
           id: 108,
-          playerUserId: 8,
+          UserId: 8,
           name: 'famouspharichandraprasad',
-          teamId: 2,
+          TeamId: 2,
         },
-        { id: 109, playerUserId: 9, name: 'courageouskrishna', teamId: 3 },
-        { id: 110, playerUserId: 10, name: 'monstermohansai', teamId: 4 },
-        { id: 111, playerUserId: 11, name: 'eliteprasadgd', teamId: 5 },
-        { id: 112, playerUserId: 12, name: 'powerpruthvunaskanti', teamId: 1 },
-        { id: 114, playerUserId: 14, name: 'rockinraviteja', teamId: 2 },
-        { id: 115, playerUserId: 15, name: 'bonsaikrish1545', teamId: 3 },
-        { id: 116, playerUserId: 16, name: 'tejatops', teamId: 4 },
-        { id: 117, playerUserId: 17, name: 'strikersrkvodnala', teamId: 5 },
-        { id: 118, playerUserId: 18, name: 'strongbadsrisudheera', teamId: 1 },
-        { id: 119, playerUserId: 19, name: 'stellerswaroopreddy', teamId: 2 },
-        { id: 120, playerUserId: 20, name: 'supaswaroopat', teamId: 3 },
-        { id: 121, playerUserId: 21, name: 'killerkiran', teamId: 4 },
-        { id: 122, playerUserId: 22, name: 'yeeteryashwanthrocks', teamId: 5 },
-        { id: 123, playerUserId: 23, name: 'BeAllVishal', teamId: 5 },
+        { id: 109, UserId: 9, name: 'courageouskrishna', TeamId: 3 },
+        { id: 110, UserId: 10, name: 'monstermohansai', TeamId: 4 },
+        { id: 111, UserId: 11, name: 'eliteprasadgd', TeamId: 5 },
+        { id: 112, UserId: 12, name: 'powerpruthvunaskanti', TeamId: 1 },
+        { id: 114, UserId: 14, name: 'rockinraviteja', TeamId: 2 },
+        { id: 115, UserId: 15, name: 'bonsaikrish1545', TeamId: 3 },
+        { id: 116, UserId: 16, name: 'tejatops', TeamId: 4 },
+        { id: 117, UserId: 17, name: 'strikersrkvodnala', TeamId: 5 },
+        { id: 118, UserId: 18, name: 'strongbadsrisudheera', TeamId: 1 },
+        { id: 119, UserId: 19, name: 'stellerswaroopreddy', TeamId: 2 },
+        { id: 120, UserId: 20, name: 'supaswaroopat', TeamId: 3 },
+        { id: 121, UserId: 21, name: 'killerkiran', TeamId: 4 },
+        { id: 122, UserId: 22, name: 'yeeteryashwanthrocks', TeamId: 5 },
+        { id: 123, UserId: 23, name: 'BeAllVishal', TeamId: 5 },
       ],
       { validate: true } // add options object to call new model validators
     );
@@ -329,12 +331,12 @@ module.exports = async (db) => {
   try {
     await db.models.Quest.bulkCreate(
       [
-        { id: 1, name: 'Dragon Quest', creatorUserId: 15 },
-        { id: 2, name: 'Duck Quest', creatorUserId: 18 },
-        { id: 3, name: 'Treasure Quest', creatorUserId: 18 },
-        { id: 4, name: 'Happy Quest', creatorUserId: 18 },
-        { id: 5, name: 'Long Quest', creatorUserId: 18 },
-        { id: 6, name: 'Case Quest', creatorUserId: 1 },
+        { id: 1, name: 'Dragon Quest', UserId: 15 },
+        { id: 2, name: 'Duck Quest', UserId: 18 },
+        { id: 3, name: 'Treasure Quest', UserId: 18 },
+        { id: 4, name: 'Happy Quest', UserId: 18 },
+        { id: 5, name: 'Long Quest', UserId: 18 },
+        { id: 6, name: 'Case Quest', UserId: 1 },
       ],
       { validate: true } // add options object to call new model validators
     );
@@ -348,40 +350,40 @@ module.exports = async (db) => {
     await db.models.Location.bulkCreate(
       [
         // first quest locations........
-        { id: 11, questId: 1, sortOrder: 10, name: 'Bearcat football stadium' },
-        { id: 12, questId: 1, sortOrder: 20, name: 'Colden Pond' },
-        { id: 13, questId: 1, sortOrder: 30, name: 'Bearcat Soccer field' },
-        { id: 14, questId: 1, sortOrder: 40, name: 'Field House' },
+        { id: 11, QuestId: 1, sortOrder: 10, name: 'Bearcat football stadium' },
+        { id: 12, QuestId: 1, sortOrder: 20, name: 'Colden Pond' },
+        { id: 13, QuestId: 1, sortOrder: 30, name: 'Bearcat Soccer field' },
+        { id: 14, QuestId: 1, sortOrder: 40, name: 'Field House' },
 
         // second quest locations........
-        { id: 21, questId: 2, sortOrder: 10, name: 'Bell tower' },
-        { id: 22, questId: 2, sortOrder: 20, name: 'Bearcat football stadium' },
-        { id: 23, questId: 2, sortOrder: 30, name: 'Colden Pond' },
-        { id: 24, questId: 2, sortOrder: 40, name: 'Bearcat Soccer field' },
+        { id: 21, QuestId: 2, sortOrder: 10, name: 'Bell tower' },
+        { id: 22, QuestId: 2, sortOrder: 20, name: 'Bearcat football stadium' },
+        { id: 23, QuestId: 2, sortOrder: 30, name: 'Colden Pond' },
+        { id: 24, QuestId: 2, sortOrder: 40, name: 'Bearcat Soccer field' },
 
         // third quest locations........
-        { id: 31, questId: 3, sortOrder: 10, name: 'Admin building' },
-        { id: 32, questId: 3, sortOrder: 20, name: 'Bell tower' },
-        { id: 33, questId: 3, sortOrder: 30, name: 'Bearcat football stadium' },
-        { id: 34, questId: 3, sortOrder: 40, name: 'Colden Pond' },
+        { id: 31, QuestId: 3, sortOrder: 10, name: 'Admin building' },
+        { id: 32, QuestId: 3, sortOrder: 20, name: 'Bell tower' },
+        { id: 33, QuestId: 3, sortOrder: 30, name: 'Bearcat football stadium' },
+        { id: 34, QuestId: 3, sortOrder: 40, name: 'Colden Pond' },
 
         // fourth quest locations........
-        { id: 41, questId: 4, sortOrder: 10, name: 'Field House' },
-        { id: 42, questId: 4, sortOrder: 20, name: 'CIE Park' },
-        { id: 43, questId: 4, sortOrder: 30, name: 'Admin building' },
-        { id: 44, questId: 4, sortOrder: 40, name: 'Colden Pond' },
+        { id: 41, QuestId: 4, sortOrder: 10, name: 'Field House' },
+        { id: 42, QuestId: 4, sortOrder: 20, name: 'CIE Park' },
+        { id: 43, QuestId: 4, sortOrder: 30, name: 'Admin building' },
+        { id: 44, QuestId: 4, sortOrder: 40, name: 'Colden Pond' },
 
         // fifth quest locations........
-        { id: 51, questId: 5, sortOrder: 10, name: 'Field House' },
-        { id: 52, questId: 5, sortOrder: 20, name: 'Admin building' },
-        { id: 53, questId: 5, sortOrder: 30, name: 'Bell tower' },
-        { id: 54, questId: 5, sortOrder: 40, name: 'Bearcat football stadium' },
+        { id: 51, QuestId: 5, sortOrder: 10, name: 'Field House' },
+        { id: 52, QuestId: 5, sortOrder: 20, name: 'Admin building' },
+        { id: 53, QuestId: 5, sortOrder: 30, name: 'Bell tower' },
+        { id: 54, QuestId: 5, sortOrder: 40, name: 'Bearcat football stadium' },
 
         // sixth quest locations........
-        { id: 61, questId: 6, sortOrder: 10, name: 'One' },
-        { id: 62, questId: 6, sortOrder: 20, name: 'Two' },
-        { id: 63, questId: 6, sortOrder: 30, name: 'Three' },
-        { id: 64, questId: 6, sortOrder: 40, name: 'Four' },
+        { id: 61, QuestId: 6, sortOrder: 10, name: 'One' },
+        { id: 62, QuestId: 6, sortOrder: 20, name: 'Two' },
+        { id: 63, QuestId: 6, sortOrder: 30, name: 'Three' },
+        { id: 64, QuestId: 6, sortOrder: 40, name: 'Four' },
       ],
       { validate: true } // add options object to call new model validators
     );
@@ -397,8 +399,8 @@ module.exports = async (db) => {
         {
           id: 1,
           name: 'December Challenge',
-          creatorUserId: 5,
-          questId: 1,
+          UserId: 5,
+          QuestId: 1,
           startDateTime: new Date(2020, 11, 4, 8, 0, 0), // month is zero index
           endDateTime: new Date(2020, 11, 4, 9, 0, 0), // dec
           startLatitude: 40.3506,
@@ -408,8 +410,8 @@ module.exports = async (db) => {
         {
           id: 2,
           name: 'January Return',
-          creatorUserId: 10,
-          questId: 2,
+          UserId: 10,
+          QuestId: 2,
           startDateTime: new Date(2021, 0, 15, 8, 0, 0), // month is zero index
           endDateTime: new Date(2021, 0, 15, 9, 0, 0), // jan
           startLatitude: 40.3506,
@@ -419,8 +421,8 @@ module.exports = async (db) => {
         {
           id: 3,
           name: 'February Fun',
-          creatorUserId: 15,
-          questId: 3,
+          UserId: 15,
+          QuestId: 3,
           startDateTime: new Date(2021, 1, 15, 8, 0, 0), // month is zero index
           endDateTime: new Date(2021, 1, 15, 9, 0, 0), // feb
           startLatitude: 40.3506,
@@ -430,8 +432,8 @@ module.exports = async (db) => {
         {
           id: 4,
           name: 'March Madness',
-          creatorUserId: 20,
-          questId: 4,
+          UserId: 20,
+          QuestId: 4,
           startDateTime: new Date(2021, 2, 15, 8, 0, 0), // month is zero index
           endDateTime: new Date(2021, 2, 15, 9, 0, 0), // mar
           startLatitude: 40.3506,
@@ -441,8 +443,8 @@ module.exports = async (db) => {
         {
           id: 5,
           name: 'Final Event',
-          creatorUserId: 9,
-          questId: 5,
+          UserId: 9,
+          QuestId: 5,
           startDateTime: new Date(2021, 3, 15, 8, 0, 0), // month is zero index
           endDateTime: new Date(2021, 3, 15, 9, 0, 0), // apr
           startLatitude: 40.3506,
@@ -452,8 +454,8 @@ module.exports = async (db) => {
         {
           id: 6,
           name: 'Case Competition',
-          creatorUserId: 1,
-          questId: 6,
+          UserId: 1,
+          QuestId: 6,
           startDateTime: new Date(2020, 11, 15, 8, 0, 0), // month is zero index
           endDateTime: new Date(2020, 11, 15, 9, 0, 0), // dec quest
           startLatitude: 40.3506,
@@ -474,46 +476,46 @@ module.exports = async (db) => {
     await db.models.CompetitionTeam.bulkCreate(
       [
         // competition teams
-        { id: 11, competitionId: 1, teamId: 1 },
-        { id: 12, competitionId: 1, teamId: 2 },
-        { id: 13, competitionId: 1, teamId: 3 },
-        { id: 14, competitionId: 1, teamId: 4 },
-        { id: 15, competitionId: 1, teamId: 5 },
+        { id: 11, CompetitionId: 1, TeamId: 1 },
+        { id: 12, CompetitionId: 1, TeamId: 2 },
+        { id: 13, CompetitionId: 1, TeamId: 3 },
+        { id: 14, CompetitionId: 1, TeamId: 4 },
+        { id: 15, CompetitionId: 1, TeamId: 5 },
 
         // competition teams
-        { id: 21, competitionId: 2, teamId: 1 },
-        { id: 22, competitionId: 2, teamId: 2 },
-        { id: 23, competitionId: 2, teamId: 3 },
-        { id: 24, competitionId: 2, teamId: 4 },
-        { id: 25, competitionId: 2, teamId: 5 },
+        { id: 21, CompetitionId: 2, TeamId: 1 },
+        { id: 22, CompetitionId: 2, TeamId: 2 },
+        { id: 23, CompetitionId: 2, TeamId: 3 },
+        { id: 24, CompetitionId: 2, TeamId: 4 },
+        { id: 25, CompetitionId: 2, TeamId: 5 },
 
         // competition teams
-        { id: 31, competitionId: 3, teamId: 1 },
-        { id: 32, competitionId: 3, teamId: 2 },
-        { id: 33, competitionId: 3, teamId: 3 },
-        { id: 34, competitionId: 3, teamId: 4 },
-        { id: 35, competitionId: 3, teamId: 5 },
+        { id: 31, CompetitionId: 3, TeamId: 1 },
+        { id: 32, CompetitionId: 3, TeamId: 2 },
+        { id: 33, CompetitionId: 3, TeamId: 3 },
+        { id: 34, CompetitionId: 3, TeamId: 4 },
+        { id: 35, CompetitionId: 3, TeamId: 5 },
 
         // competition teams
-        { id: 41, competitionId: 4, teamId: 1 },
-        { id: 42, competitionId: 4, teamId: 2 },
-        { id: 43, competitionId: 4, teamId: 3 },
-        { id: 44, competitionId: 4, teamId: 4 },
-        { id: 45, competitionId: 4, teamId: 5 },
+        { id: 41, CompetitionId: 4, TeamId: 1 },
+        { id: 42, CompetitionId: 4, TeamId: 2 },
+        { id: 43, CompetitionId: 4, TeamId: 3 },
+        { id: 44, CompetitionId: 4, TeamId: 4 },
+        { id: 45, CompetitionId: 4, TeamId: 5 },
 
         // competition teams
-        { id: 51, competitionId: 5, teamId: 1 },
-        { id: 52, competitionId: 5, teamId: 2 },
-        { id: 53, competitionId: 5, teamId: 3 },
-        { id: 54, competitionId: 5, teamId: 4 },
-        { id: 55, competitionId: 5, teamId: 5 },
+        { id: 51, CompetitionId: 5, TeamId: 1 },
+        { id: 52, CompetitionId: 5, TeamId: 2 },
+        { id: 53, CompetitionId: 5, TeamId: 3 },
+        { id: 54, CompetitionId: 5, TeamId: 4 },
+        { id: 55, CompetitionId: 5, TeamId: 5 },
 
         // competition teams
-        { id: 61, competitionId: 6, teamId: 1 },
-        { id: 62, competitionId: 6, teamId: 2 },
-        { id: 63, competitionId: 6, teamId: 3 },
-        { id: 64, competitionId: 6, teamId: 4 },
-        { id: 65, competitionId: 6, teamId: 5 },
+        { id: 61, CompetitionId: 6, TeamId: 1 },
+        { id: 62, CompetitionId: 6, TeamId: 2 },
+        { id: 63, CompetitionId: 6, TeamId: 3 },
+        { id: 64, CompetitionId: 6, TeamId: 4 },
+        { id: 65, CompetitionId: 6, TeamId: 5 },
       ],
       { validate: true } // add options object to call new model validators
     );

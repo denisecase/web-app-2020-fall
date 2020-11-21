@@ -15,7 +15,21 @@ const tabTitle = 'Players';
 
 // GET all JSON
 module.exports.findAll = async (req, res) => {
-  (await db).models.Player.findAll()
+  (await db).models.Player.findAll({
+    attributes: {
+      exclude: ['createdAt', 'updatedAt'],
+    },
+    include: [
+      {
+        model: (await db).models.Team,
+        attributes: ['name'],
+      },
+      {
+        model: (await db).models.User,
+        attributes: ['email'],
+      },
+    ],
+  })
     .then((data) => {
       res.send(data);
     })
