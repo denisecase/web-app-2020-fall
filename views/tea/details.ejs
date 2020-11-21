@@ -1,0 +1,39 @@
+<!--
+*  Tea details view
+*  Uses HTML and embedded JavaScript (EJS) 
+*  to dyanmically create a webpage to display a tea item.
+*
+*  Adapted by hoot@nwmissouri.edu
+* @author Denise Case <dcase@nwmissouri.edu>
+-->
+
+<% if (tea.error) { %>
+    <div class="alert alert-danger" role="alert"><%- tea.error %></div>
+    <% } %>
+    
+    <div class="card-body">
+    
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">PricePerGram</th>
+            <th scope="col">IsPuer</th>
+            <th >Action</th>
+          </tr>
+        </thead>
+        <tbody>
+    
+          <tr>
+            <th scope="row"><%= tea.id %></th>
+            <td><%= tea.name%></td>
+            <td><%= tea.pricePerGram%></td>
+            <td><%= tea.isPuer%></td>
+            <td>
+              <a class="btn btn-success edit" href="/rabbit">Done</a>
+            </td>
+          </tr>
+    
+        </tbody>
+      </table>

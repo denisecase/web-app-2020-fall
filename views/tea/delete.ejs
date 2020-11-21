@@ -1,0 +1,41 @@
+<!--
+*  Tea delete view
+*  Uses HTML and embedded JavaScript (EJS) 
+*  to dyanmically create a webpage to delete a tea item.
+** Adapted by hoot@nwmissouri.edu
+* @author Denise Case <dcase@nwmissouri.edu>
+-->
+
+<% if (tea.error) { %>
+    <div class="alert alert-danger" role="alert"><%- tea.error %></div>
+    <% } %>
+    
+    <div class="card-body">
+    
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">PricePerGram</th>
+            <th scope="col">IsPuer</th>
+            <th width=>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+    
+          <tr>
+            <th scope="row"><%= tea.id %></th>
+            <td><%= tea.name%></td>
+            <td><%= tea.pricePerGram%></td>
+            <td><%= tea.isPuer%></td>
+            <td>
+              <form action="/tea/delete/<%=tea.id%>" method="post">
+                <input type="submit" class="btn btn-danger delete" value="Delete" onclick="return alert('Are You sure?')"/>
+              </form>
+            </td>
+          </tr>
+    
+        </tbody>
+      </table>
+    

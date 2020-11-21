@@ -12,6 +12,7 @@ const express = require('express');
 const LOG = require('../util/logger');
 const userRouter = require('./users');
 const rabbitRoutes = require('./rabbit.routes');
+const teaRoutes = require('./tea.routes');
 const animalRoutes = require('./animal.routes');
 const gameRoutes = require('./game.routes');
 const countryRoutes = require('./country.routes');
@@ -60,6 +61,13 @@ try {
   router.use('/rabbit', rabbitRoutes);
 } catch (err) {
   LOG.error(`ERROR: ${err.message}`);
+}
+
+// Dr. Hoot - tea
+try {
+  router.use('/tea', teaRoutes);
+} catch (err) {
+  Log.error(`ERROR: ${err.message}`);
 }
 
 // Blake - game
