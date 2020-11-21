@@ -12,7 +12,7 @@ const express = require('express');
 const LOG = require('../util/logger');
 const userRouter = require('./users');
 const rabbitRoutes = require('./rabbit.routes');
-const teaRoutes = require('./tea.routes');
+const teaRoutes = require('./tea.routes'); 
 const animalRoutes = require('./animal.routes');
 const gameRoutes = require('./game.routes');
 const countryRoutes = require('./country.routes');
@@ -55,6 +55,14 @@ router.get('/index', (req, res) => {
 });
 
 router.use('/user', userRouter);
+
+// better route to t-e-a-m before we route to t-e-a
+// team routing moved before tea routing
+try {
+  router.use('/team', teamRoutes);
+} catch (err) {
+  LOG.error(`ERROR: ${err.message}`);
+}
 
 // Dr. Case - rabbit
 try {
@@ -196,11 +204,13 @@ try {
   LOG.error(`ERROR: ${err.message}`);
 }
 
-try {
-  router.use('/team', teamRoutes);
-} catch (err) {
-  LOG.error(`ERROR: ${err.message}`);
-}
+// better route to t-e-a-m before we route to t-e-a
+// team routing moved before tea routing
+// try {
+//   router.use('/team', teamRoutes);
+// } catch (err) {
+//   LOG.error(`ERROR: ${err.message}`);
+// }
 
 LOG.info('routes/index.js: ENDING custom routes......');
 

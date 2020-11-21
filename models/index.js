@@ -13,6 +13,7 @@ const { Sequelize, DataTypes } = require('sequelize');
 
 const envConfigs = require('../config/config');
 const LOG = require('../util/logger');
+const applyExtraSetup = require('./index-setup'); // add associations
 
 module.exports = async () => {
   LOG.info('Starting models/index.js .......................');
@@ -29,17 +30,19 @@ module.exports = async () => {
     if (vars.error) {
       throw vars.error;
     }
-    LOG.info(`Environment variables loaded: ${vars.parsed}`);
+    LOG.info(`MODELS/INDEX: Environment variables loaded: ${vars.parsed}`);
 
     const basename = path.basename(__filename);
     const isProduction = process.env.NODE_ENV === 'production';
-    LOG.info(`Entering dbInit in ${process.env.NODE_ENV} environment.`);
+    LOG.info(`MODELS/INDEX: In ${process.env.NODE_ENV} environment.`);
 
     const config = envConfigs[process.env.NODE_ENV];
 
     const sequelize = isProduction
       ? new Sequelize(config.url, config)
       : new Sequelize(config);
+
+    LOG.info('MODELS/INDEX: created Sequelize connection.');
 
     fs.readdirSync(__dirname)
       .filter((file) => {
@@ -50,10 +53,15 @@ module.exports = async () => {
         );
       })
       .forEach((file) => {
+        // require each model definer
         require(path.join(__dirname, file))(sequelize, DataTypes);
       });
 
-    LOG.info('Done connecting and initializing...');
+    LOG.info('MODELS/INDEX: Added model definers.');
+
+    // Apply extra setup after model definition (e.g. associations).
+    await applyExtraSetup(sequelize);
+
     return sequelize;
   };
 
