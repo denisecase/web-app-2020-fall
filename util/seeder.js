@@ -253,7 +253,7 @@ module.exports = async (db) => {
         { id: 12, email: 'pruthvunaskanti@hotmail.com', password: 'password' },
         { id: 14, email: 'raviteja.pagidoju@gmail.com', password: 'password' },
         { id: 15, email: 'saikrish1545@gmail.com', password: 'password' },
-        { id: 16, email: 'teja2004@woutlook.com', password: 'password' },
+        { id: 16, email: 'teja2004@outlook.com', password: 'password' },
         { id: 17, email: 'srkvodnala@gmail.com', password: 'password' },
         { id: 18, email: 'csrisudheera@gmail.com', password: 'password' },
         { id: 19, email: 'swaroopreddy.g@gmail.com', password: 'password' },
@@ -273,11 +273,50 @@ module.exports = async (db) => {
   try {
     await db.models.Team.bulkCreate(
       [
-        { id: 1, name: 'Thunder Guys' },
-        { id: 2, name: 'Mavericks' },
-        { id: 3, name: 'Sunrisers horizons' },
-        { id: 4, name: 'Barbies' },
-        { id: 5, name: 'Hunters' },
+        { id: 1, name: 'Thunder Thinkers', creatorUserId: 18 },
+        { id: 2, name: 'Mavericks', creatorUserId: 19 },
+        { id: 3, name: 'Sunrisers Horizons', creatorUserId: 15 },
+        { id: 4, name: 'Barbies', creatorUserId: 21 },
+        { id: 5, name: 'Hunters', creatorUserId: 5 },
+      ],
+      { validate: true } // add options object to call new model validators
+    );
+    const num = await db.models.Team.count();
+    LOG.info(`Seeded ${num} teams.`);
+  } catch (err) {
+    LOG.error(`ERROR: Team seeding - ${err.message}`);
+  }
+
+  try {
+    await db.models.Player.bulkCreate(
+      [
+        { id: 101, playerUserId: 1, name: 'dabombcase', teamId: 1 },
+        { id: 102, playerUserId: 2, name: 'happeninhoot', teamId: 2 },
+        { id: 103, playerUserId: 3, name: 'awesomealex', teamId: 3 },
+        { id: 104, playerUserId: 4, name: 'supersamarpitachandolu', teamId: 3 },
+        { id: 105, playerUserId: 5, name: 'bestbhanu', teamId: 4 },
+        { id: 106, playerUserId: 6, name: 'cunningchandu', teamId: 5 },
+        { id: 107, playerUserId: 7, name: 'crusherchanduhvg', teamId: 1 },
+        {
+          id: 108,
+          playerUserId: 8,
+          name: 'famouspharichandraprasad',
+          teamId: 2,
+        },
+        { id: 109, playerUserId: 9, name: 'courageouskrishna', teamId: 3 },
+        { id: 110, playerUserId: 10, name: 'monstermohansai', teamId: 4 },
+        { id: 111, playerUserId: 11, name: 'eliteprasadgd', teamId: 5 },
+        { id: 112, playerUserId: 12, name: 'powerpruthvunaskanti', teamId: 1 },
+        { id: 114, playerUserId: 14, name: 'rockinraviteja', teamId: 2 },
+        { id: 115, playerUserId: 15, name: 'bonsaikrish1545', teamId: 3 },
+        { id: 116, playerUserId: 16, name: 'tejatops', teamId: 4 },
+        { id: 117, playerUserId: 17, name: 'strikersrkvodnala', teamId: 5 },
+        { id: 118, playerUserId: 18, name: 'strongbadsrisudheera', teamId: 1 },
+        { id: 119, playerUserId: 19, name: 'stellerswaroopreddy', teamId: 2 },
+        { id: 120, playerUserId: 20, name: 'supaswaroopat', teamId: 3 },
+        { id: 121, playerUserId: 21, name: 'killerkiran', teamId: 4 },
+        { id: 122, playerUserId: 22, name: 'yeeteryashwanthrocks', teamId: 5 },
+        { id: 123, playerUserId: 23, name: 'BeAllVishal', teamId: 5 },
       ],
       { validate: true } // add options object to call new model validators
     );
@@ -290,11 +329,12 @@ module.exports = async (db) => {
   try {
     await db.models.Quest.bulkCreate(
       [
-        { id: 1, name: 'Dragon Hunt' },
-        { id: 2, name: 'Duck Hunt' },
-        { id: 3, name: 'South Campus' },
-        { id: 4, name: 'East Campus' },
-        { id: 5, name: 'North Campus' },
+        { id: 1, name: 'Dragon Quest', creatorUserId: 15 },
+        { id: 2, name: 'Duck Quest', creatorUserId: 18 },
+        { id: 3, name: 'Treasure Quest', creatorUserId: 18 },
+        { id: 4, name: 'Happy Quest', creatorUserId: 18 },
+        { id: 5, name: 'Long Quest', creatorUserId: 18 },
+        { id: 6, name: 'Case Quest', creatorUserId: 1 },
       ],
       { validate: true } // add options object to call new model validators
     );
@@ -307,12 +347,41 @@ module.exports = async (db) => {
   try {
     await db.models.Location.bulkCreate(
       [
-        { name: 'Bearcat football stadium' },
-        { name: 'Colden Pond' },
-        { name: 'Bearcat Soccer field' },
-        { name: 'Field House' },
-        { name: 'Admin building' },
-        { name: 'Bell tower' },
+        // first quest locations........
+        { id: 11, questId: 1, sortOrder: 10, name: 'Bearcat football stadium' },
+        { id: 12, questId: 1, sortOrder: 20, name: 'Colden Pond' },
+        { id: 13, questId: 1, sortOrder: 30, name: 'Bearcat Soccer field' },
+        { id: 14, questId: 1, sortOrder: 40, name: 'Field House' },
+
+        // second quest locations........
+        { id: 21, questId: 2, sortOrder: 10, name: 'Bell tower' },
+        { id: 22, questId: 2, sortOrder: 20, name: 'Bearcat football stadium' },
+        { id: 23, questId: 2, sortOrder: 30, name: 'Colden Pond' },
+        { id: 24, questId: 2, sortOrder: 40, name: 'Bearcat Soccer field' },
+
+        // third quest locations........
+        { id: 31, questId: 3, sortOrder: 10, name: 'Admin building' },
+        { id: 32, questId: 3, sortOrder: 20, name: 'Bell tower' },
+        { id: 33, questId: 3, sortOrder: 30, name: 'Bearcat football stadium' },
+        { id: 34, questId: 3, sortOrder: 40, name: 'Colden Pond' },
+
+        // fourth quest locations........
+        { id: 41, questId: 4, sortOrder: 10, name: 'Field House' },
+        { id: 42, questId: 4, sortOrder: 20, name: 'CIE Park' },
+        { id: 43, questId: 4, sortOrder: 30, name: 'Admin building' },
+        { id: 44, questId: 4, sortOrder: 40, name: 'Colden Pond' },
+
+        // fifth quest locations........
+        { id: 51, questId: 5, sortOrder: 10, name: 'Field House' },
+        { id: 52, questId: 5, sortOrder: 20, name: 'Admin building' },
+        { id: 53, questId: 5, sortOrder: 30, name: 'Bell tower' },
+        { id: 54, questId: 5, sortOrder: 40, name: 'Bearcat football stadium' },
+
+        // sixth quest locations........
+        { id: 61, questId: 6, sortOrder: 10, name: 'One' },
+        { id: 62, questId: 6, sortOrder: 20, name: 'Two' },
+        { id: 63, questId: 6, sortOrder: 30, name: 'Three' },
+        { id: 64, questId: 6, sortOrder: 40, name: 'Four' },
       ],
       { validate: true } // add options object to call new model validators
     );
@@ -361,9 +430,17 @@ module.exports = async (db) => {
           id: 5,
           name: 'Final Event',
           creatorUserId: 9,
-          questId: 2,
+          questId: 5,
           startDateTime: new Date(2021, 3, 15, 8, 0, 0), // month is zero index
           endDateTime: new Date(2021, 3, 15, 9, 0, 0), // apr
+        },
+        {
+          id: 6,
+          name: 'Case Competition',
+          creatorUserId: 1,
+          questId: 6,
+          startDateTime: new Date(2020, 11, 15, 8, 0, 0), // month is zero index
+          endDateTime: new Date(2020, 11, 15, 9, 0, 0), // dec quest
         },
       ],
       { validate: true } // add options object to call new model validators
@@ -374,16 +451,14 @@ module.exports = async (db) => {
     LOG.error(`ERROR: Competitions seeding - ${err.message}`);
   }
 
-   
   // Dr Hoot - tea
   try {
-    await db.models.Tea.bulkCreate(
-      [
-        { name: 'LongJing', pricePerGram: 4.0, isPuer: false },
-        { name: 'YiWu', pricePerGram: 3.5, isPuer: true },
-        { name: 'LiShan', pricePerGram: 2.5, isPuer: false },
-        { name: 'TiGuanYin', pricePerGram: 0.4, isPuer: false },
-      ]);
+    await db.models.Tea.bulkCreate([
+      { name: 'LongJing', pricePerGram: 4.0, isPuer: false },
+      { name: 'YiWu', pricePerGram: 3.5, isPuer: true },
+      { name: 'LiShan', pricePerGram: 2.5, isPuer: false },
+      { name: 'TiGuanYin', pricePerGram: 0.4, isPuer: false },
+    ]);
     const numTeas = await db.models.Tea.count();
     LOG.info(`Seeded ${numTeas} teas.`);
   } catch (err) {

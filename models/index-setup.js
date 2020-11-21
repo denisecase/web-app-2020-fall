@@ -59,4 +59,10 @@ module.exports = async (sequelize) => {
   Competition.belongsTo(User, {
     foreignKey: 'creatorUserId',
   });
+
+  // every player is the same as one user (one-to-one)
+  User.hasOne(Player);
+  Player.belongsTo(User, {
+    foreignKey: 'playerUserId',
+  });
 };

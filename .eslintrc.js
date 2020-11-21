@@ -35,5 +35,6 @@ module.exports = {
     'node/exports-style': ['warn', 'module.exports'],
     'node/file-extension-in-import': ['error', 'always'],
     'import/no-dynamic-require': 'warn',
+    'no-process-exit': 'warn',
   },
 };
