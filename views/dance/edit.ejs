@@ -1,31 +1,32 @@
 <!--
-*  Dance edit view
+*  dance edit view
 *  Uses HTML and embedded JavaScript (EJS) 
 *  to dyanmically create a webpage to edit a dance.
 *
-* @author Denise Case <dcase@nwmissouri.edu>
+* @author Sai Prashansa Ambarkar <s541063@nwmissouri.edu>
 -->
 
 <div class="card">
     <div class="card-header">
-      Edit Dance
+      Edit dance
     </div>
     <div class="card-body">
       <form action="/dance/save/<%= dance.id %>" method="post">
         <div class="form-group">
-          <label for="form">Form:</label>
-          <input type="text" class="form-control" id="form" name="form" value="<%= dance.form %>" autocomplete="off">
+          <label for="name">Name:</label>
+          <input type="text" class="form-control" id="name" name="name" value="<%= dance.name %>" autocomplete="off">
         </div>
         <div class="form-group">
-          <label for="YearInfo">YearInfo:</label>
-          <input type="number" class="form-control" id="YearInfo" name="YearInfo" value="<%= dance.YearInfo %>">
+          <label for="age">Age:</label>
+          <input type="number" class="form-control" id="age" name="age" value="<%= dance.age %>" min=1 max=100 step=1 default=2
+            autocomplete="off">
         </div>
         <br>
         <!-- Checked checkbox -->
         <div class="form-check">
-          <input type="checkbox" class="form-check-input" id="checkbox" value="<%= dance.isTraditional %>" checked />
+          <input type="checkbox" class="form-check-input" id="checkbox" value="<%= dance.isCartoon %>" checked />
           <label class="form-check-label" for="checkbox">
-            Is Traditional?
+            Is Cartoon?
           </label>
         </div>
         <br>

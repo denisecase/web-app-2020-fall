@@ -1,9 +1,9 @@
 <!--
-*  Dance details view
+*  dance details view
 *  Uses HTML and embedded JavaScript (EJS) 
 *  to dyanmically create a webpage to display a dance.
 *
-* @author Denise Case <dcase@nwmissouri.edu>
+* @author Sai Prashansa Ambarkar <s541063@nwmissouri.edu>
 -->
 
 <% if (dance.error) { %>
@@ -16,9 +16,9 @@
         <thead>
           <tr>
             <th scope="col">#</th>
-            <th scope="col">form</th>
-            <th scope="col">YearInfo</th>
-            <th scope="col">isTraditional</th>
+            <th scope="col">Name</th>
+            <th scope="col">Age</th>
+            <th scope="col">IsCartoon</th>
             <th >Action</th>
           </tr>
         </thead>
@@ -26,9 +26,9 @@
     
           <tr>
             <th scope="row"><%= dance.id %></th>
-            <td><%= dance.form%></td>
-            <td><%= dance.yearInfo%></td>
-            <td><%= dance.isTraditional%></td>
+            <td><%= dance.name%></td>
+            <td><%= dance.age%></td>
+            <td><%= dance.isCartoon%></td>
             <td>
               <a class="btn btn-success edit" href="/dance">Done</a>
             </td>
