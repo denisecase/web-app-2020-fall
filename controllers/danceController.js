@@ -49,14 +49,14 @@ exports.saveNew = async (req, res) => {
   } catch (err) {
     // store the user inputs & the validation errors in res.locals.dance
     // err includes err.message & err.errors (array of validator msgs)
-    LOG.error('ERROR SAVING RABBIT');
+    LOG.error('ERROR SAVING DANCE');
     const item = {};
     item.form = req.body.form;
-    item.yearIntro = req.body.yearIntro;
+    item.yearInfo = req.body.yearInfo;
     item.isTraditional = req.body.isTraditional;
     //item.errors = err.errors;
     res.locals.dance = item;
-    LOG.info(` ERROR ADDING RABBIT:${item}`);
+    LOG.info(` ERROR ADDING DANCE:${item}`);
   }
   return res.redirect('/dance');
 };
@@ -115,7 +115,7 @@ exports.showCreate = async (req, res) => {
   // this will provide a dance object to put any validation errors
   const tempItem = {
     name: 'DanceName',
-    yearIntro: 1999,
+    yearInfo: 1999,
     isTraditional: true,
   };
   res.locals.dance = tempItem;

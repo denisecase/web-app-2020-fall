@@ -38,9 +38,9 @@
       <thead>
         <tr>
           <th scope="col">ID</th>
-          <th scope="col">Name</th>
-          <th scope="col">Age</th>
-          <th scope="col">IsCartoon?</th>
+          <th scope="col">Form</th>
+          <th scope="col">Year Info</th>
+          <th scope="col">Is Traditional?</th>
           <th >Action</th>
         </tr>
       </thead>
@@ -48,9 +48,9 @@
         <% for(let i = 0; i< dances.length; i++) { %>
         <tr>
           <th scope="row"><%= dances[i].id %></th>
-          <td><%= dances[i].name%></td>
-          <td><%= dances[i].age%></td>
-          <td><%= dances[i].isCartoon%></td>
+          <td><%= dances[i].form%></td>
+          <td><%= dances[i].yearInfo%></td>
+          <td><%= dances[i].isTraditional%></td>
           <td>
             <a class="btn btn-primary details" href="../dance/details/<%=dances[i].id%>"><i
                 class="fab fa-sistrix" title="test"></i></a>
