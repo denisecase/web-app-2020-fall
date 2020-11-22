@@ -76,7 +76,7 @@ try {
 try {
   router.use('/tea', teaRoutes);
 } catch (err) {
-  Log.error(`ERROR: ${err.message}`);
+  LOG.error(`ERROR: ${err.message}`);
 }
 
 // Blake - game

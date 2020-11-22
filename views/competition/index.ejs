@@ -11,6 +11,8 @@
 * repo https://github.com/mdobydullah/nodejs-crud-with-expressjs-mysql
 
 -->
+<br>
+<br>
 
 <% if (locals.competitions.success) { %>
   <div class="alert alert-success" role="alert"><%- competition.success %></div>
@@ -49,10 +51,14 @@
         <tbody>
           <% for(let i = 0; i< competitions.length; i++) { %>
           <tr>
+            <!-- Check JSON Contents at /findAll -->
+            <!-- Any Null values can cause problems -->
+             <!-- Show useful information from FKs -->
+             <!-- Make sure controller passes all necessary information -->
             <th scope="row"><%= competitions[i].id %></th>
             <td><%= competitions[i].name %></td>
-            <td><%= competitions[i].creatorUserId %></td>
-            <td><%= competitions[i].questId %></td>
+            <td><%= competitions[i].User.email %></td>
+            <td><%= competitions[i].Quest.name %></td>
             <td><%= competitions[i].startDateTime %></td>
             <td><%= competitions[i].endDateTime %></td>
             <td>

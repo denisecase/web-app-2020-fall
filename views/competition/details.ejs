@@ -5,31 +5,26 @@
 *
 * @author Denise Case <dcase@nwmissouri.edu>
 -->
+<br>
+<br>
 
 <% if (competition.error) { %>
-  <div class="alert alert-danger" role="alert"><%- competition.error %></div>
-  <% } %>
-  
+<div class="alert alert-danger" role="alert"><%- competition.error %></div>
+<% } %>
+
+<div class="card">
   <div class="card-body">
-  
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Name</th>
-          <th >Action</th>
-        </tr>
-      </thead>
-      <tbody>
-  
-        <tr>
-          <th scope="row"><%= competition.id %></th>
-          <td><%= competition.name%></td>
-          <td>
-            <a class="btn btn-success edit" href="/competition">Done</a>
-          </td>
-        </tr>
-  
-      </tbody>
-    </table>
-  
+    <h5 class="card-title"><%= competition.id %> - <%= competition.name%></h5>
+    <br>
+    <p class="card-text">
+    <p>Created by: <%= competition.User.email %></p>
+    <p>Quest: <%= competition.Quest.name %></p>
+    <p>Start date/time: <%= competition.startDateTime %></p>
+    <p>End date/time:<%= competition.endDateTime %></p>
+    </p>
+    <br>
+    <a class="btn btn-success edit" href="/competition">Done</a>
+    <br>
+
+  </div>
+</div>

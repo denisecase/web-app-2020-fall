@@ -5,33 +5,33 @@
 *
 * @author Denise Case <dcase@nwmissouri.edu>
 -->
-  
+<br>
+<br>
+
 <% if (competition.error) { %>
   <div class="alert alert-danger" role="alert"><%- competition.error %></div>
   <% } %>
   
-  <div class="card-body">
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title"><%= competition.id %> - <%= competition.name%></h5>
+      <br>
+      <p class="card-text">
+      <p>Created by: <%= competition.User.email %></p>
+      <p>Quest: <%= competition.Quest.name %></p>
+      <p>Start date/time: <%= competition.startDateTime %></p>
+      <p>End date/time:<%= competition.endDateTime %></p>
+      </p>
+      <br>
+      <form action="/competition/delete/<%=competition.id%>" method="post">
+        <input type="submit" class="btn btn-danger delete" value="Delete" onclick="return alert('Are you sure?')"/>
+      </form>
+      <br>
+      <a class="btn  edit" href="/competition">Cancel</a>
+      <br>
   
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">ID</th>
-          <th scope="col">Name</th>
-          <th width=>Action</th>
-        </tr>
-      </thead>
-      <tbody>
+    </div>
+  </div>
   
-        <tr>
-          <th scope="row"><%= competition.id %></th>
-          <td><%= competition.name%></td>
-          <td>
-            <form action="/competition/delete/<%=competition.id%>" method="post">
-              <input type="submit" class="btn btn-danger delete" value="Delete" onclick="return alert('Are you sure?')"/>
-            </form>
-          </td>
-        </tr>
-  
-      </tbody>
-    </table>
+
   

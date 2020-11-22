@@ -33,9 +33,9 @@ module.exports = async (sequelize) => {
   Location.hasMany(Clue);
   Clue.belongsTo(Location);
 
-  // one competition has exactly one quest (quests cannot be reused)
-  Competition.hasOne(Quest);
-  Quest.belongsTo(Competition);
+  // one quest can be used in many competitions (updated)
+  Quest.hasMany(Competition);
+  Competition.belongsTo(Quest);
 
   // one competition can have many teams; teams can join many competitions
   // belongsToMany requires a name for the many-to-many entity

@@ -42,10 +42,10 @@ const logger = winston.createLogger({
         winston.format.simple()
       ),
     }),
-    new winston.transports.File({
-      filename: 'combined.log',
-      level: 'info',
-    }),
+    // new winston.transports.File({
+    //   filename: 'combined.log',
+    //   level: 'info',
+    // }),
     new winston.transports.File({
       filename: 'errors.log',
       level: 'error',

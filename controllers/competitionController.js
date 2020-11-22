@@ -115,7 +115,25 @@ module.exports.deleteItem = async (req, res) => {
 
 // GET to this controller base URI (the default)
 module.exports.showIndex = async (req, res) => {
-  (await db).models.Competition.findAll()
+  (await db).models.Competition.findAll({
+    attributes: {
+      exclude: ['createdAt', 'updatedAt'],
+    },
+    include: [
+      {
+        model: (await db).models.User,
+        attributes: ['id', 'email'], // creator
+      },
+      {
+        model: (await db).models.Quest,
+        attributes: ['id', 'name'],
+      },
+      // {
+      //   model: (await db).models.Team,
+      //   attributes: ['id', 'name'],
+      // },
+    ],
+  })
     .then((data) => {
       res.locals.competitions = data;
       res.render('competition/index.ejs', { title: tabTitle, res });
@@ -129,20 +147,54 @@ module.exports.showIndex = async (req, res) => {
 
 // GET /create
 module.exports.showCreate = async (req, res) => {
-  // create a temporary item and add it to the response.locals object
-  // this also provides a place to pass any validation errors to the view
-  // Important! attributes must match those defined in the model
-  const tempItem = {
-    name: 'CompetitionName',
-  };
-  res.locals.competition = tempItem;
-  res.render('competition/create.ejs', { title: tabTitle, res });
+  // get all quests for the drop-down
+  (await db).models.Quest.findAll({
+    attributes: {
+      exclude: ['createdAt', 'updatedAt'],
+    },
+  })
+    .then((data) => {
+      res.locals.quests = data;
+      LOG.info(`quests=${JSON.stringify(res.locals.quests)}`);
+      // create a temporary item and add it to the response.locals object
+      // this also provides a place to pass any validation errors to the view
+      // Important! attributes must match those defined in the model
+      const tempItem = {
+        name: 'CompetitionName',
+      };
+      res.locals.competition = tempItem;
+      LOG.info(`newCompetition=${JSON.stringify(res.locals.competition)}`);
+      res.render('competition/create.ejs', { title: tabTitle, res });
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: `Error creating new item: ${err.message}`,
+      });
+    });
 };
 
 // GET /delete/:id
 module.exports.showDelete = async (req, res) => {
   const { id } = req.params;
-  (await db).models.Competition.findByPk(id)
+  (await db).models.Competition.findByPk(id, {
+    attributes: {
+      exclude: ['createdAt', 'updatedAt'],
+    },
+    include: [
+      {
+        model: (await db).models.User,
+        attributes: ['id', 'email'], // creator
+      },
+      {
+        model: (await db).models.Quest,
+        attributes: ['id', 'name'],
+      },
+      // {
+      //   model: (await db).models.Team,
+      //   attributes: ['id', 'name'],
+      // },
+    ],
+  })
     .then((data) => {
       res.locals.competition = data;
       if (data) {
@@ -161,7 +213,25 @@ module.exports.showDelete = async (req, res) => {
 // GET /details/:id
 module.exports.showDetails = async (req, res) => {
   const { id } = req.params;
-  (await db).models.Competition.findByPk(id)
+  (await db).models.Competition.findByPk(id, {
+    attributes: {
+      exclude: ['createdAt', 'updatedAt'],
+    },
+    include: [
+      {
+        model: (await db).models.User,
+        attributes: ['id', 'email'], // creator
+      },
+      {
+        model: (await db).models.Quest,
+        attributes: ['id', 'name'],
+      },
+      // {
+      //   model: (await db).models.Team,
+      //   attributes: ['id', 'name'],
+      // },
+    ],
+  })
     .then((data) => {
       res.locals.competition = data;
       res.render('competition/details.ejs', { title: tabTitle, res });
@@ -175,8 +245,32 @@ module.exports.showDetails = async (req, res) => {
 
 // GET /edit/:id
 module.exports.showEdit = async (req, res) => {
+  // get all quests for the drop-down
+  (await db).models.Quest.findAll().then((data) => {
+    res.locals.quests = data;
+  });
+
+  // then, do the usual..........
   const { id } = req.params;
-  (await db).models.Competition.findByPk(id)
+  (await db).models.Competition.findByPk(id, {
+    attributes: {
+      exclude: ['createdAt', 'updatedAt'],
+    },
+    include: [
+      {
+        model: (await db).models.User,
+        attributes: ['id', 'email'], // creator
+      },
+      {
+        model: (await db).models.Quest,
+        attributes: ['id', 'name'],
+      },
+      // {
+      //   model: (await db).models.Team,
+      //   attributes: ['id', 'name'],
+      // },
+    ],
+  })
     .then((data) => {
       res.locals.competition = data;
       res.render('competition/edit.ejs', { title: tabTitle, res });
