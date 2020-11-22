@@ -1,10 +1,9 @@
 /**
  *  dance controller
- *  Handles requests related to dance (see routes)
+ *  Handles requests related to dances (see routes)
  *
- * @author Sai Prashansa Ambarkar <S541063@nwmissouri.edu>
+ * @author Sai Prashansa Ambarkar <s541063@nwmissouri.edu>
  */
-
 const LOG = require('../util/logger');
 
 const db = require('../models/index')();
@@ -52,9 +51,9 @@ exports.saveNew = async (req, res) => {
     LOG.error('ERROR SAVING DANCE');
     const item = {};
     item.form = req.body.form;
-    item.yearInfo = req.body.yearInfo;
+    item.yearInfo = req.body.yearInfo
     item.isTraditional = req.body.isTraditional;
-    //item.errors = err.errors;
+    item.errors = err.errors;
     res.locals.dance = item;
     LOG.info(` ERROR ADDING DANCE:${item}`);
   }
@@ -114,7 +113,7 @@ exports.showCreate = async (req, res) => {
   // create a temp dance and add it to the response.locals object
   // this will provide a dance object to put any validation errors
   const tempItem = {
-    name: 'DanceName',
+    form: 'danceName',
     yearInfo: 1999,
     isTraditional: true,
   };

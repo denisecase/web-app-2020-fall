@@ -7,7 +7,7 @@
 -->
   
 <% if (dance.error) { %>
-  <div class="alert alert-danger" role="alert"><%= dance.error %></div>
+  <div class="alert alert-danger" role="alert"><%- dance.error %></div>
   <% } %>
   
   <div class="card-body">
@@ -17,8 +17,8 @@
         <tr>
           <th scope="col">ID</th>
           <th scope="col">Form</th>
-          <th scope="col">Year Info</th>
-          <th scope="col">Is Traditional</th>
+          <th scope="col">YearInfo</th>
+          <th scope="col">IsTraditional</th>
           <th width=>Action</th>
         </tr>
       </thead>
@@ -30,7 +30,7 @@
           <td><%= dance.yearInfo%></td>
           <td><%= dance.isTraditional%></td>
           <td>
-            <form action="/dance/delete/<%= dance.id %>" method="post">
+            <form action="/dance/delete/<%= dance.id%>" method="post">
               <input type="submit" class="btn btn-danger delete" value="Delete" onclick="return alert('Are You sure?')"/>
             </form>
           </td>

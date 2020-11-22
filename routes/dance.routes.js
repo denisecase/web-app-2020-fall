@@ -8,11 +8,11 @@
  * Match each expeced verb + URL request
  * with a custom function to handle it
  *
- * @author Sai Prashansa Ambarkar<S541063@nwmissouri.edu>
+ * @author Sai Prashansa Ambarkar <s541063@nwmissouri.edu>
  */
 
 const router = require('express').Router();
-const controller = require('../controllers/danceController.js');
+const controller = require('../controllers/danceController.js'); 
 
 console.info('Starting dance routing.');
 
@@ -39,7 +39,7 @@ router.get('/create', controller.showCreate);
 router.get('/details/:id', controller.showDetails);
 router.get('/edit/:id', controller.showEdit);
 router.get('/delete/:id', controller.showDelete);
-
-console.info('Loaded dance routes.'); 
+ 
+console.info('Loaded dance routes.');
 
 module.exports = router;

@@ -16,16 +16,11 @@
 module.exports = (db, DataTypes) => {
   db.define('Dance', {
     // sqlite creates a rowid attribute automatically
-    form: {
-      type: DataTypes.STRING(300)
-    },
-    yearIntro : {
-      type: DataTypes.INTEGER,
-
-    },
-    isTraditional : {
+    form: { type: DataTypes.STRING(300) },
+    yearInfo : { type: DataTypes.INTEGER },
+    isTraditional: {
       type: DataTypes.BOOLEAN,
-  
+      defaultValue: true,
     },
   });
 };

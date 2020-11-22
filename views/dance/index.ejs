@@ -47,13 +47,13 @@
       <tbody>
         <% for(let i = 0; i< dances.length; i++) { %>
         <tr>
-          <th scope="row"><%= dances[i].id %></th>
+          <th scope="row"><%= dances[i].id%></th>
           <td><%= dances[i].form%></td>
           <td><%= dances[i].yearInfo%></td>
           <td><%= dances[i].isTraditional%></td>
           <td>
-            <a class="btn btn-primary details" href="../dance/details/<%=dances[i].id%>"><i
-                class="fab fa-sistrix" title="test"></i></a>
+            <a class="btn btn-primary details" href="../dance/details/<%=dances[i].id%>"><i 
+                  class="fab fa-sistrix" title="test"></i></a>
             <a class="btn btn-success edit" href="../dance/edit/<%=dances[i].id%>"><i class="fas fa-user-edit"></i></a>
             <a class="btn btn-danger delete" href="../dance/delete/<%=dances[i].id%>"><i
                 class="fas fa-trash-alt"></i></a>

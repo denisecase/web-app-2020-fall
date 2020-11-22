@@ -7,32 +7,32 @@
 -->
 
 <div class="card">
-    <div class="card-header">
-      Edit dance
-    </div>
-    <div class="card-body">
-      <form action="/dance/save/<%= dance.id %>" method="post">
-        <div class="form-group">
-          <label for="form">Form:</label>
-          <input type="text" class="form-control" id="form" name="form" value="<%= dance.form %>" autocomplete="off">
-        </div>
-        <div class="form-group">
-          <label for="yearInfo">Year Info:</label>
-          <input type="number" class="form-control" id="yearInfo" name="yearInfo" value="<%= dance.yearInfo %>" step=1 default=1999
-            autocomplete="off">
-        </div>
-        <br>
-        <!-- Checked checkbox -->
-        <div class="form-check">
-          <input type="checkbox" class="form-check-input" id="checkbox" value="<%= dance.isTraditional %>" checked />
-          <label class="form-check-label" for="checkbox">
-            Is Traditional?
-          </label>
-        </div>
-        <br>
-        <div class="form-group">
-          <input type="submit" class="btn btn-info" title="Submits a POST /save/:id request" value="Save" />
-        </div>
-      </form>
-    </div>
+  <div class="card-header">
+    Edit dance
   </div>
+  <div class="card-body">
+    <form action="/dance/save/<%= dance.id%>" method="post">
+      <div class="form-group">
+        <label for="form">Form:</label>
+        <input type="text" class="form-control" id="form" name="form" value="<%= dance.form %>" autocomplete="off">
+      </div>
+      <div class="form-group">
+        <label for="yearInfo">YearInfo:</label>
+        <input type="number" class="form-control" id="yearInfo" name="yearInfo" value="<%= dance.yearInfo %>" min=1000 max=2020 step=1
+          default=1999 autocomplete="off">
+      </div>
+      <br>
+      <!-- Checked checkbox -->
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="checkbox" value="<%= dance.isTraditional %>" checked />
+        <label class="form-check-label" for="checkbox">
+          Is Traditional?
+        </label>
+      </div>
+      <br>
+      <div class="form-group">
+        <input type="submit" class="btn btn-info" title="Submits a POST /save/:id request" value="Save" />
+      </div>
+    </form>
+  </div>
+</div>
