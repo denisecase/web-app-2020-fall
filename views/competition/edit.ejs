@@ -31,7 +31,7 @@
       <br>
 
       <div class="form-group">
-        <label for="quest">Quest:</label>
+        <label for="QuestId">Quest:</label>
 
         <!-- select example (set value to 'id', and show 'name' to user) -->
         <!--                                                             -->
@@ -40,7 +40,11 @@
         <!--     <option value="2"         >Two</option>     -->
         <!--  </select>                                      -->
 
-        <select class="select" id="quest" name="quest">
+        <!-- tag id   is used client-side (html/css/js)      -->
+        <!-- tag name is used server-side (by controllers)   -->
+        <!-- as selection changes, the req.body.QuestId updates   -->
+
+        <select class="select" id="QuestId" name="QuestId">
 
           <% for(let i = 0; i < quests.length; i++) { 
          let sel = ( competition.QuestId === quests[i].id ) ? "selected" : "";

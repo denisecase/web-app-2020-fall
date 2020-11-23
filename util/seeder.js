@@ -334,9 +334,9 @@ module.exports = async (db) => {
       [
         { id: 1, name: 'Dragon Quest', UserId: 15 },
         { id: 2, name: 'Duck Quest', UserId: 18 },
-        { id: 3, name: 'Treasure Quest', UserId: 18 },
-        { id: 4, name: 'Happy Quest', UserId: 18 },
-        { id: 5, name: 'Long Quest', UserId: 18 },
+        { id: 3, name: 'Treasure Quest', UserId: 4 },
+        { id: 4, name: 'Happy Quest', UserId: 6 },
+        { id: 5, name: 'Long Quest', UserId: 10 },
         { id: 6, name: 'Case Quest', UserId: 1 },
       ],
       { validate: true } // add options object to call new model validators
