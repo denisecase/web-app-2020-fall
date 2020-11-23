@@ -205,6 +205,11 @@ Security
 - [Express: Security Best Practices](https://expressjs.com/en/advanced/best-practice-security.html)
 - [ES Lint: Config](https://github.com/EvgenyOrekhov/eslint-config-hardcore)
 
+Mozilla Observatory (Live Security Check)
+
+- Test any app with [Mozilla Observatory (security check)](https://observatory.mozilla.org/)
+- Test our app with [Mozilla Observatory](https://observatory.mozilla.org/analyze/web-app-2020-fall.herokuapp.com)
+
 Sequelize & PostgreSQL
 
 - [Getting Started with Sequelize and Postgres](https://dev.to/nedsoft/getting-started-with-sequelize-and-postgres-emp)
