@@ -10,8 +10,9 @@
 
 module.exports = (sequelize, DataTypes) => {
   sequelize.define('Country', {
-    continent: { type: DataTypes.STRING(20) },
+    name: { type: DataTypes.STRING(50)},
     population: { type: DataTypes.INTEGER },
+    isPopulationMoreThan100M: { type: DataTypes.BOOLEAN },
   });
 };
 
