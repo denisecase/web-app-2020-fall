@@ -1,0 +1,35 @@
+<!--
+*  Team details view
+*  Uses HTML and embedded JavaScript (EJS) 
+*  to dyanmically create a webpage to display a resource.
+*
+* @author Denise Case <dcase@nwmissouri.edu>
+-->
+
+<% if (team.error) { %>
+  <div class="alert alert-danger" role="alert"><%- team.error %></div>
+  <% } %>
+  
+  <div class="card-body">
+  
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th >Action</th>
+        </tr>
+      </thead>
+      <tbody>
+  
+        <tr>
+          <th scope="row"><%= team.id %></th>
+          <td><%= team.name%></td>
+          <td>
+            <a class="btn btn-success edit" href="/team">Done</a>
+          </td>
+        </tr>
+  
+      </tbody>
+    </table>
+  

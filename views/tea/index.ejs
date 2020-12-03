@@ -3,9 +3,71 @@
 *  (the default tea page)
 *  
 *  Uses HTML and embedded JavaScript (EJS) 
-*  to dyanmically create a webpage to list all rabbits.
+*  to dyanmically create a webpage to list all teas.
 *
+* Adapted by hoot@nwmissouri.edu
 * @author Charles Hoot <hoot@nwmissouri.edu>
 -->
 
-<p> IN PROGRESS - This is rabbit index.ejs </p>
+<% if (locals.teas.success) { %>
+    <div class="alert alert-success" role="alert"><%- tea.success %></div>
+    <% } %>
+    
+    <% if (locals.teas.error) { %>
+    <div class="alert alert-danger" role="alert"><%- tea.error %></div>
+    <% } %>
+    
+    <div class="card">
+      <div class="card-header">
+        <ul class="nav nav-pills w-100">
+          <li class="nav-pill active">
+            <a class="nav-link">Teas</a>
+          </li>
+          <li class="nav-pill ml-auto">
+            <a class="nav-link active" href="/tea/create"><i class="fas fa-plus"></i></a>
+          </li>
+        </ul>
+      </div>
+      <div class="card-body">
+    
+        <% if(teas.length) { %>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Name</th>
+              <th scope="col">PricePerGram</th>
+              <th scope="col">IsPuer?</th>
+              <th >Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for(let i = 0; i< teas.length; i++) { %>
+            <tr>
+              <th scope="row"><%= teas[i].id %></th>
+              <td><%= teas[i].name%></td>
+              <td><%= teas[i].pricePerGram%></td>
+              <td><%= teas[i].isPuer%></td>
+              <td>
+                <a class="btn btn-primary details" href="../tea/details/<%=teas[i].id%>"><i
+                    class="fab fa-sistrix" title="test"></i></a>
+                <a class="btn btn-success edit" href="../tea/edit/<%=teas[i].id%>"><i class="fas fa-user-edit"></i></a>
+                <a class="btn btn-danger delete" href="../tea/delete/<%=teas[i].id%>"><i
+                    class="fas fa-trash-alt"></i></a>
+              </td>
+            </tr>
+            <% } %>
+          </tbody>
+        </table>
+        <% } %>
+    
+        <!-- if result is empty -->
+        <% if(!teas.length) { %>
+        <p class="text-center">No teas found!</p>
+        <% } %>
+    
+        <br>
+        <h3>Mouse over icons to see where you will go.</h3>
+    
+      </div>
+    </div>

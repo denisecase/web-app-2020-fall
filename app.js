@@ -9,7 +9,7 @@ const createError = require('http-errors');
 const express = require('express');
 const path = require('path'); // builds path strings
 const cookieParser = require('cookie-parser');
-const logger = require('morgan');
+const pinohttp = require('pino-http')(); // faster http logger
 
 // import additional dependencies
 const engines = require('consolidate');
@@ -34,7 +34,7 @@ app.set('view engine', 'ejs');
 app.engine('ejs', engines.ejs);
 
 // set up other middleware
-app.use(logger('dev'));
+app.use(pinohttp);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -50,109 +50,8 @@ app.use(global.passport.session());
 
 LOG.info('app initial middleware configured');
 
-// route most requests to the indexRouter
-// route requests that start with /users to the usersRouter
+// route requests to routes/index.js
 app.use('/', require('./routes/index'));
-app.use('/users', require('./routes/users'));
-
-LOG.info('app default routes configured');
-
-// Dr. Case - rabbit
-try {
-  app.use('/rabbit', require('./routes/rabbit.routes'));
-} catch (err) {
-  LOG.error(`ERROR: ${err.message}`);
-}
-
-// Dr. Hoot - tea
-app.use('/tea', require('./routes/tea.routes'));
-
-// Blake - game
-try {
-  app.use('/game', require('./routes/game.routes'));
-} catch (err) {
-  LOG.error(`ERROR: ${err.message}`);
-}
-
-// Varsha - animal
-try {
-  app.use('/animal', require('./routes/animal.routes'));
-} catch (err) {
-  LOG.error(`ERROR: ${err.message}`);
-}
-
-// Felipe - ?
-
-// Jack - chief
-
-// Sreenidhi - plant
-try {
-  app.use('/plant', require('./routes/plant.routes'));
-} catch (err) {
-  LOG.error(`ERROR: ${err.message}`);
-}
-
-// Sri Vasavi - food
-app.use('/food', require('./routes/food.routes'));
-// Joseph - software
-app.use('/software', require('./routes/software.routes'));
-// Stephen - whiskey
-try {
-  app.use('/whiskey', require('./routes/whiskey.routes'));
-} catch (err) {
-  LOG.error(`ERROR: ${err.message}`);
-}
-
-// Shivani - book
-app.use('/book', require('./routes/book.routes'));
-
-// Kunal - videoGame
-try {
-  app.use('/videogame', require('./routes/videogame.routes'));
-} catch (err) {
-  LOG.error(`ERROR: ${err.message}`);
-}
-// Chandler - company
-try {
-  app.use('/company', require('./routes/company.routes'));
-} catch (err) {
-  LOG.error(`ERROR: ${err.message}`);
-}
-
-// Praneeth - cricket
-app.use('/cricket', require('./routes/cricket.routes'));
-// Nithya - series
-app.use('/series', require('./routes/series.routes'));
-
-// Zach - fruit
-try {
-  app.use('/fruit', require('./routes/fruit.routes'));
-} catch (err) {
-  LOG.error(`ERROR: ${err.message}`);
-}
-
-// Sam - ship
-try {
-  app.use('/ship', require('./routes/ship.routes'));
-} catch (err) {
-  LOG.error(`ERROR: ${err.message}`);
-}
-
-// Prashansa - dance
-try {
-  app.use('/dance', require('./routes/dance.routes'));
-} catch (err) {
-  LOG.error(`ERROR: ${err.message}`);
-}
-
-// Lindsey - Pokemon
-try {
-  app.use('/pokemon', require('./routes/pokemon.routes'));
-} catch (err) {
-  LOG.error(`ERROR: ${err.message}`);
-}
-
-LOG.info('app custom routes configured');
 
 // catch 404 and forward to error handler
 app.use((req, res, err, next) => {

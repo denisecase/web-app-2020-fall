@@ -1,9 +1,42 @@
 <!--
-*  Rabbit create view
+*  Fruit create view
 *  Uses HTML and embedded JavaScript (EJS) 
-*  to dyanmically create a webpage to create a new rabbit.
+*  to dyanmically create a webpage to create a new fruit.
 *
-* @author Denise Case <dcase@nwmissouri.edu>
+* @author Zach Watson <s531994@nwmissouri.edu>
 -->
 
-<p> fruit create.ejs </p>
+<% if (fruit && fruit.error) { %>
+    <div class="alert alert-danger" role="alert"><%- JSON.stringify(fruit.error) %></div>
+    <% } %>
+  
+  <div class="card">
+    <div class="card-header">
+      Add Fruit
+    </div>
+    <div class="card-body">
+      <form action="/fruit/save" method="post">
+        <div class="form-group">
+          <label for="name">Name:</label>
+          <input type="text" class="form-control" id="name" name="name" value="<%= fruit.name %>" autocomplete="off">
+        </div>
+        <div class="form-group">
+          <label for="daysGrowth">Days Growth</label>
+          <input type="number" class="form-control" id="daysGrowth" name="daysGrowth" value="<%= fruit.daysGrowth %>" min=1 max=1000 step=1 default=1
+            autocomplete="off">
+        </div>
+        <br>
+        <!-- Checked checkbox -->
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="checkbox" value="<%= fruit.isRipe %>" checked />
+          <label class="form-check-label" for="checkbox">
+            Is Ripe?
+          </label>
+        </div>
+        <br>
+        <div class="form-group">
+          <input type="submit" class="btn btn-info" title="Submits a POST /save request" value="Create" />
+        </div>
+      </form>
+    </div>
+  </div>

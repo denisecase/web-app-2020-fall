@@ -1,0 +1,30 @@
+<!--
+*  Clue create view
+*  Uses HTML and embedded JavaScript (EJS) 
+*  to dyanmically create a webpage to create a new resource.
+*
+* @author Denise Case <dcase@nwmissouri.edu>
+-->
+
+
+<% if (clue && clue.error) { %>
+  <div class="alert alert-danger" role="alert"><%- JSON.stringify(clue.error) %></div>
+  <% } %>
+
+<div class="card">
+  <div class="card-header">
+    Add Clue
+  </div>
+  <div class="card-body">
+    <form action="/animal/save" method="post">
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" class="form-control" id="name" name="name" value="<%= clue.name %>" autocomplete="off">
+      </div>
+      <br>
+      <div class="form-group">
+        <input type="submit" class="btn btn-info" title="Submits a POST /save request" value="Create" />
+      </div>
+    </form>
+  </div>
+</div>

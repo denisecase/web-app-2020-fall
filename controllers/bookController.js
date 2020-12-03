@@ -4,7 +4,7 @@
  *
  * @author shivani tangellapally <s540965@nwmissouri.edu>
  */
-
+const { ValidationError } = require('sequelize');
 const LOG = require('../util/logger');
 
 const db = require('../models/index')();
@@ -49,14 +49,14 @@ module.exports.saveNew = async (req, res) => {
   } catch (err) {
     // store the user inputs & the validation errors in res.locals.book
     // err includes err.message & err.errors (array of validator msgs)
-    LOG.error('ERROR SAVING RABBIT');
+    LOG.error('ERROR SAVING BOOK');
     const item = {};
-    item.name = req.body.name;
-    item.age = req.body.age;
-    item.isCartoon = req.body.isCartoon;
+    item.body = req.body.body;
+    item.publishedDate = req.body.publishedDate;
+    item.isFantasy = req.body.isFantasy;
     item.errors = err.errors;
     res.locals.book = item;
-    LOG.info(` ERROR ADDING RABBIT:${item}`);
+    LOG.info(` ERROR ADDING BOOK:${item}`);
   }
   return res.redirect('/book');
 };
@@ -114,9 +114,9 @@ module.exports.showCreate = async (req, res) => {
   // create a temp book and add it to the response.locals object
   // this will provide a book object to put any validation errors
   const tempItem = {
-    name: 'RabbitName',
-    age: 1,
-    isCartoon: true,
+    book: 'book',
+    publishedDate: 1997,
+    isFantasy: true,
   };
   res.locals.book = tempItem;
   res.render('book/create.ejs', { title: 'Books', res });

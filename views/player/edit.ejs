@@ -1,0 +1,29 @@
+<!--
+*  Player edit view
+*  Uses HTML and embedded JavaScript (EJS) 
+*  to dyanmically create a webpage to edit the resource.
+*
+* @author Denise Case <dcase@nwmissouri.edu>
+-->
+
+<div class="card">
+  <div class="card-header">
+    Edit Player
+  </div>
+  <div class="card-body">
+    <form action="/player/save/<%= player.id %>" method="post">
+
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" class="form-control" id="name" name="name" value="<%= player.name %>" autocomplete="off">
+      </div>
+     
+      <br>
+
+      <div class="form-group">
+        <input type="submit" class="btn btn-info" title="Submits a POST /save/:id request" value="Save" />
+      </div>
+      
+    </form>
+  </div>
+</div>

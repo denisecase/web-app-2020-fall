@@ -1,0 +1,86 @@
+<!--
+*  Competition index view
+*  (the default page for this resource)
+*  
+*  Uses HTML and embedded JavaScript (EJS) 
+*  to dyanmically create a webpage to list all of this type of resource.
+*
+* @author Denise Case <dcase@nwmissouri.edu>
+
+* based on https://www.mynotepaper.com/nodejs-simple-crud-with-expressjs-and-mysql
+* repo https://github.com/mdobydullah/nodejs-crud-with-expressjs-mysql
+
+-->
+<br>
+<br>
+
+<% if (locals.competitions.success) { %>
+  <div class="alert alert-success" role="alert"><%- competition.success %></div>
+  <% } %>
+  
+  <% if (locals.competitions.error) { %>
+  <div class="alert alert-danger" role="alert"><%- competition.error %></div>
+  <% } %>
+  
+  <div class="card">
+    <div class="card-header">
+      <ul class="nav nav-pills w-100">
+        <li class="nav-pill active">
+          <a class="nav-link">Competitions</a>
+        </li>
+        <li class="nav-pill ml-auto">
+          <a class="nav-link active" href="/competition/create"><i class="fas fa-plus"></i></a>
+        </li>
+      </ul>
+    </div>
+    <div class="card-body">
+  
+      <% if(competitions.length) { %>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Creator</th>
+            <th scope="col">Quest</th>
+            <th scope="col">Start</th>
+            <th scope="col">End</th>
+            <th >Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for(let i = 0; i< competitions.length; i++) { %>
+          <tr>
+            <!-- Check JSON Contents at /findAll -->
+            <!-- Any Null values can cause problems -->
+             <!-- Show useful information from FKs -->
+             <!-- Make sure controller passes all necessary information -->
+            <th scope="row"><%= competitions[i].id %></th>
+            <td><%= competitions[i].name %></td>
+            <td><%= competitions[i].User.email %></td>
+            <td><%= competitions[i].Quest.name %></td>
+            <td><%= competitions[i].startDateTime %></td>
+            <td><%= competitions[i].endDateTime %></td>
+            <td>
+              <a class="btn btn-primary details" href="../competition/details/<%=competitions[i].id%>"><i
+                  class="fab fa-sistrix" title="test"></i></a>
+              <a class="btn btn-success edit" href="../competition/edit/<%=competitions[i].id%>"><i class="fas fa-user-edit"></i></a>
+              <a class="btn btn-danger delete" href="../competition/delete/<%=competitions[i].id%>"><i
+                  class="fas fa-trash-alt"></i></a>
+            </td>
+          </tr>
+          <% } %>
+        </tbody>
+      </table>
+      <% } %>
+  
+      <!-- if result is empty -->
+      <% if(!competitions.length) { %>
+      <p class="text-center">No competitions found!</p>
+      <% } %>
+  
+      <br>
+      <h3>Mouse over icons to see where you will go.</h3>
+  
+    </div>
+  </div>

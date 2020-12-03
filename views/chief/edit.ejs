@@ -1,0 +1,41 @@
+<!--
+*  chief edit view
+*  Uses HTML and embedded JavaScript (EJS) 
+*  to dyanmically create a webpage to edit a chief.
+*
+* @author Jack W Beaver <s526937@nwmissouri.edu>
+-->
+
+<div class="card">
+    <div class="card-header">
+      Edit chief
+    </div>
+    <div class="card-body">
+      <form action="/chief/save/<%= chief.id %>" method="post">
+        <div class="form-group">
+          <label for="chief">chief:</label>
+          <input type="text" class="form-control" id="chief" name="chief" value="<%= chief.chief %>" autocomplete="off">
+        </div>
+        <div class="form-group">
+          <label for="player">player:</label>
+          <input type="text" class="form-control" id="player" name="player" value="<%= chief.player %>">
+        </div>
+        <div class="form-group">
+            <label for="teamSince">teamSince:</label>
+            <input type="number" class="form-control" id="teamSince" name="teamSine" value="<%= chief.teamSine %>">
+          </div>
+          <br>
+        <!-- Checked checkbox -->
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="checkbox" value="<%= chief.isSuperBowlChamp %>" checked />
+          <label class="form-check-label" for="checkbox">
+            Is Super Bowl Champ?
+          </label>
+        </div>
+        <br>
+        <div class="form-group">
+          <input type="submit" class="btn btn-info" title="Submits a POST /save/:id request" value="Save" />
+        </div>
+      </form>
+    </div>
+  </div>

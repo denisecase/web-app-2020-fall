@@ -1,6 +1,6 @@
 /**
- *  Rabbit model
- *  Describes the characteristics of each attribute in a rabbit resource.
+ *  Game model
+ *  Describes the characteristics of each attribute in a game resource.
  *
  * @author Blake Bennett <s532542@nwmissouri.edu>
  *
@@ -22,8 +22,8 @@ module.exports = (db, DataTypes) => {
       defaultValue: 'Game',
       validate: {
         is: {
-          args: /^[A-Za-z]+$/i, // matches a RegExp
-          msg: 'Name is only letters, no spaces or punctuation.',
+          args: /^[A-Za-z\s]+$/i, // matches a RegExp
+          msg: 'Name is only letters and spaces, no punctuation or numbers.',
         },
         notNull: {
           args: true,

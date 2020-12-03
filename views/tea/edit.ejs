@@ -1,9 +1,39 @@
 <!--
-*  Rabbit edit view
+*  Tea edit view
 *  Uses HTML and embedded JavaScript (EJS) 
-*  to dyanmically create a webpage to edit a rabbit.
+*  to dyanmically create a webpage to edit a tea item.
 *
+*  Adapted by hoot@nwmissouri.edu
 * @author Denise Case <dcase@nwmissouri.edu>
 -->
 
-<p> rabbit edit.ejs </p>
+<div class="card">
+    <div class="card-header">
+      Edit Tea
+    </div>
+    <div class="card-body">
+      <form action="/tea/save/<%= tea.id %>" method="post">
+        <div class="form-group">
+          <label for="name">Name:</label>
+          <input type="text" class="form-control" id="name" name="name" value="<%= tea.name %>" autocomplete="off">
+        </div>
+        <div class="form-group">
+          <label for="pricePerGram">Price Per Gram:</label>
+          <input type="double" class="form-control" id="pricePerGram" name="pricePerGram" value="<%= tea.pricePerGram %>" min=0.01 max=100.0 step=0.01 default=2
+            autocomplete="off">
+        </div>
+        <br>
+        <!-- Checked checkbox -->
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="checkbox" value="<%= tea.isPuer %>" checked />
+          <label class="form-check-label" for="checkbox">
+            Is Puer?
+          </label>
+        </div>
+        <br>
+        <div class="form-group">
+          <input type="submit" class="btn btn-info" title="Submits a POST /save/:id request" value="Save" />
+        </div>
+      </form>
+    </div>
+  </div>

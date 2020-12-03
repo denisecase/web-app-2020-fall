@@ -2,7 +2,7 @@
   "name": "web-app-2020-fall",
   "version": "0.0.0",
   "engines": {
-    "node": "14.x"
+    "node": "14"
   },
   "private": true,
   "scripts": {
@@ -10,7 +10,8 @@
     "lint-fix": "eslint --fix .",
     "prettier": "prettier --write .",
     "dev": "nodemon ./bin/www",
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "test": "echo \"Error: no test specified\""
   },
   "dependencies": {
     "bcryptjs": "latest",
@@ -23,20 +24,22 @@
     "express-ejs-layouts": "latest",
     "express-session": "latest",
     "express-validator": "latest",
-    "fs": "latest",
+    "fs": "0.0.2",
     "helmet": "latest",
+    "hover.css": "latest",
     "http-errors": "latest",
     "jsonwebtoken": "latest",
-    "morgan": "latest",
     "passport": "latest",
     "pg": "latest",
     "pg-hstore": "latest",
+    "pino-http": "latest",
     "sequelize": "latest",
     "sequelize-cli": "latest",
     "serve-favicon": "latest",
     "winston": "latest"
   },
   "devDependencies": {
+    "all-contributors-cli": "^6.19.0",
     "eslint": "latest",
     "eslint-config-airbnb-base": "latest",
     "eslint-config-prettier": "latest",

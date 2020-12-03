@@ -4,7 +4,7 @@
  *
  * @author Sreenidhi Madala <s541226@nwmissouri.edu>
  *
- * * For more information about defining sequelize models, see
+ * For more information about defining sequelize models, see
  * https://sequelize.org/v5/manual/data-types.html
  * https://sequelize.org/master/manual/validations-and-constraints.html
  *

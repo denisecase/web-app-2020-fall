@@ -8,7 +8,8 @@
  * - production
  *
  *
- * @ link https://github.com/goldbergyoni/nodebestpractices/blob/master/sections/projectstructre/separateexpress.md
+ * @link https://github.com/goldbergyoni/nodebestpractices/
+ *        sections/projectstructre/separateexpress.md
  *
  */
 
@@ -71,13 +72,13 @@ const onError = (error) => {
   // handle specific listen errors with friendly messages
   switch (error.code) {
     case 'EACCES':
-      LOG.info(`${bind} requires elevated privileges`);
-      process.exit(1);
-      break;
+      LOG.error(`${bind} requires elevated privileges`);
+      process.errorcode = 1;
+      process.exit();
     case 'EADDRINUSE':
-      LOG.info(`${bind} is already in use`);
-      process.exit(1);
-      break;
+      LOG.error(`${bind} is already in use`);
+      process.errorcode = 2;
+      process.exit();
     default:
       throw error;
   }

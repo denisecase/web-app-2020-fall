@@ -1,0 +1,30 @@
+<!--
+*  Competition details view
+*  Uses HTML and embedded JavaScript (EJS) 
+*  to dyanmically create a webpage to display a resource.
+*
+* @author Denise Case <dcase@nwmissouri.edu>
+-->
+<br>
+<br>
+
+<% if (competition.error) { %>
+<div class="alert alert-danger" role="alert"><%- competition.error %></div>
+<% } %>
+
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title"><%= competition.id %> - <%= competition.name%></h5>
+    <br>
+    <p class="card-text">
+    <p>Created by: <%= competition.User.email %></p>
+    <p>Quest: <%= competition.Quest.name %></p>
+    <p>Start date/time: <%= competition.startDateTime %></p>
+    <p>End date/time:<%= competition.endDateTime %></p>
+    </p>
+    <br>
+    <a class="btn btn-success edit" href="/competition">Done</a>
+    <br>
+
+  </div>
+</div>
