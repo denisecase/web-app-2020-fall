@@ -38,8 +38,6 @@ async function prepareInvalidItem(err, req) {
   return item;
 }
 
-
-
 // FUNCTIONS TO RESPOND WITH JSON DATA  ----------------------------------------
 
 // GET all JSON
