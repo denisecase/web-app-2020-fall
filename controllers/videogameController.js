@@ -1,11 +1,9 @@
 /**
- *  Tea controller
- *  Handles requests related to tea (see routes)
+ *  Video Game controller
+ *  Handles requests related to Video Games (see routes)
  *
- * @author Charles Hoot <hoot@nwmissouri.edu>
+ * @author Kunal Vohra <S540786@nwmissouri.edu>
  */
-
-// OPTIONAL: If using Sequelize validation features
 const { ValidationError } = require('sequelize');
 
 const LOG = require('../util/logger');
@@ -29,10 +27,9 @@ async function prepareInvalidItem(err, req) {
   if (req.body.id) {
     item.id = req.body.id;
   }
-
   item.name = req.body.name;
-  item.pricePerGram = req.body.pricePerGram;
-  item.isPuer = req.body.isPuer;
+  item.playersNeeded = req.body.playersNeeded;
+  item.isReleased = req.body.isReleased;
   item.error = err.errors[0].message;
   LOG.info(`ERROR SAVING ITEM: ${JSON.stringify(item)}`);
   return item;
@@ -42,7 +39,8 @@ async function prepareInvalidItem(err, req) {
 
 // GET all JSON
 module.exports.findAll = async (req, res) => {
-  (await db).models.Tea.findAll()
+  (await db).models.videogame
+    .findAll()
     .then((data) => {
       res.send(data);
     })
@@ -56,7 +54,8 @@ module.exports.findAll = async (req, res) => {
 // GET one JSON by ID
 module.exports.findOne = async (req, res) => {
   const { id } = req.params;
-  (await db).models.Tea.findByPk(id)
+  (await db).models.videogame
+    .findByPk(id)
     .then((data) => {
       res.send(data);
     })
@@ -69,38 +68,39 @@ module.exports.findOne = async (req, res) => {
 
 // HANDLE EXECUTE DATA MODIFICATION REQUESTS -----------------------------------
 
+// POST /save
 module.exports.saveNew = async (req, res) => {
   try {
     const context = await db;
-    await context.models.Tea.create(req.body);
-    return res.redirect('/tea');
+    await context.models.videogame.create(req.body);
+    return res.redirect('/videogame');
   } catch (err) {
     if (err instanceof ValidationError) {
       const item = await prepareInvalidItem(err, req);
-      res.locals.tea = item;
-      return res.render('tea/create.ejs', { title: 'Teas', res });
+      res.locals.videogame = item;
+      return res.render('videogame/create.ejs', { title: 'videogame', res });
     }
-    return res.redirect('/tea');
+    return res.redirect('/videogame');
   }
 };
 
-/// POST /save/:id
+// POST /save/:id
 module.exports.saveEdit = async (req, res) => {
   try {
     const reqId = parseInt(req.params.id, 10);
     const context = await db;
-    const updated = await context.models.Tea.update(req.body, {
+    const updated = await context.models.videogame.update(req.body, {
       where: { id: reqId },
     });
     LOG.info(`Updated: ${JSON.stringify(updated)}`);
-    return res.redirect('/tea');
+    return res.redirect('/videogame');
   } catch (err) {
     if (err instanceof ValidationError) {
       const item = await prepareInvalidItem(err, req);
-      res.locals.tea = item;
-      return res.render('tea/edit.ejs', { title: 'Teas', res });
+      res.locals.videogame = item;
+      return res.render('videogame/edit.ejs', { title: 'videogame', res });
     }
-    return res.redirect('/tea');
+    return res.redirect('/videogame');
   }
 };
 
@@ -108,11 +108,11 @@ module.exports.saveEdit = async (req, res) => {
 module.exports.deleteItem = async (req, res) => {
   try {
     const reqId = parseInt(req.params.id, 10);
-    const deleted = (await db).models.Tea.destroy({
+    const deleted = (await db).models.videogame.destroy({
       where: { id: reqId },
     });
     if (deleted) {
-      return res.redirect('/tea');
+      return res.redirect('/videogame');
     }
     throw new Error(`${reqId} not found`);
   } catch (err) {
@@ -124,10 +124,11 @@ module.exports.deleteItem = async (req, res) => {
 
 // GET to this controller base URI (the default)
 module.exports.showIndex = async (req, res) => {
-  (await db).models.Tea.findAll()
+  (await db).models.videogame
+    .findAll()
     .then((data) => {
-      res.locals.teas = data;
-      res.render('tea/index.ejs', { title: 'Teas', res });
+      res.locals.videogame = data;
+      res.render('videogame/index.ejs', { title: 'videogame', res });
     })
     .catch((err) => {
       res.status(500).send({
@@ -138,27 +139,28 @@ module.exports.showIndex = async (req, res) => {
 
 // GET /create
 module.exports.showCreate = async (req, res) => {
-  // create a temp tea and add it to the response.locals object
-  // this will provide a tea object to put any validation errors
+  // create a temp videogame and add it to the response.locals object
+  // this will provide a videogame object to put any validation errors
   const tempItem = {
-    name: 'TeaName',
-    pricePerGram: 2.3,
-    isPuer: true,
+    name: 'videogameName',
+    playersNeeded: 1,
+    isReleased: true,
   };
-  res.locals.tea = tempItem;
-  res.render('tea/create.ejs', { title: 'Teas', res });
+  res.locals.videogame = tempItem;
+  res.render('videogame/create.ejs', { title: 'videogame', res });
 };
 
 // GET /delete/:id
 module.exports.showDelete = async (req, res) => {
   const { id } = req.params;
-  (await db).models.Tea.findByPk(id)
+  (await db).models.videogame
+    .findByPk(id)
     .then((data) => {
-      res.locals.tea = data;
+      res.locals.videogame = data;
       if (data) {
-        res.render('tea/delete.ejs', { title: 'Teas', res });
+        res.render('videogame/delete.ejs', { title: 'videogame', res });
       } else {
-        res.redirect('tea/');
+        res.redirect('videogame/');
       }
     })
     .catch((err) => {
@@ -171,10 +173,11 @@ module.exports.showDelete = async (req, res) => {
 // GET /details/:id
 module.exports.showDetails = async (req, res) => {
   const { id } = req.params;
-  (await db).models.Tea.findByPk(id)
+  (await db).models.videogame
+    .findByPk(id)
     .then((data) => {
-      res.locals.tea = data;
-      res.render('tea/details.ejs', { title: 'Teas', res });
+      res.locals.videogame = data;
+      res.render('videogame/details.ejs', { title: 'videogame', res });
     })
     .catch((err) => {
       res.status(500).send({
@@ -186,10 +189,11 @@ module.exports.showDetails = async (req, res) => {
 // GET /edit/:id
 module.exports.showEdit = async (req, res) => {
   const { id } = req.params;
-  (await db).models.Tea.findByPk(id)
+  (await db).models.videogame
+    .findByPk(id)
     .then((data) => {
-      res.locals.tea = data;
-      res.render('tea/edit.ejs', { title: 'Teas', res });
+      res.locals.videogame = data;
+      res.render('videogame/edit.ejs', { title: 'videogame', res });
     })
     .catch((err) => {
       res.status(500).send({

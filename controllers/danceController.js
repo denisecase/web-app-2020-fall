@@ -51,7 +51,7 @@ exports.saveNew = async (req, res) => {
     LOG.error('ERROR SAVING DANCE');
     const item = {};
     item.form = req.body.form;
-    item.yearInfo = req.body.yearInfo
+    item.yearInfo = req.body.yearInfo;
     item.isTraditional = req.body.isTraditional;
     item.errors = err.errors;
     res.locals.dance = item;

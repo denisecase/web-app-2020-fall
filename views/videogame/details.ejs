@@ -6,4 +6,35 @@
 * @author Kunal Vohra <s5407876@nwmissouri.edu>
 -->
 
-<p> videogame details.ejs </p>
+
+<% if (videogame.error) { %>
+    <div class="alert alert-danger" role="alert"><%- videogame.error %></div>
+    <% } %>
+    
+    <div class="card-body">
+    
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Players Needed</th>
+            <th scope="col">Is Released</th>
+            <th >Action</th>
+          </tr>
+        </thead>
+        <tbody>
+    
+          <tr>
+            <th scope="row"><%= videogame.id %></th>
+            <td><%= videogame.name%></td>
+            <td><%= videogame.playersNeeded%></td>
+            <td><%= videogame.isReleased%></td>
+            <td>
+              <a class="btn btn-success edit" href="/videogame">Done</a>
+            </td>
+          </tr>
+    
+        </tbody>
+      </table>
+    

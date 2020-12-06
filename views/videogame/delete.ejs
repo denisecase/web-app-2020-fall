@@ -5,5 +5,37 @@
 *
 * @author Kunal Vohra <s5407876@nwmissouri.edu>
 -->
-
-<p> videogame delete.ejs </p>
+  
+<% if (videogame.error) { %>
+    <div class="alert alert-danger" role="alert"><%- videogame.error %></div>
+    <% } %>
+    
+    <div class="card-body">
+    
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Players Neeeded</th>
+            <th scope="col">Is Released</th>
+            <th width=>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+    
+          <tr>
+            <th scope="row"><%= videogame.id %></th>
+            <td><%= videogame.name%></td>
+            <td><%= videogame.playersNeeded%></td>
+            <td><%= videogame.isReleased%></td>
+            <td>
+              <form action="/videogame/delete/<%=videogame.id%>" method="post">
+                <input type="submit" class="btn btn-danger delete" value="Delete" onclick="return alert('Are You sure?')"/>
+              </form>
+            </td>
+          </tr>
+    
+        </tbody>
+      </table>
+    
