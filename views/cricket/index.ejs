@@ -1,74 +1,76 @@
 <!--
-*  Cricket index view
+*  cricket index view
 *  (the default cricket page)
 *  
 *  Uses HTML and embedded JavaScript (EJS) 
-*  to dyanmically create a webpage to list all cricket teams.
+*  to dyanmically create a webpage to list all crickets.
 *
-* @author Denise Case <dcase@nwmissouri.edu>
+* @author Praneeth Vallabhaneni <S541312@nwmissouri.edu>
+
+* based on https://www.mynotepaper.com/nodejs-simple-crud-with-expressjs-and-mysql
+* repo https://github.com/mdobydullah/nodejs-crud-with-expressjs-mysql
+
 -->
 
-
-<
-    <% if (locals.crickets.success) { %>
-    <div class="alert alert-success" role="alert"><%- cricket.success %></div>
-    <% } %>
-    
-    <% if (locals.crickets.error) { %>
-    <div class="alert alert-danger" role="alert"><%- cricket.error %></div>
-    <% } %>
-    
-    <div class="card">
-      <div class="card-header">
-        <ul class="nav nav-pills w-100">
-          <li class="nav-pill active">
-            <a class="nav-link">crickets</a>
-          </li>
-          <li class="nav-pill ml-auto">
-            <a class="nav-link active" href="/cricket/create"><i class="fas fa-plus"></i></a>
-          </li>
-        </ul>
-      </div>
-      <div class="card-body">
-    
-        <% if(crickets.length) { %>
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">ID</th>
-              <th scope="col">Name</th>
-              <th scope="col">Age</th>
-              <th scope="col">IsCricket?</th>
-              <th >Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% for(let i = 0; i< crickets.length; i++) { %>
-            <tr>
-              <th scope="row"><%= crickets[i].id %></th>
-              <td><%= crickets[i].name%></td>
-              <td><%= crickets[i].age%></td>
-              <td><%= crickets[i].isCricket%></td>
-              <td>
-                <a class="btn btn-primary details" href="../cricket/details/<%=crickets[i].id%>"><i
-                    class="fab fa-sistrix" title="test"></i></a>
-                <a class="btn btn-success edit" href="../cricket/edit/<%=crickets[i].id%>"><i class="fas fa-user-edit"></i></a>
-                <a class="btn btn-danger delete" href="../cricket/delete/<%=crickets[i].id%>"><i
-                    class="fas fa-trash-alt"></i></a>
-              </td>
-            </tr>
-            <% } %>
-          </tbody>
-        </table>
-        <% } %>
-    
-        <!-- if result is empty -->
-        <% if(!crickets.length) { %>
-        <p class="text-center">No crickets found!</p>
-        <% } %>
-    
-        <br>
-        <h3>Mouse over icons to see where you will go.</h3>
-    
-      </div>
+<% if (locals.crickets.success) { %>
+  <div class="alert alert-success" role="alert"><%- cricket.success %></div>
+  <% } %>
+  
+  <% if (locals.crickets.error) { %>
+  <div class="alert alert-danger" role="alert"><%- cricket.error %></div>
+  <% } %>
+  
+  <div class="card">
+    <div class="card-header">
+      <ul class="nav nav-pills w-100">
+        <li class="nav-pill active">
+          <a class="nav-link">cricket</a>
+        </li>
+        <li class="nav-pill ml-auto">
+          <a class="nav-link active" href="/cricket/create"><i class="fas fa-plus"></i></a>
+        </li>
+      </ul>
     </div>
+    <div class="card-body">
+  
+      <% if(crickets.length) { %>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Player Name</th>
+            <th scope="col">Age</th>
+            <th scope="col">IsAllRounder?</th>
+            <th >Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for(let i = 0; i< crickets.length; i++) { %>
+          <tr>
+            <th scope="row"><%= crickets[i].id %></th>
+            <td><%= crickets[i].name%></td>
+            <td><%= crickets[i].age%></td>
+            <td><%= crickets[i].isCartoon%></td>
+            <td>
+              <a class="btn btn-primary details" href="../cricket/details/<%=crickets[i].id%>"><i
+                  class="fab fa-sistrix" title="test"></i></a>
+              <a class="btn btn-success edit" href="../cricket/edit/<%=crickets[i].id%>"><i class="fas fa-user-edit"></i></a>
+              <a class="btn btn-danger delete" href="../cricket/delete/<%=crickets[i].id%>"><i
+                  class="fas fa-trash-alt"></i></a>
+            </td>
+          </tr>
+          <% } %>
+        </tbody>
+      </table>
+      <% } %>
+  
+      <!-- if result is empty -->
+      <% if(!crickets.length) { %>
+      <p class="text-center">No cricket found!</p>
+      <% } %>
+  
+      <br>
+      <h3>Mouse over icons to see where you will go.</h3>
+  
+    </div>
+  </div>

@@ -1,19 +1,28 @@
 /**
- *  Cricket model
- *  Describes the characteristics of each attribute in a plant resource.
+ *  Rabbit model
+ *  Describes the characteristics of each attribute in a rabbit resource.
  *
  * @author Praneeth Vallabhaneni <S541312@nwmissouri.edu>
+ *
+ * For more information about defining sequelize models, see
+ * https://sequelize.org/v5/manual/data-types.html
+ * https://sequelize.org/master/manual/validations-and-constraints.html
+ *
+ * For validators see: https://github.com/validatorjs/validator.js
+ *
  */
+// Export a function that defines the model.
+// It automatically receives the Sequelize connection parameter.
 
 module.exports = (db, DataTypes) => {
-  db.define('cricket', {
+  db.define('Cricket', {
     // sqlite creates a rowid attribute automatically
     name: {
       type: DataTypes.STRING(30),
       unique: true,
       required: true,
       allowNull: false,
-      defaultValue: 'cricket',
+      defaultValue: 'Cricket',
       validate: {
         is: {
           args: /^[A-Za-z]+$/i, // matches a RegExp
@@ -52,7 +61,7 @@ module.exports = (db, DataTypes) => {
         },
       },
     },
-    isCricket: {
+    isCartoon: {
       type: DataTypes.BOOLEAN,
       defaultValue: true,
     },
