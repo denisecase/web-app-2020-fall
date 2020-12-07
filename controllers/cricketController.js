@@ -1,9 +1,10 @@
 /**
  *  cricket controller
- *  Handles requests related to plant (see routes)
+ *  Handles requests related to crickets (see routes)
  *
  * @author Praneeth Vallabhaneni <S541312@nwmissouri.edu>
  */
+
 // OPTIONAL: If using Sequelize validation features
 const { ValidationError } = require('sequelize');
 
@@ -30,7 +31,7 @@ async function prepareInvalidItem(err, req) {
   }
   item.name = req.body.name;
   item.age = req.body.age;
-  item.isCricket = req.body.isCricket;
+  item.isCartoon = req.body.isCartoon;
   item.error = err.errors[0].message;
   LOG.info(`ERROR SAVING ITEM: ${JSON.stringify(item)}`);
   return item;
@@ -40,8 +41,7 @@ async function prepareInvalidItem(err, req) {
 
 // GET all JSON
 module.exports.findAll = async (req, res) => {
-  (await db).models.cricket
-    .findAll()
+  (await db).models.Cricket.findAll()
     .then((data) => {
       res.send(data);
     })
@@ -55,8 +55,7 @@ module.exports.findAll = async (req, res) => {
 // GET one JSON by ID
 module.exports.findOne = async (req, res) => {
   const { id } = req.params;
-  (await db).models.cricket
-    .findByPk(id)
+  (await db).models.Cricket.findByPk(id)
     .then((data) => {
       res.send(data);
     })
@@ -73,7 +72,7 @@ module.exports.findOne = async (req, res) => {
 module.exports.saveNew = async (req, res) => {
   try {
     const context = await db;
-    await context.models.cricket.create(req.body);
+    await context.models.Cricket.create(req.body);
     return res.redirect('/cricket');
   } catch (err) {
     if (err instanceof ValidationError) {
@@ -90,7 +89,7 @@ module.exports.saveEdit = async (req, res) => {
   try {
     const reqId = parseInt(req.params.id, 10);
     const context = await db;
-    const updated = await context.models.cricket.update(req.body, {
+    const updated = await context.models.Cricket.update(req.body, {
       where: { id: reqId },
     });
     LOG.info(`Updated: ${JSON.stringify(updated)}`);
@@ -109,7 +108,7 @@ module.exports.saveEdit = async (req, res) => {
 module.exports.deleteItem = async (req, res) => {
   try {
     const reqId = parseInt(req.params.id, 10);
-    const deleted = (await db).models.cricket.destroy({
+    const deleted = (await db).models.Cricket.destroy({
       where: { id: reqId },
     });
     if (deleted) {
@@ -125,8 +124,7 @@ module.exports.deleteItem = async (req, res) => {
 
 // GET to this controller base URI (the default)
 module.exports.showIndex = async (req, res) => {
-  (await db).models.cricket
-    .findAll()
+  (await db).models.Cricket.findAll()
     .then((data) => {
       res.locals.crickets = data;
       res.render('cricket/index.ejs', { title: 'crickets', res });
@@ -145,7 +143,7 @@ module.exports.showCreate = async (req, res) => {
   const tempItem = {
     name: 'cricketName',
     age: 1,
-    isCricket: true,
+    isCartoon: true,
   };
   res.locals.cricket = tempItem;
   res.render('cricket/create.ejs', { title: 'crickets', res });
@@ -154,8 +152,7 @@ module.exports.showCreate = async (req, res) => {
 // GET /delete/:id
 module.exports.showDelete = async (req, res) => {
   const { id } = req.params;
-  (await db).models.cricket
-    .findByPk(id)
+  (await db).models.Cricket.findByPk(id)
     .then((data) => {
       res.locals.cricket = data;
       if (data) {
@@ -174,8 +171,7 @@ module.exports.showDelete = async (req, res) => {
 // GET /details/:id
 module.exports.showDetails = async (req, res) => {
   const { id } = req.params;
-  (await db).models.cricket
-    .findByPk(id)
+  (await db).models.Cricket.findByPk(id)
     .then((data) => {
       res.locals.cricket = data;
       res.render('cricket/details.ejs', { title: 'crickets', res });
@@ -190,8 +186,7 @@ module.exports.showDetails = async (req, res) => {
 // GET /edit/:id
 module.exports.showEdit = async (req, res) => {
   const { id } = req.params;
-  (await db).models.cricket
-    .findByPk(id)
+  (await db).models.Cricket.findByPk(id)
     .then((data) => {
       res.locals.cricket = data;
       res.render('cricket/edit.ejs', { title: 'crickets', res });
