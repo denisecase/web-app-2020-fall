@@ -8,15 +8,16 @@
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path'); // builds path strings
-const cookieParser = require('cookie-parser');
 const pinohttp = require('pino-http')(); // faster http logger
 
 // import additional dependencies
 const engines = require('consolidate');
 const expressLayouts = require('express-ejs-layouts');
 const helmet = require('helmet'); // safer http headers
-global.passport = require('passport');
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
 const compression = require('compression'); // smaller=faster
+const session = require('express-session');
 const favicon = require('serve-favicon');
 const LOG = require('./util/logger');
 
@@ -37,16 +38,15 @@ app.engine('ejs', engines.ejs);
 app.use(pinohttp);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(helmet());
 app.use(expressLayouts);
 app.use(compression()); // compress all routes
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
-// set up user authentication (logging in & admin)
-app.use(global.passport.initialize());
-app.use(global.passport.session());
+// initialize passport
+app.use(passport.initialize());
+app.use(passport.session());
 
 LOG.info('app initial middleware configured');
 

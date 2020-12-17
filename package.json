@@ -14,10 +14,9 @@
     "test": "echo \"Error: no test specified\""
   },
   "dependencies": {
-    "bcryptjs": "latest",
+    "bcrypt": "latest",
     "compression": "latest",
     "consolidate": "latest",
-    "cookie-parser": "latest",
     "dotenv": "latest",
     "ejs": "latest",
     "express": "latest",
@@ -28,9 +27,9 @@
     "helmet": "latest",
     "hover.css": "latest",
     "http-errors": "latest",
-    "jsonwebtoken": "latest",
     "moment": "latest",
     "passport": "latest",
+    "passport-local": "latest",
     "pg": "latest",
     "pg-hstore": "latest",
     "pino-http": "latest",

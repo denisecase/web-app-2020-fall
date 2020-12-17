@@ -13,8 +13,9 @@
 
 const router = require('express').Router();
 const controller = require('../controllers/userController.js');
+const LOG = require('../util/logger');
 
-console.info('Starting user routing.');
+LOG.info('Starting user routing.');
 
 // -----------------------------------------------------------------------------
 // match each expeced verb + URL request
@@ -35,6 +36,7 @@ router.post('/forgot-password', controller.postForgotPassword);
 // handle requests for webpages (HTTP GET)
 
 router.get('/login', controller.showLogin);
+router.get('/logout', controller.showLogout);
 router.get('/register', controller.showRegister);
 router.get('/forgot-password', controller.showForgotPassword);
 
@@ -42,6 +44,6 @@ router.get('/forgot-password', controller.showForgotPassword);
 
 router.get('/', controller.showIndex);
 
-console.info('Loaded user routes.');
+LOG.info('Loaded user routes.');
 
 module.exports = router;

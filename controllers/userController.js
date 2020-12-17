@@ -68,6 +68,12 @@ module.exports.showLogin = async (req, res) => {
   return res.render('user/login.ejs', { title: 'Users', res });
 };
 
+// GET /logout
+module.exports.showLogout = async (req, res) => {
+  //req.logout();
+  res.redirect('/');
+};
+
 // GET /register
 module.exports.showRegister = async (req, res) => {
   return res.render('user/register.ejs', { title: 'Users', res });
