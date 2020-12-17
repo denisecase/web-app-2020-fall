@@ -1,9 +1,41 @@
 <!--
-*  Cricket delete view
+*  cricket delete view
 *  Uses HTML and embedded JavaScript (EJS) 
 *  to dyanmically create a webpage to delete a cricket.
 *
 * @author Praneeth Vallabhaneni <S541312@nwmissouri.edu>
 -->
-
-<p> cricket delete.ejs </p>
+  
+<% if (cricket.error) { %>
+  <div class="alert alert-danger" role="alert"><%- cricket.error %></div>
+  <% } %>
+  
+  <div class="card-body">
+  
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Player Name</th>
+          <th scope="col">Age</th>
+          <th scope="col">IsAllRounder</th>
+          <th width=>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+  
+        <tr>
+          <th scope="row"><%= cricket.id %></th>
+          <td><%= cricket.name%></td>
+          <td><%= cricket.age%></td>
+          <td><%= cricket.isCartoon%></td>
+          <td>
+            <form action="/cricket/delete/<%=cricket.id%>" method="post">
+              <input type="submit" class="btn btn-danger delete" value="Delete" onclick="return alert('Are You sure?')"/>
+            </form>
+          </td>
+        </tr>
+  
+      </tbody>
+    </table>
+  

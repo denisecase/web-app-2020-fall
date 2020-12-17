@@ -170,13 +170,20 @@ module.exports = async (db) => {
     LOG.error(`ERROR: Company - ${err.message}`);
   }
   // Praneeth - cricket
-  await db.models.Cricket.bulkCreate([
-    { teamName: 'Indian Team', age: 2, captain: 'Dhoni' },
-    { teamName: 'Australian Team', age: 2, captain: 'Smith' },
-    { teamName: 'South African Team', age: 2, captain: 'ABD' },
-  ]);
-  const numCricket = await db.models.Cricket.count();
-  LOG.info(`Seeded ${numCricket} cricket team.`);
+  try {
+    await db.models.Rabbit.bulkCreate(
+      [
+        { name: 'Virat Kohli', age: 32, isCartoon: true },
+        { name: 'M S Dhoni', age: 35, isCartoon: false },
+        { name: 'Sachi Tendulkar', age: 40, isCartoon: false },
+      ],
+      { validate: true } // add options object to call new model validators
+    );
+    const numCricket = await db.models.Cricket.count();
+    LOG.info(`Seeded ${numCricket} cricket.`);
+  } catch (err) {
+    LOG.error(`ERROR: Cricket - ${err.message}`);
+  }
 
   // Zach - fruit
   try {

@@ -1,5 +1,5 @@
 /**
- * Route rabbit requests to the correct controller function.
+ * Route Cricket requests to the correct controller function.
  *
  * A request includes:
  *  an HTTP verb (e.g., get or post) AND
@@ -13,8 +13,9 @@
 
 const router = require('express').Router();
 const controller = require('../controllers/cricketController.js');
+const LOG = require('../util/logger');
 
-console.info('Starting cricket routing.');
+LOG.info('Starting Cricket routing.');
 
 // -----------------------------------------------------------------------------
 // match each expeced verb + URL request
@@ -40,6 +41,6 @@ router.get('/details/:id', controller.showDetails);
 router.get('/edit/:id', controller.showEdit);
 router.get('/delete/:id', controller.showDelete);
 
-console.info('Loaded cricket routes.');
+LOG.info('Loaded Cricket routes.');
 
 module.exports = router;
