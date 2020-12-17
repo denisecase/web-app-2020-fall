@@ -19,6 +19,38 @@ module.exports = (db, DataTypes) => {
       // sqlite creates a rowid attribute automatically
       name: {
         type: DataTypes.STRING(50),
+        unique: true,
+        required: true,
+        allowNull: false,
+        defaultValue: 'QuestName',
+        // use Express Validator options
+        // see: https://github.com/validatorjs/validator.js#validators
+        validate: {
+          is: {
+            // use a Regular Expression (regex)
+            // ^starts & ends$ with a letter
+            // no consecutive spaces
+            args: /^([a-zA-Z]+\s)*[a-zA-Z]+$/i,
+            msg:
+              'Name is only letters and single spaces, no numbers or punctuation.',
+          },
+          notNull: {
+            args: true,
+            msg: 'Name cannot be null.',
+          },
+          notEmpty: {
+            args: true, // RegExp- only letters, no spaces
+            msg: 'Name cannot be empty.',
+          },
+          max: {
+            args: [50],
+            msg: 'Name is limited to 50 characters.',
+          },
+          min: {
+            args: [3],
+            msg: 'Name must be at least 3 characters.',
+          },
+        },
       },
     },
     {

@@ -24,6 +24,8 @@ module.exports = (db, DataTypes) => {
         required: true,
         allowNull: false,
         defaultValue: 'me@nwmissouri.edu',
+        // use Express Validator options
+        // see: https://github.com/validatorjs/validator.js#validators
         validate: {
           isEmail: true,
         },

@@ -402,8 +402,8 @@ module.exports = async (db) => {
           name: 'December Challenge',
           UserId: 5,
           QuestId: 1,
-          startDateTime: new Date(2020, 11, 4, 8, 0, 0), // month is zero index
-          endDateTime: new Date(2020, 11, 4, 9, 0, 0), // dec
+          startDateTime: '2020-12-01T08:00',
+          endDateTime: '2020-12-01T09:00',
           startLatitude: 40.3506,
           startLongitude: -94.88289,
           startDescription: 'Near Colden Pond Bridge',
@@ -413,8 +413,8 @@ module.exports = async (db) => {
           name: 'January Return',
           UserId: 10,
           QuestId: 2,
-          startDateTime: new Date(2021, 0, 15, 8, 0, 0), // month is zero index
-          endDateTime: new Date(2021, 0, 15, 9, 0, 0), // jan
+          startDateTime: '2020-12-01T08:00',
+          endDateTime: '2020-12-01T09:00',
           startLatitude: 40.3506,
           startLongitude: -94.88289,
           startDescription: 'Near Colden Pond Bridge',
@@ -424,8 +424,8 @@ module.exports = async (db) => {
           name: 'February Fun',
           UserId: 15,
           QuestId: 3,
-          startDateTime: new Date(2021, 1, 15, 8, 0, 0), // month is zero index
-          endDateTime: new Date(2021, 1, 15, 9, 0, 0), // feb
+          startDateTime: '2021-02-01T09:00',
+          endDateTime: '2021-02-01T10:00',
           startLatitude: 40.3506,
           startLongitude: -94.88289,
           startDescription: 'Near Colden Pond Bridge',
@@ -435,8 +435,8 @@ module.exports = async (db) => {
           name: 'March Madness',
           UserId: 20,
           QuestId: 4,
-          startDateTime: new Date(2021, 2, 15, 8, 0, 0), // month is zero index
-          endDateTime: new Date(2021, 2, 15, 9, 0, 0), // mar
+          startDateTime: '2021-03-01T09:00',
+          endDateTime: '2021-03-01T10:00',
           startLatitude: 40.3506,
           startLongitude: -94.88289,
           startDescription: 'Near Colden Pond Bridge',
@@ -446,8 +446,8 @@ module.exports = async (db) => {
           name: 'Final Event',
           UserId: 9,
           QuestId: 5,
-          startDateTime: new Date(2021, 3, 15, 8, 0, 0), // month is zero index
-          endDateTime: new Date(2021, 3, 15, 9, 0, 0), // apr
+          startDateTime: '2021-04-01T09:00',
+          endDateTime: '2021-04-01T10:00',
           startLatitude: 40.3506,
           startLongitude: -94.88289,
           startDescription: 'Near Colden Pond Bridge',
@@ -457,8 +457,8 @@ module.exports = async (db) => {
           name: 'Case Competition',
           UserId: 1,
           QuestId: 6,
-          startDateTime: new Date(2020, 11, 15, 8, 0, 0), // month is zero index
-          endDateTime: new Date(2020, 11, 15, 9, 0, 0), // dec quest
+          startDateTime: '2021-02-01T09:00',
+          endDateTime: '2021-02-01T10:00',
           startLatitude: 40.3506,
           startLongitude: -94.88289,
           startDescription: 'Near Colden Pond Bridge',

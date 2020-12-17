@@ -38,7 +38,7 @@ module.exports = (db, DataTypes) => {
         },
         max: {
           args: [30],
-          msg: 'Name is limited to 32 characters.',
+          msg: 'Name is limited to 30 characters.',
         },
         min: {
           args: [3],

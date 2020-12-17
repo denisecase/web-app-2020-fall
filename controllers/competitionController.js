@@ -147,8 +147,9 @@ module.exports.showIndex = async (req, res) => {
 
 // GET /create
 module.exports.showCreate = async (req, res) => {
+  const allModels = (await db).models;
   // get all quests for the drop-down
-  (await db).models.Quest.findAll({
+  allModels.Quest.findAll({
     attributes: {
       exclude: ['createdAt', 'updatedAt'],
     },
@@ -156,12 +157,10 @@ module.exports.showCreate = async (req, res) => {
     .then((data) => {
       res.locals.quests = data;
       LOG.info(`quests=${JSON.stringify(res.locals.quests)}`);
-      // create a temporary item and add it to the response.locals object
-      // this also provides a place to pass any validation errors to the view
-      // Important! attributes must match those defined in the model
-      const tempItem = {
-        name: 'CompetitionName',
-      };
+      // build (not save) a default instance
+      // and add it to the response.locals object
+      const tempItem = allModels.Competition.build();
+      tempItem.UserId = 1; // temp
       res.locals.competition = tempItem;
       LOG.info(`newCompetition=${JSON.stringify(res.locals.competition)}`);
       res.render('competition/create.ejs', { title: tabTitle, res });
