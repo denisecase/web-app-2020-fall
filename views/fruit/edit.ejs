@@ -1,9 +1,38 @@
 <!--
-*  Rabbit edit view
+*  Fruit edit view
 *  Uses HTML and embedded JavaScript (EJS) 
-*  to dyanmically create a webpage to edit a rabbit.
+*  to dyanmically create a webpage to edit a fruit.
 *
-* @author Denise Case <dcase@nwmissouri.edu>
+* @author Zach Watson <s531994@nwmissouri.edu>
 -->
 
-<p> fruit edit.ejs </p>
+<div class="card">
+    <div class="card-header">
+      Edit Fruit
+    </div>
+    <div class="card-body">
+      <form action="/fruit/save/<%= fruit.id %>" method="post">
+        <div class="form-group">
+          <label for="name">Name:</label>
+          <input type="text" class="form-control" id="name" name="name" value="<%= fruit.name %>" autocomplete="off">
+        </div>
+        <div class="form-group">
+          <label for="daysGrowth">Days Growth:</label>
+          <input type="number" class="form-control" id="daysGrowth" name="daysGrowth" value="<%= fruit.daysGrowth %>" min=1 max=1000 step=1 default=2
+            autocomplete="off">
+        </div>
+        <br>
+        <!-- Checked checkbox -->
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="checkbox" value="<%= fruit.isRipe %>" checked />
+          <label class="form-check-label" for="checkbox">
+            Is Ripe?
+          </label>
+        </div>
+        <br>
+        <div class="form-group">
+          <input type="submit" class="btn btn-info" title="Submits a POST /save/:id request" value="Save" />
+        </div>
+      </form>
+    </div>
+  </div>

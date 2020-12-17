@@ -1,10 +1,9 @@
 /**
  *  dance controller
- *  Handles requests related to dance (see routes)
+ *  Handles requests related to dances (see routes)
  *
- * @author Sai Prashansa Ambarkar <S541063@nwmissouri.edu>
+ * @author Sai Prashansa Ambarkar <s541063@nwmissouri.edu>
  */
-
 const LOG = require('../util/logger');
 
 const db = require('../models/index')();
@@ -12,7 +11,7 @@ const db = require('../models/index')();
 // FUNCTIONS TO RESPOND WITH JSON DATA  ----------------------------------------
 
 // GET all JSON
-module.exports.findAll = async (req, res) => {
+exports.findAll = async (req, res) => {
   (await db).models.Dance.findAll()
     .then((data) => {
       res.send(data);
@@ -25,7 +24,7 @@ module.exports.findAll = async (req, res) => {
 };
 
 // GET one JSON by ID
-module.exports.findOne = async (req, res) => {
+exports.findOne = async (req, res) => {
   const { id } = req.params;
   (await db).models.Dance.findByPk(id)
     .then((data) => {
@@ -41,7 +40,7 @@ module.exports.findOne = async (req, res) => {
 // HANDLE EXECUTE DATA MODIFICATION REQUESTS -----------------------------------
 
 // POST /save
-module.exports.saveNew = async (req, res) => {
+exports.saveNew = async (req, res) => {
   // create behaves poorly
   const context = await db;
   try {
@@ -49,20 +48,20 @@ module.exports.saveNew = async (req, res) => {
   } catch (err) {
     // store the user inputs & the validation errors in res.locals.dance
     // err includes err.message & err.errors (array of validator msgs)
-    LOG.error('ERROR SAVING RABBIT');
+    LOG.error('ERROR SAVING DANCE');
     const item = {};
     item.form = req.body.form;
-    item.yearIntro = req.body.yearIntro;
+    item.yearInfo = req.body.yearInfo;
     item.isTraditional = req.body.isTraditional;
-    // item.errors = err.errors;
+    item.errors = err.errors;
     res.locals.dance = item;
-    LOG.info(` ERROR ADDING RABBIT:${item}`);
+    LOG.info(` ERROR ADDING DANCE:${item}`);
   }
   return res.redirect('/dance');
 };
 
 // POST /save/:id
-module.exports.saveEdit = async (req, res) => {
+exports.saveEdit = async (req, res) => {
   try {
     const reqId = parseInt(req.params.id, 10);
     LOG.info(`Save id: ${reqId}`);
@@ -78,7 +77,7 @@ module.exports.saveEdit = async (req, res) => {
 };
 
 // POST /delete/:id
-module.exports.deleteItem = async (req, res) => {
+exports.deleteItem = async (req, res) => {
   try {
     const reqId = parseInt(req.params.id, 10);
     const deleted = (await db).models.Dance.destroy({
@@ -96,7 +95,7 @@ module.exports.deleteItem = async (req, res) => {
 // RESPOND WITH VIEWS  --------------------------------------------
 
 // GET to this controller base URI (the default)
-module.exports.showIndex = async (req, res) => {
+exports.showIndex = async (req, res) => {
   (await db).models.Dance.findAll()
     .then((data) => {
       res.locals.dances = data;
@@ -110,12 +109,12 @@ module.exports.showIndex = async (req, res) => {
 };
 
 // GET /create
-module.exports.showCreate = async (req, res) => {
+exports.showCreate = async (req, res) => {
   // create a temp dance and add it to the response.locals object
   // this will provide a dance object to put any validation errors
   const tempItem = {
-    name: 'DanceName',
-    yearIntro: 1999,
+    form: 'Dance Name',
+    yearInfo: 1999,
     isTraditional: true,
   };
   res.locals.dance = tempItem;
@@ -123,7 +122,7 @@ module.exports.showCreate = async (req, res) => {
 };
 
 // GET /delete/:id
-module.exports.showDelete = async (req, res) => {
+exports.showDelete = async (req, res) => {
   const { id } = req.params;
   (await db).models.Dance.findByPk(id)
     .then((data) => {
@@ -142,7 +141,7 @@ module.exports.showDelete = async (req, res) => {
 };
 
 // GET /details/:id
-module.exports.showDetails = async (req, res) => {
+exports.showDetails = async (req, res) => {
   const { id } = req.params;
   (await db).models.Dance.findByPk(id)
     .then((data) => {
@@ -157,7 +156,7 @@ module.exports.showDetails = async (req, res) => {
 };
 
 // GET /edit/:id
-module.exports.showEdit = async (req, res) => {
+exports.showEdit = async (req, res) => {
   const { id } = req.params;
   (await db).models.Dance.findByPk(id)
     .then((data) => {

@@ -27,6 +27,20 @@ module.exports.findAll = async (req, res) => {
     });
 };
 
+// GET one JSON by ID
+module.exports.findOne = async (req, res) => {
+  const { id } = req.params;
+  (await db).models.User.findByPk(id)
+    .then((data) => {
+      res.send(data);
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: `Error retrieving item with id=${id}: ${err.message}`,
+      });
+    });
+};
+
 // HANDLE EXECUTE DATA MODIFICATION REQUESTS -----------------------------------
 
 // POST /login
@@ -62,4 +76,20 @@ module.exports.showRegister = async (req, res) => {
 // GET /forgot-password
 module.exports.showForgotPassword = async (req, res) => {
   return res.render('user/forgotPassword.ejs', { title: 'Users', res });
+};
+
+// RESPOND WITH READ-ONLY TABLE (During development) ------------------------
+
+// GET to this controller base URI (the default)
+module.exports.showIndex = async (req, res) => {
+  (await db).models.User.findAll()
+    .then((data) => {
+      res.locals.users = data;
+      res.render('user/index.ejs', { title: 'Users', res });
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: err.message || 'Error retrieving all.',
+      });
+    });
 };

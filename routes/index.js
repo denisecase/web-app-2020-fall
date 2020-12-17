@@ -12,10 +12,10 @@ const express = require('express');
 const LOG = require('../util/logger');
 const userRouter = require('./users');
 const rabbitRoutes = require('./rabbit.routes');
-const animalRoutes = require('./animal.routes');
 const teaRoutes = require('./tea.routes');
+const animalRoutes = require('./animal.routes');
 const gameRoutes = require('./game.routes');
-const countryRoutes = require('./country.routes');
+// const countryRoutes = require('./country.routes');
 const chiefRoutes = require('./chief.routes');
 const plantRoutes = require('./plant.routes');
 const foodRoutes = require('./food.routes');
@@ -30,6 +30,12 @@ const fruitRoutes = require('./fruit.routes');
 const shipRoutes = require('./ship.routes');
 const danceRoutes = require('./dance.routes');
 const pokemanRoutes = require('./pokemon.routes');
+const clueRoutes = require('./clue.routes');
+const competitionRoutes = require('./competition.routes');
+const locationRoutes = require('./location.routes');
+const questRoutes = require('./quest.routes');
+const teamRoutes = require('./team.routes');
+const playerRoutes = require('./player.routes');
 
 LOG.info('routes/index.js: STARTING custom routes......');
 
@@ -51,6 +57,14 @@ router.get('/index', (req, res) => {
 
 router.use('/user', userRouter);
 
+// better route to t-e-a-m before we route to t-e-a
+// team routing moved before tea routing
+try {
+  router.use('/team', teamRoutes);
+} catch (err) {
+  LOG.error(`ERROR: ${err.message}`);
+}
+
 // Dr. Case - rabbit
 try {
   router.use('/rabbit', rabbitRoutes);
@@ -59,7 +73,11 @@ try {
 }
 
 // Dr. Hoot - tea
-router.use('/tea', teaRoutes);
+try {
+  router.use('/tea', teaRoutes);
+} catch (err) {
+  LOG.error(`ERROR: ${err.message}`);
+}
 
 // Blake - game
 try {
@@ -76,11 +94,11 @@ try {
 }
 
 // Felipe - country
-try {
-  router.use('/country', countryRoutes);
-} catch (err) {
-  LOG.error(`ERROR: ${err.message}`);
-}
+// try {
+//   router.use('/country', countryRoutes);
+// } catch (err) {
+//   LOG.error(`ERROR: ${err.message}`);
+// }
 
 // Jack - chief
 try {
@@ -97,7 +115,11 @@ try {
 }
 
 // Sri Vasavi - food
-router.use('/food', foodRoutes);
+try {
+  router.use('/food', foodRoutes);
+} catch (err) {
+  LOG.error(`ERROR: ${err.message}`);
+}
 
 // Joseph - software
 router.use('/software', softwareRoutes);
@@ -158,6 +180,44 @@ try {
 } catch (err) {
   LOG.error(`ERROR: ${err.message}`);
 }
+
+// Dr. Case - hunt
+try {
+  router.use('/clue', clueRoutes);
+} catch (err) {
+  LOG.error(`ERROR: ${err.message}`);
+}
+try {
+  router.use('/competition', competitionRoutes);
+} catch (err) {
+  LOG.error(`ERROR: ${err.message}`);
+}
+
+try {
+  router.use('/location', locationRoutes);
+} catch (err) {
+  LOG.error(`ERROR: ${err.message}`);
+}
+
+try {
+  router.use('/quest', questRoutes);
+} catch (err) {
+  LOG.error(`ERROR: ${err.message}`);
+}
+
+try {
+  router.use('/player', playerRoutes);
+} catch (err) {
+  LOG.error(`ERROR: ${err.message}`);
+}
+
+// better route to t-e-a-m before we route to t-e-a
+// team routing moved before tea routing
+// try {
+//   router.use('/team', teamRoutes);
+// } catch (err) {
+//   LOG.error(`ERROR: ${err.message}`);
+// }
 
 LOG.info('routes/index.js: ENDING custom routes......');
 

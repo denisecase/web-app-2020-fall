@@ -1,0 +1,38 @@
+<!--
+*  dance details view
+*  Uses HTML and embedded JavaScript (EJS) 
+*  to dyanmically create a webpage to display a dance.
+*
+* @author Sai Prashansa Ambarkar <s541063@nwmissouri.edu>
+-->
+
+<% if (dance.error) { %>
+<div class="alert alert-danger" role="alert"><%- dance.error %></div>
+<% } %>
+
+<div class="card-body">
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Form</th>
+        <th scope="col">Year Info</th>
+        <th scope="col">Is Traditional</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <tr>
+        <th scope="row"><%= dance.id%></th>
+        <td><%= dance.form%></td>
+        <td><%= dance.yearInfo%></td>
+        <td><%= dance.isTraditional%></td>
+        <td>
+          <a class="btn btn-success edit" href="/dance">Done</a>
+        </td>
+      </tr>
+
+    </tbody>
+  </table>

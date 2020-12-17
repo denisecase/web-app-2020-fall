@@ -1,0 +1,76 @@
+<!--
+*  dance index view
+*  (the default dance page)
+*  
+*  Uses HTML and embedded JavaScript (EJS) 
+*  to dyanmically create a webpage to list all dances.
+*
+* @author Sai Prashansa Ambarkar <s541063@nwmissouri.edu>
+
+* based on https://www.mynotepaper.com/nodejs-simple-crud-with-expressjs-and-mysql
+* repo https://github.com/mdobydullah/nodejs-crud-with-expressjs-mysql
+
+-->
+
+<% if (locals.dances.success) { %>
+<div class="alert alert-success" role="alert"><%- dance.success %></div>
+<% } %>
+
+<% if (locals.dances.error) { %>
+<div class="alert alert-danger" role="alert"><%- dance.error %></div>
+<% } %>
+
+<div class="card">
+  <div class="card-header">
+    <ul class="nav nav-pills w-100">
+      <li class="nav-pill active">
+        <a class="nav-link">dances</a>
+      </li>
+      <li class="nav-pill ml-auto">
+        <a class="nav-link active" href="/dance/create"><i class="fas fa-plus"></i></a>
+      </li>
+    </ul>
+  </div>
+  <div class="card-body">
+
+    <% if(dances.length) { %>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Form</th>
+          <th scope="col">Year Info</th>
+          <th scope="col">Is Traditional?</th>
+          <th >Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for(let i = 0; i< dances.length; i++) { %>
+        <tr>
+          <th scope="row"><%= dances[i].id%></th>
+          <td><%= dances[i].form%></td>
+          <td><%= dances[i].yearInfo%></td>
+          <td><%= dances[i].isTraditional%></td>
+          <td>
+            <a class="btn btn-primary details" href="../dance/details/<%=dances[i].id%>"><i 
+                  class="fab fa-sistrix" title="test"></i></a>
+            <a class="btn btn-success edit" href="../dance/edit/<%=dances[i].id%>"><i class="fas fa-user-edit"></i></a>
+            <a class="btn btn-danger delete" href="../dance/delete/<%=dances[i].id%>"><i
+                class="fas fa-trash-alt"></i></a>
+          </td>
+        </tr>
+        <% } %>
+      </tbody>
+    </table>
+    <% } %>
+
+    <!-- if result is empty -->
+    <% if(!dances.length) { %>
+    <p class="text-center">No dances found!</p>
+    <% } %>
+
+    <br>
+    <h3>Mouse over icons to see where you will go.</h3>
+
+  </div>
+</div>

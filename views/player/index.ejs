@@ -1,0 +1,72 @@
+<!--
+*  Player index view
+*  (the default page for this resource)
+*  
+*  Uses HTML and embedded JavaScript (EJS) 
+*  to dyanmically create a webpage to list all of this type of resource.
+*
+* @author Denise Case <dcase@nwmissouri.edu>
+
+* based on https://www.mynotepaper.com/nodejs-simple-crud-with-expressjs-and-mysql
+* repo https://github.com/mdobydullah/nodejs-crud-with-expressjs-mysql
+
+-->
+
+<% if (locals.players.success) { %>
+  <div class="alert alert-success" role="alert"><%- player.success %></div>
+  <% } %>
+  
+  <% if (locals.players.error) { %>
+  <div class="alert alert-danger" role="alert"><%- player.error %></div>
+  <% } %>
+  
+  <div class="card">
+    <div class="card-header">
+      <ul class="nav nav-pills w-100">
+        <li class="nav-pill active">
+          <a class="nav-link">Players</a>
+        </li>
+        <li class="nav-pill ml-auto">
+          <a class="nav-link active" href="/player/create"><i class="fas fa-plus"></i></a>
+        </li>
+      </ul>
+    </div>
+    <div class="card-body">
+  
+      <% if(players.length) { %>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th >Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for(let i = 0; i< players.length; i++) { %>
+          <tr>
+            <th scope="row"><%= players[i].id %></th>
+            <td><%= players[i].name%></td>
+            <td>
+              <a class="btn btn-primary details" href="../player/details/<%=players[i].id%>"><i
+                  class="fab fa-sistrix" title="test"></i></a>
+              <a class="btn btn-success edit" href="../player/edit/<%=players[i].id%>"><i class="fas fa-user-edit"></i></a>
+              <a class="btn btn-danger delete" href="../player/delete/<%=players[i].id%>"><i
+                  class="fas fa-trash-alt"></i></a>
+            </td>
+          </tr>
+          <% } %>
+        </tbody>
+      </table>
+      <% } %>
+  
+      <!-- if result is empty -->
+      <% if(!players.length) { %>
+      <p class="text-center">No players found!</p>
+      <% } %>
+  
+      <br>
+      <h3>Mouse over icons to see where you will go.</h3>
+  
+    </div>
+  </div>

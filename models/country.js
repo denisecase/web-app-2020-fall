@@ -9,9 +9,10 @@
 // It automatically receives the Sequelize connection parameter.
 
 module.exports = (sequelize, DataTypes) => {
-  sequelize.define('Country', {
-    continent: { type: DataTypes.STRING(20) },
+  sequelize.define('country', {
+    name: { type: DataTypes.STRING(50) },
     population: { type: DataTypes.INTEGER },
+    isPopulationMoreThan100M: { type: DataTypes.BOOLEAN },
   });
 };
 

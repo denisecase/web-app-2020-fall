@@ -12,9 +12,10 @@
  */
 
 const router = require('express').Router();
-const controller = require('../controllers/videoGameController');
+const controller = require('../controllers/videogameController.js');
+const LOG = require('../util/logger');
 
-console.info('Starting Video Game routing.');
+LOG.info('Starting videogame routing.');
 
 // -----------------------------------------------------------------------------
 // match each expeced verb + URL request
@@ -40,6 +41,6 @@ router.get('/details/:id', controller.showDetails);
 router.get('/edit/:id', controller.showEdit);
 router.get('/delete/:id', controller.showDelete);
 
-console.info('Loaded Video Game routes.');
+LOG.info('Loaded videogame routes.');
 
 module.exports = router;

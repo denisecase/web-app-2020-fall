@@ -5,5 +5,34 @@
 *
 * @author Nithya Karepe<s540109@nwmissouri.edu>
 -->
-
-<p> series details.ejs </p>
+<% if (series.error) { %>
+    <div class="alert alert-danger" role="alert"><%- series.error %></div>
+    <% } %>
+    
+    <div class="card-body">
+    
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Seasons</th>
+            <th scope="col">IsComedy</th>
+            <th >Action</th>
+          </tr>
+        </thead>
+        <tbody>
+    
+          <tr>
+            <th scope="row"><%= series.id %></th>
+            <td><%= series.name%></td>
+            <td><%= series.seasons%></td>
+            <td><%= series.isComedy%></td>
+            <td>
+              <a class="btn btn-success edit" href="/series">Done</a>
+            </td>
+          </tr>
+    
+        </tbody>
+      </table>
+    

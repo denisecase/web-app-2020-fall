@@ -8,4 +8,65 @@
 * @author Kunal Vohra <s540786@nwmissouri.edu>
 -->
 
-<p> IN PROGRESS - This is videogame index.ejs </p>
+<% if (locals.videogame.success) { %>
+    <div class="alert alert-success" role="alert"><%- videogame.success %></div>
+    <% } %>
+    
+    <% if (locals.videogame.error) { %>
+    <div class="alert alert-danger" role="alert"><%- videogame.error %></div>
+    <% } %>
+    
+    <div class="card">
+      <div class="card-header">
+        <ul class="nav nav-pills w-100">
+          <li class="nav-pill active">
+            <a class="nav-link">Video Game</a>
+          </li>
+          <li class="nav-pill ml-auto">
+            <a class="nav-link active" href="/videogame/create"><i class="fas fa-plus"></i></a>
+          </li>
+        </ul>
+      </div>
+      <div class="card-body">
+    
+        <% if(videogame.length) { %>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Name</th>
+              <th scope="col">Players Needed</th>
+              <th scope="col">Is Released</th>
+              <th >Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for(let i = 0; i< videogame.length; i++) { %>
+            <tr>
+              <th scope="row"><%= videogame[i].id %></th>
+              <td><%= videogame[i].name%></td>
+              <td><%= videogame[i].playersNeeded%></td>
+              <td><%= videogame[i].isReleased%></td>
+              <td>
+                <a class="btn btn-primary details" href="../videogame/details/<%=videogame[i].id%>"><i
+                    class="fab fa-sistrix" title="test"></i></a>
+                <a class="btn btn-success edit" href="../videogame/edit/<%=videogame[i].id%>"><i class="fas fa-user-edit"></i></a>
+                <a class="btn btn-danger delete" href="../videogame/delete/<%=videogame[i].id%>"><i
+                    class="fas fa-trash-alt"></i></a>
+              </td>
+            </tr>
+            <% } %>
+          </tbody>
+        </table>
+        <% } %>
+    
+        <!-- if result is empty -->
+        <% if(!videogame.length) { %>
+        <p class="text-center">No videogame found!</p>
+        <% } %>
+    
+        <br>
+        <h3>Mouse over icons to see where you will go.</h3>
+    
+      </div>
+    </div>
