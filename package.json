@@ -14,7 +14,6 @@
     "test": "echo \"Error: no test specified\""
   },
   "dependencies": {
-    "md5": "latest",
     "compression": "latest",
     "connect-flash": "latest",
     "consolidate": "latest",
@@ -25,10 +24,11 @@
     "express-session": "latest",
     "express-status-monitor": "latest",
     "express-validator": "latest",
-    "fs": "0.0.2",
+    "fs": "latest",
     "helmet": "latest",
     "hover.css": "latest",
     "http-errors": "latest",
+    "md5": "latest",
     "mdb-ui-kit": "latest",
     "moment": "latest",
     "morgan": "latest",
