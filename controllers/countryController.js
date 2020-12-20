@@ -9,7 +9,7 @@ const { ValidationError } = require('sequelize');
 
 const LOG = require('../util/logger');
 
-const db = require('../models/index');
+const db = require('../models/index')();
 
 // OPTIONAL: VALIDATION Helper function ----------------------
 
@@ -41,7 +41,6 @@ async function prepareInvalidItem(err, req) {
 // GET all JSON
 module.exports.findAll = async (req, res) => {
   (await db).models.country
-    .findAll()
     .findAll()
     .then((data) => {
       res.send(data);
