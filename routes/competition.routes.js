@@ -40,6 +40,7 @@ router.get('/create', controller.showCreate);
 router.get('/details/:id', controller.showDetails);
 router.get('/edit/:id', controller.showEdit);
 router.get('/delete/:id', controller.showDelete);
+router.get('/play/:id', controller.showPlay);
 
 LOG.info('Loaded competition routes.');
 

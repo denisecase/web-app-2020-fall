@@ -58,6 +58,14 @@ router.get('/index', (req, res) => {
   return res.redirect('/');
 });
 
+router.get('privacy', (req,res) => {
+  return res.redirect('https://www.freeprivacypolicy.com/live/f318bdb3-98bc-42c0-b685-a4fb9051bf4f');
+})
+
+router.get('tos', (req,res) => {
+  return res.redirect('https://raw.githubusercontent.com/denisecase/web-app-2020-fall/main/LICENSE');
+})
+
 router.use('/user', userRouter);
 
 // better route to t-e-a-m before we route to t-e-a

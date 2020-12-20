@@ -52,13 +52,14 @@ app.use(expressStatusMonitor());
 // app middleware - basic
 app.use(express.json());
 app.use(express.urlencoded({ extended: true })); // bodyParser not needed
-app.use(express.static(path.join(__dirname, 'public')));
+// app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static('public'));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 app.use(expressLayouts);
 app.use(morgan('combined'));
 
 // app middleware - production
-app.use(helmet()); // security, http headers
+// app.use(helmet()); // security, http headers
 app.use(compression()); // compress all routes
 
 // app middleware - passport authentication

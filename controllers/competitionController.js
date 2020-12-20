@@ -280,3 +280,40 @@ module.exports.showEdit = async (req, res) => {
       });
     });
 };
+
+// GET /play/:id
+module.exports.showPlay = async (req, res) => {
+  const { id } = req.params;
+  (await db).models.Competition.findByPk(id, {
+    attributes: {
+      exclude: ['createdAt', 'updatedAt'],
+    },
+    include: [
+      {
+        model: (await db).models.User,
+        attributes: ['id', 'email'], // creator
+      },
+      {
+        model: (await db).models.Quest,
+        attributes: ['id', 'name'],
+      },
+      // {
+      //   model: (await db).models.Team,
+      //   attributes: ['id', 'name'],
+      // },
+    ],
+  })
+    .then((data) => {
+      res.locals.competition = data;
+      if (data) {
+        res.render('competition/play.ejs', { title: tabTitle, res });
+      } else {
+        res.redirect('competition/');
+      }
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: `Error retrieving item with id=${id}: ${err.message}`,
+      });
+    });
+};

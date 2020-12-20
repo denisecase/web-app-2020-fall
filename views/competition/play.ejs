@@ -1,0 +1,33 @@
+<main>
+  <link rel="stylesheet" href="/stylesheets/play.css" />
+
+  <br>
+  <br>
+  <article class="caption">
+    <h1 class="card-title">
+      <%= competition.id %> - <%= competition.name%>
+    </h1>
+    <br>
+
+    <h3 id="greeting">Hello, playername!</h3>
+    <br />
+    <section id="mapbox">
+      <div id="map"></div>
+    </section>
+
+    <div id="location">Welcome to <span id="locationAnswer">?</span></div>
+    <br />
+    <div id="error-message"></div>
+    <br />
+    <div id="device-lat"></div>
+    <br />
+    <div id="device-long"></div>
+  </article>
+</main>
+
+
+<script defer type='text/javascript'                                      
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBiZv4WHxRVbm7PwpAqwn3y4VK3vF3wBdg&callback=initMap">
+  </script>
+<script type="module" src="/scripts/location.js"></script>
+<script type="module" src="/scripts/play.js"></script>

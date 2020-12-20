@@ -1,0 +1,31 @@
+main {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+article {
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 5vh;
+}
+
+article > div {
+  margin: 0.5em;
+}
+
+#mapbox {
+  border: 1px solid #006747;
+  background-color: #006747 !important;
+  padding: 1px;
+  margin: 1px;
+  height: 90%;
+}
+
+#map {
+  height: 100%;
+}
+      
+#error-message {
+  color: red;
+}
