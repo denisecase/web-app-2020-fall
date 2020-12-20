@@ -2,7 +2,7 @@
   "name": "web-app-2020-fall",
   "version": "0.0.0",
   "engines": {
-    "node": "14"
+    "node": "15"
   },
   "private": true,
   "scripts": {
@@ -14,32 +14,36 @@
     "test": "echo \"Error: no test specified\""
   },
   "dependencies": {
-    "bcrypt": "latest",
+    "md5": "latest",
     "compression": "latest",
+    "connect-flash": "latest",
     "consolidate": "latest",
     "dotenv": "latest",
     "ejs": "latest",
     "express": "latest",
     "express-ejs-layouts": "latest",
     "express-session": "latest",
+    "express-status-monitor": "latest",
     "express-validator": "latest",
     "fs": "latest",
     "helmet": "latest",
     "hover.css": "latest",
     "http-errors": "latest",
+    "mdb-ui-kit": "latest",
     "moment": "latest",
+    "morgan": "latest",
+    "nodemailer": "latest",
     "passport": "latest",
     "passport-local": "latest",
     "pg": "latest",
     "pg-hstore": "latest",
-    "pino-http": "latest",
     "sequelize": "latest",
     "sequelize-cli": "latest",
     "serve-favicon": "latest",
     "winston": "latest"
   },
   "devDependencies": {
-    "all-contributors-cli": "^6.19.0",
+    "all-contributors-cli": "latest",
     "eslint": "latest",
     "eslint-config-airbnb-base": "latest",
     "eslint-config-prettier": "latest",

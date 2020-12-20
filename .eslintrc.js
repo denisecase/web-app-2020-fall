@@ -36,5 +36,6 @@ module.exports = {
     'node/file-extension-in-import': ['error', 'always'],
     'import/no-dynamic-require': 'warn',
     'no-process-exit': 'warn',
+    'prefer-destructuring': 'warn',
   },
 };

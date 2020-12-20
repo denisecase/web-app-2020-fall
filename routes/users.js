@@ -23,7 +23,6 @@ LOG.info('Starting user routing.');
 // -----------------------------------------------------------------------------
 
 // handle requests for JSON (HTTP GET) - use for combo boxes and & display
-
 router.get('/findall', controller.findAll);
 router.get('/findone/:id', controller.findOne);
 
@@ -35,9 +34,9 @@ router.post('/forgot-password', controller.postForgotPassword);
 
 // handle requests for webpages (HTTP GET)
 
-router.get('/login', controller.showLogin);
-router.get('/logout', controller.showLogout);
 router.get('/register', controller.showRegister);
+router.get('/login', controller.showLogin);
+router.get('/logout', controller.logout);
 router.get('/forgot-password', controller.showForgotPassword);
 
 // add one request to show a page listing all users (HTTP GET)

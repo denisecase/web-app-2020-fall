@@ -40,9 +40,8 @@ async function prepareInvalidItem(err, req) {
 
 // GET all JSON
 module.exports.findAll = async (req, res) => {
-  (await db).models.country.findAll()
-module.exports.findAll = (req, res) => {
-  db.models.country
+  (await db).models.country
+    .findAll()
     .findAll()
     .then((data) => {
       res.send(data);
@@ -56,7 +55,6 @@ module.exports.findAll = (req, res) => {
 
 // GET one JSON by ID
 module.exports.findOne = async (req, res) => {
-module.exports.findOne = (req, res) => {
   const { id } = req.params;
   (await db).models.country
     .findByPk(id)
@@ -78,7 +76,7 @@ module.exports.saveNew = async (req, res) => {
     const context = await db;
     await context.models.country.create(req.body);
     return res.redirect('/country');
-  } catch (error) {
+  } catch (err) {
     if (err instanceof ValidationError) {
       const item = await prepareInvalidItem(err, req);
       res.locals.country = item;
@@ -128,15 +126,14 @@ module.exports.deleteItem = async (req, res) => {
 
 // GET to this controller base URI (the default)
 module.exports.showIndex = async (req, res) => {
-module.exports.showIndex = (req, res) => {
   // res.send('NOT IMPLEMENTED: Will show country/index.ejs');
- (await db).models.country
-   .findAll()
-   .then((data) => {
-   res.locals.countrys = data;
-   res.render('country/index.ejs', { title: 'countrys', res });
-  })
-  .catch((err) => {
+  (await db).models.country
+    .findAll()
+    .then((data) => {
+      res.locals.countrys = data;
+      res.render('country/index.ejs', { title: 'countrys', res });
+    })
+    .catch((err) => {
       res.status(500).send({
         message: err.message || 'Error retrieving all.',
       });
@@ -206,3 +203,4 @@ module.exports.showEdit = async (req, res) => {
         message: `Error retrieving item with id=${id}: ${err.message}`,
       });
     });
+};

@@ -1,41 +1,47 @@
-<section class="d-flex align-items-center mx-auto mt-5 p-5 flex-column shadow-lg rounded"
-  style="background-color:white">
+<section class="container-sm mt-5">
+  <div class="col">
+    <div class="card card-body text-center">
+      <h1 class="text-center"> Login </h1>
+    
+      <%- include ("../messages") %>
 
-  <label class="text-center headText"
-    style="font-size: 24px;font-family:  'Segoe UI', 'Open Sans', 'Helvetica Neue', sans-serif">Login</label>
+      <% if (!typeof(errors) === 'undefined' && !errors.isEmpty()) { %>
+      <div class="alert alert-danger" role="alert"><%- JSON.stringify(errors[0]) %></div>
+      <% } %>
 
-  <form method="post" action="/user/login">
+      <form method="post" action="/user/login">
 
-    <input type="text" value="default@email.com" id="email" name="email" class="pl-2" style="border: none;border-bottom: 1px black solid;
-      outline:none;
-      background-color: white;
-      width:20rem;
-      ">
-    <br><br>
+        <div class="form-group ">
+          <label for="email">Email</label><br>
+          <input type="email" id="email" name="email" placeholder="Email"
+            value="<%= typeof email != 'undefined' ? email : '' %>" />
+        </div>
+        <br>
 
-    <input type="password" value="password" placeholder="Password" id="password" name="password" class="pl-2" style="border: none;
-      border-bottom: 1px black solid;
-      outline:none;
-      width:20rem;
-      background: white;">
-    <br><br>
+        <div class="form-group ">
+          <label for="password">Password</label><br>
+          <input type="password" id="password" name="password" value="password"
+            value="<%= typeof password != 'undefined' ? password : '' %>" />
+        </div>
+        <br>
 
-    <button class="rounded-100  text-center"
-      style="display: flex; margin: 0 auto; background-color: #00674c; color: white; padding: 0px;border-radius: 6px;align-self: center; height: 30px;width: 120px;justify-content: center;"
-      id="login" type="submit" value="submit">Login
-    </button>
+        <br>
+        <button class="btn btn-primary" id="login" type="submit" value="submit">Login
+        </button>
 
-  </form>
+      </form>
 
-  <div
-  style="display: flex; flex-direction: row; justify-content: space-between; align-content: space-between; margin-top: 2em;">
+      <div
+        style="display: flex; flex-direction: row; justify-content: space-between; align-content: space-between; margin-top: 2em;">
 
-  <a href="/user/forgot-password"><button class="mr-5"
-      style="background:none; border: none;  padding: 0;color: #006747; cursor: pointer; display: flex; margin: 0 auto;">Forgot
-      your password?</button></a>
+        <a href="/user/forgot-password"><button class="mr-5"
+            style="background:none; border: none;  padding: 0;color: #006747; cursor: pointer; display: flex; margin: 0 auto;">Forgot
+            your password?</button></a>
 
-  <a href="/user/register"> <button id="register"
-      style="background:none; border: none;  padding: 0;color:blue; cursor: pointer;display: flex; margin: 0 auto;">Register</button></a>
+        <a href="/user/register"> <button id="register"
+            style="background:none; border: none;  padding: 0;color:blue; cursor: pointer;display: flex; margin: 0 auto;">Register</button></a>
 
-</div>
+      </div>
+    </div>
+
 </section>

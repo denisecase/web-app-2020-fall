@@ -1,38 +1,54 @@
-<section class="d-flex align-items-center mx-auto mt-5 p-5 flex-column shadow-lg rounded" style="background-color:white">
- 
-  <label class="text-center headText" style="font-size: 24px;font-family:  'Segoe UI', 'Open Sans', 'Helvetica Neue', sans-serif">Register</label>
+<section class="container-sm mt-5">
+  <div class="col ">
+    <div class="card card-body text-center">
+      <h1 class="text-center">Register</h1>
 
-  <form method="post" action="/user/register">
- 
- <input type="text" placeholder="Email" id="email" name="uname" class="pl-2" style="border: none;border-bottom: 1px black solid;
-          outline:none;
-          background-color: white;
-          width:20rem;"><br><br>
-      <input type="password" placeholder=" New Password" id="password"  class="pl-2" style="border: none;border-bottom: 1px black solid;
-          outline:none;
-          background-color: white;
-          width:20rem;"><br><br>
-      <input type="password" placeholder="Confirm Password" id="newpassword"  class="pl-2" style="border: none;border-bottom: 1px black solid;
-          outline:none;
-          background-color: white;
-          width:20rem;"><br><br>
-    <button class="rounded-100  text-center"
-    style="display: flex; margin: 0 auto; background-color: #00674c; color: white; padding: 0px;border-radius: 6px;align-self: center; height: 30px;width: 120px;justify-content: center;"
-    id="login" type="submit" value="submit">Register
-  </button>
-  
-</form>
+      <%- include ("../messages") %>
 
-  <div
-  style="display: flex; flex-direction: row; justify-content: space-between; align-content: space-between; margin-top: 2em;">
+      <% if (!typeof(errors) === 'undefined' && !errors.isEmpty()) { %>
+      <div class="alert alert-danger" role="alert"><%- JSON.stringify(errors[0]) %></div>
+      <% } %>
 
-  <a href="/user/login"><button class="mr-5"
-      style="background:none;border: none; margin: 0; padding: 0;color: #00674c; cursor: pointer; display: flex; margin: 0 auto;">
-      Already a user?</button></a>
+      <form method="post" action="/user/register">
 
-  <a href="/user/login"> <button id="register"
-      style="background:none; border: none; border: none; margin: 0; padding: 0;color:blue; cursor: pointer;display: flex; margin: 0 auto;">Login</button></a>
+        <div class="form-group ">
+          <label for="email">Email</label><br>
+          <input type="email" id="email" name="email" placeholder="Email"
+            value="<%= typeof email  !== 'undefined' ? email  : '' %>">
+        </div>
+        <br>
 
-</div>
+        <div class="form-group ">
+          <label for="password">Password</label><br>
+          <input type="password" id="password" name="password" placeholder="password"
+            value="<%= typeof password != 'undefined' ? password : 'password' %>">
+        </div>
+        <br>
+
+        <div class="form-group ">
+          <label for="password2">Confirm Password</label><br>
+          <input type="password" id="password2" name="password2" placeholder="password"
+            value="<%= typeof password2 != 'undefined' ? password2 : 'password' %>">
+        </div>
+        <br>
+
+        <br>
+        <button class="btn btn-primary" id="login" type="submit" value="submit">Register
+        </button>
+
+      </form>
+
+      <div
+        style="display: flex; flex-direction: row; justify-content: space-between; align-content: space-between; margin-top: 2em;">
+
+        <a href="/user/login"><button class="mr-5"
+            style="background:none;border: none; margin: 0; padding: 0;color: #00674c; cursor: pointer; display: flex; margin: 0 auto;">
+            Already a user?</button></a>
+
+        <a href="/user/login"> <button id="register"
+            style="background:none; border: none; border: none; margin: 0; padding: 0;color:blue; cursor: pointer;display: flex; margin: 0 auto;">Login</button></a>
+
+      </div>
+    </div>
 
 </section>

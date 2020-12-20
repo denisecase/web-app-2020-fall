@@ -4,7 +4,7 @@
  *
  * @author shivani tangellapally <s540965@nwmissouri.edu>
  */
-const { ValidationError } = require('sequelize');
+// const { ValidationError } = require('sequelize');
 const LOG = require('../util/logger');
 
 const db = require('../models/index')();

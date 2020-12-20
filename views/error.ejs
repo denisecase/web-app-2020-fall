@@ -1,2 +1,10 @@
+<br>
+<br> 
+
+<h1><%= (typeof title === "undefined" ? "Error Help" : title) %></h1>
+<p><%= (typeof subTitle === "undefined" ? "(Appears only in development, not production)" : subTitle) %></p>
+
+<p>
+
 <h2><%= error.status %></h2>
 <pre><%= error.stack %></pre>

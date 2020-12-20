@@ -15,7 +15,7 @@ const rabbitRoutes = require('./rabbit.routes');
 const teaRoutes = require('./tea.routes');
 const animalRoutes = require('./animal.routes');
 const gameRoutes = require('./game.routes');
-// const countryRoutes = require('./country.routes');
+const countryRoutes = require('./country.routes');
 const chiefRoutes = require('./chief.routes');
 const plantRoutes = require('./plant.routes');
 const foodRoutes = require('./food.routes');
@@ -48,11 +48,14 @@ const appSubTitle = 'our collaborative web app';
 
 /* GET home page. */
 router.get('/', (req, res) => {
-  res.render('index.ejs', { title: appTitle, subTitle: appSubTitle });
+  return res.render('index.ejs', {
+    title: appTitle,
+    subTitle: appSubTitle,
+  });
 });
 
 router.get('/index', (req, res) => {
-  res.render('index.ejs', { title: appTitle, subTitle: appSubTitle });
+  return res.redirect('/');
 });
 
 router.use('/user', userRouter);
@@ -94,11 +97,11 @@ try {
 }
 
 // Felipe - country
-// try {
-//   router.use('/country', countryRoutes);
-// } catch (err) {
-//   LOG.error(`ERROR: ${err.message}`);
-// }
+try {
+  router.use('/country', countryRoutes);
+} catch (err) {
+  LOG.error(`ERROR: ${err.message}`);
+}
 
 // Jack - chief
 try {
