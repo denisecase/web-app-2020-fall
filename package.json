@@ -19,7 +19,7 @@
     "consolidate": "latest",
     "dotenv": "latest",
     "ejs": "latest",
-    "express": "latest",
+    "express": "5.0.0",
     "express-ejs-layouts": "latest",
     "express-session": "latest",
     "express-status-monitor": "latest",
